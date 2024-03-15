@@ -1,0 +1,39 @@
+.flex {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+.flex .select__category select,
+.flex .field input {
+    padding: 10px;
+    border: none
+}
+
+.flex .field {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.flex .field input {
+    width: 100%;
+    min-width: 200px;
+    border-left: 1px solid var(--borderColor)
+}
+
+.flex .field .icon {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    background-color: var(--black);
+    height: 100%;
+    min-width: 35px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

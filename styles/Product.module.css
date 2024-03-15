@@ -1,0 +1,31 @@
+.wrapper {
+    background-color: var(--cardBg);
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 250px;
+}
+
+.wrapper .pic img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.wrapper .details {
+    padding: 10px;
+}
+
+.wrapper .category {
+    color: grey;
+    font-weight: 80%;
+}
+
+.wrapper .title {
+    margin-bottom: 20px;
+
+}
+
+.wrapper .price {
+    font-weight: bold;
+}

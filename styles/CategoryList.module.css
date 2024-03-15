@@ -1,0 +1,39 @@
+.wrapper {
+    min-width: 160px;
+    background-color: white;
+    position: relative;
+}
+
+.wrapper li {
+    cursor: pointer;
+
+}
+
+.wrapper .item {
+    border-bottom: 1px solid var(--borderColor);
+    padding: 7px 15px;
+
+
+}
+
+.wrapper .item span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.child__item {
+    padding: 7px;
+}
+
+/* .child__wrapper {
+    position: absolute;
+    right: 0;
+    top: 0
+} */
+
+.wrapper .child__item {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
