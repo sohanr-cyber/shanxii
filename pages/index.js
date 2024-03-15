@@ -26,10 +26,7 @@ export default function Home () {
         <Navbar />
         <Categories />
         <Header />
-        <ProductsByCategory />
-        <ProductsByCategory />
-        <ProductsByCategory />
-        <ProductsByCategory />
+        <ProductsByCategory category={'Featured Product'} />
         <Footer />
       </div>
     </>

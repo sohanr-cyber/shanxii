@@ -1,8 +1,38 @@
-.wrapper {
+.wrapper,
+.opened__searchBox {
     background: white;
     padding: 15px 25px;
     position: sticky;
     max-height: 70px;
+}
+
+
+.opened__searchBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    ;
+}
+
+
+.opened__searchBox span {
+    font-size: 150%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+    padding: 3px 5px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
 }
 
 .wrapper .flex {
@@ -35,10 +65,19 @@
 
 
 @media (max-width:570px) {
+
     .wrapper {
         padding: 10px 15px;
     }
 
+    .opened__searchBox {
+        padding: 15px;
+    }
+
+
+}
+
+@media (max-width:480px) {
     .search {
         display: none;
     }

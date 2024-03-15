@@ -12,7 +12,7 @@
 
 
 .wrapper img {
-    border-radius: 15px;
+    border-radius: 5px;
     object-fit: cover;
     height: 100%
 }
@@ -50,6 +50,20 @@
     margin-top: -5px;
 }
 
+
+
+
+@media (max-width:720px) {
+
+
+
+    .wrapper .right {
+        display: none;
+    }
+
+
+}
+
 @media (max-width:570px) {
     .wrapper {
         padding: 15px;
@@ -59,8 +73,10 @@
     }
 
     .wrapper .right {
-        flex-direction: row;
+        display: flex;
+        flex-direction: row !important;
         gap: 10px;
+
     }
 
     .wrapper .right .item:nth-child(2) {
