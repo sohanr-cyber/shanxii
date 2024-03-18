@@ -13,6 +13,9 @@
 .top .left {
     font-weight: bold;
     font-size: 120%;
+    border-bottom: 3px solid var(--borderColor);
+    height: 105%;
+
 }
 
 .top .right {
@@ -24,8 +27,7 @@
 
 .top .item {
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--borderColor);
-    height: 105%;
+
 }
 
 .products {

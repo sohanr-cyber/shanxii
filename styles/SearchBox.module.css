@@ -11,11 +11,16 @@
 
 .flex .select__category select,
 .flex .field input {
-    padding: 10px;
+    /* padding: 10px; */
     border: none
 }
 
 
+.flex select {
+    max-width: 60px;
+    padding: 10px 5px;
+    ;
+}
 
 .flex .field {
     position: relative;
@@ -26,7 +31,8 @@
 .flex .field input {
     width: 100%;
     min-width: 200px;
-    border-left: 1px solid var(--borderColor)
+    border-left: 1px solid var(--borderColor);
+    padding: 10px;
 }
 
 .flex .field .icon {

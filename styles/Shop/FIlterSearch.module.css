@@ -1,0 +1,10 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 200px;
+    min-height: 100vh;
+    background: var(--cardBg);
+    background-color: white;
+    z-index: 33;
+}

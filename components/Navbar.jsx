@@ -5,8 +5,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import SearchIcon from '@mui/icons-material/Search'
 import SearchBox from './SearchBox'
+import { useRouter } from 'next/router'
 const Navbar = () => {
-  const [openSearch, setOpenSearch] = useState(true)
+  const router = useRouter()
+  const [openSearch, setOpenSearch] = useState(false)
   return (
     <div className={styles.wrapper}>
       {openSearch && (
@@ -29,7 +31,10 @@ const Navbar = () => {
           <div className={styles.item}>
             <ShoppingCartIcon />
           </div>
-          <div className={styles.item}>
+          <div
+            className={styles.item}
+            onClick={() => router.push('/user/8532053205/profile')}
+          >
             <AccountCircleIcon />
           </div>
         </div>

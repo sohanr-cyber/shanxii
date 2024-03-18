@@ -22,12 +22,10 @@ export default function Home () {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className={styles.wrapper}>
-        <TopNav />
-        <Navbar />
+        {/* <TopNav /> */}
         <Categories />
         <Header />
         <ProductsByCategory category={'Featured Product'} />
-        <Footer />
       </div>
     </>
   )
