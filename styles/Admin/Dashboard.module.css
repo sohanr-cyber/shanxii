@@ -1,0 +1,26 @@
+.wrapper {
+    /* styles %or wrapper */
+    width: 100%;
+    /* border: 1px solid red */
+    flex: 1;
+}
+
+.topSection {
+    /* styles for topSection */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 50%;
+    border: 1px solid red;
+
+}
+
+.orders {
+    /* styles for orders */
+    width: 100%;
+    border: 1px solid red;
+}
+
+.products {
+    /* styles for products */
+}

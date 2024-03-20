@@ -10,6 +10,8 @@ import BookmarkIcon from '@mui/icons-material/Bookmark'
 import LogoutIcon from '@mui/icons-material/Logout'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useRouter } from 'next/router'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+
 const Navigator = () => {
   const router = useRouter()
   return (
@@ -27,6 +29,12 @@ const Navigator = () => {
         <div className={styles.joined}>Joined Mar Thu 2024</div>
       </div>
       <div className={styles.navigators}>
+        <div className={styles.item} onClick={() => router.push('/admin')}>
+          <div className={styles.icon}>
+            <AdminPanelSettingsIcon />
+          </div>
+          <div className={styles.title}>Admin Panel</div>
+        </div>
         <div className={styles.item} onClick={() => router.push('/dashobard')}>
           <div className={styles.icon}>
             <DashboardIcon />

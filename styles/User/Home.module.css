@@ -7,6 +7,16 @@
 }
 
 .wrapper .right {
-    width: 100%;
-    ;
+    flex: 1
+}
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .wrapper .left {
+        display: none;
+    }
 }

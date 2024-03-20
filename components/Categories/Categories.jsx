@@ -9,10 +9,24 @@ const Categories = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
-        <div className={styles.select__category}>
-          <ListIcon />
-          Categories
-          <KeyboardArrowDownIcon onClick={() => setOpen(prev => !prev)} />
+        <div className={styles.category__items}>
+          <div className={styles.select__category}>
+            Categories{' '}
+            <span onClick={() => setOpen(prev => !prev)}>
+              <KeyboardArrowDownIcon />
+            </span>
+          </div>
+          {open && (
+            <div className={styles.category__list}>
+              {['Men', 'Woman', 'Winter', 'Shoes', 'Summer', 'Kids'].map(
+                (item, index) => (
+                  <div className={styles.category__item} key={index}>
+                    {item}
+                  </div>
+                )
+              )}
+            </div>
+          )}
         </div>
         <div className={styles.items}>
           {['Men', 'Woman', 'Winter', 'Shoes', 'Summer', 'Kids'].map(
@@ -24,11 +38,6 @@ const Categories = () => {
           )}
         </div>
       </div>
-      {open && (
-        <div className={styles.categories}>
-          <CategoryList />
-        </div>
-      )}
     </div>
   )
 }

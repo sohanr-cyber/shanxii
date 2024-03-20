@@ -1,0 +1,13 @@
+.wrapper {
+    padding: 10px 15px;
+    text-align: center;
+    background-color: antiquewhite;
+    margin: 0 0;
+}
+
+.wrapper .c {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}

@@ -6,15 +6,23 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import SearchIcon from '@mui/icons-material/Search'
 import SearchBox from './SearchBox'
 import { useRouter } from 'next/router'
+import Navigator from './User/Navigator'
 const Navbar = () => {
   const router = useRouter()
   const [openSearch, setOpenSearch] = useState(false)
+  const [open, setOpen] = useState(false)
   return (
     <div className={styles.wrapper}>
       {openSearch && (
         <div className={styles.opened__searchBox}>
           <SearchBox />
           <span onClick={() => setOpenSearch(false)}>X</span>
+        </div>
+      )}
+
+      {open && (
+        <div className={styles.navigator}>
+          <Navigator /> <span onClick={() => setOpen(false)}>X</span>
         </div>
       )}
       <div className={styles.flex}>
@@ -28,12 +36,18 @@ const Navbar = () => {
           <div className={`${styles.item} ${styles.search__icon}`}>
             <SearchIcon onClick={() => setOpenSearch(true)} />
           </div>
-          <div className={styles.item}>
+          <div className={styles.item} onClick={() => router.push('/cart')}>
             <ShoppingCartIcon />
           </div>
           <div
-            className={styles.item}
+            className={`${styles.item} ${styles.profile}`}
             onClick={() => router.push('/user/8532053205/profile')}
+          >
+            <AccountCircleIcon />
+          </div>
+          <div
+            className={`${styles.item} ${styles.nav}`}
+            onClick={() => setOpen(prev => !prev)}
           >
             <AccountCircleIcon />
           </div>

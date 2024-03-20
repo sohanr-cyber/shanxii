@@ -13,4 +13,12 @@ function generateTrackingNumber (length = 10) {
   return trackingNumber
 }
 
-export { generateTrackingNumber }
+function containsAdmin (url) {
+  // Regular expression to check if the URL contains "/admin" anywhere in it
+  var regex = /\/admin/i // The 'i' flag makes the regex case-insensitive
+
+  // Test the URL against the regular expression
+  return regex.test(url)
+}
+
+export { generateTrackingNumber, containsAdmin }

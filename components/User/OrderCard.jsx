@@ -17,8 +17,8 @@ const OrderCard = () => {
                 src={
                   'https://images.pexels.com/photos/46212/men-s-shirt-shirt-attire-clothing-46212.jpeg?auto=compress&cs=tinysrgb&w=600'
                 }
-                width={80}
-                height={80}
+                width={50}
+                height={50}
                 alt=''
               />
             </span>
@@ -31,9 +31,9 @@ const OrderCard = () => {
       </div>
       <div className={styles.bottom}>
         <div className={styles.left}>Confirmed</div>
-        <div className={styles.right}>
-          <div className={styles.btn}>Order Agan</div>
-          <div className={styles.btn}>View Details</div>
+        <div className={styles.right} style={{ gap: '10px' }}>
+          <buttion className={styles.btn}>Order Agan</buttion>
+          <buttion className={styles.btn}>View Details</buttion>
         </div>
       </div>
     </div>

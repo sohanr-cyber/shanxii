@@ -1,7 +1,7 @@
 .wrapper {
     background: white;
-    border: 1px solid var(--borderColor);
-    /* padding: 0 5px; */
+    border-top: 1px solid var(--borderColor);
+    border-bottom: 1px solid var(--borderColor);
     position: relative;
     padding: 0 25px;
 }
@@ -9,6 +9,7 @@
 .wrapper .flex {
     display: flex;
     gap: 15px;
+    padding: 0;
 }
 
 .wrapper .flex .items {
@@ -20,37 +21,62 @@
 }
 
 
-.wrapper .flex .items::-webkit-scrollbar {
-    height: 0;
-}
 
 
-.wrapper .select__category,
 .wrapper .items .item {
-    padding: 12px 15px;
+    padding: 7px 15px;
     cursor: pointer;
+    max-width: 150px;
+}
+
+.category__items {
+    padding: 5px 15px;
+}
+
+
+
+.wrapper .category__items {
+    position: relative;
+    background-color: black;
+
 
 }
 
-.wrapper .select__category {
-    background-color: var(--black);
+
+.wrapper .category__items .select__category {
+    background: black;
     color: white;
-    position: relative;
-    min-width: 170px;
+    width: 100%;
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 5px;
-    cursor: pointer;
+
 
 }
 
-
-.wrapper .categories {
-    background-color: white;
-    ;
-    min-width: 170px;
+.wrapper .category__items .category__list {
     position: absolute;
+    background-color: white;
+    min-height: 170px;
+    z-index: 1;
+    /* padding: 5px; */
+    top: 40px;
+    left: 0;
+    width: 100%;
+    overflow-y: scroll;
 
+
+}
+
+.category__item {
+    padding: 10px;
+    width: 100%;
+}
+
+.category__list,
+.category__item:hover {
+    background: skyblue
 }
 
 @media (max-width:570px) {

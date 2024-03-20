@@ -1,0 +1,45 @@
+/* checkout */
+.checkout__wrapper {
+    margin-top: 15px;
+    background: var(--cardBg);
+    padding: 15px;
+}
+
+.checkout__wrapper .flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 10px;
+
+}
+
+.flex .left {
+    display: flex;
+    gap: 10px;
+}
+
+.flex button,
+.flex input {
+    padding: 7px;
+}
+
+
+@media (max-width:570px) {
+    .checkout__wrapper {
+        padding: 10px;
+    }
+
+    .flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .flex button,
+    .flex input {
+        padding: 7px;
+        width: 100%;
+    }
+
+
+
+}

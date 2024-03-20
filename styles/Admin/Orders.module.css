@@ -1,0 +1,34 @@
+.wrapper {
+    margin: 15px 0;
+}
+
+.wrapper .table__wrapper {
+    width: 100%;
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    background: var(--cardBg);
+    border-radius: 5px;
+    flex-direction: column;
+
+}
+
+.wrapper .pagination {
+    background-color: var(--cardBg);
+    padding: 15px 0;
+}
+
+.wrapper table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+.wrapper table th,
+.wrapper table td {
+    padding: 5px;
+    border-bottom: 1px solid var(--borderColor);
+    text-align: left;
+}

@@ -1,0 +1,11 @@
+.wrapper {
+    padding: 15px;
+    background: var(--cardBg);
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.wrapper table {
+    width: 100%;
+    overflow-x: scroll;
+}

@@ -6,6 +6,7 @@
     /* gap: 5px; */
     align-items: flex-start;
     /* background-color: red; */
+    cursor: pointer;
 }
 
 .wrapper img {
@@ -25,5 +26,11 @@
 @media (max-width:570px) {
     .right {
         display: none;
+    }
+}
+
+@media (max-width:480px) {
+    .right {
+        display: block;
     }
 }

@@ -1,0 +1,27 @@
+.card__wrapper {
+    /* border: 1px solid lightgrey; */
+    max-width: 220px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px rgb(234, 234, 234);
+    /* aspect-ratio: 6/3; */
+    background: white;
+    min-width: 220px;
+  }
+  
+  .card__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .number {
+    font-weight: bold;
+    font-size: 150%;
+  }
+  
