@@ -60,7 +60,7 @@ const Header = () => {
             key={index}
             className={styles.image}
             style={{
-              backgroundImage: `url("${contents[currentIndex].image}")`,
+              backgroundImage: `url("${contents[item-1].image}")`,
               backgroundSize: 'cover'
             }}
           ></div>
