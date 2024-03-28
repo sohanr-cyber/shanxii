@@ -2,16 +2,26 @@
     background-color: var(--cardBg);
     padding: 10px 0;
     border-radius: 5px;
-    min-width: 220px;
-    max-width: 220px;
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-x: scroll;
+    z-index: 1;
+    min-width: 200px
 }
 
 .wrapper .top {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    padding: 15px 10px;
+    gap: 15px;
+    padding: 10px;
+}
+
+.wrapper .top .exit {
+    margin-top: 8px;
+    color: red;
+    cursor: pointer;
 }
 
 .wrapper .avater {
@@ -43,6 +53,13 @@
     cursor: pointer;
 
 }
+
+.wrapper .navigators .inner__items {
+    margin-left: 15px;
+
+
+}
+
 
 .wrapper .navigators .item:hover {
     background-color: var(--hoverBgColor);

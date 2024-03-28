@@ -1,8 +1,21 @@
 import React from 'react'
 import styles from '../../styles/Cart/Checkout.module.css'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
+import { useRouter } from 'next/router'
 
-const Checkout = () => {
+const calculateSubtotal = cartItems => {
+  let subtotal = 0
+  cartItems.forEach(item => {
+    subtotal +=
+      (item.product.price -
+        item.product.price * (item.product.discount / 100)) *
+      item.quantity
+  })
+  return subtotal
+}
+
+const Checkout = ({ cartItems }) => {
+  const router = useRouter()
   return (
     <div className={styles.checkout__wrapper}>
       <div className={styles.flex}>
@@ -11,7 +24,10 @@ const Checkout = () => {
           <button>Apply Coupon</button>
         </div>
         <div className={styles.right} style={{ fontSize: '110%' }}>
-          Subtotal: <span style={{ fontWeight: 'bold' }}>$850.00</span>
+          Subtotal:{' '}
+          <span style={{ fontWeight: 'bold' }}>
+            ${calculateSubtotal(cartItems)}
+          </span>
         </div>
       </div>
       <div className={styles.flex}>
@@ -19,7 +35,9 @@ const Checkout = () => {
           <button>Back To Shop</button>
         </div>
         <div className={styles.right}>
-          <button>Proceed</button>
+          <button onClick={() => router.push('/checkout/address')}>
+            Proceed
+          </button>
         </div>
       </div>
     </div>

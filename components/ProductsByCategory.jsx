@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../styles/ProductsByCategory.module.css'
 import Product from './Product'
 
-const ProductsByCategory = ({ category, subCategory }) => {
+const ProductsByCategory = ({ category, subCategory, products }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
@@ -20,8 +20,8 @@ const ProductsByCategory = ({ category, subCategory }) => {
         </div>
       </div>
       <div className={styles.products}>
-        {[1, 2, 3, 5, 1, 2, 3, 5].map((item, index) => (
-          <Product key={index} />
+        {[...products].map((item, index) => (
+          <Product key={index} item={item} />
         ))}
       </div>
     </div>

@@ -1,5 +1,5 @@
-// user management
-- registration 
-- log in 
-- update profile 
-- password reset(optional)
+admin
+// add product
+    - image upload 
+    -multiple image upload
+    

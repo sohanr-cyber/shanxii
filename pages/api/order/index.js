@@ -6,7 +6,7 @@ import Product from '@/database/model/Product'
 import nc from 'next-connect'
 import { generateTrackingNumber } from '@/utilty/helper'
 const handler = nc()
-
+const PAGE_SIZE = 10
 db.connect()
 
 handler.post(async (req, res) => {
@@ -75,8 +75,27 @@ handler.post(async (req, res) => {
 
 handler.get(async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1
+
+    // Calculate the skip value based on the page number and page size
+    const skip = (page - 1) * PAGE_SIZE
+    // Retrieve total count of products
+    const totalCount = await Order.countDocuments()
+
+    // Calculate total pages
+    const totalPages = Math.ceil(totalCount / PAGE_SIZE)
+
+    // Retrieve products with pagination and sorting
     const orders = await Order.find()
-    res.status(200).json(orders)
+      .populate({
+        path: 'shippingAddress',
+        select: 'fullName phone'
+      })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(PAGE_SIZE)
+    await db.disconnect()
+    res.json({ page, orders, totalPages })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

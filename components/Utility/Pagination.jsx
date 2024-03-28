@@ -6,13 +6,13 @@ import Stack from '@mui/material/Stack'
 
 const Pages = ({ totalPages, currentPage }) => {
   const router = useRouter()
-
-  const renderPageNumbers = () => {
-    const pageNumbers = []
-    for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(i)
-    }
-    return pageNumbers
+  const updateRoute = data => {
+    const queryParams = { ...router.query, ...data }
+    router.push({
+      pathname: router.pathname,
+      query: queryParams,
+      shallow: false
+    })
   }
 
   return (

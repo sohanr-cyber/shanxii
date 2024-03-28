@@ -1,0 +1,70 @@
+.wrapper {
+    display: flex;
+    gap: 15px;
+    padding: 25px;
+}
+
+.left {
+    padding: 15px;
+    border-radius: 5px;
+    background: var(--cardBg);
+    flex: 2.5;
+
+}
+
+.left h2 {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.left .title {
+    font-weight: bold;
+}
+
+
+.left .flex {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.left .fields {
+    margin: 15px 0;
+}
+
+.left .field {
+    margin: 5px 0;
+}
+
+.left .field {
+    display: flex;
+    gap: 10px;
+
+}
+
+.left .flex .cash__on,
+.left .flex .bkash {
+    border: 1px solid var(--borderColor);
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(246, 228, 195);
+    cursor: pointer;
+}
+
+
+.right {
+    flex: 1.5
+}
+
+@media (max-width:720px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+}

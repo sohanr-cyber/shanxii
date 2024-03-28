@@ -10,6 +10,8 @@ import Categories from '@/components/Categories/Categories'
 import ProductsByCategory from '@/components/ProductsByCategory'
 import Footer from '@/components/Footer'
 import ImageSlider from '@/components/Utility/ImageSlider'
+import BASE_URL from '@/config'
+import axios from 'axios'
 
 const inter = Inter({ subsets: ['latin'] })
 const contents = [
@@ -30,7 +32,7 @@ const contents = [
       'https://images.pexels.com/photos/46212/men-s-shirt-shirt-attire-clothing-46212.jpeg?auto=compress&cs=tinysrgb&w=600'
   }
 ]
-export default function Home () {
+export default function Home ({ products }) {
   return (
     <>
       <Head>
@@ -44,8 +46,31 @@ export default function Home () {
         <Categories />
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         <Header />
-        <ProductsByCategory category={'Featured Product'} />
+        <ProductsByCategory category={'Featured Product'} products={products} />
       </div>
     </>
   )
+}
+
+export async function getServerSideProps (context) {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/product`)
+    const { products, totalPages, page: currentPage } = response.data
+    return {
+      props: {
+        title: 'Product List',
+        products,
+        totalPages,
+        currentPage
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error)
+    return {
+      props: {
+        title: 'Product List',
+        products: []
+      }
+    }
+  }
 }

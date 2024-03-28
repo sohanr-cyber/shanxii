@@ -7,6 +7,22 @@ import slugify from 'slugify'
 
 const handler = nextConnect()
 
+handler.get(async (req, res) => {
+  try {
+    await db.connect()
+    const { id } = req.query
+    const product = await Product.findOne({ _id: req.query.id }).populate({
+      path: 'categories',
+      select: 'name _id'
+    })
+    await db.connect()
+    res.json(product)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Server Error' })
+  }
+})
+
 handler.put(async (req, res) => {
   try {
     await db.connect()
@@ -16,8 +32,12 @@ handler.put(async (req, res) => {
       { ...req.body, slug: slugify(req.body.name) },
       { new: true }
     )
+    const upadated = await Product.findOne({ _id: req.query.id }).populate({
+      path: 'categories',
+      select: 'name _id'
+    })
     await db.connect()
-    res.json(product)
+    res.json(upadated)
   } catch (error) {
     res.status(500).json({ message: 'Server Error' })
   }

@@ -3,6 +3,7 @@
     border-radius: 5px;
     overflow: hidden;
     max-width: 250px;
+    cursor: pointer;
 }
 
 .wrapper .pic img {
@@ -18,14 +19,27 @@
 
 .wrapper .category {
     color: grey;
-    font-weight: 80%;
+    font-size: 80%;
+    margin-bottom: 5px;
 }
 
 .wrapper .title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
 }
 
 .wrapper .price {
     font-weight: bold;
+}
+
+.wrapper .flex {
+    display: flex;
+    gap: 10px;
+    font-size: 70%;
+
+}
+
+.wrapper .flex .price {
+    color: grey;
+
 }

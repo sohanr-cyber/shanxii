@@ -20,6 +20,12 @@ const orderSchema = new mongoose.Schema(
           required: true,
           min: 1
         },
+        size: {
+          type: String
+        },
+        color: {
+          type: String
+        },
         // Additional item-specific details (optional)
         price: {
           // Can include price at time of order
@@ -89,7 +95,6 @@ const orderSchema = new mongoose.Schema(
   },
   { timestamps: true }
 )
-
 
 const Order = mongoose.models.Order || mongoose.model('Order', orderSchema)
 export default Order

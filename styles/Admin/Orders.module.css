@@ -1,5 +1,55 @@
 .wrapper {
     margin: 15px 0;
+    background: var(--cardBg);
+    padding: 10px;
+
+}
+
+.wrapper .flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    /* margin-top: -10px; */
+    ;
+}
+
+.flex .left {
+    position: relative;
+    /* border: 1px solid red; */
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.flex .left span {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    height: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 0 5px;
+
+
+}
+
+
+
+.flex .left input,
+.right button {
+    padding: 7px;
+
+}
+
+.flex .left input {
+    /* width: 100%; */
+    padding-right: 25px;
+    ;
+    padding-left: 10px;
+
 }
 
 .wrapper .table__wrapper {
@@ -23,6 +73,7 @@
 .wrapper table {
     border-collapse: collapse;
     width: 100%;
+    border-top: 1px solid var(--borderColor);
 
 }
 
@@ -31,4 +82,21 @@
     padding: 5px;
     border-bottom: 1px solid var(--borderColor);
     text-align: left;
+}
+
+.wrapper table .action {
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; */
+}
+
+.wrapper table .action span {
+    border-radius: 5px;
+    padding: 3px;
+    background: var(--buttonBg);
+    color: var(--buttonC);
+    margin: 0 10px;
+    margin-left: 0;
+    cursor: pointer;
 }

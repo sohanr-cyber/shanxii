@@ -10,13 +10,25 @@ import LineChart from '../../components/Chart/LineChart'
 import BarChart from '../../components/Chart/BarChart'
 import RecentUsers from '@/components/Admin/Dashboard/Users'
 import Cards from '@/components/Admin/Dashboard/Cards'
+import Reviews from '@/components/Admin/Dashboard/Reviews'
+import Navbar from '@/components/Admin/Navbar'
+import axios from 'axios'
+import BASE_URL from '@/config'
 
-const index = () => {
+const index = ({ orders, products }) => {
   return (
     <div className={styles.wrapper}>
       <Cards />
-      <Orders />
-      <Products />
+      <Orders
+        title={'Recently Created Orders'}
+        dashboard={true}
+        orders={orders}
+      />
+      <Products
+        title={'Top Selling Product'}
+        dashboard={true}
+        products={products}
+      />
       <div className={styles.flex}>
         <Graph title={'Recent Orders'} />
         <BarChart title={'Revinue'} />
@@ -25,8 +37,37 @@ const index = () => {
         <BarChart title={'Revinue'} />
         <Graph />
       </div> */}
+      <Reviews />
     </div>
   )
 }
 
 export default index
+
+export async function getServerSideProps (context) {
+  try {
+    const page = 1
+
+    const {
+      data: { products }
+    } = await axios.get(`${BASE_URL}/api/product`)
+    const {
+      data: { orders }
+    } = await axios.get(`${BASE_URL}/api/order`)
+
+    return {
+      props: {
+        products,
+        orders
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error)
+    return {
+      props: {
+        products: [],
+        orders: []
+      }
+    }
+  }
+}

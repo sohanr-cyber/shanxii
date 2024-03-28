@@ -10,7 +10,7 @@ const handler = nextConnect()
 handler.delete(async (req, res) => {
   try {
     await db.connect()
-    Product.deleteMany({})
+    await Product.deleteMany({})
     await db.disconnect()
     res.status(204).end()
   } catch (error) {

@@ -1,9 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/Cart/Home.module.css'
 import CartItems from '@/components/Cart/CartItems'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import Checkout from '@/components/Cart/Checkout'
-const cart = () => {
+import { useDispatch, useSelector } from 'react-redux'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import { addItem, removeItem } from '@/redux/cartSlice'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+
+const Cart = () => {
+  const cartItems = useSelector(state => state.cart.items)
+  const [isClient, setIsClient] = useState(false)
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  const incrementQuantity = item => {
+    dispatch(
+      addItem({
+        ...item,
+        quantity: item.quantity + 1
+      })
+    )
+  }
+
+  const decrementQuantity = item => {
+    if (item.quantity > 1) {
+      dispatch(
+        addItem({
+          ...item,
+          quantity: item.quantity - 1
+        })
+      )
+    }
+  }
+
   return (
     <div className={styles.wrapper}>
       <h2>Your Cart</h2>
@@ -15,25 +51,70 @@ const cart = () => {
               <th>Product Price</th>
               <th>Quantity</th>
               <th>Subtotal</th>
-              <th>Cealr Cart</th>
+              <th className={styles.clear__button}>Clear Cart</th>
             </tr>
           </thead>
           <tbody>
-            {[1, 2, 3].map((item, index) => (
-              <tr key={index}>
-                <td>product - {item}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            ))}
+            {isClient &&
+              cartItems?.map((item, index) => (
+                <tr key={index}>
+                  <td className={styles.product}>
+                    <div className={styles.left}>
+                      <Image
+                        src={item.product.thumbnail}
+                        width='40'
+                        height='40'
+                        alt=''
+                      />
+                    </div>
+                    <div className={styles.right}>
+                      <div>{item.product.name}</div>
+                      {item.size && (
+                        <div style={{ fontSize: '80%', marginTop: '5px' }}>
+                          {item.size}
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td>
+                    ৳{' '}
+                    {parseInt(
+                      item.product.price -
+                        item.product.price * (item.product.discount / 100)
+                    )}
+                  </td>
+                  <td>
+                    {' '}
+                    <div className={styles.quantity}>
+                      <span onClick={() => incrementQuantity(item)}>
+                        <AddIcon />
+                      </span>
+                      <span>{item.quantity}</span>
+                      <span onClick={() => decrementQuantity(item)}>
+                        <RemoveIcon />
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    ৳{' '}
+                    {item.quantity *
+                      (item.product.price -
+                        item.product.price * (item.product.discount / 100))}
+                  </td>
+                  <td
+                    className={styles.x}
+                    onClick={() => dispatch(removeItem(item))}
+                  >
+                    X
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
-      <Checkout />
+      {isClient && <Checkout cartItems={cartItems} />}
     </div>
   )
 }
 
-export default cart
+export default Cart

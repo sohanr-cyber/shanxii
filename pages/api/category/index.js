@@ -6,15 +6,15 @@ import slugify from 'slugify'
 
 const handler = nc()
 
-db.connect()
-
 // Create a new category
 handler.post(async (req, res) => {
   try {
+    await db.connect()
     const category = await Category.create({
       ...req.body,
       slug: slugify(req.body.name)
     })
+    await db.disconnect()
     res.status(201).json(category)
   } catch (error) {
     console.error(error)
@@ -25,9 +25,12 @@ handler.post(async (req, res) => {
 // Get all categories
 handler.get(async (req, res) => {
   try {
+    await db.connect()
+
     const categories = await Category.find().populate({
       path: 'children'
     })
+    await db.disconnect()
     res.status(200).json(categories)
   } catch (error) {
     console.error(error)

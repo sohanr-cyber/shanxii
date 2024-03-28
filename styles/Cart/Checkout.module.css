@@ -3,6 +3,9 @@
     margin-top: 15px;
     background: var(--cardBg);
     padding: 15px;
+    box-shadow: 1px 1px 4px 5px rgb(229, 234, 235);
+
+
 }
 
 .checkout__wrapper .flex {

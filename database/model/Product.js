@@ -1,9 +1,7 @@
 import mongoose from 'mongoose'
 
-const { Schema, model } = mongoose
-
 // Define Schema
-const productSchema = new Schema(
+const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -19,6 +17,11 @@ const productSchema = new Schema(
     description: {
       type: String
     },
+    featured: {
+      type: Boolean,
+      default: false
+    },
+    sizes: { type: String },
     price: {
       type: Number,
       required: true
@@ -31,8 +34,8 @@ const productSchema = new Schema(
     },
     categories: [
       {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
       }
     ],
 
@@ -45,7 +48,8 @@ const productSchema = new Schema(
       }
     ],
     thumbnail: {
-      type: String
+      type: String,
+      required: true
     },
 
     // SEO and visibility
@@ -60,8 +64,7 @@ const productSchema = new Schema(
     attributes: [
       {
         name: {
-          type: String,
-          required: true
+          type: String
         },
         value: {
           type: String

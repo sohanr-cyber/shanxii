@@ -1,48 +1,85 @@
 import React from 'react'
 import styles from '../../../styles/Admin/Orders.module.css'
 import Pages from '@/components/Utility/Pagination'
-const Orders = () => {
-  const orders = null
+import SearchIcon from '@mui/icons-material/Search'
+
+const Orders = ({ title, dashboard, orders, totalPages }) => {
   return (
-    <div className={styles.wrapper}>
-      <h2>Latest Orders</h2>
-      <div className={styles.table__wrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Customer Name</th>
-              <th>Order Date</th>
-              <th>Total Amount</th>
-              <th>Order Status</th>
-              <th>Payment Status</th>
-              <th>Action</th>
-              {/* Add more table headers as needed */}
-            </tr>
-          </thead>
-          <tbody>
-            {[1, 2, 2, 2, 2, 2, 2, 2, 2, 2]?.map((order, index) => (
-              <tr key={index}>
-                <td>{'order.id'}</td>
-                <td>{'order.customerName'}</td>
-                <td>{'rder.orderDate'}</td>
-                <td>${500}</td>
-                <td>{'rder.orderDate'}</td>
-                <td>${500}</td>
-                <td>
-                  <>Delete</>
-                  <>View</>
-                </td>
-                {/* Add more table cells as needed */}
+    <>
+      {!dashboard && <h2>{title}</h2>}
+
+      <div className={styles.wrapper}>
+        {' '}
+        {dashboard && <h2>{title}</h2>}
+        {!dashboard && (
+          <div className={styles.flex}>
+            <div className={styles.left}>
+              <input type='text' placeholder='' />
+              <span>
+                <SearchIcon />
+              </span>
+            </div>
+            <div
+              className={styles.right}
+              style={{ display: 'flex', gap: '10px' }}
+            >
+              <select>
+                {[
+                  // 'Select Order Status',
+                  'All',
+                  'Pending',
+                  'Confirmed',
+                  'Delivere'
+                ].map((item, index) => (
+                  <option key={index}>{item}</option>
+                ))}
+              </select>
+              <button onClick={() => router.push('/admin/product/create')}>
+                Add Order
+              </button>
+            </div>
+          </div>
+        )}
+        <div className={styles.table__wrapper}>
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th style={{ minWidth: '200px' }}>Customer Name</th>
+                <th>Customer Phone</th>
+                <th>Total Amount</th>
+                <th>Order Status</th>
+                <th>Payment Status</th>
+                <th>Action</th>
+                {/* Add more table headers as needed */}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {[...orders]?.map((order, index) => (
+                <tr key={index}>
+                  <td>{order._id.split('').slice(0, 9)}...</td>
+                  <td>{order.shippingAddress.fullName}</td>
+                  <td>{order.shippingAddress.phone}</td>
+                  <td>৳{order.total}</td>
+                  <td>{order.status}</td>
+                  <td>{order.paymentStatus}</td>
+                  <td className={styles.action}>
+                    <span>Delete</span>
+                    <span>View</span>
+                  </td>
+                  {/* Add more table cells as needed */}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {!dashboard && (
+          <div className={styles.pagination}>
+            <Pages totalPages={totalPages} currentPage={2} />
+          </div>
+        )}
       </div>
-      <div className={styles.pagination}>
-        <Pages totalPages={10} currentPage={2} />
-      </div>
-    </div>
+    </>
   )
 }
 

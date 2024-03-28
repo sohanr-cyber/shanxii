@@ -21,4 +21,15 @@ function containsAdmin (url) {
   return regex.test(url)
 }
 
-export { generateTrackingNumber, containsAdmin }
+const calculateSubtotal = cartItems => {
+  let subtotal = 0
+  cartItems.forEach(item => {
+    subtotal +=
+      (item.product.price -
+        item.product.price * (item.product.discount / 100)) *
+      item.quantity
+  })
+  return subtotal
+}
+
+export { generateTrackingNumber, containsAdmin, calculateSubtotal }

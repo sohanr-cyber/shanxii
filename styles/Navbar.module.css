@@ -100,6 +100,44 @@
 }
 
 
+.right .item {
+    position: relative
+}
+
+.right .item span {
+    position: absolute;
+    border-radius: 50%;
+    padding: 1px 5px;
+    background: black;
+    color: white;
+    right: -10px;
+    top: -10px;
+    text-align: center;
+    font-size: 90%;
+    font-weight: 100;
+
+}
+
+.right .item .cartItems {
+    position: absolute;
+    right: -30px;
+    top: 15px;
+    z-index: 4;
+    min-width: 200px;
+    /* overflow: auto; */
+    padding: 20px;
+    ;
+    /* border: 1px solid red; */
+    overflow-y: scroll;
+    /* background-color: var(--cardBg); */
+    display: none;
+
+}
+
+.right .item:hover .cartItems {
+    display: block;
+}
+
 @media (max-width:570px) {
     .opened__searchBox {
         display: flex;
