@@ -6,5 +6,5 @@
     min-height: 100vh;
     background: var(--cardBg);
     background-color: white;
-    z-index: 33;
+    z-index: 30;
 }
