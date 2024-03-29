@@ -1,11 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/Admin/Orders.module.css'
 import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
-const Categories = ({ title, dashboard }) => {
+const Categories = ({
+  title,
+  dashboard,
+  currentPage,
+  totalPages,
+  categories
+}) => {
   const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filteredCategories, setFilteredCategories] = useState(categories)
+  useEffect(() => {
+    setFilteredCategories(categories)
+  }, [categories])
+  // Function to handle search query change
+  const handleSearchChange = e => {
+    const query = e.target.value
+    setSearchQuery(query)
+
+    // Filter products based on the search query
+    const filtered = categories.filter(
+      c =>
+        c.name.toLowerCase().includes(query.toLowerCase()) ||
+        c._id.toLowerCase().includes(query.toLowerCase())
+    )
+    setFilteredCategories(filtered)
+  }
   return (
     <>
       {' '}
@@ -15,7 +40,11 @@ const Categories = ({ title, dashboard }) => {
         {!dashboard && (
           <div className={styles.flex}>
             <div className={styles.left}>
-              <input type='text' placeholder='' />
+              <input
+                type='text'
+                placeholder=''
+                onChange={e => handleSearchChange(e)}
+              />
               <span>
                 <SearchIcon />
               </span>
@@ -32,25 +61,34 @@ const Categories = ({ title, dashboard }) => {
           <table>
             <thead>
               <tr>
-                <th>Category</th>
+                <th>Category Id</th>
+                <th>Category Name</th>
                 <th>Category Icon</th>
-                <th>Total Sale</th>
-                <th>CreatedAt</th>
+                {/* <th>CreatedAt</th> */}
                 <th>Action</th>
                 {/* Add more table headers as needed */}
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 2, 2]?.map((order, index) => (
+              {[...filteredCategories]?.map((c, index) => (
                 <tr key={index}>
-                  <td>{'order.id'}</td>
-                  <td>{'order.customerName'}</td>
-                  <td>{'rder.orderDate'}</td>
-                  <td>${500}</td>
+                  <td>{c._id}</td>
+                  <td>{c.name}</td>
+                  <td>
+                    {c.image && (
+                      <Image src={c.image} width='50' height='50' alt='' />
+                    )}
+                  </td>
 
                   <td className={styles.action}>
                     <span>Delete</span>
-                    <span>View</span>
+                    <span
+                      onClick={() =>
+                        router.push(`/admin/category/create?id=${c._id}`)
+                      }
+                    >
+                      View
+                    </span>
                   </td>
                   {/* Add more table cells as needed */}
                 </tr>
@@ -60,7 +98,7 @@ const Categories = ({ title, dashboard }) => {
         </div>
         {!dashboard && (
           <div className={styles.pagination}>
-            <Pages totalPages={10} currentPage={2} />
+            <Pages totalPages={totalPages} currentPage={currentPage} />
           </div>
         )}
       </div>

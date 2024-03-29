@@ -111,12 +111,16 @@ const Product = ({ product }) => {
             <button onClick={() => handleAddToCart()}>Add To Cart</button>
             <button>Buy Now</button>
           </div>
-          <div className={styles.categories}>
-            Categories:{' '}
-            {product.categories?.map((item, index) => (
-              <span key={index}>{item.name}</span>
-            ))}
-          </div>
+
+          {product.categories.length > 0 && (
+            <div className={styles.categories}>
+              Categories:{' '}
+              {product.categories?.map((item, index) => (
+                <span key={index}>{item.name}</span>
+              ))}
+            </div>
+          )}
+
           <div className={styles.flex}>
             <button>Add To Wishlist</button>
           </div>

@@ -7,7 +7,7 @@ const ProductsByCategory = ({ category, subCategory, products }) => {
     <div className={styles.wrapper}>
       <div className={styles.top}>
         <div className={styles.left}>
-          <div className={styles.item}>{category}</div>
+          <h3 className={styles.item}>{category}</h3>
         </div>
         <div className={styles.right}>
           {subCategory?.map(item => (

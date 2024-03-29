@@ -1,0 +1,60 @@
+.wrapper {
+    display: flex;
+    gap: 15px;
+    padding: 25px;
+}
+
+.left {
+    padding: 15px;
+    border-radius: 5px;
+    background: var(--cardBg);
+    flex: 2.5;
+
+}
+
+
+
+.left .status__steps {
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.wrapper .statusTimeline {
+    background: var(--cardBg);
+    margin: 10px 0;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 30px;
+    ;
+}
+
+.right {
+    /* flex: 1.5 */
+}
+
+.wrapper .statusTimeline .item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 0;
+
+}
+
+@media (max-width:720px) {
+    .wrapper {
+        flex-direction: column;
+
+    }
+}
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 15px;
+
+    }
+}

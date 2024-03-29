@@ -5,12 +5,21 @@
     max-width: 250px;
     cursor: pointer;
 }
-
+.wrapper .pic {
+    overflow: hidden;
+}
 .wrapper .pic img {
     width: 100%;
     height: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+    transition: transform .5s ease-in-out;
+    overflow: hidden;
+}
+
+
+.wrapper .pic img:hover {
+    transform: scale(1.5) rotate(25deg);
 }
 
 .wrapper .details {
@@ -21,6 +30,9 @@
     color: grey;
     font-size: 80%;
     margin-bottom: 5px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .wrapper .title {

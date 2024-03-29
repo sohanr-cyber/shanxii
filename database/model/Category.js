@@ -1,35 +1,39 @@
 import mongoose from 'mongoose'
 
-const categorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true
-  },
+const categorySchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true
+    },
 
-  slug: {
-    // URL friendly identifier
-    type: String,
-    required: true,
-    trim: true,
-    unique: true // Ensures unique category URLs
-  },
+    slug: {
+      // URL friendly identifier
+      type: String,
+      required: true,
+      trim: true,
+      unique: true // Ensures unique category URLs
+    },
 
-  // Optional fields for hierarchical categories
-  parent: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category' // Reference to itself for parent category
-  },
-  children: [
-    {
+    image: {
+      type: String
+    },
+    // Optional fields for hierarchical categories
+    parent: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Category' // Reference to itself for child categories
-    }
-  ]
-},
-{ timestamps: true })
-
+      ref: 'Category' // Reference to itself for parent category
+    },
+    children: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category' // Reference to itself for child categories
+      }
+    ]
+  },
+  { timestamps: true }
+)
 
 // Create Model
 const Category =

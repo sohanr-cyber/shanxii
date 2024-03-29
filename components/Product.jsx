@@ -17,7 +17,7 @@ const Product = ({ item }) => {
       </div>
       <div className={styles.details}>
         <div className={styles.category}>
-          {item.categories.map(i => i.name)[0]}
+          {item.categories?.map(i => i.name)[0]}
         </div>
         <div className={styles.title}>{item.name}</div>
         <Stack spacing={1}>

@@ -55,6 +55,28 @@ const orderSchema = new mongoose.Schema(
       enum: ['pending', 'processing', 'shipped', 'delivered', 'canceled'],
       default: 'pending'
     },
+    statusTimeline: [
+      {
+        status: {
+          type: String,
+          enum: [
+            'pending',
+            'Processing',
+            'Confirmed',
+            'Packing',
+            'Packed',
+            'Delivering',
+            'Delivered'
+          ],
+          required: true,
+          default: 'pending'
+        },
+        timestamp: {
+          type: Date,
+          default: Date.now
+        }
+      }
+    ],
     trackingNumber: {
       type: String
     },

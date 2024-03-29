@@ -5,7 +5,7 @@ const addressSchema = new mongoose.Schema(
     // User or entity associated with the address
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      refPath: 'User' // Reference path for polymorphic relationship
+      ref: 'User' // Reference path for polymorphic relationship
     },
     type: {
       type: String,

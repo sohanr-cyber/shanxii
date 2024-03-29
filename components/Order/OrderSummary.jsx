@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import styles from '../../styles/Cart/OrderSummary.module.css'
 import { calculateSubtotal } from '@/utilty/helper'
-const OrderSummary = ({ cartItems }) => {
+const OrderSummary = ({ cartItems, shipping, total }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.summary}>
@@ -14,12 +14,12 @@ const OrderSummary = ({ cartItems }) => {
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Shipping:</div>
-            <div className={styles.value}>32532</div>
+            <div className={styles.value}>{shipping}</div>
           </div>
         </div>
         <div className={styles.order__total}>
           <div className={styles.key}>Order Total:</div>
-          <div className={styles.value}>363</div>
+          <div className={styles.value}>{total}</div>
         </div>
       </div>
       <div className={styles.cart__items}>

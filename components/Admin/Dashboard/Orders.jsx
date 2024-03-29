@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/Admin/Orders.module.css'
 import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
+import { useRouter } from 'next/router'
 
 const Orders = ({ title, dashboard, orders, totalPages }) => {
+  const [filteredOrders, setFilteredOrders] = useState(orders)
+  const [query, setSearchQuery] = useState('')
+  const router = useRouter()
+  useEffect(() => {
+    setFilteredOrders(orders)
+  }, [orders])
+  // Function to handle search query change
+  const handleSearchChange = e => {
+    const query = e.target.value
+    setSearchQuery(query)
+
+    // Filter products based on the search query
+    const filtered = orders.filter(
+      order =>
+        order._id.toLowerCase().includes(query.toLowerCase()) ||
+        order.shippingAddress.phone
+          .toLowerCase()
+          .includes(query.toLowerCase()) ||
+        order.shippingAddress.fullName
+          .toLowerCase()
+          .includes(query.toLowerCase())
+    )
+    setFilteredOrders(filtered)
+  }
   return (
     <>
       {!dashboard && <h2>{title}</h2>}
@@ -14,7 +39,11 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
         {!dashboard && (
           <div className={styles.flex}>
             <div className={styles.left}>
-              <input type='text' placeholder='' />
+              <input
+                type='text'
+                placeholder=''
+                onChange={e => handleSearchChange(e)}
+              />
               <span>
                 <SearchIcon />
               </span>
@@ -55,9 +84,11 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
               </tr>
             </thead>
             <tbody>
-              {[...orders]?.map((order, index) => (
+              {[...filteredOrders]?.map((order, index) => (
                 <tr key={index}>
-                  <td>{order._id.split('').slice(0, 9)}...</td>
+                  <td onClick={() => router.push(`/order/${order._id}`)}>
+                    {order._id.split('').slice(0, 9)}...
+                  </td>
                   <td>{order.shippingAddress.fullName}</td>
                   <td>{order.shippingAddress.phone}</td>
                   <td>৳{order.total}</td>

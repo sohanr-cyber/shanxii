@@ -3,11 +3,11 @@
 import db from '@/database/connection'
 import Order from '@/database/model/Order'
 import Product from '@/database/model/Product'
+import Address from '@/database/model/Address'
 import nc from 'next-connect'
 import { generateTrackingNumber } from '@/utilty/helper'
 const handler = nc()
 const PAGE_SIZE = 10
-db.connect()
 
 handler.post(async (req, res) => {
   try {
@@ -20,6 +20,7 @@ handler.post(async (req, res) => {
       paymentMethod,
       paymentReference
     } = req.body
+    await db.connect()
 
     // Fetch product details for each item in the order
     const populatedItems = await Promise.all(
@@ -58,6 +59,7 @@ handler.post(async (req, res) => {
       shippingAddress,
       billingAddress,
       status,
+      statusTimeline: [{ status: 'pending' }],
       subtotal,
       discount,
       total,
@@ -65,7 +67,7 @@ handler.post(async (req, res) => {
       paymentReference,
       trackingNumber: generateTrackingNumber()
     })
-
+    await db.disconnect()
     res.status(201).json(newOrder)
   } catch (error) {
     console.error(error)
@@ -75,6 +77,7 @@ handler.post(async (req, res) => {
 
 handler.get(async (req, res) => {
   try {
+    await db.connect()
     const page = parseInt(req.query.page) || 1
 
     // Calculate the skip value based on the page number and page size
@@ -86,7 +89,7 @@ handler.get(async (req, res) => {
     const totalPages = Math.ceil(totalCount / PAGE_SIZE)
 
     // Retrieve products with pagination and sorting
-    const orders = await Order.find()
+    const orders = await Order.find({})
       .populate({
         path: 'shippingAddress',
         select: 'fullName phone'

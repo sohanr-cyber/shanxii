@@ -64,6 +64,7 @@ handler.post(async (req, res) => {
       shippingAddress: address._id,
       billingAddress: address._id,
       status,
+      statusTimeline: [{ status }],
       subtotal,
       //   discount,
       total,

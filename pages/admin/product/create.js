@@ -236,6 +236,11 @@ const Create = ({ product: data, categories }) => {
           </div>
           <div className={styles.field}>
             <label>Product Thumbnail</label>
+            <Upload
+              handle={files => {
+                setProduct(prev => ({ ...prev, thumbnail: files.url }))
+              }}
+            />
             <div className={styles.images}>
               {product.thumbnail ? (
                 <div className={styles.image__container}>
@@ -247,20 +252,24 @@ const Create = ({ product: data, categories }) => {
                   />
                 </div>
               ) : (
-                <div className={styles.image__container}></div>
-              )}
-
-              <div className={styles.image__container}>
-                <Upload
-                  handle={files => {
-                    setProduct(prev => ({ ...prev, thumbnail: files.url }))
+                <div
+                  className={styles.image__container}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textAlign: 'center'
                   }}
-                />
-              </div>
+                >
+                  No Photo Uploaded
+                </div>
+              )}
             </div>
           </div>
           <div className={styles.field}>
             <label>Product Images</label>
+            <UploadMany handle={files => handleImages(files)} />
+
             <div className={styles.images}>
               {product.images.length > 0
                 ? product.images.map((image, index) => (
@@ -269,14 +278,19 @@ const Create = ({ product: data, categories }) => {
                     </div>
                   ))
                 : [1, 2, 3].map((_, index) => (
-                    <div className={styles.image__container} key={index}>
-                      {/* Placeholder content for when images array is empty */}
+                    <div
+                      className={styles.image__container}
+                      key={index}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center'
+                      }}
+                    >
+                      No Photo Uploaded{' '}
                     </div>
                   ))}
-
-              <div className={styles.image__container}>
-                <UploadMany handle={files => handleImages(files)} />
-              </div>
             </div>
           </div>
         </div>
@@ -306,7 +320,7 @@ export async function getServerSideProps ({ query }) {
     return data
   }
 
-  const categories = await fetchCategory()
+  const { categories } = await fetchCategory()
 
   if (id) {
     const product = await fetchProduct()

@@ -6,10 +6,9 @@ import nc from 'next-connect'
 
 const handler = nc()
 
-db.connect()
-
 // Get a single address by ID
 handler.get(async (req, res) => {
+  await db.connect()
   try {
     const { id } = req.query
     const address = await Address.findById(id)
@@ -27,12 +26,15 @@ handler.get(async (req, res) => {
 handler.put(async (req, res) => {
   try {
     const { id } = req.query
+    await db.connect()
+
     const updatedAddress = await Address.findByIdAndUpdate(id, req.body, {
       new: true
     })
     if (!updatedAddress) {
       return res.status(404).json({ message: 'Address not found' })
     }
+
     res.status(200).json(updatedAddress)
   } catch (error) {
     console.error(error)
@@ -44,6 +46,8 @@ handler.put(async (req, res) => {
 handler.delete(async (req, res) => {
   try {
     const { id } = req.query
+    await db.connect()
+
     const deletedAddress = await Address.findByIdAndDelete(id)
     if (!deletedAddress) {
       return res.status(404).json({ message: 'Address not found' })

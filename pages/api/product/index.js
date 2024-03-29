@@ -23,7 +23,10 @@ handler.get(async (req, res) => {
 
     // Retrieve products with pagination and sorting
     const products = await Product.find()
-
+      .populate({
+        path: 'categories',
+        select: 'name'
+      })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(PAGE_SIZE)
