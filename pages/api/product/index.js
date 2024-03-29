@@ -1,5 +1,6 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
+import Category from '@/database/model/Category'
 import UserService from '@/services/user-service'
 import { isAuth } from '@/utilty'
 import nextConnect from 'next-connect'

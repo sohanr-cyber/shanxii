@@ -27,7 +27,7 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function LinearWithValueLabel({ value }) {
+export default function ProgressBar({ value }) {
   return (
     <Box sx={{ width: "100%" }}>
       <LinearProgressWithLabel value={value} />

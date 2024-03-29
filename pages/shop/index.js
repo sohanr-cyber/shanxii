@@ -4,6 +4,9 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import GridViewIcon from '@mui/icons-material/GridView'
 import Product from '@/components/Product'
 import FilterSearch from '@/components/Shop/FilterSearch'
+import axios from 'axios'
+import BASE_URL from '@/config'
+
 const Home = ({ products }) => {
   const [open, setOpen] = useState(true)
   return (
