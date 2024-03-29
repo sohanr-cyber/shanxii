@@ -3,7 +3,6 @@ import styles from '../../styles/Shop/Shop.module.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import GridViewIcon from '@mui/icons-material/GridView'
 import Product from '@/components/Product'
-import FilterSearch from '@/components/Shop/FilterSearch'
 import axios from 'axios'
 import BASE_URL from '@/config'
 
@@ -11,7 +10,6 @@ const Home = ({ products }) => {
   const [open, setOpen] = useState(true)
   return (
     <div className={styles.wrapper}>
-      {open && <FilterSearch />}
       <div className={styles.top}>
         <div className={styles.left}>
           <div className={styles.filter}>
