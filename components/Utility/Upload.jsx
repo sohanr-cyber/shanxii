@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage'
 import { storage } from '@/database/firebase'
-import ProgressBar from './ProgressBar'
+// import ProgressBar from './ProgressBar'
 import styles from '../../styles/Utility/Upload.module.css'
 
 const Upload = ({ handle }) => {
@@ -53,7 +53,7 @@ const Upload = ({ handle }) => {
       className={styles.container}
       style={{ width: '100%', background: 'lightgrey', borderRadius: '5px' }}
     >
-      {uploading && <ProgressBar value={progresspercent} />}
+      {/* {uploading && <ProgressBar value={progresspercent} />} */}
 
       <input
         type='file'
