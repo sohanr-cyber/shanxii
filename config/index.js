@@ -7,8 +7,8 @@ if (process.env.NODE_ENV !== 'production') {
   GMAIL = process.env.GMAIL_USER_DEV
   PASSWORD = process.env.GMAIL_PASS_DEV
 } else {
-  BASE_URL = 'https://main.dsxlpz487o1xu.amplifyapp.com'
-  MONGODB_URI = process.env.MONGODB_URI_PRODUCTION
+  BASE_URL = 'https://main.d17gbnmi69vndt.amplifyapp.com/'
+  MONGODB_URI = process.env.MONGODB_URI
   // MONGODB_URI = process.env.MONGODB_URI
 
   GMAIL = process.env.GMAIL_USER
