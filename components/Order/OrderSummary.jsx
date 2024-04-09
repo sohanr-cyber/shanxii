@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import styles from '../../styles/Cart/OrderSummary.module.css'
-import { calculateSubtotal } from '@/utilty/helper'
-const OrderSummary = ({ cartItems, shipping, total }) => {
+import { calculateSubtotal, getPrice } from '@/utilty/helper'
+const OrderSummary = ({ cartItems, shipping, total, address }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.summary}>
@@ -10,11 +10,13 @@ const OrderSummary = ({ cartItems, shipping, total }) => {
         <div className={styles.cart__subtotal}>
           <div className={styles.flex}>
             <div className={styles.key}>Cart Subtotal:</div>
-            <div className={styles.value}>{calculateSubtotal(cartItems)}</div>
+            <div className={styles.value}>
+              {getPrice(calculateSubtotal(cartItems))}
+            </div>
           </div>
           <div className={styles.flex}>
             <div className={styles.key}>Shipping:</div>
-            <div className={styles.value}>{shipping}</div>
+            <div className={styles.value}>{getPrice(shipping)}</div>
           </div>
         </div>
         <div className={styles.order__total}>
@@ -52,6 +54,12 @@ const OrderSummary = ({ cartItems, shipping, total }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className={styles.shipping}>
+        <div className={styles.title}>Shipping Address</div>
+        <div className={styles.address}>{address.address}</div>
+        <div className={styles.title}>Payment Method</div>
+        <div className={styles.address}>Cash on delivery (COD) </div>
       </div>
     </div>
   )

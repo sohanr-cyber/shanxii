@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { removeItem } from '@/redux/cartSlice'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import { getPrice } from '@/utilty/helper'
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
@@ -59,7 +60,7 @@ const CartItems = ({ cartItems }) => {
       </div>
       <div className={styles.bottom}>
         <div className={styles.subtotal}>
-          Subtotal : <b> ৳ {calculateSubtotal(cartItems)}</b>
+          Subtotal : <b> ৳ {getPrice(calculateSubtotal(cartItems))}</b>
         </div>
         <div className={styles.flex}>
           <button onClick={() => router.push('/cart')}>Cart</button>

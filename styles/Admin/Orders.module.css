@@ -82,7 +82,13 @@
     padding: 5px;
     border-bottom: 1px solid var(--borderColor);
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    white-space: nowrap;
+
 }
+
 
 .wrapper table .action {
     /* display: flex;

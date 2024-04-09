@@ -4,12 +4,15 @@ import db from '@/database/connection'
 import Order from '@/database/model/Order'
 import Product from '@/database/model/Product'
 import nc from 'next-connect'
-import { calculateSubtotal, generateTrackingNumber } from '@/utilty/helper'
+import {
+  calculateSubtotal,
+  generateTrackingNumber,
+  getDeliveryCharge
+} from '@/utilty/helper'
 import Address from '@/database/model/Address'
 const handler = nc()
 const Delivery = 50
 
-db.connect()
 
 handler.post(async (req, res) => {
   try {
@@ -23,6 +26,7 @@ handler.post(async (req, res) => {
       paymentReference
     } = req.body
 
+    await db.connect()
     const address = await Address.create(shippingAddress)
 
     // Fetch product details for each item in the order
@@ -55,7 +59,7 @@ handler.post(async (req, res) => {
       return acc + totalPrice
     }, 0)
 
-    let total = subtotal + Delivery
+    let total = subtotal + getDeliveryCharge(address.position)
 
     // Create the new order with the populated item details
     const newOrder = await Order.create({
@@ -70,6 +74,7 @@ handler.post(async (req, res) => {
       total,
       paymentMethod,
       paymentReference,
+      shippingCost: getDeliveryCharge(address.position),
       trackingNumber: generateTrackingNumber()
     })
     console.log(newOrder)

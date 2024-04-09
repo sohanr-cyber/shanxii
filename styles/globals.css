@@ -7,11 +7,11 @@
   --accent: grey;
   --background: aliceblue;
   --black: rgb(0, 0, 0);
-  --borderColor: grey;
+  --borderColor: rgb(185, 185, 185);
   --font: 'Ubuntu', sans-serif;
   --hoverBgColor: skyblue;
   --cardBg: white;
-  --buttonBg: linear-gradient(45deg, rgb(0, 157, 255), rgb(3, 84, 169));
+  --buttonBg: linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71));
   --buttonC: white;
   --lightF: rgb(82, 80, 80);
 }

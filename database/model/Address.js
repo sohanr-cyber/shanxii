@@ -30,11 +30,12 @@ const addressSchema = new mongoose.Schema(
     postalCode: {
       type: String
     },
-    adddress: {
-      type: String
+    address: {
+      type: String,
+      required: true
     },
 
-    postion: {
+    position: {
       type: String
     },
     // Optional fields

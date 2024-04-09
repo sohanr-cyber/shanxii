@@ -8,11 +8,13 @@ import BASE_URL from '@/config'
 import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { useRouter } from 'next/router'
+import TextEditor from '@/components/Utility/TextEditor'
 
 const Create = ({ product: data, categories }) => {
   const [images, setImages] = useState([])
   const [product, setProduct] = useState(data)
   const [error, setError] = useState('')
+  const [description, setDescription] = useState(product.description)
   const dispatch = useDispatch()
   const router = useRouter()
   const handleImages = files => {
@@ -42,7 +44,10 @@ const Create = ({ product: data, categories }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.post('/api/product', product)
+      const { data } = await axios.post('/api/product', {
+        ...product,
+        description
+      })
       setProduct({
         name: '',
         sizes: '',
@@ -82,7 +87,9 @@ const Create = ({ product: data, categories }) => {
       dispatch(startLoading())
       const { data } = await axios.put(`/api/product/${router.query.id}`, {
         ...product,
-        categories: product.categories.map(item => item._id)
+        categories: product.categories.map(item => item._id),
+
+        description
       })
       setProduct(data)
       dispatch(finishLoading())
@@ -181,7 +188,7 @@ const Create = ({ product: data, categories }) => {
           </div>
           <div className={styles.field}>
             <label>Description</label>
-            <textarea
+            {/* <textarea
               value={product.description}
               onChange={e =>
                 setProduct(prev => ({
@@ -189,7 +196,11 @@ const Create = ({ product: data, categories }) => {
                   description: e.target.value
                 }))
               }
-            ></textarea>
+            ></textarea> */}
+            <TextEditor
+              setDescription={setDescription}
+              description={description}
+            />
           </div>
           <div className={styles.field}>
             <label>Meta Title(optional)</label>
@@ -208,7 +219,7 @@ const Create = ({ product: data, categories }) => {
           <div className={styles.field}>
             <label>Meta Description(optional)</label>
             <textarea
-              value={product.metaDescription || product.description}
+              value={product.metaDescription}
               onChange={e =>
                 setProduct(prev => ({
                   ...prev,

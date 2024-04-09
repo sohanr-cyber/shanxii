@@ -1,3 +1,5 @@
+import { delivery_charge } from './const'
+
 function generateTrackingNumber (length = 10) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -32,4 +34,33 @@ const calculateSubtotal = cartItems => {
   return subtotal
 }
 
-export { generateTrackingNumber, containsAdmin, calculateSubtotal }
+const getPrice = (price, discount = 0) => {
+  price = price - price * (discount / 100)
+  return Math.floor(price).toFixed(2)
+}
+
+const getDeliveryCharge = position => {
+  return delivery_charge[position] ? delivery_charge[position] : 100
+}
+
+const getTime = timestamp => {
+  const date = new Date(timestamp)
+
+  const formattedDate = `${date.getFullYear()}-${String(
+    date.getMonth() + 1
+  ).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(
+    date.getHours()
+  ).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+
+  return formattedDate
+}
+
+
+export {
+  generateTrackingNumber,
+  containsAdmin,
+  calculateSubtotal,
+  getPrice,
+  getDeliveryCharge,
+  getTime
+}

@@ -7,14 +7,19 @@ import Image from 'next/image'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { useDispatch } from 'react-redux'
-import { addItem } from '@/redux/cartSlice'
+import { addItem, addToBuyNow } from '@/redux/cartSlice'
+import { useRouter } from 'next/router'
+import { getPrice } from '@/utilty/helper'
 const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product.thumbnail)
+  const router = useRouter()
   const dispatch = useDispatch()
   const incrementQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1)
+    if (quantity < product.stockQuantity) {
+      setQuantity(prevQuantity => prevQuantity + 1)
+    }
   }
 
   const decrementQuantity = () => {
@@ -28,9 +33,22 @@ const Product = ({ product }) => {
       addItem({
         product,
         size,
-        quantity
+        quantity,
+        available: product.stockQuantity
       })
     )
+  }
+
+  const handleBuyNow = () => {
+    dispatch(
+      addToBuyNow({
+        product,
+        size,
+        quantity,
+        available: product.stockQuantity
+      })
+    )
+    router.push('/checkout/address?buyNow=true')
   }
 
   return (
@@ -69,13 +87,15 @@ const Product = ({ product }) => {
               </Stack>
             </div>
             <div className={styles.stock}>
-              {product.stockQuantity > 0 ? 'In Stock' : 'Out Of Stock'}
+              {product.stockQuantity > 0
+                ? `In Stock(${product.stockQuantity})`
+                : 'Out Of Stock'}
             </div>
           </div>
           <h1 className={styles.price}>
-            ৳ {product.price - product.price * (product.discount / 100)}
+            ৳ {getPrice(product.price, product.discount)}
           </h1>
-          <div className={styles.description}>{product.description}</div>
+
           {product.sizes && (
             <div className={styles.sizes}>
               <div>Sizes</div>
@@ -109,10 +129,10 @@ const Product = ({ product }) => {
               </span>
             </div>
             <button onClick={() => handleAddToCart()}>Add To Cart</button>
-            <button>Buy Now</button>
+            <button onClick={() => handleBuyNow()}>Buy Now</button>
           </div>
 
-          {product.categories.length > 0 && (
+          {product.categories?.length > 0 && (
             <div className={styles.categories}>
               Categories:{' '}
               {product.categories?.map((item, index) => (
@@ -124,6 +144,15 @@ const Product = ({ product }) => {
           <div className={styles.flex}>
             <button>Add To Wishlist</button>
           </div>
+        </div>
+      </div>
+      <div className={styles.bottom__container}>
+        <div className={styles.top}>
+          <button className={styles.button}>Description</button>
+          {/* <button className={styles.button}>Reviews</button> */}
+        </div>
+        <div className={styles.description}>
+          <div dangerouslySetInnerHTML={{ __html: product.description }} />
         </div>
       </div>
     </div>

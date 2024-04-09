@@ -9,6 +9,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import { addItem, removeItem } from '@/redux/cartSlice'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { getPrice } from '@/utilty/helper'
 
 const Cart = () => {
   const cartItems = useSelector(state => state.cart.items)
@@ -81,7 +82,7 @@ const Cart = () => {
                     {parseInt(
                       item.product.price -
                         item.product.price * (item.product.discount / 100)
-                    )}
+                    ).toFixed(2)}
                   </td>
                   <td>
                     {' '}
@@ -96,10 +97,11 @@ const Cart = () => {
                     </div>
                   </td>
                   <td>
-                    ৳{' '}
-                    {item.quantity *
-                      (item.product.price -
-                        item.product.price * (item.product.discount / 100))}
+                    ৳
+                    {(
+                      item.quantity *
+                      getPrice(item.product.price, item.product.discount)
+                    ).toFixed(2)}
                   </td>
                   <td
                     className={styles.x}

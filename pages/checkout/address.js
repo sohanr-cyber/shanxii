@@ -6,8 +6,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import OrderSummary from '@/components/Order/OrderSummary'
 import { useRouter } from 'next/router'
 import { setAddress as setNewAddress } from '@/redux/addressSlice'
+import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utilty/helper'
+import { delivery_positions } from '@/utilty/const'
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
+  const buyNowItems = useSelector(state => state.cart.buyNow)
+
   const [isClient, setIsClient] = useState(false)
   const router = useRouter()
   const addressInfo = useSelector(state => state.address.addressInfo)
@@ -53,21 +57,23 @@ const Address = () => {
         <div className={styles.flex}>
           <div className={styles.field}>
             <label>Delivery Area</label>
+            {address.position}
             <select
               onChange={e =>
                 setAddress({ ...address, position: e.target.value })
               }
             >
-              {[
-                'Chose Delivery Area',
-                'Inside Dhaka',
-                'Outside Dhaka',
-                'Dhaka Sub Area'
-              ].map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
-                </option>
-              ))}
+              {['Chose Delivery Area', ...delivery_positions].map(
+                (item, index) => (
+                  <option
+                    key={index}
+                    value={item}
+                    selected={item == address.position ? true : false}
+                  >
+                    {item}
+                  </option>
+                )
+              )}
             </select>{' '}
           </div>
           <div className={styles.field}>
@@ -90,7 +96,7 @@ const Address = () => {
           <button
             onClick={() => {
               dispatch(setNewAddress(address))
-              router.push('/checkout/review')
+              router.push({ pathname: '/checkout/review', query: router.query })
             }}
           >
             Continue
@@ -98,7 +104,18 @@ const Address = () => {
         </div>
       </div>
       <div className={styles.right}>
-        {isClient && <OrderSummary cartItems={cartItems} />}
+        {isClient && (
+          <OrderSummary
+            cartItems={router.query.buyNow == 'true' ? buyNowItems : cartItems}
+            shipping={getDeliveryCharge(address.position)}
+            total={getPrice(
+              calculateSubtotal(
+                router.query.buyNow == 'true' ? buyNowItems : cartItems
+              ) + getDeliveryCharge(address.position)
+            )}
+            address={addressInfo}
+          />
+        )}
       </div>
     </div>
   )

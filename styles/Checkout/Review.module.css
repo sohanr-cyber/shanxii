@@ -29,6 +29,12 @@
     margin: 10px 0;
 }
 
+.left button {
+    padding: 7px;
+    margin-top: 2px;
+    ;
+}
+
 .left .fields {
     margin: 15px 0;
 }

@@ -1,5 +1,6 @@
 .wrapper .summary,
-.wrapper .cart__items {
+.wrapper .cart__items,
+.wrapper .shipping {
     background: var(--cardBg);
     padding: 15px;
     border-radius: 5px;
@@ -48,4 +49,8 @@
     width: auto;
     height: auto;
 
+}
+
+.shipping .address {
+    margin: 10px 0
 }

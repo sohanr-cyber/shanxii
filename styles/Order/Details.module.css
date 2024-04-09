@@ -2,13 +2,14 @@
     display: flex;
     gap: 15px;
     padding: 25px;
+    /* align-items: flex-start; */
 }
 
 .left {
     padding: 15px;
     border-radius: 5px;
     background: var(--cardBg);
-    flex: 2.5;
+    flex: 2.3;
 
 }
 
@@ -33,8 +34,13 @@
     ;
 }
 
+.wrapper button {
+    padding: 10px;
+
+}
+
 .right {
-    /* flex: 1.5 */
+    flex: 1
 }
 
 .wrapper .statusTimeline .item {
@@ -45,10 +51,28 @@
 
 }
 
+
+.update__status {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+}
+
+.update__status span {
+    border: 1px solid var(--borderColor);
+    padding: 3px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 @media (max-width:720px) {
     .wrapper {
         flex-direction: column;
+    }
 
+    .right {
+        width: 100%;
     }
 }
 
@@ -56,5 +80,9 @@
     .wrapper {
         padding: 15px;
 
+    }
+
+    .right {
+        width: 100%;
     }
 }

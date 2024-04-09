@@ -52,24 +52,34 @@ const orderSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
-      enum: ['pending', 'processing', 'shipped', 'delivered', 'canceled'],
-      default: 'pending'
+      // enum: [
+      //   'Pending',
+      //   'Processing',
+      //   'Confirmed',
+      //   'Packing',
+      //   'Packed',
+      //   'Delivering',
+      //   'Delivered',
+      //   'Canceled',
+      //   'Failed'
+      // ],
+      default: 'Pending'
     },
     statusTimeline: [
       {
         status: {
           type: String,
-          enum: [
-            'pending',
-            'Processing',
-            'Confirmed',
-            'Packing',
-            'Packed',
-            'Delivering',
-            'Delivered'
-          ],
+          // enum: [
+          //   'Pending',
+          //   'Processing',
+          //   'Confirmed',
+          //   'Packing',
+          //   'Packed',
+          //   'Delivering',
+          //   'Delivered'
+          // ],
           required: true,
-          default: 'pending'
+          default: 'Pending'
         },
         timestamp: {
           type: Date,

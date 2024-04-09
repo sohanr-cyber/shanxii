@@ -4,13 +4,14 @@ import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { getPrice } from '@/utilty/helper'
 
-const Product = ({ item }) => {
+const Product = ({ item, redirect }) => {
   const router = useRouter()
   return (
     <div
       className={styles.wrapper}
-      onClick={() => router.push(`/product/${item.slug}`)}
+      onClick={() => redirect && router.push(`/product/${item.slug}`)}
     >
       <div className={styles.pic}>
         <Image src={item.thumbnail} width={250} height={250} alt='' />
@@ -32,17 +33,17 @@ const Product = ({ item }) => {
         {item.discount ? (
           <div>
             <div className={styles.price}>
-              ৳{item.price - item.price * (item.discount / 100)}
+              ৳{getPrice(item.price, item.discount)}
             </div>
             <div className={styles.flex}>
               <div className={styles.price}>
-                <s>৳{item.price}</s>
+                <s>৳{getPrice(item.price)}</s>
               </div>
               <div className={styles.discount}>{item.discount}%</div>
             </div>
           </div>
         ) : (
-          <div className={styles.price}>৳{item.price}</div>
+          <div className={styles.price}>৳{getPrice(item.price)}</div>
         )}
       </div>
     </div>

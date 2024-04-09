@@ -47,8 +47,10 @@ const Navbar = () => {
           </div>
           <div className={styles.item}>
             <ShoppingCartIcon onClick={() => router.push('/cart')} />
-            {isClient && <span>{cartItems.length}</span>}
-            {isClient && (
+            {isClient && cartItems.length > 0 && (
+              <span>{cartItems.length}</span>
+            )}
+            {isClient && cartItems.length > 0 && (
               <div className={styles.cartItems}>
                 <CartItems cartItems={cartItems} />
               </div>

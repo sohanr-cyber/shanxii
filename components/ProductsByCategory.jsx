@@ -21,7 +21,7 @@ const ProductsByCategory = ({ category, subCategory, products }) => {
       </div>
       <div className={styles.products}>
         {[...products].map((item, index) => (
-          <Product key={index} item={item} />
+          <Product key={index} item={item} redirect={true} />
         ))}
       </div>
     </div>

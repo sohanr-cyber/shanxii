@@ -96,7 +96,10 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
                   <td>{order.paymentStatus}</td>
                   <td className={styles.action}>
                     <span>Delete</span>
-                    <span>View</span>
+                    <span onClick={() => router.push(`/order/${order._id}`)}>
+                      {' '}
+                      View
+                    </span>
                   </td>
                   {/* Add more table cells as needed */}
                 </tr>

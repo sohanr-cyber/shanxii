@@ -13,6 +13,7 @@ const Layout = ({ children }) => {
   const router = useRouter()
   return (
     <div>
+      {loading && <Loading />}
       {!containsAdmin(router.asPath) ? <Navbar /> : <AdminNavbar />}
       {children}
       <Footer />

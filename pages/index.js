@@ -46,7 +46,11 @@ export default function Home ({ products }) {
         <Categories />
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         <Header />
-        <ProductsByCategory category={'Featured Product'} products={products} />
+        <ProductsByCategory
+          category={'Featured Product'}
+          products={products}
+        
+        />
         <ProductsByCategory
           category={'Gents'}
           products={products.slice(3, 7)}

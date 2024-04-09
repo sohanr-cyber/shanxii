@@ -6,8 +6,10 @@ import Cookies from 'js-cookie'
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [] // Array to store cart items
+    items: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [], // Array to store cart items
+    buyNow: Cookies.get('buyNow') ? JSON.parse(Cookies.get('buyNow')) : [] // Array to store cart items
   },
+  
   reducers: {
     addItem: (state, action) => {
       const { product, quantity, size } = action.payload
@@ -16,6 +18,9 @@ export const cartSlice = createSlice({
       )
       if (existingItemIndex !== -1) {
         // Item already exists in cart, update its quantity
+        if (state.items[existingItemIndex].available < quantity) {
+          return
+        }
         state.items[existingItemIndex].quantity = quantity
         state.items[existingItemIndex].size = size
       } else {
@@ -34,9 +39,13 @@ export const cartSlice = createSlice({
       state.items = [] // Clear cart items array
       // Clear cart data in cookies
       Cookies.remove('cart')
+    },
+    addToBuyNow: (state, action) => {
+      state.buyNow = [action.payload]
+      Cookies.set('buyNow', JSON.stringify(state.buyNow), { expires: 7 })
     }
   }
 })
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions
+export const { addItem, removeItem, clearCart, addToBuyNow } = cartSlice.actions
 export default cartSlice.reducer

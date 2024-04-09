@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../../styles/Cart/Checkout.module.css'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { useRouter } from 'next/router'
+import { getPrice } from '@/utilty/helper'
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
@@ -26,7 +27,7 @@ const Checkout = ({ cartItems }) => {
         <div className={styles.right} style={{ fontSize: '110%' }}>
           Subtotal:{' '}
           <span style={{ fontWeight: 'bold' }}>
-            ${calculateSubtotal(cartItems)}
+            ${getPrice(calculateSubtotal(cartItems))}
           </span>
         </div>
       </div>

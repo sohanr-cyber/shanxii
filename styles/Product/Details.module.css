@@ -105,6 +105,31 @@
     flex-wrap: wrap
 }
 
+.bottom__container .top {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    margin: 15px 0;
+}
+
+
+.bottom__container .top button {
+    border-radius: 0;
+    padding: 10px;
+}
+
+.description {
+    /* border: 1px solid red; */
+    background-color: var(--cardBg);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.description img {
+    max-width: 500px;
+    width: 100%;
+    height: auto
+}
 
 @media (max-width:720px) {
     .container {
