@@ -57,7 +57,6 @@ const Address = () => {
         <div className={styles.flex}>
           <div className={styles.field}>
             <label>Delivery Area</label>
-            {address.position}
             <select
               onChange={e =>
                 setAddress({ ...address, position: e.target.value })

@@ -54,12 +54,12 @@
     border: 1px solid var(--borderColor);
     padding: 10px;
     border-radius: 5px;
-    min-width: 160px;
+    min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgb(246, 228, 195);
+    background: rgb(5, 108, 91, 0.1);
     cursor: pointer;
 }
 
@@ -72,5 +72,18 @@
     .wrapper {
         flex-direction: column;
     }
+
+}
+
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 15px;
+    }
+
+    .left .flex {
+        flex-direction: column;
+    }
+
 
 }

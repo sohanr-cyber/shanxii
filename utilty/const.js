@@ -22,6 +22,8 @@ const statusMessages = {
   failed:
     'There was an issue processing your order. Please contact customer support for assistance.'
 }
+
+const sellerNumber = '01744329811'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
 
-export { delivery_charge, delivery_positions, statusMessages }
+export { delivery_charge, delivery_positions, statusMessages, sellerNumber }

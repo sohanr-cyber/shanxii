@@ -130,6 +130,13 @@ const Product = ({ product }) => {
             </div>
             <button onClick={() => handleAddToCart()}>Add To Cart</button>
             <button onClick={() => handleBuyNow()}>Buy Now</button>
+            <button
+              onClick={() =>
+                router.push(`/admin/product/create?id=${product._id}`)
+              }
+            >
+              Update Product
+            </button>
           </div>
 
           {product.categories?.length > 0 && (

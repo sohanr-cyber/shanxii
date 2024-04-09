@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { clearCart } from '@/redux/cartSlice'
 import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utilty/helper'
+import { sellerNumber } from '@/utilty/const'
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
   const buyNowItems = useSelector(state => state.cart.buyNow)
@@ -97,8 +98,8 @@ const Address = () => {
         </button>
         <p>
           After placing your order, we will be contacting you shortly to confirm
-          it. Please anticipate a call from us at 035032850325 to complete your
-          purchase.
+          it. Please anticipate a call from <b>us({sellerNumber})</b> at{' '}
+          <b>{address.phone}</b> to complete your purchase.
         </p>
       </div>
       <div className={styles.right}>

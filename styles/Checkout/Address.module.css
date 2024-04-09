@@ -87,3 +87,18 @@
     }
 
 }
+
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 15px;
+    }
+
+    .left .flex {
+        flex-direction: column;
+        gap: 0;
+        margin: 0;
+    }
+
+
+}
