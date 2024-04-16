@@ -51,7 +51,16 @@
     gap: 15px;
     padding: 10px;
     cursor: pointer;
+    justify-content: space-between;
 
+
+
+}
+
+.wrapper .navigators .item .flex {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
 .wrapper .navigators .inner__items {

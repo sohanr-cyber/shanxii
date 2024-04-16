@@ -5,7 +5,7 @@ import UserService from '@/services/user-service'
 import { isAuth } from '@/utilty'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
-import { getPrice } from '@/utilty/helper'
+import Coupon from '@/database/model/Coupon'
 const handler = nextConnect()
 const PAGE_SIZE = 20
 
@@ -18,22 +18,18 @@ handler.get(async (req, res) => {
     // Calculate the skip value based on the page number and page size
     const skip = (page - 1) * PAGE_SIZE
     // Retrieve total count of products
-    const totalCount = await Product.countDocuments()
+    const totalCount = await Coupon.countDocuments()
 
     // Calculate total pages
     const totalPages = Math.ceil(totalCount / PAGE_SIZE)
 
     // Retrieve products with pagination and sorting
-    const products = await Product.find()
-      .populate({
-        path: 'categories',
-        select: 'name'
-      })
+    const coupons = await Coupon.find()
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(PAGE_SIZE)
     await db.disconnect()
-    res.json({ page, products, totalPages })
+    res.json({ page, coupons, totalPages })
   } catch (error) {
     console.log({ error })
     res.status(500).json({ message: 'Server Error' })
@@ -43,14 +39,22 @@ handler.get(async (req, res) => {
 handler.post(async (req, res) => {
   try {
     await db.connect()
-    const product = new Product({
+    const { code, discount } = req.body
+
+    // Check if the coupon code already exists
+    const existingCoupon = await Coupon.findOne({ code })
+    if (existingCoupon) {
+      return res.status(400).json({ error: 'Coupon code already exists' })
+    }
+    const coupon = new Coupon({
       ...req.body,
-      slug: slugify(req.body.name),
-      priceWithDiscount: getPrice(req.body.price, req.body.discount)
+      code,
+      discount
     })
-    await product.save()
+    
+    await coupon.save()
     await db.disconnect()
-    res.status(201).json(product)
+    return res.status(201).json(coupon)
   } catch (error) {
     console.log({ error })
     res.status(500).json({ message: 'Server Error' })

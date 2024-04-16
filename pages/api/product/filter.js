@@ -6,8 +6,6 @@ import nc from 'next-connect'
 
 const handler = nc()
 
-db.connect()
-
 handler.get(async (req, res) => {
   try {
     // Extract filter parameters from the query string
@@ -28,25 +26,26 @@ handler.get(async (req, res) => {
       filter.name = { $regex: name, $options: 'i' } // Case-insensitive search for product name
     }
 
-    if (minPrice !== undefined && maxPrice !== undefined) {
-      filter.price = { $gte: minPrice, $lte: maxPrice } // Filter products by price range
-    } else if (minPrice !== undefined) {
-      filter.price = { $gte: minPrice } // Filter products with price greater than or equal to minPrice
-    } else if (maxPrice !== undefined) {
-      filter.price = { $lte: maxPrice } // Filter products with price less than or equal to maxPrice
+    if (minPrice && maxPrice && minPrice != 'all' && maxPrice != 'all') {
+      filter.priceWithDiscount = { $gte: minPrice, $lte: maxPrice } // Filter products by price range
+    } else if (minPrice && minPrice != 'all') {
+      filter.priceWithDiscount = { $gte: minPrice } // Filter products with price greater than or equal to minPrice
+    } else if (maxPrice && maxPrice != 'all') {
+      filter.priceWithDiscount = { $lte: maxPrice } // Filter products with price less than or equal to maxPrice
     }
 
-    if (categories) {
+    if (categories && categories != 'all') {
       filter.categories = { $in: categories.split(',') } // Filter products by category
     }
 
-    if (colors) {
-      console.log(colors)
+    if (colors && colors != 'all') {
       filter.color = { $in: colors.split(',') } // Filter products by color
     }
 
     page = page || 1
     const skip = (page - 1) * limit
+    console.log({ filter })
+    await db.connect()
 
     // Query the database with the constructed filter object
     const count = await Product.countDocuments(filter)
@@ -55,11 +54,15 @@ handler.get(async (req, res) => {
       metaTitle: 0,
       images: 0
     })
+      .populate({
+        path: 'categories',
+        select: 'name'
+      })
       .skip(skip)
       .limit(parseInt(limit))
       .exec()
 
-    res.status(200).json({ totalPages, count, page, products })
+    return res.status(200).json({ totalPages, count, page, products })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

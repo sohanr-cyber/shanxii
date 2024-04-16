@@ -85,9 +85,21 @@ button {
 }
 
 
-
 @media (max-width:570px) {
   body {
+    font-size: 90%;
+  }
+}
+
+@media (max-width:480px) {
+  body {
     font-size: 85%;
+  }
+}
+
+
+@media (max-width:380px) {
+  body {
+    font-size: 80%;
   }
 }

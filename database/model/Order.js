@@ -7,6 +7,11 @@ const orderSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
+    // User who placed the order
+    coupon: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Coupon'
+    },
     // Items ordered (array of subdocuments)
     items: [
       {

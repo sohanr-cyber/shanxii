@@ -79,26 +79,43 @@ handler.get(async (req, res) => {
   try {
     await db.connect()
     const page = parseInt(req.query.page) || 1
+    const { query } = req.query
 
     // Calculate the skip value based on the page number and page size
     const skip = (page - 1) * PAGE_SIZE
+    const filter = {}
+
+    // Build the filter conditions for the shippingAddress
+    if (query) {
+      filter.$or = [
+        { fullName: { $regex: query, $options: 'i' } },
+        { phone: { $regex: query, $options: 'i' } }
+      ]
+    }
+
+    const addresses = await Address.find(filter).select('_id')
+    const addressList = addresses.map(i => i._id)
+    console.log(addressList)
     // Retrieve total count of products
-    const totalCount = await Order.countDocuments()
+    const totalCount = await Order.countDocuments({
+      shippingAddress: { $in: addressList }
+    })
 
     // Calculate total pages
     const totalPages = Math.ceil(totalCount / PAGE_SIZE)
 
-    // Retrieve products with pagination and sorting
-    const orders = await Order.find({})
+    // Perform the query with population and filtering
+    const orders = await Order.find({ shippingAddress: { $in: addressList } })
       .populate({
         path: 'shippingAddress',
-        select: 'fullName phone'
+        select: 'fullName phone' // Select the fields you want to query on
       })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(PAGE_SIZE)
+
     await db.disconnect()
-    res.json({ page, orders, totalPages })
+    res.json({ page, totalPages, count: totalCount, orders })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

@@ -2,6 +2,7 @@ import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import UserService from '@/services/user-service'
 import { isAuth } from '@/utilty'
+import { getPrice } from '@/utilty/helper'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
 
@@ -29,7 +30,11 @@ handler.put(async (req, res) => {
     const { id } = req.query
     const product = await Product.findByIdAndUpdate(
       id,
-      { ...req.body, slug: slugify(req.body.name) },
+      {
+        ...req.body,
+        slug: slugify(req.body.name),
+        priceWithDiscount: getPrice(req.body.price, req.body.discount)
+      },
       { new: true }
     )
     const upadated = await Product.findOne({ _id: req.query.id }).populate({
@@ -39,6 +44,7 @@ handler.put(async (req, res) => {
     await db.connect()
     res.json(upadated)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Server Error' })
   }
 })

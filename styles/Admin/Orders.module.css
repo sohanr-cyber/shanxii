@@ -44,6 +44,14 @@
 
 }
 
+.flex .plus__icon {
+    font-size: 110%;
+    font-weight: bold;
+    padding: 0 3px;
+    cursor: pointer;
+    display: none;
+}
+
 .flex .left input {
     /* width: 100%; */
     padding-right: 25px;
@@ -64,6 +72,12 @@
     flex-direction: column;
 
 }
+
+.wrapper .table__wrapper table {
+    position: relative;
+}
+
+
 
 .wrapper .pagination {
     background-color: var(--cardBg);
@@ -105,4 +119,14 @@
     margin: 0 10px;
     margin-left: 0;
     cursor: pointer;
+}
+
+@media (max-width:570px) {
+    .flex .plus__icon {
+        display: block;
+    }
+
+    .flex .plus__btn {
+        display: none;
+    }
 }

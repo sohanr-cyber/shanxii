@@ -8,13 +8,15 @@ import BASE_URL from '@/config'
 import axios from 'axios'
 import { current } from '@reduxjs/toolkit'
 
-const index = ({ products, totalPages, currentPage }) => {
+const index = ({ products, totalPages, currentPage, count }) => {
   return (
     <div className={styles.wrapper}>
       <Products
         title={'Product List'}
         products={products}
         totalPages={totalPages}
+        count={count}
+        currentPage={currentPage}
       />
     </div>
   )
@@ -24,16 +26,19 @@ export default index
 
 export async function getServerSideProps (context) {
   try {
-    const { page } = context.query
+    const { page, name } = context.query
     console.log('new rquesy for page', page)
-    const response = await axios.get(`${BASE_URL}/api/product?page=${page}`)
-    const { products, totalPages, page: currentPage } = response.data
+    const response = await axios.get(
+      `${BASE_URL}/api/product/filter?name=${name || ''}&page=${page || 1}`
+    )
+    const { products, totalPages, page: currentPage, count } = response.data
     return {
       props: {
         title: 'Product List',
         products,
         totalPages,
-        currentPage
+        currentPage,
+        count
       }
     }
   } catch (error) {

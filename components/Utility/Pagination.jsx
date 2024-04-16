@@ -22,7 +22,7 @@ const Pages = ({ totalPages, currentPage }) => {
           count={parseInt(totalPages)}
           shape='rounded'
           color='primary'
-          page={parseInt(router.query.page)}
+          page={parseInt(currentPage || router.query.page)}
           onChange={(event, newPage) => updateRoute({ page: newPage })}
         />
       </Stack>

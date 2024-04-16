@@ -1,5 +1,6 @@
 .wrapper {
     padding: 25px;
+
 }
 
 .wrapper .top {
@@ -8,6 +9,12 @@
     align-items: center;
     background-color: var(--cardBg);
     padding: 5px
+}
+
+.wrapper .top .left {
+    display: flex;
+    align-items: center;
+    gap: 10px
 }
 
 .wrapper .top .filter {
@@ -30,6 +37,17 @@
     margin: 10px 0;
 }
 
+
+.filterOptions {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: white;
+    z-index: 3;
+    box-shadow: 1px 1px 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+}
 
 @media (max-width:992px) {
     .products {

@@ -57,5 +57,20 @@
 
 .wrapper .flex .price {
     color: grey;
+}
 
+
+@media (max-width:410px) {
+    .wrapper {
+        max-width: none;
+        width: 100%;
+        display: flex;
+        /* gap: 10px; */
+        max-height: 100px;
+    }
+
+    .wrapper .pic,
+    .wrapper .details {
+        flex: 1;
+    }
 }

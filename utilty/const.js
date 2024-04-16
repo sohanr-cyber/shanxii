@@ -25,5 +25,15 @@ const statusMessages = {
 
 const sellerNumber = '01744329811'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
-
-export { delivery_charge, delivery_positions, statusMessages, sellerNumber }
+const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+const themeTransparent = 'rgb(8, 78, 67,0.1)'
+const themeC = 'rgb(8, 78, 67)'
+export {
+  delivery_charge,
+  delivery_positions,
+  statusMessages,
+  sellerNumber,
+  themeTransparent,
+  themeBg,
+  themeC
+}

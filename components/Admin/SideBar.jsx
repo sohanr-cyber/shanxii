@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../../styles/Admin/SideBar.module.css'
 import Image from 'next/image'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
@@ -21,7 +22,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 const SideBar = ({ setOpen }) => {
   const router = useRouter()
-  const [visible, setVisible] = useState('product')
+  const [visible, setVisible] = useState('')
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
@@ -35,22 +36,33 @@ const SideBar = ({ setOpen }) => {
       <div className={styles.navigators}>
         {' '}
         <div className={styles.item} onClick={() => router.push('/dashobard')}>
-          <div className={styles.icon}>
-            <DashboardIcon />
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <DashboardIcon />
+            </div>
+            <div className={styles.title}>Dashboard</div>
           </div>
-          <div className={styles.title}>Dashboard</div>
         </div>
-        <div className={styles.item}>
-          <div className={styles.icon}>
-            <ShoppingCartIcon />
+        <div
+          className={styles.item}
+          onClick={() =>
+            setVisible(prev => (prev == 'product' ? '' : 'product'))
+          }
+        >
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <ShoppingCartIcon />
+            </div>
+            <div className={styles.title}>Product</div>
           </div>
-          <div className={styles.title}>Product</div>
           <div className={styles.icon}>
-            <KeyboardArrowDownIcon
-              onClick={() =>
-                setVisible(prev => (prev == 'product' ? '' : 'product'))
-              }
-            />
+            {visible == 'product' ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}
           </div>
         </div>
         {visible == 'product' && (
@@ -59,33 +71,46 @@ const SideBar = ({ setOpen }) => {
               className={styles.item}
               onClick={() => router.push('/admin/product')}
             >
-              <div className={styles.icon}>
-                <ShoppingCartIcon />
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Product List</div>
               </div>
-              <div className={styles.title}>Product List</div>
             </div>{' '}
             <div
               className={styles.item}
               onClick={() => router.push('/admin/product/create')}
             >
-              <div className={styles.icon}>
-                <ShoppingCartIcon />
+              <div className={styles.flex}>
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Add Product</div>
               </div>
-              <div className={styles.title}>Add Product</div>
             </div>
           </div>
         )}
-        <div className={styles.item}>
-          <div className={styles.icon}>
-            <CategoryIcon />
+        <div
+          className={styles.item}
+          onClick={() =>
+            setVisible(prev => (prev == 'category' ? '' : 'category'))
+          }
+        >
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <CategoryIcon />
+            </div>
+            <div className={styles.title}>Category</div>{' '}
           </div>
-          <div className={styles.title}>Category</div>{' '}
           <div className={styles.icon}>
-            <KeyboardArrowDownIcon
-              onClick={() =>
-                setVisible(prev => (prev == 'category' ? '' : 'category'))
-              }
-            />
+            {visible == 'category' ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}{' '}
           </div>
         </div>{' '}
         {visible == 'category' && (
@@ -94,33 +119,45 @@ const SideBar = ({ setOpen }) => {
               className={styles.item}
               onClick={() => router.push('/admin/category')}
             >
-              <div className={styles.icon}>
-                <ShoppingCartIcon />
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Category List</div>
               </div>
-              <div className={styles.title}>Category List</div>
             </div>{' '}
             <div
               className={styles.item}
               onClick={() => router.push('/admin/category/create')}
             >
-              <div className={styles.icon}>
-                <ShoppingCartIcon />
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Add Category</div>
               </div>
-              <div className={styles.title}>Add Category</div>
             </div>
           </div>
         )}
-        <div className={styles.item}>
-          <div className={styles.icon}>
-            <AssignmentTurnedInIcon />
+        <div
+          className={styles.item}
+          onClick={() => setVisible(prev => (prev == 'order' ? '' : 'order'))}
+        >
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <AssignmentTurnedInIcon />
+            </div>
+            <div className={styles.title}>Orders</div>
           </div>
-          <div className={styles.title}>Orders</div>
           <div className={styles.icon}>
-            <KeyboardArrowDownIcon
-              onClick={() =>
-                setVisible(prev => (prev == 'order' ? '' : 'order'))
-              }
-            />
+            {visible == 'order' ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}{' '}
           </div>
         </div>
         {visible == 'order' && (
@@ -129,42 +166,89 @@ const SideBar = ({ setOpen }) => {
               className={styles.item}
               onClick={() => router.push('/admin/order')}
             >
-              <div className={styles.icon}>
-                <ShoppingCartIcon />
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Order List</div>
               </div>
-              <div className={styles.title}>Order List</div>
             </div>
             <div className={styles.item}>
-              <div className={styles.icon}>
-                <ShoppingCartIcon />
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Add Order</div>
               </div>
-              <div className={styles.title}>Add Order</div>
+            </div>
+          </div>
+        )}
+        <div
+          className={styles.item}
+          onClick={() => setVisible(prev => (prev == 'coupon' ? '' : 'coupon'))}
+        >
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <AssignmentTurnedInIcon />
+            </div>
+            <div className={styles.title}>Coupon</div>
+          </div>
+          <div className={styles.icon}>
+            {visible == 'coupon' ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}{' '}
+          </div>
+        </div>
+        {visible == 'coupon' && (
+          <div className={styles.inner__items}>
+            <div
+              className={styles.item}
+              onClick={() => router.push('/admin/coupon')}
+            >
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Coupon List</div>
+              </div>
+            </div>
+            <div
+              className={styles.item}
+              onClick={() => router.push('/admin/coupon/create')}
+            >
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <ShoppingCartIcon />
+                </div>
+                <div className={styles.title}>Add Coupon</div>
+              </div>
             </div>
           </div>
         )}
         <div className={styles.item}>
-          <div className={styles.icon}>
-            <MapIcon />
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <MapIcon />
+            </div>
+            <div className={styles.title}>Address</div>
           </div>
-          <div className={styles.title}>Address</div>
         </div>
         <div className={styles.item}>
-          <div className={styles.icon}>
-            <SupervisedUserCircleIcon />
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <LogoutIcon />
+            </div>
+            <div className={styles.title}>Logout</div>
           </div>
-          <div className={styles.title}>Users</div>
-        </div>
-        <div className={styles.item}>
-          <div className={styles.icon}>
-            <CommentIcon />
-          </div>
-          <div className={styles.title}>Reviews</div>
-        </div>
-        <div className={styles.item}>
-          <div className={styles.icon}>
-            <LogoutIcon />
-          </div>
-          <div className={styles.title}>Logout</div>
         </div>
       </div>
     </div>

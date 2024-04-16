@@ -3,31 +3,39 @@ import styles from '../../../styles/Admin/Orders.module.css'
 import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
+import { finishLoading, startLoading } from '@/redux/stateSlice'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 
 const Orders = ({ title, dashboard, orders, totalPages }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
-  const [query, setSearchQuery] = useState('')
   const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState(router.query.query)
+  const dispatch = useDispatch()
+
   useEffect(() => {
     setFilteredOrders(orders)
   }, [orders])
-  // Function to handle search query change
-  const handleSearchChange = e => {
-    const query = e.target.value
-    setSearchQuery(query)
 
-    // Filter products based on the search query
-    const filtered = orders.filter(
-      order =>
-        order._id.toLowerCase().includes(query.toLowerCase()) ||
-        order.shippingAddress.phone
-          .toLowerCase()
-          .includes(query.toLowerCase()) ||
-        order.shippingAddress.fullName
-          .toLowerCase()
-          .includes(query.toLowerCase())
-    )
-    setFilteredOrders(filtered)
+  const updateRoute = data => {
+    const queryParams = { ...router.query, ...data }
+    router.push({
+      pathname: router.pathname,
+      query: queryParams,
+      shallow: false
+    })
+  }
+
+  const remove = async id => {
+    try {
+      dispatch(startLoading())
+      const { data } = await axios.delete(`/api/product/${id}`)
+      setFilteredOrders(filteredOrders.filter(i => i._id != id))
+      dispatch(finishLoading())
+    } catch (error) {
+      dispatch(finishLoading())
+      console.log(error)
+    }
   }
   return (
     <>
@@ -42,9 +50,10 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
               <input
                 type='text'
                 placeholder=''
-                onChange={e => handleSearchChange(e)}
+                onChange={e => setSearchQuery(e.target.value)}
+                value={searchQuery}
               />
-              <span>
+              <span onClick={() => updateRoute({ query: searchQuery })}>
                 <SearchIcon />
               </span>
             </div>
@@ -58,13 +67,14 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
                   'All',
                   'Pending',
                   'Confirmed',
-                  'Delivere'
+                  'Delivered'
                 ].map((item, index) => (
                   <option key={index}>{item}</option>
                 ))}
               </select>
               <button onClick={() => router.push('/admin/product/create')}>
-                Add Order
+                <span className={styles.plus__btn}>Add Product</span>
+                <span className={styles.plus__icon}>+</span>
               </button>
             </div>
           </div>
@@ -95,7 +105,7 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
                   <td>{order.status}</td>
                   <td>{order.paymentStatus}</td>
                   <td className={styles.action}>
-                    <span>Delete</span>
+                    <span onClick={() => remove(order._id)}>Delete</span>
                     <span onClick={() => router.push(`/order/${order._id}`)}>
                       {' '}
                       View
@@ -109,7 +119,7 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
         </div>
         {!dashboard && (
           <div className={styles.pagination}>
-            <Pages totalPages={totalPages} currentPage={2} />
+            <Pages totalPages={totalPages} currentPage={router.query.page} />
           </div>
         )}
       </div>

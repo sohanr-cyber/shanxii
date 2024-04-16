@@ -32,6 +32,11 @@ const productSchema = new mongoose.Schema(
       max: 100,
       defautl: 0
     },
+    priceWithDiscount: {
+      type: Number,
+      required: true
+    },
+
     categories: [
       {
         type: mongoose.Schema.Types.ObjectId,

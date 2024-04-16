@@ -7,17 +7,33 @@ import SearchIcon from '@mui/icons-material/Search'
 import SearchBox from './SearchBox'
 import { useRouter } from 'next/router'
 import Navigator from './User/Navigator'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CartItems from './Cart/CartItems'
+import { setCategories } from '@/redux/productSlice'
+import axios from 'axios'
 const Navbar = () => {
   const router = useRouter()
   const [openSearch, setOpenSearch] = useState(false)
   const [open, setOpen] = useState(false)
   const cartItems = useSelector(state => state.cart.items)
   const [isClient, setIsClient] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setIsClient(true)
+  }, [])
+
+  const fetchCategory = async () => {
+    try {
+      const { data } = await axios.get('/api/category')
+      dispatch(setCategories(data.categories))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchCategory()
   }, [])
 
   return (

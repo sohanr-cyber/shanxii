@@ -10,9 +10,9 @@ import {
   getDeliveryCharge
 } from '@/utilty/helper'
 import Address from '@/database/model/Address'
+import Coupon from '@/database/model/Coupon'
 const handler = nc()
 const Delivery = 50
-
 
 handler.post(async (req, res) => {
   try {
@@ -27,6 +27,7 @@ handler.post(async (req, res) => {
     } = req.body
 
     await db.connect()
+
     const address = await Address.create(shippingAddress)
 
     // Fetch product details for each item in the order
@@ -77,8 +78,10 @@ handler.post(async (req, res) => {
       shippingCost: getDeliveryCharge(address.position),
       trackingNumber: generateTrackingNumber()
     })
+
     console.log(newOrder)
-    res.status(201).json(newOrder)
+    return res.status(201).json(newOrder)
+    
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

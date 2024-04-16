@@ -3,24 +3,51 @@ import styles from '../../../styles/Admin/Orders.module.css'
 import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { finishLoading, startLoading } from '@/redux/stateSlice'
 
-const Products = ({ title, dashboard, products, totalPages }) => {
+const Products = ({
+  title,
+  dashboard,
+  products,
+  totalPages,
+  count,
+  currentPage
+}) => {
   const router = useRouter()
+  const dispatch = useDispatch()
   const [searchQuery, setSearchQuery] = useState('')
-  const [filteredProducts, setFilteredProducts] = useState(products)
-  useEffect(() => {
-    setFilteredProducts(products)
-  }, [products])
-  // Function to handle search query change
-  const handleSearchChange = e => {
-    const query = e.target.value
-    setSearchQuery(query)
+  const [filteredProducts, setFilteredProducts] = useState({
+    products,
+    totalPages,
+    count,
+    page: currentPage
+  })
 
-    // Filter products based on the search query
-    const filtered = products.filter(product =>
-      product.name.toLowerCase().includes(query.toLowerCase())
-    )
-    setFilteredProducts(filtered)
+  useEffect(() => {
+    setFilteredProducts({ products, totalPages, count, page: currentPage })
+  }, [products])
+
+  const updateRoute = data => {
+    const queryParams = { ...router.query, ...data }
+    router.push({
+      pathname: router.pathname,
+      query: queryParams,
+      shallow: false
+    })
+  }
+
+  const remove = async id => {
+    try {
+      dispatch(startLoading())
+      const { data } = await axios.delete(`/api/product/${id}`)
+      setFilteredProducts(filteredProducts.filter(i => i._id != id))
+      dispatch(finishLoading())
+    } catch (error) {
+      dispatch(finishLoading())
+      console.log(error)
+    }
   }
   return (
     <>
@@ -34,22 +61,22 @@ const Products = ({ title, dashboard, products, totalPages }) => {
               <input
                 type='text'
                 placeholder='Search by product name...'
-                value={searchQuery}
-                onChange={e => handleSearchChange(e)}
+                value={searchQuery || router.query.name}
+                onChange={e => setSearchQuery(e.target.value)}
               />
-              <span>
+              <span onClick={() => updateRoute({ name: searchQuery, page: 1 })}>
                 <SearchIcon />
               </span>
             </div>
             <div className={styles.right}>
               <button onClick={() => router.push('/admin/product/create')}>
-                Add Product
+                <span className={styles.plus__btn}>Add Product</span>
+                <span className={styles.plus__icon}>+</span>
               </button>
             </div>
           </div>
         )}
         <div className={styles.table__wrapper}>
-          {' '}
           <table>
             <thead>
               <tr>
@@ -65,7 +92,7 @@ const Products = ({ title, dashboard, products, totalPages }) => {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts?.map((product, index) => (
+              {filteredProducts?.products?.map((product, index) => (
                 <tr key={index}>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
@@ -80,7 +107,7 @@ const Products = ({ title, dashboard, products, totalPages }) => {
                   <td>{product.sold}</td>
 
                   <td className={styles.action}>
-                    <span>Delete</span>
+                    <span onClick={() => remove(product._id)}>Delete</span>
                     <span
                       onClick={() =>
                         router.push(`/admin/product/create?id=${product._id}`)
@@ -97,7 +124,10 @@ const Products = ({ title, dashboard, products, totalPages }) => {
         </div>
         {!dashboard && (
           <div className={styles.pagination}>
-            <Pages totalPages={totalPages} currentPage={2} />
+            <Pages
+              totalPages={filteredProducts.totalPages}
+              currentPage={filteredProducts.page}
+            />
           </div>
         )}
       </div>
