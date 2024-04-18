@@ -24,13 +24,12 @@
 .menu {
     cursor: pointer;
     transform: scale(1.1);
-
+    color: var(--theme)
 }
 
 .logo {
     display: inline;
-    transform: scale(0.85, 0.8);
-    margin-top: -3px;
+    margin-top: -6px;
 }
 
 .right {
@@ -54,5 +53,11 @@
 @media (max-width:570px) {
     .wrapper {
         padding: 15px;
+    }
+}
+
+@media (max-width:410px) {
+    .wrapper {
+        padding: 10px;
     }
 }

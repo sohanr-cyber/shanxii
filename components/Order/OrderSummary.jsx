@@ -2,7 +2,10 @@ import Image from 'next/image'
 import React from 'react'
 import styles from '../../styles/Cart/OrderSummary.module.css'
 import { calculateSubtotal, getPrice } from '@/utilty/helper'
+import { useRouter } from 'next/router'
 const OrderSummary = ({ cartItems, shipping, total, address }) => {
+  const router = useRouter()
+  
   return (
     <div className={styles.wrapper}>
       <div className={styles.summary}>
@@ -27,7 +30,11 @@ const OrderSummary = ({ cartItems, shipping, total, address }) => {
       <div className={styles.cart__items}>
         <div className={styles.title}>Items In Your Cart</div>
         {[...cartItems].map((item, index) => (
-          <div className={styles.item} key={index}>
+          <div
+            className={styles.item}
+            key={index}
+            onClick={() => router.push(`/product/${item.slug}`)}
+          >
             <div className={styles.left}>
               <Image
                 src={item.product.thumbnail}

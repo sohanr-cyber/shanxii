@@ -16,11 +16,11 @@ const steps = [
 ]
 
 const index = order =>
-  order.statusTimeline.findIndex(item => item.status === order.status)
+  order?.statusTimeline?.findIndex(item => item.status === order.status)
 
 export default function HorizontalLinearAlternativeLabelStepper ({ order }) {
   const [failed, setFailed] = React.useState(
-    order.statusTimeline.find(
+    order?.statusTimeline?.find(
       i => i.status == 'Failed' || i.status == 'Canceled'
     )
       ? index(order)
@@ -29,7 +29,7 @@ export default function HorizontalLinearAlternativeLabelStepper ({ order }) {
 
   React.useEffect(() => {
     setFailed(
-      order.statusTimeline.find(
+      order?.statusTimeline?.find(
         i => i.status == 'Failed' || i.status == 'Canceled'
       )
         ? index(order)

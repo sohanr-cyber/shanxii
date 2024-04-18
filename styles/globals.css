@@ -14,6 +14,7 @@
   --buttonBg: linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71));
   --buttonC: white;
   --lightF: rgb(82, 80, 80);
+  --theme: rgb(9, 82, 71)
 }
 
 
@@ -83,6 +84,8 @@ button {
   color: var(--buttonC);
   cursor: pointer;
 }
+
+
 
 
 @media (max-width:570px) {

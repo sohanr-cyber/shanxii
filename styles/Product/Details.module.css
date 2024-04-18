@@ -145,7 +145,10 @@
     .left .flex {
         justify-content: flex-start;
     }
+}
 
-
-
+@media (max-width:410px) {
+    .wrapper {
+        padding: 10px
+    }
 }

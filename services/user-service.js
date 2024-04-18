@@ -22,7 +22,7 @@ class UserService {
     }
     let salt = await GenerateSalt()
     let userPassword = await GeneratePassword(password, salt)
-    const  existUser = await this.repository.CreateUser({
+    const existUser = await this.repository.CreateUser({
       ...userInputs,
       password: userPassword,
       salt
@@ -32,12 +32,13 @@ class UserService {
     const token = await GenerateSignature({
       email: email,
       _id: existUser._id,
-      role: existingUser.role
+      role: existUser.role
     })
 
     return FormateData({
       id: existUser._id,
-      token
+      token,
+      role: existUser.role
     })
   }
 
@@ -63,7 +64,8 @@ class UserService {
           })
           return FormateData({
             id: existingUser._id,
-            token
+            token,
+            role: existingUser.role
           })
         } else {
           return FormateData({ error: "Password Didn't Match !" })

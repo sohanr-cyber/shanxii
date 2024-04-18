@@ -11,6 +11,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import CartItems from './Cart/CartItems'
 import { setCategories } from '@/redux/productSlice'
 import axios from 'axios'
+import userSlice from '@/redux/userSlice'
+import MenuIcon from '@mui/icons-material/Menu'
+import CategoriesSlider from './Categories/CategoriesSlider'
+
 const Navbar = () => {
   const router = useRouter()
   const [openSearch, setOpenSearch] = useState(false)
@@ -18,6 +22,7 @@ const Navbar = () => {
   const cartItems = useSelector(state => state.cart.items)
   const [isClient, setIsClient] = useState(false)
   const dispatch = useDispatch()
+  const userInfo = useSelector(state => state.user.userInfo)
 
   useEffect(() => {
     setIsClient(true)
@@ -47,7 +52,7 @@ const Navbar = () => {
 
       {open && (
         <div className={styles.navigator}>
-          <Navigator /> <span onClick={() => setOpen(false)}>X</span>
+          <CategoriesSlider setOpen={setOpen} />{' '}
         </div>
       )}
       <div className={styles.flex}>
@@ -72,17 +77,13 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <div
-            className={`${styles.item} ${styles.profile}`}
-            onClick={() => router.push('/user/8532053205/profile')}
-          >
-            <AccountCircleIcon />
-          </div>
-          <div
-            className={`${styles.item} ${styles.nav}`}
-            onClick={() => setOpen(prev => !prev)}
-          >
-            <AccountCircleIcon />
+          {isClient && userInfo?.role == 'admin' && (
+            <div className={styles.item} onClick={() => router.push('/admin')}>
+              <AccountCircleIcon />
+            </div>
+          )}
+          <div className={`${styles.item} ${styles.menu}`}>
+            <MenuIcon onClick={() => setOpen(prev => !prev)} />
           </div>
         </div>
       </div>

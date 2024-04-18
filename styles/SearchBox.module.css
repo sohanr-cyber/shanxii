@@ -9,7 +9,9 @@
 
 }
 
-
+.flex .select__category {
+    display: none;
+}
 
 .flex .select__category select,
 .flex .field input {
@@ -42,7 +44,7 @@
     position: absolute;
     top: 0px;
     right: 0;
-    background-color: var(--black);
+    background: var(--buttonBg);
     height: 103%;
     min-width: 35px;
     color: white;
@@ -55,4 +57,10 @@
     .flex select {
         max-width: 70px;
     }
+
+    .flex .field input {
+        padding: 5px 7px;
+    }
+
+
 }

@@ -69,8 +69,21 @@
         max-height: 100px;
     }
 
-    .wrapper .pic,
-    .wrapper .details {
+    .pic,
+    .details {
         flex: 1;
     }
+
+    .wrapperC {
+        min-height: 270px;
+        flex-direction: column;
+        min-width: 170px;
+    }
+
+    .wrapperC .pic {
+        flex: 1.55
+    }
+
+ 
+
 }

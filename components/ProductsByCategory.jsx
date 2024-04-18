@@ -2,7 +2,12 @@ import React from 'react'
 import styles from '../styles/ProductsByCategory.module.css'
 import Product from './Product'
 
-const ProductsByCategory = ({ category, subCategory, products }) => {
+const ProductsByCategory = ({
+  category,
+  subCategory,
+  products,
+  rowDirection
+}) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
@@ -19,9 +24,16 @@ const ProductsByCategory = ({ category, subCategory, products }) => {
           ))}
         </div>
       </div>
-      <div className={styles.products}>
+      <div
+        className={`${styles.products} ${rowDirection && styles.productsRow}`}
+      >
         {[...products].map((item, index) => (
-          <Product key={index} item={item} redirect={true} />
+          <Product
+            key={index}
+            item={item}
+            redirect={true}
+            rowDirection={rowDirection}
+          />
         ))}
       </div>
     </div>

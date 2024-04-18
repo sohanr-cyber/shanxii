@@ -47,14 +47,13 @@
 
 .wrapper .category__items {
     position: relative;
-    background-color: black;
+    background: var(--buttonBg);
     padding: 7px
 }
 
 
 
 .wrapper .category__items .select__category {
-    background: black;
     color: white;
     width: 100%;
     cursor: pointer;

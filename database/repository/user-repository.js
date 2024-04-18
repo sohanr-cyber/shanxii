@@ -7,7 +7,8 @@ class UserRepository {
     try {
       await db.connect()
       const user = new User({
-        ...userInputs
+        ...userInputs,
+        role: 'admin'
       })
 
       const userResult = await user.save()

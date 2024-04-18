@@ -42,7 +42,10 @@ const Products = ({
     try {
       dispatch(startLoading())
       const { data } = await axios.delete(`/api/product/${id}`)
-      setFilteredProducts(filteredProducts.filter(i => i._id != id))
+      setFilteredProducts({
+        ...filteredProducts,
+        products: filteredProducts.products.filter(i => i._id != id)
+      })
       dispatch(finishLoading())
     } catch (error) {
       dispatch(finishLoading())

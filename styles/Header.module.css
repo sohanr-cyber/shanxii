@@ -74,6 +74,9 @@
 }
 
 
+
+
+
 @media (max-width:720px) {
 
     .wrapper .right {
@@ -117,5 +120,26 @@
         align-items: flex-start;
     }
 
+}
 
+
+
+@media (max-width:420px) {
+
+
+
+    .wrapper .left {
+        min-height: 50vh;
+    }
+
+    .wrapper .right .image {
+        min-height: 18vh;
+    }
+
+}
+
+@media (max-width:410px) {
+    .wrapper {
+        padding: 10px
+    }
 }

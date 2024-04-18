@@ -25,6 +25,8 @@ const Order = ({ order: orderDetail }) => {
   const [isClient, setIsClient] = useState(false)
   const router = useRouter()
   const [order, setOrder] = useState(orderDetail)
+  const userInfo = useSelector(state => state.user.userInfo)
+
   const dispatch = useDispatch()
   useEffect(() => {
     setIsClient(true)
@@ -63,25 +65,28 @@ const Order = ({ order: orderDetail }) => {
         <div className={styles.status__steps}>
           <OrderStatus order={order} />
         </div>
-        <div className={styles.update__status}>
-          {[
-            statuses.map((item, index) => (
-              <span
-                key={index}
-                onClick={() => updateOrderStatus(item)}
-                style={
-                  order.statusTimeline.find(i => i.status == item)
-                    ? { background: 'black', color: 'white' }
-                    : {}
-                }
-              >
-                {item}
-              </span>
-            ))
-          ]}
-        </div>
+        {isClient && userInfo?.role == 'admin' && (
+          <div className={styles.update__status}>
+            {[
+              statuses?.map((item, index) => (
+                <span
+                  key={index}
+                  onClick={() => updateOrderStatus(item)}
+                  style={
+                    order?.statusTimeline?.find(i => i.status == item)
+                      ? { background: 'black', color: 'white' }
+                      : {}
+                  }
+                >
+                  {item}
+                </span>
+              ))
+            ]}
+          </div>
+        )}
+
         <div className={styles.statusTimeline}>
-          {order.statusTimeline.map((_, index) => (
+          {order?.statusTimeline?.map((_, index) => (
             <div
               className={styles.item}
               key={index}

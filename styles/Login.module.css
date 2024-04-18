@@ -56,3 +56,9 @@
     text-transform: capitalize;
     cursor: pointer;
 }
+
+@media (max-width:410px) {
+    .wrapper {
+        padding: 10px
+    }
+}

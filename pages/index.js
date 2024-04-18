@@ -43,17 +43,17 @@ export default function Home ({ products }) {
       </Head>
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
-        <Categories />
+        <div className={styles.categories}>
+          {' '}
+          <Categories />
+        </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         <Header />
-        <ProductsByCategory
-          category={'Featured Product'}
-          products={products}
-        
-        />
+        <ProductsByCategory category={'Featured Product'} products={products} />
         <ProductsByCategory
           category={'Gents'}
           products={products.slice(3, 7)}
+          rowDirection={true}
         />
         <ProductsByCategory
           category={'Summer'}

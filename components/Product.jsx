@@ -6,11 +6,11 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { getPrice } from '@/utilty/helper'
 
-const Product = ({ item, redirect }) => {
+const Product = ({ item, redirect, rowDirection }) => {
   const router = useRouter()
   return (
     <div
-      className={styles.wrapper}
+      className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
       onClick={() => redirect && router.push(`/product/${item.slug}`)}
     >
       <div className={styles.pic}>
@@ -31,7 +31,7 @@ const Product = ({ item, redirect }) => {
           />
         </Stack>
         {item.discount ? (
-          <div>
+          <div className={styles.price__wrapper}>
             <div className={styles.price}>
               ৳{getPrice(item.price, item.discount)}
             </div>
