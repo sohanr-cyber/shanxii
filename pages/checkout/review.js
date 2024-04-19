@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { clearCart } from '@/redux/cartSlice'
 import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utilty/helper'
 import { sellerNumber } from '@/utilty/const'
+import { showSnackBar } from '@/redux/notistackSlice'
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
   const buyNowItems = useSelector(state => state.cart.buyNow)
@@ -37,10 +38,26 @@ const Address = () => {
         })),
         shippingAddress: { ...addressInfo, type: 'Home' }
       })
-      console.log(data)
+      // console.log(data)
+      dispatch(
+        showSnackBar({
+          message: 'Order Placed',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
       router.push(`/order/${data._id}`)
       dispatch(clearCart())
     } catch (error) {
+      dispatch(
+        showSnackBar({
+          message: 'Error While Placing Order !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
       console.log(error)
     }
   }

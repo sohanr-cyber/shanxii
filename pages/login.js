@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { login } from '@/redux/userSlice'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 const Login = () => {
   const [user, setUser] = useState({})
@@ -14,6 +15,14 @@ const Login = () => {
 
   const signup = async () => {
     if (!user.password || !user.email) {
+      dispatch(
+        showSnackBar({
+          message: 'Fill All The Field',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
       return
     }
 
@@ -22,11 +31,26 @@ const Login = () => {
         ...user
       })
       dispatch(login(data))
+      dispatch(
+        showSnackBar({
+          message: 'Succesfully Logged In '
+        })
+      )
       router.push('/admin')
     } catch (error) {
+      dispatch(
+        showSnackBar({
+          messaage: 'Something Went Wrong !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+
       console.log(error)
     }
   }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.form__container}>

@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
 import { getPrice } from '@/utilty/helper'
+import { showSnackBar } from '@/redux/notistackSlice'
 const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product.sizes?.split(',')[0])
@@ -37,6 +38,7 @@ const Product = ({ product }) => {
         available: product.stockQuantity
       })
     )
+    dispatch(showSnackBar({ message: 'Product Added To Cart ' }))
   }
 
   const handleBuyNow = () => {

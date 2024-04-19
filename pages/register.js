@@ -6,13 +6,28 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { login } from '@/redux/userSlice'
 import axios from 'axios'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 const Register = () => {
   const router = useRouter()
   const dispatch = useDispatch()
   const [user, setUser] = useState({})
   const createAccount = async () => {
-    if (!user.email || !user.password) {
+    if (
+      !user.email ||
+      !user.password ||
+      !user.firstName ||
+      !user.lastName ||
+      user.phone
+    ) {
+      dispatch(
+        showSnackBar({
+          message: 'FIll All The Field',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
       return
     }
     try {
@@ -21,7 +36,25 @@ const Register = () => {
       })
       dispatch(login(data))
       router.push('/register')
-    } catch (error) {}
+      dispatch(
+        showSnackBar({
+          message: 'Account Created',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
+    } catch (error) {
+      console.log(error)
+      dispatch(
+        showSnackBar({
+          message: 'Error While Creating Account !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+    }
   }
   return (
     <div className={styles.wrapper}>

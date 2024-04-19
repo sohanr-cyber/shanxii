@@ -4,6 +4,10 @@ import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import axios from 'axios'
+import { showSnackBar } from '@/redux/notistackSlice'
+import { useDispatch } from 'react-redux'
+import { finishLoading, startLoading } from '@/redux/stateSlice'
 
 const Categories = ({
   title,
@@ -15,9 +19,11 @@ const Categories = ({
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredCategories, setFilteredCategories] = useState(categories)
+  const dispatch = useDispatch()
   useEffect(() => {
     setFilteredCategories(categories)
   }, [categories])
+
   // Function to handle search query change
   const handleSearchChange = e => {
     const query = e.target.value
@@ -31,6 +37,28 @@ const Categories = ({
     )
     setFilteredCategories(filtered)
   }
+
+  const remove = async id => {
+    try {
+      dispatch(startLoading())
+      const { data } = await axios.delete(`/api/category/${id}`)
+      setFilteredCategories(filteredCategories.filter(i => i._id != id))
+      dispatch(finishLoading())
+      dispatch(showSnackBar({ message: 'Category Removed !' }))
+    } catch (error) {
+      console.log({ error })
+      dispatch(finishLoading())
+      dispatch(
+        showSnackBar({
+          message: 'Error While Deleting Category !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+    }
+  }
+
   return (
     <>
       {' '}
@@ -81,7 +109,7 @@ const Categories = ({
                   </td>
 
                   <td className={styles.action}>
-                    <span>Delete</span>
+                    <span onClick={() => remove(c._id)}>Delete</span>
                     <span
                       onClick={() =>
                         router.push(`/admin/category/create?id=${c._id}`)

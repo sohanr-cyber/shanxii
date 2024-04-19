@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 const Products = ({
   title,
@@ -47,9 +48,17 @@ const Products = ({
         products: filteredProducts.products.filter(i => i._id != id)
       })
       dispatch(finishLoading())
+      dispatch(showSnackBar({ message: 'Product Removed !' }))
     } catch (error) {
       dispatch(finishLoading())
-      console.log(error)
+      dispatch(
+        showSnackBar({
+          message: 'Error While Deleting Product !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
     }
   }
   return (

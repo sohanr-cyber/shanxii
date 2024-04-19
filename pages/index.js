@@ -72,7 +72,7 @@ export async function getServerSideProps (context) {
     console.error('Error fetching products:', error)
     return {
       props: {
-        data
+        data: []
       }
     }
   }

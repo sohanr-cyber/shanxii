@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { useRouter } from 'next/router'
 import TextEditor from '@/components/Utility/TextEditor'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 const Create = ({ product: data, categories }) => {
   const [images, setImages] = useState([])
@@ -65,10 +66,25 @@ const Create = ({ product: data, categories }) => {
         sold: ''
       })
       dispatch(finishLoading())
+      dispatch(
+        showSnackBar({
+          message: 'New Product Created',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
     } catch (error) {
       dispatch(finishLoading())
-      console.log(error.response.data.message)
-      setError(error.response.data.message)
+      dispatch(
+        showSnackBar({
+          message: 'Error While Creating Product ! ',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      setError('Error While Creating Product ! ')
     }
   }
 
@@ -93,10 +109,25 @@ const Create = ({ product: data, categories }) => {
       })
       setProduct(data)
       dispatch(finishLoading())
+      dispatch(
+        showSnackBar({
+          message: 'Product Updated !',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
     } catch (error) {
       dispatch(finishLoading())
-      console.log(error.response.data.message)
-      setError(error.response.data.message)
+      dispatch(
+        showSnackBar({
+          message: 'Error Updating Product !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      setError('Something Went Wrong !')
     }
   }
 

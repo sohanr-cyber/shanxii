@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
+import { showSnackBar } from '@/redux/notistackSlice'
 // Order Craetion Form
 const Create = ({ category: data }) => {
   const [category, setCategory] = useState(data)
@@ -18,7 +19,15 @@ const Create = ({ category: data }) => {
   const saveCategory = async () => {
     setError('')
     if (!category.name) {
-      setError('Pleas fill all the necessaary field')
+      setError('Please fill all the necessaary field')
+      dispatch(
+        showSnackBar({
+          message: 'Please fill all the necessaary field',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
       return
     }
     try {
@@ -29,9 +38,25 @@ const Create = ({ category: data }) => {
         image: ''
       })
       dispatch(finishLoading())
+      dispatch(
+        showSnackBar({
+          message: 'New Category Created ',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
     } catch (error) {
       dispatch(finishLoading())
-      setError(error.response.data.message)
+      dispatch(
+        showSnackBar({
+          message: 'Error While Creating Category !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      setError('Error While Creating Category !')
     }
   }
 
@@ -39,6 +64,14 @@ const Create = ({ category: data }) => {
     setError('')
     if (!category.name) {
       setError('Pleas fill all the necessaary field')
+      dispatch(
+        showSnackBar({
+          message: 'Please fill all the necessaary field',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
       return
     }
     try {
@@ -48,9 +81,25 @@ const Create = ({ category: data }) => {
       })
       setCategory(data)
       dispatch(finishLoading())
+      dispatch(
+        showSnackBar({
+          message: 'Category Updated',
+          option: {
+            variant: 'default'
+          }
+        })
+      )
     } catch (error) {
       dispatch(finishLoading())
-      setError(error.response.data.message)
+      dispatch(
+        showSnackBar({
+          message: 'Error While Updating Category !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      setError('Error While Updating Category !')
     }
   }
   return (

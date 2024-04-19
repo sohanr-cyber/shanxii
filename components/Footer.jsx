@@ -40,6 +40,17 @@ const Footer = () => {
             <div className={styles.link}>Winter Collection</div>
           </div>
           <div className={styles.flex}>
+            <div className={styles.link} onClick={() => router.push('/login')}>
+              Login
+            </div>
+            <div
+              className={styles.link}
+              onClick={() => router.push('/register')}
+            >
+              Register
+            </div>
+          </div>
+          <div className={styles.flex}>
             <div
               className={styles.link}
               onClick={() => router.push('/privacy-policy')}
