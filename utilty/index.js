@@ -46,6 +46,13 @@ const isAuth = async (req, res, next) => {
   }
   return res.status(403).json({ message: 'Not Authorized' })
 }
+
+const isAdmin = async (req, res, next) => {
+  if (req.user.role == 'admin') {
+    return next()
+  }
+  return res.status(403).json({ message: 'Not Authorized' })
+}
 const FormateData = data => {
   if (data) {
     return data

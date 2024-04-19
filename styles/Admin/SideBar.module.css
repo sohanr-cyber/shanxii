@@ -6,8 +6,22 @@
     height: 100%;
     overflow-x: scroll;
     z-index: 1;
-    min-width: 200px
+    min-width: 200px;
+    animation: slideIn 0.5s ease-in-out forwards;
 }
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%) translateY(0%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0%) translateY(0);
+        opacity: 1;
+    }
+}
+
 
 .wrapper .top {
     display: flex;

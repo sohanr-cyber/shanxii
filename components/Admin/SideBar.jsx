@@ -19,11 +19,15 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle'
 import CommentIcon from '@mui/icons-material/Comment'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+// import { logout } from '@/redux/userSlice'
+// import { useDispatch } from 'react-redux'
 const SideBar = ({ setOpen }) => {
   const router = useRouter()
   const [visible, setVisible] = useState('')
+  // const dispatch = useDispatch()
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
@@ -175,7 +179,7 @@ const SideBar = ({ setOpen }) => {
                 <div className={styles.title}>Order List</div>
               </div>
             </div>
-            <div className={styles.item}>
+            <div className={styles.item} style={{ display: 'none' }}>
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
@@ -189,6 +193,7 @@ const SideBar = ({ setOpen }) => {
         <div
           className={styles.item}
           onClick={() => setVisible(prev => (prev == 'coupon' ? '' : 'coupon'))}
+          style={{ display: 'none' }}
         >
           <div className={styles.flex}>
             {' '}

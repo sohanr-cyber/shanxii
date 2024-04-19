@@ -37,7 +37,7 @@ const index = ({ orders, products }) => {
         <BarChart title={'Revinue'} />
         <Graph />
       </div> */}
-      <Reviews />
+      {/* <Reviews /> */}
     </div>
   )
 }

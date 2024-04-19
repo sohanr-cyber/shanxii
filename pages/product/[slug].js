@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Product/Details.module.css'
 import axios from 'axios'
 import BASE_URL from '@/config'
@@ -6,7 +6,7 @@ import { Rating, Stack } from '@mui/material'
 import Image from 'next/image'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
 import { getPrice } from '@/utilty/helper'
@@ -16,7 +16,13 @@ const Product = ({ product }) => {
   const [size, setSize] = useState(product.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product.thumbnail)
   const router = useRouter()
+  const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
       setQuantity(prevQuantity => prevQuantity + 1)
@@ -132,13 +138,15 @@ const Product = ({ product }) => {
             </div>
             <button onClick={() => handleAddToCart()}>Add To Cart</button>
             <button onClick={() => handleBuyNow()}>Buy Now</button>
-            <button
-              onClick={() =>
-                router.push(`/admin/product/create?id=${product._id}`)
-              }
-            >
-              Update Product
-            </button>
+            {isClient && userInfo?.role == 'admin' && (
+              <button
+                onClick={() =>
+                  router.push(`/admin/product/create?id=${product._id}`)
+                }
+              >
+                Update Product
+              </button>
+            )}
           </div>
 
           {product.categories?.length > 0 && (

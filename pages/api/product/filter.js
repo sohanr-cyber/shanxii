@@ -16,6 +16,8 @@ handler.get(async (req, res) => {
       categories,
       colors,
       page,
+      sortBy, // New parameter for sorting
+      sortOrder, // New parameter for sorting order,
       limit = 10
     } = req.query
 
@@ -50,7 +52,7 @@ handler.get(async (req, res) => {
     // Query the database with the constructed filter object
     const count = await Product.countDocuments(filter)
     const totalPages = Math.ceil(count / limit)
-    const products = await Product.find(filter, {
+    let query = await Product.find(filter, {
       metaTitle: 0,
       images: 0
     })
@@ -60,7 +62,22 @@ handler.get(async (req, res) => {
       })
       .skip(skip)
       .limit(parseInt(limit))
-      .exec()
+
+    // Sorting
+    if (sortBy && sortOrder) {
+      let sortOptions = {}
+      if (sortOrder === 'desc') {
+        sortOptions[sortBy] = -1 // Sort in descending order
+      } else {
+        sortOptions[sortBy] = 1 // Sort in ascending order
+      }
+      console.log(sortOptions)
+      query = query.sort({
+        createdAt: '-1'
+      })
+    }
+
+    const products = query
 
     return res.status(200).json({ totalPages, count, page, products })
   } catch (error) {
