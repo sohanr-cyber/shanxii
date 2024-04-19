@@ -32,7 +32,7 @@ const contents = [
       'https://images.pexels.com/photos/46212/men-s-shirt-shirt-attire-clothing-46212.jpeg?auto=compress&cs=tinysrgb&w=600'
   }
 ]
-export default function Home ({ products }) {
+export default function Home ({ data }) {
   return (
     <>
       <Head>
@@ -44,21 +44,17 @@ export default function Home ({ products }) {
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
         <div className={styles.categories}>
-          {' '}
           <Categories />
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         <Header />
-        <ProductsByCategory category={'Featured Product'} products={products} />
-        <ProductsByCategory
-          category={'Gents'}
-          products={products.slice(3, 7)}
-          rowDirection={true}
-        />
-        <ProductsByCategory
-          category={'Summer'}
-          products={products.slice(4, 7)}
-        />
+        {data.map((i, index) => (
+          <ProductsByCategory
+            category={i.category}
+            products={i.products}
+            key={index}
+          />
+        ))}
       </div>
     </>
   )
@@ -66,22 +62,17 @@ export default function Home ({ products }) {
 
 export async function getServerSideProps (context) {
   try {
-    const response = await axios.get(`${BASE_URL}/api/product`)
-    const { products, totalPages, page: currentPage } = response.data
+    const { data } = await axios.get(`${BASE_URL}/api/product/bycategory`)
     return {
       props: {
-        title: 'Product List',
-        products,
-        totalPages,
-        currentPage
+        data
       }
     }
   } catch (error) {
     console.error('Error fetching products:', error)
     return {
       props: {
-        title: 'Product List',
-        products: []
+        data
       }
     }
   }

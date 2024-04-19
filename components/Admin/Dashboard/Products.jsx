@@ -103,7 +103,9 @@ const Products = ({
                   <td>{product.stock}</td>
                   <td>
                     {product.categories?.map((item, index) => (
-                      <span key={index}>{item?.name}</span>
+                      <span key={index}>
+                        {item?.name} {'  '}
+                      </span>
                     ))}
                   </td>
                   <td>{product.stockQuantity}</td>

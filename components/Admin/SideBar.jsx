@@ -19,7 +19,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle'
 import CommentIcon from '@mui/icons-material/Comment'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 const SideBar = ({ setOpen }) => {
   const router = useRouter()
   const [visible, setVisible] = useState('')
@@ -74,7 +75,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <FormatListBulletedIcon />
                 </div>
                 <div className={styles.title}>Product List</div>
               </div>
@@ -85,7 +86,7 @@ const SideBar = ({ setOpen }) => {
             >
               <div className={styles.flex}>
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <AddCircleIcon />
                 </div>
                 <div className={styles.title}>Add Product</div>
               </div>
@@ -122,7 +123,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <FormatListBulletedIcon />
                 </div>
                 <div className={styles.title}>Category List</div>
               </div>
@@ -134,7 +135,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <AddCircleIcon />
                 </div>
                 <div className={styles.title}>Add Category</div>
               </div>
@@ -169,7 +170,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <FormatListBulletedIcon />
                 </div>
                 <div className={styles.title}>Order List</div>
               </div>
@@ -178,7 +179,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <AddCircleIcon />
                 </div>
                 <div className={styles.title}>Add Order</div>
               </div>
@@ -213,7 +214,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <FormatListBulletedIcon />
                 </div>
                 <div className={styles.title}>Coupon List</div>
               </div>
@@ -225,7 +226,7 @@ const SideBar = ({ setOpen }) => {
               <div className={styles.flex}>
                 {' '}
                 <div className={styles.icon}>
-                  <ShoppingCartIcon />
+                  <AddCircleIcon />
                 </div>
                 <div className={styles.title}>Add Coupon</div>
               </div>

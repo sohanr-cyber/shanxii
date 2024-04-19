@@ -30,7 +30,15 @@ const categorySchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category' // Reference to itself for child categories
       }
-    ]
+    ],
+    isShown: {
+      type: Boolean,
+      default: true
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 )

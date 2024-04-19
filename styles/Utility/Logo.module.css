@@ -9,6 +9,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
     min-width: 100px;
+    cursor: pointer;
 }
 
 .wrapper div {

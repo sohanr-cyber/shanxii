@@ -35,6 +35,7 @@ handler.post(async (req, res) => {
         // Calculate the total price and discount based on the product's price and discount
         const price = product.price * quantity
         const discount = (product.discount / 100) * price
+        
         return {
           product: productId,
           quantity,

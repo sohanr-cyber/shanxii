@@ -44,7 +44,7 @@ const Categories = () => {
                   className={styles.item}
                   key={index}
                   style={{
-                    minWidth: `${item.name.length * 7.7}px`
+                    minWidth: `${item.name.length * 8}px`
                     // background: 'red'
                   }}
                   onClick={() => router.push(`/shop?categories=${item._id}`)}

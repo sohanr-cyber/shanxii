@@ -7,7 +7,8 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
-
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
+import CheckBoxIcon from '@mui/icons-material/CheckBox'
 // Order Craetion Form
 const Create = ({ category: data }) => {
   const [category, setCategory] = useState(data)
@@ -92,6 +93,46 @@ const Create = ({ category: data }) => {
                 No Photo Uploaded
               </div>
             )}
+          </div>
+          <div
+            className={styles.field}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}
+          >
+            <span
+              onClick={() =>
+                setCategory({ ...category, isFeatured: !category.isFeatured })
+              }
+            >
+              {category.isFeatured ? (
+                <CheckBoxIcon />
+              ) : (
+                <CheckBoxOutlineBlankIcon />
+              )}
+            </span>
+            <span> This Category will be shown in home page</span>{' '}
+          </div>
+          <div
+            className={styles.field}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'flex-start'
+            }}
+          >
+            <span
+              onClick={() =>
+                setCategory({ ...category, isShown: !category.isShown })
+              }
+            >
+              {category.isShown ? (
+                <CheckBoxIcon />
+              ) : (
+                <CheckBoxOutlineBlankIcon />
+              )}{' '}
+            </span>
+            <span> This category name is hidden in product details page</span>{' '}
           </div>
         </div>
         {/* <div className={styles.right}></div> */}

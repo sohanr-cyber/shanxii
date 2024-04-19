@@ -22,6 +22,7 @@ const Login = () => {
         ...user
       })
       dispatch(login(data))
+      router.push('/admin')
     } catch (error) {
       console.log(error)
     }

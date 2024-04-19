@@ -20,6 +20,7 @@ const Register = () => {
         ...user
       })
       dispatch(login(data))
+      router.push('/register')
     } catch (error) {}
   }
   return (
