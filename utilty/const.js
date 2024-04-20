@@ -55,6 +55,32 @@ const colors = [
   { name: 'Silver', code: '#C0C0C0' },
   { name: 'Gold', code: '#FFD700' }
 ]
+
+const seoData = {
+  title: 'Quince Cloth - Your Ultimate Fashion Destination',
+  description:
+    'Discover the elegance of Quince Cloth, your ultimate fashion destination. Shop for chic dresses, cozy loungewear, and more.',
+  canonical: 'https://www.quincecloth.com',
+  openGraph: {
+    url: 'https://www.quincecloth.com',
+    title: 'Quince Cloth - Your Ultimate Fashion Destination',
+    description:
+      'Discover the elegance of Quince Cloth, your ultimate fashion destination. Shop for chic dresses, cozy loungewear, and more.',
+    images: [
+      {
+        url: 'http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flms-926e5.appspot.com%2Fo%2Fdivision%252FDesigner%2520(4).jpeg%3Falt%3Dmedia%26token%3D8b203c50-bd41-4525-a62d-5e39d83f86da&w=828&q=75',
+        alt: 'Quince Cloth - Your Ultimate Fashion Destination'
+      }
+    ],
+    site_name: 'Quince Cloth'
+  },
+  twitter: {
+    handle: '@quincecloth',
+    site: '@quincecloth',
+    cardType: 'summary_large_image'
+  }
+}
+
 export {
   delivery_charge,
   delivery_positions,
@@ -63,5 +89,6 @@ export {
   themeTransparent,
   themeBg,
   themeC,
-  colors
+  colors,
+  seoData
 }

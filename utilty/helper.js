@@ -1,4 +1,5 @@
-import { delivery_charge } from './const'
+import BASE_URL from '@/config'
+import { delivery_charge, seoData } from './const'
 
 function generateTrackingNumber (length = 10) {
   const characters =
@@ -55,6 +56,37 @@ const getTime = timestamp => {
   return formattedDate
 }
 
+const generateProductSeoData = productData => {
+  const {
+    name,
+    metaDescription: description,
+    slug,
+    thumbnail: imageUrl
+  } = productData
+
+  const productSeoData = {
+    title: `Quince Cloth - ${name}`,
+    description: description,
+    canonical: `${BASE_URL}/products/${slug}`,
+    openGraph: {
+      title: `Quince Cloth - ${name}`,
+      description: description,
+      url: `${BASE_URL}/products/${slug}`,
+      images: [
+        {
+          url: imageUrl,
+          width: 800,
+          height: 600,
+          alt: name
+        }
+      ],
+      type: 'product'
+    },
+    twitter: seoData.twitter
+  }
+
+  return productSeoData
+}
 
 export {
   generateTrackingNumber,
@@ -62,5 +94,6 @@ export {
   calculateSubtotal,
   getPrice,
   getDeliveryCharge,
-  getTime
+  getTime,
+  generateProductSeoData
 }
