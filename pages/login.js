@@ -7,6 +7,8 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { login } from '@/redux/userSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
+import { NextSeo } from 'next-seo'
+import { loginSeoData } from '@/utilty/const'
 
 const Login = () => {
   const [user, setUser] = useState({})
@@ -52,36 +54,39 @@ const Login = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.form__container}>
-        {' '}
-        <div className={styles.logo}>
-          <Logo />
-        </div>
-        <h2>Sign In to Account</h2>
-        <p>Enter Your Email and Password to sign in</p>
-        <form>
-          <input
-            type='email'
-            placeholder='Enter Your Email'
-            value={user.email}
-            onChange={e => setUser({ ...user, email: e.target.value })}
-          />
-          <input
-            type='password'
-            placeholder='Enter Your Password'
-            onChange={e => setUser({ ...user, password: e.target.value })}
-          />
-          <div className={styles.btn} onClick={() => signup()}>
-            Sign In
+    <>
+      <NextSeo {...loginSeoData} />
+      <div className={styles.wrapper}>
+        <div className={styles.form__container}>
+          {' '}
+          <div className={styles.logo}>
+            <Logo />
           </div>
-        </form>
-        <p className={styles.route}>
-          Dont have an account ?{' '}
-          <Link href='/register'>Click here to create new account</Link>
-        </p>
+          <h2>Sign In to Account</h2>
+          <p>Enter Your Email and Password to sign in</p>
+          <form>
+            <input
+              type='email'
+              placeholder='Enter Your Email'
+              value={user.email}
+              onChange={e => setUser({ ...user, email: e.target.value })}
+            />
+            <input
+              type='password'
+              placeholder='Enter Your Password'
+              onChange={e => setUser({ ...user, password: e.target.value })}
+            />
+            <div className={styles.btn} onClick={() => signup()}>
+              Sign In
+            </div>
+          </form>
+          <p className={styles.route}>
+            Dont have an account ?{' '}
+            <Link href='/register'>Click here to create new account</Link>
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

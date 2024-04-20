@@ -1,3 +1,6 @@
+import BASE_URL from '@/config'
+const companyName = 'Quince Cloth'
+
 const Inside_Dhaka = 70
 const Outside_Dhaka = 145
 const Dhaka_Subburb = 150
@@ -60,15 +63,15 @@ const seoData = {
   title: 'Quince Cloth - Your Ultimate Fashion Destination',
   description:
     'Discover the elegance of Quince Cloth, your ultimate fashion destination. Shop for chic dresses, cozy loungewear, and more.',
-  canonical: 'https://www.quincecloth.com',
+  canonical: BASE_URL,
   openGraph: {
-    url: 'https://www.quincecloth.com',
+    url: BASE_URL,
     title: 'Quince Cloth - Your Ultimate Fashion Destination',
     description:
       'Discover the elegance of Quince Cloth, your ultimate fashion destination. Shop for chic dresses, cozy loungewear, and more.',
     images: [
       {
-        url: 'http://localhost:3000/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flms-926e5.appspot.com%2Fo%2Fdivision%252FDesigner%2520(4).jpeg%3Falt%3Dmedia%26token%3D8b203c50-bd41-4525-a62d-5e39d83f86da&w=828&q=75',
+        url: 'https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flms-926e5.appspot.com%2Fo%2Fdivision%252FDesigner%2520(4).jpeg%3Falt%3Dmedia%26token%3D8b203c50-bd41-4525-a62d-5e39d83f86da&w=828&q=75',
         alt: 'Quince Cloth - Your Ultimate Fashion Destination'
       }
     ],
@@ -81,6 +84,140 @@ const seoData = {
   }
 }
 
+const orderCartSeoData = {
+  title: 'Your Order Cart - Quince Cloth',
+  description: 'Review and manage items in your order cart at Quince Cloth.',
+  canonical: `${BASE_URL}/cart`,
+  openGraph: {
+    title: 'Your Order Cart - Quince Cloth',
+    description: 'Review and manage items in your order cart at Quince Cloth.',
+    url: `${BASE_URL}/cart`,
+    images: [
+      {
+        url: `${BASE_URL}/images/order-cart.png`,
+        width: 800,
+        height: 600,
+        alt: 'Order Cart - Quince Cloth'
+      }
+    ],
+    type: 'website'
+  },
+  twitter: seoData.twitter
+}
+
+const orderDetailSeoData = {
+  title: `Order Details - ${companyName}`,
+  description: `View the details of your order on ${companyName}. Check the products, quantities, and shipping information.`,
+  canonical: `${BASE_URL}/order-detail`,
+  openGraph: {
+    title: `Order Details - ${companyName}`,
+    description: `View the details of your order on ${companyName}. Check the products, quantities, and shipping information.`,
+    url: `${BASE_URL}/order-detail`,
+    images: [
+      {
+        url: `${BASE_URL}/images/order-detail.png`,
+        width: 800,
+        height: 600,
+        alt: `Order Details - ${companyName}`
+      }
+    ],
+    type: 'website'
+  },
+  twitter: seoData.twitter
+}
+
+const reviewSeoData = {
+  title: `Review Order - ${companyName}`,
+  description: `Review your order on ${companyName} before placing it. Confirm the products, quantities, and shipping details.`,
+  canonical: `${BASE_URL}/review`,
+  openGraph: {
+    title: `Review Order - ${companyName}`,
+    description: `Review your order on ${companyName} before placing it. Confirm the products, quantities, and shipping details.`,
+    url: `${BASE_URL}/review`,
+    images: [
+      {
+        url: `${BASE_URL}/images/review.png`,
+        width: 800,
+        height: 600,
+        alt: `Review Order - ${companyName}`
+      }
+    ],
+    type: 'website'
+  },
+  twitter: {
+    handle: '@yourtwitterhandle',
+    site: '@yourtwitterhandle',
+    cardType: 'summary_large_image'
+  }
+}
+
+const addressSeoData = {
+  title: `Address - ${companyName}`,
+  description: `Enter your shipping address on ${companyName} to complete your order and receive your products.`,
+  canonical: `${BASE_URL}/address`,
+  openGraph: {
+    title: `Address - ${companyName}`,
+    description: `Enter your shipping address on ${companyName} to complete your order and receive your products.`,
+    url: `${BASE_URL}/address`,
+    images: [
+      {
+        url: `${BASE_URL}/images/address.png`,
+        width: 800,
+        height: 600,
+        alt: `Address - ${companyName}`
+      }
+    ],
+    type: 'website'
+  },
+  twitter: {
+    handle: '@yourtwitterhandle',
+    site: '@yourtwitterhandle',
+    cardType: 'summary_large_image'
+  }
+}
+
+const registerSeoData = {
+  title: `Register - ${companyName}`,
+  description: `Create an account on ${companyName} to start shopping for your favorite products.`,
+  canonical: `${BASE_URL}/register`,
+  openGraph: {
+    title: `Register - ${companyName}`,
+    description: `Create an account on ${companyName} to start shopping for your favorite products.`,
+    url: `${BASE_URL}/register`,
+    images: [
+      {
+        url: `${BASE_URL}/images/register.png`,
+        width: 800,
+        height: 600,
+        alt: `Register - ${companyName}`
+      }
+    ],
+    type: 'website'
+  },
+  twitter: seoData.twitter
+}
+
+const loginSeoData = {
+  title: `Login - ${companyName}`,
+  description: `Sign in to your ${companyName} account to access your profile and manage your orders.`,
+  canonical: `${BASE_URL}/login`,
+  openGraph: {
+    title: `Login - ${companyName}`,
+    description: `Sign in to your ${companyName} account to access your profile and manage your orders.`,
+    url: `${BASE_URL}/login`,
+    images: [
+      {
+        url: `${BASE_URL}/images/login.png`,
+        width: 800,
+        height: 600,
+        alt: 'Login - Quince Cloth'
+      }
+    ],
+    type: 'website'
+  },
+  twitter: seoData.twitter
+}
+
 export {
   delivery_charge,
   delivery_positions,
@@ -90,5 +227,11 @@ export {
   themeBg,
   themeC,
   colors,
-  seoData
+  seoData,
+  orderCartSeoData,
+  orderDetailSeoData,
+  reviewSeoData,
+  addressSeoData,
+  registerSeoData,
+  loginSeoData
 }

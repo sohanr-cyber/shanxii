@@ -7,8 +7,9 @@ import axios from 'axios'
 import OrderStatus from '@/components/Order/OrderStatus'
 import { useRouter } from 'next/router'
 import { getTime } from '@/utilty/helper'
-import { statusMessages } from '@/utilty/const'
+import { orderDetailSeoData, statusMessages } from '@/utilty/const'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { NextSeo } from 'next-seo'
 
 const statuses = [
   'Pending',
@@ -58,64 +59,67 @@ const Order = ({ order: orderDetail }) => {
     }
   }
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.left}>
-        <h2>OrderId: #{order._id}</h2>
-        <div className={styles.update}></div>
-        <div className={styles.status__steps}>
-          <OrderStatus order={order} />
-        </div>
-        {isClient && userInfo?.role == 'admin' && (
-          <div className={styles.update__status}>
-            {[
-              statuses?.map((item, index) => (
-                <span
-                  key={index}
-                  onClick={() => updateOrderStatus(item)}
-                  style={
-                    order?.statusTimeline?.find(i => i.status == item)
-                      ? { background: 'black', color: 'white' }
-                      : {}
-                  }
-                >
-                  {item}
-                </span>
-              ))
-            ]}
+    <>
+      <NextSeo {...orderDetailSeoData} />
+      <div className={styles.wrapper}>
+        <div className={styles.left}>
+          <h2>OrderId: #{order._id}</h2>
+          <div className={styles.update}></div>
+          <div className={styles.status__steps}>
+            <OrderStatus order={order} />
           </div>
-        )}
-
-        <div className={styles.statusTimeline}>
-          {order?.statusTimeline?.map((_, index) => (
-            <div
-              className={styles.item}
-              key={index}
-              style={
-                _.status == 'Failed' || _.status == 'Canceled'
-                  ? { color: 'red' }
-                  : {}
-              }
-            >
-              <div className={styles.timeline}>{getTime(_.timestamp)}</div>
-              <div className={styles.status}>
-                {statusMessages[_.status.toLowerCase()]}
-              </div>
+          {isClient && userInfo?.role == 'admin' && (
+            <div className={styles.update__status}>
+              {[
+                statuses?.map((item, index) => (
+                  <span
+                    key={index}
+                    onClick={() => updateOrderStatus(item)}
+                    style={
+                      order?.statusTimeline?.find(i => i.status == item)
+                        ? { background: 'black', color: 'white' }
+                        : {}
+                    }
+                  >
+                    {item}
+                  </span>
+                ))
+              ]}
             </div>
-          ))}
+          )}
+
+          <div className={styles.statusTimeline}>
+            {order?.statusTimeline?.map((_, index) => (
+              <div
+                className={styles.item}
+                key={index}
+                style={
+                  _.status == 'Failed' || _.status == 'Canceled'
+                    ? { color: 'red' }
+                    : {}
+                }
+              >
+                <div className={styles.timeline}>{getTime(_.timestamp)}</div>
+                <div className={styles.status}>
+                  {statusMessages[_.status.toLowerCase()]}
+                </div>
+              </div>
+            ))}
+          </div>
+          <button onClick={() => router.push('/')}>Go Back To Shopping</button>
         </div>
-        <button onClick={() => router.push('/')}>Go Back To Shopping</button>
+        <div className={styles.right}>
+          {isClient && (
+            <OrderSummary
+              cartItems={order.items}
+              shipping={order.shippingCost}
+              total={order.total}
+              address={order.shippingAddress}
+            />
+          )}
+        </div>
       </div>
-      <div className={styles.right}>
-        {isClient && (
-          <OrderSummary
-            cartItems={order.items}
-            shipping={order.shippingCost}
-            total={order.total}
-            address={order.shippingAddress}
-          />
-        )}
-      </div>
-    </div>
+    </>
   )
 }
 

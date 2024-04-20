@@ -9,8 +9,10 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { clearCart } from '@/redux/cartSlice'
 import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utilty/helper'
-import { sellerNumber } from '@/utilty/const'
+import { reviewSeoData, sellerNumber } from '@/utilty/const'
 import { showSnackBar } from '@/redux/notistackSlice'
+import { NextSeo } from 'next-seo'
+import { finishLoading, startLoading } from '@/redux/stateSlice'
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
   const buyNowItems = useSelector(state => state.cart.buyNow)
@@ -29,6 +31,7 @@ const Address = () => {
       return
     }
     try {
+      dispatch(startLoading())
       const { data } = await axios.post('/api/order/checkout', {
         items: cartItems.map(i => ({
           product: i.product._id,
@@ -38,6 +41,7 @@ const Address = () => {
         })),
         shippingAddress: { ...addressInfo, type: 'Home' }
       })
+      dispatch(finishLoading())
       // console.log(data)
       dispatch(
         showSnackBar({
@@ -50,6 +54,7 @@ const Address = () => {
       router.push(`/order/${data._id}`)
       dispatch(clearCart())
     } catch (error) {
+      dispatch(finishLoading())
       dispatch(
         showSnackBar({
           message: 'Error While Placing Order !',
@@ -63,77 +68,82 @@ const Address = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.left}>
-        <h2>Review Your Order</h2>
-        <div className={styles.title}>Shipping Address:</div>
-        <div className={styles.fields}>
-          <div className={styles.field}>
-            <div className={styles.key}>Name:</div>
-            <div className={styles.value}>{address?.fullName}</div>
-          </div>{' '}
-          <div className={styles.field}>
-            <div className={styles.key}>Phone:</div>
-            <div className={styles.value}>{address?.phone}</div>
-          </div>
-          <div className={styles.field}>
-            <div className={styles.key}>email:</div>
-            <div className={styles.value}>{address?.email}</div>
-          </div>
-          <div className={styles.field}>
-            <div className={styles.key}>Address:</div>
-            <div className={styles.value}> {address?.address}</div>
-          </div>
-        </div>
-        <div className={styles.title}>Pay With</div>
-        <div className={styles.flex}>
-          <div className={styles.cash__on}>
-            <div>
-              <Image
-                src='https://cdn-icons-png.flaticon.com/128/3812/3812106.png'
-                width='80'
-                height='50'
-                alt=''
-              />
+    <>
+      <NextSeo {...reviewSeoData} />
+      <div className={styles.wrapper}>
+        <div className={styles.left}>
+          <h2>Review Your Order</h2>
+          <div className={styles.title}>Shipping Address:</div>
+          <div className={styles.fields}>
+            <div className={styles.field}>
+              <div className={styles.key}>Name:</div>
+              <div className={styles.value}>{address?.fullName}</div>
             </div>{' '}
-            <div style={{ color: 'blue' }}>Cash On Delivery</div>
+            <div className={styles.field}>
+              <div className={styles.key}>Phone:</div>
+              <div className={styles.value}>{address?.phone}</div>
+            </div>
+            <div className={styles.field}>
+              <div className={styles.key}>email:</div>
+              <div className={styles.value}>{address?.email}</div>
+            </div>
+            <div className={styles.field}>
+              <div className={styles.key}>Address:</div>
+              <div className={styles.value}> {address?.address}</div>
+            </div>
           </div>
-          <div className={styles.bkash}>
-            <div>
-              {' '}
-              <Image src='/images/bkash.png' width='80' height='50' alt='' />
-            </div>{' '}
-            {/* <div>Payment</div>{' '} */}
+          <div className={styles.title}>Pay With</div>
+          <div className={styles.flex}>
+            <div className={styles.cash__on}>
+              <div>
+                <Image
+                  src='https://cdn-icons-png.flaticon.com/128/3812/3812106.png'
+                  width='80'
+                  height='50'
+                  alt=''
+                />
+              </div>{' '}
+              <div style={{ color: 'blue' }}>Cash On Delivery</div>
+            </div>
+            <div className={styles.bkash}>
+              <div>
+                {' '}
+                <Image src='/images/bkash.png' width='80' height='50' alt='' />
+              </div>{' '}
+              {/* <div>Payment</div>{' '} */}
+            </div>
           </div>
+          <button
+            onClick={() =>
+              makeOrder(router.query.buyNow ? buyNowItems : cartItems)
+            }
+          >
+            Place Order
+          </button>
+          <p>
+            After placing your order, we will be contacting you shortly to
+            confirm it. Please anticipate a call from <b>us({sellerNumber})</b>{' '}
+            at <b>{address.phone}</b> to complete your purchase.
+          </p>
         </div>
-        <button
-          onClick={() =>
-            makeOrder(router.query.buyNow ? buyNowItems : cartItems)
-          }
-        >
-          Place Order
-        </button>
-        <p>
-          After placing your order, we will be contacting you shortly to confirm
-          it. Please anticipate a call from <b>us({sellerNumber})</b> at{' '}
-          <b>{address.phone}</b> to complete your purchase.
-        </p>
-      </div>
-      <div className={styles.right}>
-        {isClient && (
-          <OrderSummary
-            cartItems={router.query.buyNow == 'true' ? buyNowItems : cartItems}
-            shipping={getDeliveryCharge(addressInfo.position)}
-            total={getPrice(
-              calculateSubtotal(
+        <div className={styles.right}>
+          {isClient && (
+            <OrderSummary
+              cartItems={
                 router.query.buyNow == 'true' ? buyNowItems : cartItems
-              ) + getDeliveryCharge(addressInfo.position)
-            )}
-            address={addressInfo}
-          />
-        )}{' '}
+              }
+              shipping={getDeliveryCharge(addressInfo.position)}
+              total={getPrice(
+                calculateSubtotal(
+                  router.query.buyNow == 'true' ? buyNowItems : cartItems
+                ) + getDeliveryCharge(addressInfo.position)
+              )}
+              address={addressInfo}
+            />
+          )}{' '}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
