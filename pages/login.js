@@ -9,6 +9,7 @@ import { login } from '@/redux/userSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { loginSeoData } from '@/utilty/const'
+import { finishLoading, startLoading } from '@/redux/stateSlice'
 
 const Login = () => {
   const [user, setUser] = useState({})
@@ -29,6 +30,8 @@ const Login = () => {
     }
 
     try {
+      dispatch(startLoading())
+
       const { data } = await axios.post('/api/user/login', {
         ...user
       })
@@ -38,8 +41,12 @@ const Login = () => {
           message: 'Succesfully Logged In '
         })
       )
+      dispatch(finishLoading())
+
       router.push('/admin')
     } catch (error) {
+      dispatch(finishLoading())
+
       dispatch(
         showSnackBar({
           messaage: 'Something Went Wrong !',

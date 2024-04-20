@@ -9,6 +9,7 @@ import axios from 'axios'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { registerSeoData } from '@/utilty/const'
+import { finishLoading, startLoading } from '@/redux/stateSlice'
 
 const Register = () => {
   const router = useRouter()
@@ -33,6 +34,8 @@ const Register = () => {
       return
     }
     try {
+      dispatch(startLoading())
+
       const { data } = await axios.post('/api/user', {
         ...user
       })
@@ -46,8 +49,10 @@ const Register = () => {
           }
         })
       )
+      dispatch(finishLoading())
     } catch (error) {
       console.log(error)
+      dispatch(finishLoading())
       dispatch(
         showSnackBar({
           message: 'Error While Creating Account !',
