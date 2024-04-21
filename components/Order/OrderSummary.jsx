@@ -3,9 +3,9 @@ import React from 'react'
 import styles from '../../styles/Cart/OrderSummary.module.css'
 import { calculateSubtotal, getPrice } from '@/utilty/helper'
 import { useRouter } from 'next/router'
-const OrderSummary = ({ cartItems, shipping, total, address }) => {
+const OrderSummary = ({ cartItems, shipping, total, address, discount }) => {
   const router = useRouter()
-  
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.summary}>
@@ -20,6 +20,10 @@ const OrderSummary = ({ cartItems, shipping, total, address }) => {
           <div className={styles.flex}>
             <div className={styles.key}>Shipping:</div>
             <div className={styles.value}>{getPrice(shipping)}</div>
+          </div>
+          <div className={styles.flex}>
+            <div className={styles.key}>Discount:</div>
+            <div className={styles.value}>-{getPrice(discount || 0)}</div>
           </div>
         </div>
         <div className={styles.order__total}>

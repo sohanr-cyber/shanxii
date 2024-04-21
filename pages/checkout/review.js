@@ -25,6 +25,21 @@ const Address = () => {
     setIsClient(true)
     setAddress(addressInfo)
   }, [])
+  const coupon = useSelector(state => state.cart.coupon)
+  const discount =
+    coupon?.discountType == 'percentage'
+      ? getPrice(
+          calculateSubtotal(
+            router.query.buyNow == 'true' ? buyNowItems : cartItems
+          ) -
+            getPrice(
+              calculateSubtotal(
+                router.query.buyNow == 'true' ? buyNowItems : cartItems
+              ),
+              coupon.discountValue
+            )
+        )
+      : 0
 
   const makeOrder = async cartItems => {
     if (cartItems.length == 0) {
@@ -39,7 +54,8 @@ const Address = () => {
           size: i.size,
           color: i.color
         })),
-        shippingAddress: { ...addressInfo, type: 'Home' }
+        shippingAddress: { ...addressInfo, type: 'Home' },
+        code: coupon.code
       })
       dispatch(finishLoading())
       // console.log(data)
@@ -136,8 +152,11 @@ const Address = () => {
               total={getPrice(
                 calculateSubtotal(
                   router.query.buyNow == 'true' ? buyNowItems : cartItems
-                ) + getDeliveryCharge(addressInfo.position)
+                ) +
+                  getDeliveryCharge(address.position) -
+                  discount
               )}
+              discount={discount}
               address={addressInfo}
             />
           )}{' '}

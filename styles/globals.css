@@ -6,7 +6,7 @@
   --font: 'Ubuntu', sans-serif;
 
 
-  /* --background: aliceblue;
+  --background: aliceblue;
   --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
@@ -19,7 +19,8 @@
   --inputField: linear-gradient(245deg, rgb(0, 129, 0, 0.1), rgb(0, 0, 249, 0.1));
   --hoverColor: rgb(0, 183, 255);
   --scrollbar: rgb(9, 82, 71);
-  --icon: rgb(9, 82, 71); */
+  --icon: rgb(9, 82, 71);
+  --logo: linear-gradient(45deg, rgb(8, 78, 67) 50%, rgb(0, 183, 255) 50%);
 
 
   /* --background: #fbfbfb;
@@ -33,10 +34,11 @@
   --hoverColor: rgb(0, 183, 255);
   --scrollbar: rgb(62, 86, 84);
   --theme: #647c7a;
-  --icon: rgb(62, 86, 84); */
+  --icon: rgb(62, 86, 84);
+  --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%); */
 
 
-  --background: white;
+  /* --background: white;
   --nav: rgb(246, 241, 231);
   --cardBg: rgba(164, 148, 128, 0.1);
   --buttonBg: linear-gradient(45deg, rgb(255, 136, 0), gold);
@@ -48,7 +50,7 @@
   --scrollbar: rgb(255, 136, 0);
   --theme: rgb(255, 136, 0);
   --icon: rgb(255, 136, 0);
-
+  --logo: linear-gradient(45deg, rgb(255, 136, 0) 50%, gold 50%) */
 }
 
 

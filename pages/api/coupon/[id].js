@@ -12,12 +12,25 @@ const PAGE_SIZE = 20
 handler.get(async (req, res) => {
   try {
     await db.connect()
-    const { id } = req.query
+    const { id: code } = req.query
 
     // Check if the coupon code already exists
-    const existingCoupon = await Coupon.findOne({ _id: id })
+    const existingCoupon = await Coupon.findOne({ code })
     if (!existingCoupon) {
-      return res.status(400).json({ error: 'Coupon code does not exists' })
+      return res.status(200).json({ error: 'Coupon code does not exists' })
+    }
+
+    // Get the current date
+    const currentDate = new Date()
+
+    // Check if the current date is within the validity period of the coupon code
+    if (
+      currentDate < existingCoupon.startDate ||
+      currentDate > existingCoupon.expiryDate
+    ) {
+      return res
+        .status(204)
+        .json({ error: 'Coupon code is inactive or expired' })
     }
 
     await db.disconnect()
@@ -72,6 +85,5 @@ handler.delete(async (req, res) => {
     res.status(500).json({ message: 'Server Error' })
   }
 })
-
 
 export default handler

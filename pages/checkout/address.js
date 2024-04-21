@@ -15,6 +15,7 @@ const Address = () => {
   const buyNowItems = useSelector(state => state.cart.buyNow)
 
   const [isClient, setIsClient] = useState(false)
+  const coupon = useSelector(state => state.cart.coupon)
   const router = useRouter()
   const addressInfo = useSelector(state => state.address.addressInfo)
   useEffect(() => {
@@ -23,6 +24,20 @@ const Address = () => {
   }, [])
   const [address, setAddress] = useState({})
   const dispatch = useDispatch()
+  const discount =
+    coupon?.discountType == 'percentage'
+      ? getPrice(
+          calculateSubtotal(
+            router.query.buyNow == 'true' ? buyNowItems : cartItems
+          ) -
+            getPrice(
+              calculateSubtotal(
+                router.query.buyNow == 'true' ? buyNowItems : cartItems
+              ),
+              coupon.discountValue
+            )
+        )
+      : 0
 
   const redirectToReview = () => {
     if (
@@ -147,8 +162,11 @@ const Address = () => {
               total={getPrice(
                 calculateSubtotal(
                   router.query.buyNow == 'true' ? buyNowItems : cartItems
-                ) + getDeliveryCharge(address.position)
+                ) +
+                  getDeliveryCharge(address.position) -
+                  discount
               )}
+              discount={discount}
               address={addressInfo}
             />
           )}

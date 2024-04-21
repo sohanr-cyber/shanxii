@@ -7,9 +7,10 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     items: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [], // Array to store cart items
-    buyNow: Cookies.get('buyNow') ? JSON.parse(Cookies.get('buyNow')) : [] // Array to store cart items
+    buyNow: Cookies.get('buyNow') ? JSON.parse(Cookies.get('buyNow')) : [], // Array to store cart items
+    coupon: Cookies.get('coupon') ? JSON.parse(Cookies.get('coupon')) : null // Array to store cart items
   },
-  
+
   reducers: {
     addItem: (state, action) => {
       const { product, quantity, size } = action.payload
@@ -43,9 +44,26 @@ export const cartSlice = createSlice({
     addToBuyNow: (state, action) => {
       state.buyNow = [action.payload]
       Cookies.set('buyNow', JSON.stringify(state.buyNow), { expires: 7 })
+    },
+    setCoupon: (state, action) => {
+      state.coupon = action.payload
+      Cookies.set('coupon', JSON.stringify(state.coupon), {
+        expires: 7
+      })
+    },
+    clearCoupon: (state, action) => {
+      state.coupon = null
+      Cookies.remove('coupon')
     }
   }
 })
 
-export const { addItem, removeItem, clearCart, addToBuyNow } = cartSlice.actions
+export const {
+  addItem,
+  removeItem,
+  clearCart,
+  addToBuyNow,
+  setCoupon,
+  clearCoupon
+} = cartSlice.actions
 export default cartSlice.reducer

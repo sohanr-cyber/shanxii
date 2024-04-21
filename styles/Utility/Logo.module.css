@@ -4,14 +4,12 @@
     font-size: 180%;
     transform: scale(1, 0.9);
     color: black;
-    /* gap: 1px; */
-    /* background: -webkit-linear-gradient(#eee, #333);
+    background: var(--logo);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
+    -webkit-text-fill-color: transparent;
     min-width: 100px;
     cursor: pointer;
-    
-    color: #424848
+
 }
 
 .wrapper div {

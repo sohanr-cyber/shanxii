@@ -114,6 +114,7 @@ const Order = ({ order: orderDetail }) => {
               cartItems={order.items}
               shipping={order.shippingCost}
               total={order.total}
+              discount={order.discount}
               address={order.shippingAddress}
             />
           )}

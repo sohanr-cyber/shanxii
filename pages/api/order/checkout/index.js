@@ -7,7 +7,8 @@ import nc from 'next-connect'
 import {
   calculateSubtotal,
   generateTrackingNumber,
-  getDeliveryCharge
+  getDeliveryCharge,
+  getPrice
 } from '@/utilty/helper'
 import Address from '@/database/model/Address'
 import Coupon from '@/database/model/Coupon'
@@ -23,11 +24,13 @@ handler.post(async (req, res) => {
       billingAddress,
       status,
       paymentMethod,
-      paymentReference
+      paymentReference,
+      code
     } = req.body
 
     await db.connect()
 
+    let discount = 0
     const address = await Address.create(shippingAddress)
 
     // Fetch product details for each item in the order
@@ -62,6 +65,23 @@ handler.post(async (req, res) => {
 
     let total = subtotal + getDeliveryCharge(address.position)
 
+    if (code) {
+      const currentDate = new Date()
+      const existingCoupon = await Coupon.findOne({ code })
+      if (
+        existingCoupon &&
+        !(
+          currentDate < existingCoupon.startDate ||
+          currentDate > existingCoupon.expiryDate
+        )
+      ) {
+        discount =
+          getPrice(subtotal) - getPrice(subtotal, existingCoupon.discountValue)
+      }
+    }
+
+    total = total - discount
+
     // Create the new order with the populated item details
     const newOrder = await Order.create({
       user,
@@ -71,7 +91,7 @@ handler.post(async (req, res) => {
       status,
       statusTimeline: [{ status }],
       subtotal,
-      //   discount,
+      discount,
       total,
       paymentMethod,
       paymentReference,
@@ -81,7 +101,6 @@ handler.post(async (req, res) => {
 
     console.log(newOrder)
     return res.status(201).json(newOrder)
-    
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

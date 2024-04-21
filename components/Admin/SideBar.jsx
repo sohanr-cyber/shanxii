@@ -193,7 +193,7 @@ const SideBar = ({ setOpen }) => {
         <div
           className={styles.item}
           onClick={() => setVisible(prev => (prev == 'coupon' ? '' : 'coupon'))}
-          style={{ display: 'none' }}
+          // style={{ display: 'none' }}
         >
           <div className={styles.flex}>
             {' '}

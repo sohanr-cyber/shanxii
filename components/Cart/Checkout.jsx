@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles/Cart/Checkout.module.css'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { useRouter } from 'next/router'
 import { getPrice } from '@/utilty/helper'
 import { useDispatch } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
+import axios from 'axios'
+import { setCoupon } from '@/redux/cartSlice'
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
@@ -20,6 +22,9 @@ const calculateSubtotal = cartItems => {
 const Checkout = ({ cartItems }) => {
   const router = useRouter()
   const dispatch = useDispatch()
+  const [code, setCode] = useState('')
+  const [discount, setDiscount] = useState({})
+
   const proceed = () => {
     if (cartItems.length < 1) {
       dispatch(
@@ -35,12 +40,64 @@ const Checkout = ({ cartItems }) => {
     router.push('/checkout/address')
   }
 
+  const applyCoupon = async () => {
+    if (!code) {
+      dispatch(
+        showSnackBar({
+          message: 'Please Enter Coupon Code',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      return
+    }
+    try {
+      const { data } = await axios.get(`/api/coupon/${code}`)
+      console.log({ data })
+      if (data.error) {
+        dispatch(
+          showSnackBar({
+            message: data.error,
+            option: {
+              variant: 'error'
+            }
+          })
+        )
+        return
+      }
+      dispatch(setCoupon(data))
+      dispatch(
+        showSnackBar({
+          message: `Enjoy ${
+            data.discountType == 'percentage'
+              ? `${data.discountValue}% Discount`
+              : 'Free Shipping'
+          }`,
+          option: { variant: 'success' }
+        })
+      )
+    } catch (error) {
+      console.log({ error })
+      showSnackBar({
+        message: 'Something Went Wrong !',
+        option: {
+          variant: 'error'
+        }
+      })
+    }
+  }
   return (
     <div className={styles.checkout__wrapper}>
       <div className={styles.flex}>
         <div className={styles.left} style={{ visibility: 'none' }}>
-          <input type='text' placeholder='Coupon Code' />
-          <button>Apply Coupon</button>
+          <input
+            type='text'
+            placeholder='Coupon Code'
+            value={code}
+            onChange={e => setCode(e.target.value)}
+          />
+          <button onClick={() => applyCoupon()}> Apply Coupon</button>
         </div>
         <div className={styles.right} style={{ fontSize: '110%' }}>
           Subtotal:{' '}
