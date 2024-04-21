@@ -71,7 +71,7 @@ const seoData = {
       'Discover the elegance of Quince Cloth, your ultimate fashion destination. Shop for chic dresses, cozy loungewear, and more.',
     images: [
       {
-        url: 'https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Flms-926e5.appspot.com%2Fo%2Fdivision%252FDesigner%2520(4).jpeg%3Falt%3Dmedia%26token%3D8b203c50-bd41-4525-a62d-5e39d83f86da&w=828&q=75',
+        url: '/images/ecomerce.png',
         alt: 'Quince Cloth - Your Ultimate Fashion Destination'
       }
     ],
