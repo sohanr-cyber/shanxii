@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../styles/ProductsByCategory.module.css'
 import Product from './Product'
-import ProgressBar from './Utility/ProgressBar'
+import ProgressBar from './Utility/PBar'
 
 const ProductsByCategory = ({
   category,

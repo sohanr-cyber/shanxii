@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../../styles/Utility/ProgressBar.module.css'
 
-const ProgressBar = ({ height, percentage, pixel }) => {
+const PBar = ({ height, percentage, pixel }) => {
   return (
     <div
       className={styles.progressBar}
@@ -21,4 +21,4 @@ const ProgressBar = ({ height, percentage, pixel }) => {
   )
 }
 
-export default ProgressBar
+export default PBar
