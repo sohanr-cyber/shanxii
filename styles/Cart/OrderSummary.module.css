@@ -17,7 +17,7 @@
 
 .cart__subtotal {
     /* margin: 10px 0; */
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--borderColor);
     padding: 10px 0;
 }
 

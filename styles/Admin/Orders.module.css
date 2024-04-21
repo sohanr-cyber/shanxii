@@ -67,9 +67,14 @@
     align-items: flex-start;
     justify-content: flex-start;
     overflow-x: scroll;
-    background: var(--cardBg);
+    /* background: var(--cardBg); */
     border-radius: 5px;
     flex-direction: column;
+
+}
+
+.wrapper .table__wrapperC {
+    background: var(--cardBg);
 
 }
 
@@ -80,7 +85,7 @@
 
 
 .wrapper .pagination {
-    background-color: var(--cardBg);
+    /* background-color: var(--cardBg); */
     padding: 15px 0;
 }
 
@@ -130,4 +135,3 @@
         display: none;
     }
 }
-

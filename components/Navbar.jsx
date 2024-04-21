@@ -14,6 +14,7 @@ import axios from 'axios'
 import userSlice from '@/redux/userSlice'
 import MenuIcon from '@mui/icons-material/Menu'
 import CategoriesSlider from './Categories/CategoriesSlider'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 const Navbar = () => {
   const router = useRouter()
@@ -24,6 +25,20 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const userInfo = useSelector(state => state.user.userInfo)
 
+  const redirectToCart = () => {
+    if (cartItems.length < 1) {
+      dispatch(
+        showSnackBar({
+          message: 'Your Cart Is Empty',
+          option: {
+            variant: 'info'
+          }
+        })
+      )
+      return
+    }
+    router.push('/cart')
+  }
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -67,7 +82,7 @@ const Navbar = () => {
             <SearchIcon onClick={() => setOpenSearch(true)} />
           </div>
           <div className={styles.item}>
-            <ShoppingCartIcon onClick={() => router.push('/cart')} />
+            <ShoppingCartIcon onClick={() => redirectToCart()} />
             {isClient && cartItems.length > 0 && (
               <span>{cartItems.length}</span>
             )}

@@ -1,8 +1,7 @@
 .graph__wrapper {
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px 2px rgb(234, 234, 234);
-    background: white;
-    padding-top: 5px;
-    /* margin: 5px 0; */
-  }
-  
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px rgb(234, 234, 234);
+  background: var(--cardBg);
+  padding-top: 5px;
+  /* margin: 5px 0; */
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/Product.module.css'
 import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
@@ -8,6 +8,7 @@ import { getPrice } from '@/utilty/helper'
 
 const Product = ({ item, redirect, rowDirection }) => {
   const router = useRouter()
+
   return (
     <div
       className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}

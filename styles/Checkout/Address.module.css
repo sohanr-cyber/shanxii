@@ -62,7 +62,7 @@
 
 
 .left h2 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--theme);
     padding-bottom: 10px;
 }
 

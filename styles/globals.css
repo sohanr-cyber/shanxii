@@ -2,14 +2,14 @@
 
 
 :root {
-  --main: rgb(253, 254, 254);
-  --secondary: rgb(148, 49, 49);
-  --accent: grey;
-  --background: aliceblue;
+
+  --font: 'Ubuntu', sans-serif;
+
+
+  /* --background: aliceblue;
   --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
-  --font: 'Ubuntu', sans-serif;
   --hoverBgColor: skyblue;
   --cardBg: white;
   --buttonBg: linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71));
@@ -19,20 +19,36 @@
   --inputField: linear-gradient(245deg, rgb(0, 129, 0, 0.1), rgb(0, 0, 249, 0.1));
   --hoverColor: rgb(0, 183, 255);
   --scrollbar: rgb(9, 82, 71);
-  --icon: rgb(9, 82, 71);
+  --icon: rgb(9, 82, 71); */
 
 
-  --background: #fbfbfb;
+  /* --background: #fbfbfb;
   --nav: rgb(213, 227, 228);
   --cardBg: rgb(231, 238, 238, 0.7);
   --buttonBg: linear-gradient(45deg, #647c7a, #647c7a);
+  --buttonC: white;
   --borderColor: #99a09e;
   --inputField: linear-gradient(245deg, rgba(255, 255, 255), rgba(255, 255, 255));
   --hoverBgColor: rgb(100, 124, 122);
   --hoverColor: rgb(0, 183, 255);
   --scrollbar: rgb(62, 86, 84);
   --theme: #647c7a;
-  --icon: rgb(62, 86, 84)
+  --icon: rgb(62, 86, 84); */
+
+
+  --background: white;
+  --nav: rgb(246, 241, 231);
+  --cardBg: rgba(164, 148, 128, 0.1);
+  --buttonBg: linear-gradient(45deg, rgb(255, 136, 0), gold);
+  --buttonC: black;
+  --borderColor: rgb(244, 184, 115, 0.5);
+  --inputField: linear-gradient(245deg, rgba(255, 255, 255), rgba(255, 255, 255));
+  --hoverBgColor: orange;
+  --hoverColor: rgb(255, 136, 0);
+  --scrollbar: rgb(255, 136, 0);
+  --theme: rgb(255, 136, 0);
+  --icon: rgb(255, 136, 0);
+
 }
 
 
@@ -60,7 +76,6 @@ h2 {
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar);
   width: 12px;
-  backdrop-filter: blur(5px);
 }
 
 
@@ -91,7 +106,7 @@ textarea {
   font-family: 'Ubuntu', sans-serif;
   background: var(--inputField);
   border-radius: 5px;
-  border: 1px solid var(--borderColor)
+  border: none;
 }
 
 

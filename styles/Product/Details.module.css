@@ -108,7 +108,7 @@
 .bottom__container .top {
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: var(--cardBg);
     margin: 15px 0;
 }
 

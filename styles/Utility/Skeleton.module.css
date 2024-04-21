@@ -1,18 +1,20 @@
 .skeleton {
-    background-color: rgb(206, 221, 234);
+    background-color: var(--theme);
     /* Background color */
     animation: skeleton-loading 1s ease-in-out infinite alternate;
     /* Animation */
+    min-width: 100px;
+    border-radius: 5px;
 }
 
 @keyframes skeleton-loading {
     0% {
-        opacity: 0.5;
+        opacity: 0.2;
         /* Starting opacity */
     }
 
     100% {
-        opacity: 1;
+        opacity: 0.5;
         /* Ending opacity */
     }
 }

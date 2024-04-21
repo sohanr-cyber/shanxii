@@ -50,7 +50,7 @@
 }
 
 .quantity span {
-    border: 1px solid grey;
+    border: 1px solid var(--borderColor);
     background-color: aliceblue;
     padding: 3px 5px;
     min-height: 25px;

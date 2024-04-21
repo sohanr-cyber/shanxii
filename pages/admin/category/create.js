@@ -181,7 +181,10 @@ const Create = ({ category: data }) => {
                 <CheckBoxOutlineBlankIcon />
               )}{' '}
             </span>
-            <span> This category name is hidden in product details page</span>{' '}
+            <span>
+              {' '}
+              This category name will be shown in product details page
+            </span>{' '}
           </div>
         </div>
         {/* <div className={styles.right}></div> */}
