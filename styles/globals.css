@@ -18,15 +18,21 @@
   --theme: rgb(9, 82, 71);
   --inputField: linear-gradient(245deg, rgb(0, 129, 0, 0.1), rgb(0, 0, 249, 0.1));
   --hoverColor: rgb(0, 183, 255);
+  --scrollbar: rgb(9, 82, 71);
+  --icon: rgb(9, 82, 71);
 
-  /* --background: #fbfbfb;
-  --nav: rgba(227, 235, 236, 255);
-  --cardBg: rgb(218, 218, 208, 0.5);
+
+  --background: #fbfbfb;
+  --nav: rgb(213, 227, 228);
+  --cardBg: rgb(231, 238, 238, 0.7);
   --buttonBg: linear-gradient(45deg, #647c7a, #647c7a);
   --borderColor: #99a09e;
   --inputField: linear-gradient(245deg, rgba(255, 255, 255), rgba(255, 255, 255));
   --hoverBgColor: rgb(100, 124, 122);
-  --hoverColor: rgb(0, 183, 255); */
+  --hoverColor: rgb(0, 183, 255);
+  --scrollbar: rgb(62, 86, 84);
+  --theme: #647c7a;
+  --icon: rgb(62, 86, 84)
 }
 
 
@@ -52,7 +58,7 @@ h2 {
 
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 213, 255, 0.6);
+  background: var(--scrollbar);
   width: 12px;
   backdrop-filter: blur(5px);
 }

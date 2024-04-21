@@ -98,7 +98,7 @@
 
 .wrapper .right {
     justify-content: flex-end;
-    color: var(--theme)
+    color: var(--icon)
 }
 
 .wrapper .search__icon {

@@ -24,7 +24,7 @@
 .menu {
     cursor: pointer;
     transform: scale(1.1);
-    color: var(--theme)
+    color: var(--icon)
 }
 
 .logo {

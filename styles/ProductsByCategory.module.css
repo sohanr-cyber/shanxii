@@ -32,6 +32,8 @@
     grid-template-columns: repeat(5, 1fr);
     grid-column-gap: 15px;
     grid-row-gap: 15px;
+    /* border: 1px solid red; */
+    margin-top: 15px;
 }
 
 

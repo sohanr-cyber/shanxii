@@ -2,6 +2,7 @@
     padding: 15px;
     color: black;
     max-width: 200px;
+    background: var(--nav);
 }
 
 .flex {

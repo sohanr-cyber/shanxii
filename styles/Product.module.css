@@ -68,6 +68,10 @@
         max-height: 100px;
     }
 
+    .category {
+        display: none;
+    }
+
     .pic,
     .details {
         flex: 1;
@@ -83,6 +87,6 @@
         flex: 1.55
     }
 
- 
+
 
 }

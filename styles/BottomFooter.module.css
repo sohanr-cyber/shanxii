@@ -1,7 +1,7 @@
 .wrapper {
     padding: 10px 15px;
     text-align: center;
-    background-color: antiquewhite;
+    background: var(--buttonBg);
     margin: 0 0;
 }
 
