@@ -37,7 +37,7 @@ const Address = () => {
               coupon.discountValue
             )
         )
-      : 0
+      : getDeliveryCharge(address.position)
 
   const redirectToReview = () => {
     if (

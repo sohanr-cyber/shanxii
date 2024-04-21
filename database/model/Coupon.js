@@ -10,12 +10,14 @@ const couponSchema = new mongoose.Schema(
     discountType: {
       type: String,
       required: true,
-      enum: ['percentage', 'fixed_amount', 'free_shipping'] // Allowed discount types
+      enum: ['percentage', 'fixed_amount', 'free_shipping']
+      // Allowed discount types
     },
     discountValue: {
       type: Number,
       required: true,
-      min: 0 // Enforce non-negative discount values
+      min: 0, // Enforce non-negative discount values
+      default: 0
     },
     minimumOrderAmount: {
       type: Number,

@@ -7,7 +7,7 @@ import OrderSummary from '@/components/Order/OrderSummary'
 import Image from 'next/image'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import { clearCart } from '@/redux/cartSlice'
+import { clearCart, clearCoupon } from '@/redux/cartSlice'
 import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utilty/helper'
 import { reviewSeoData, sellerNumber } from '@/utilty/const'
 import { showSnackBar } from '@/redux/notistackSlice'
@@ -39,7 +39,7 @@ const Address = () => {
               coupon.discountValue
             )
         )
-      : 0
+      : getDeliveryCharge(address.position)
 
   const makeOrder = async cartItems => {
     if (cartItems.length == 0) {
@@ -69,6 +69,7 @@ const Address = () => {
       )
       router.push(`/order/${data._id}`)
       dispatch(clearCart())
+      dispatch(clearCoupon())
     } catch (error) {
       dispatch(finishLoading())
       dispatch(

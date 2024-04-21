@@ -76,7 +76,10 @@ handler.post(async (req, res) => {
         )
       ) {
         discount =
-          getPrice(subtotal) - getPrice(subtotal, existingCoupon.discountValue)
+          existingCoupon.discountType == 'percentage'
+            ? getPrice(subtotal) -
+              getPrice(subtotal, existingCoupon.discountValue)
+            : getDeliveryCharge(address.position)
       }
     }
 
