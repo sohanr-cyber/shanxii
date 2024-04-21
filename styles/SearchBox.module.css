@@ -6,7 +6,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 90%;
-
+    border: 1px solid var(--borderColor)
 }
 
 .flex .select__category {
@@ -16,8 +16,8 @@
 .flex .select__category select,
 .flex .field input {
     /* padding: 10px; */
-    border: none;
     border-radius: 0;
+    border: none;
 }
 
 

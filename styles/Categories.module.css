@@ -89,7 +89,7 @@
 
 .category__list,
 .category__item:hover {
-    background: skyblue
+    background: var(--hoverBgColor)
 }
 
 @media (max-width:570px) {

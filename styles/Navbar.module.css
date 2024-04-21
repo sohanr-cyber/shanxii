@@ -1,6 +1,6 @@
 .wrapper,
 .opened__searchBox {
-    background: white;
+    background: var(--nav);
     padding: 15px 25px;
     position: sticky;
     max-height: 40px;

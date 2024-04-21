@@ -9,7 +9,7 @@
     /* padding:15px; */
     display: flex;
     justify-content: space-between;
-    background: white;
+    background: var(--nav);
     ;
     padding: 10px 25px;
     border-radius: 5px;

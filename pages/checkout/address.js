@@ -9,6 +9,7 @@ import { setAddress as setNewAddress } from '@/redux/addressSlice'
 import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utilty/helper'
 import { addressSeoData, delivery_positions } from '@/utilty/const'
 import { NextSeo } from 'next-seo'
+import { showSnackBar } from '@/redux/notistackSlice'
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
   const buyNowItems = useSelector(state => state.cart.buyNow)
@@ -22,6 +23,32 @@ const Address = () => {
   }, [])
   const [address, setAddress] = useState({})
   const dispatch = useDispatch()
+
+  const redirectToReview = () => {
+    if (
+      !address.fullName ||
+      !address.phone ||
+      !address.position ||
+      !address.address ||
+      address.position == 'Chose Delivery Area'
+    ) {
+      dispatch(
+        showSnackBar({
+          message: 'You Need To Complete Address Information !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      return
+    }
+
+    dispatch(setNewAddress(address))
+    router.push({
+      pathname: '/checkout/review',
+      query: router.query
+    })
+  }
   return (
     <>
       <NextSeo {...addressSeoData} />
@@ -103,11 +130,7 @@ const Address = () => {
             <button onClick={() => router.push('/cart')}>Back To Cart</button>
             <button
               onClick={() => {
-                dispatch(setNewAddress(address))
-                router.push({
-                  pathname: '/checkout/review',
-                  query: router.query
-                })
+                redirectToReview()
               }}
             >
               Continue

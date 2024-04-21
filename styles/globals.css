@@ -6,6 +6,7 @@
   --secondary: rgb(148, 49, 49);
   --accent: grey;
   --background: aliceblue;
+  --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
   --font: 'Ubuntu', sans-serif;
@@ -14,7 +15,18 @@
   --buttonBg: linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71));
   --buttonC: white;
   --lightF: rgb(82, 80, 80);
-  --theme: rgb(9, 82, 71)
+  --theme: rgb(9, 82, 71);
+  --inputField: linear-gradient(245deg, rgb(0, 129, 0, 0.1), rgb(0, 0, 249, 0.1));
+  --hoverColor: rgb(0, 183, 255);
+
+  /* --background: #fbfbfb;
+  --nav: rgba(227, 235, 236, 255);
+  --cardBg: rgb(218, 218, 208, 0.5);
+  --buttonBg: linear-gradient(45deg, #647c7a, #647c7a);
+  --borderColor: #99a09e;
+  --inputField: linear-gradient(245deg, rgba(255, 255, 255), rgba(255, 255, 255));
+  --hoverBgColor: rgb(100, 124, 122);
+  --hoverColor: rgb(0, 183, 255); */
 }
 
 
@@ -71,8 +83,9 @@ select,
 textarea {
   border: none;
   font-family: 'Ubuntu', sans-serif;
-  background: linear-gradient(245deg, rgb(0, 129, 0, 0.1), rgb(0, 0, 249, 0.1));
+  background: var(--inputField);
   border-radius: 5px;
+  border: 1px solid var(--borderColor)
 }
 
 

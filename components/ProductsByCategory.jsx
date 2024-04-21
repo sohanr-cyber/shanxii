@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../styles/ProductsByCategory.module.css'
 import Product from './Product'
+import ProgressBar from './Utility/ProgressBar'
 
 const ProductsByCategory = ({
   category,
@@ -24,6 +25,7 @@ const ProductsByCategory = ({
           ))}
         </div>
       </div>
+      <ProgressBar pixel={category.length * 11.2} />
       <div
         className={`${styles.products} ${rowDirection && styles.productsRow}`}
       >

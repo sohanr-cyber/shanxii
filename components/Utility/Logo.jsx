@@ -26,11 +26,13 @@ const Logo = () => {
       {name.split('').map((i, index) => (
         <div
           key={index}
-          style={{
-            color: `${colors[index + 3].code}`
-            // background: `${hexToRGBA(colors[index + 3].code, 0.1)}`
-            // opacity: '0.1'
-          }}
+          style={
+            {
+              // color: `${colors[index + 3].code}`
+              // background: `${hexToRGBA(colors[index + 3].code, 0.1)}`
+              // opacity: '0.1'
+            }
+          }
         >
           {i}
         </div>

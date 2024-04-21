@@ -47,7 +47,7 @@ const sortOptions = [
   }
 ]
 const Home = ({ products, totalPages, currentPage, count }) => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const router = useRouter()
   const updateRoute = data => {
     console.log({ data })
@@ -117,7 +117,7 @@ export async function getServerSideProps (context) {
   } = context.query
   try {
     const response = await axios.get(
-      `${BASE_URL}/api/product/filter?name=${name}&categories=${
+      `${BASE_URL}/api/product/filter?name=${name || ''}&categories=${
         categories || 'all'
       }&colors=${colors || 'all'}&minPrice=${minPrice || 'all'}&maxPrice=${
         maxPrice || 'all'

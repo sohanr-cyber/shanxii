@@ -3,6 +3,8 @@ import styles from '../../styles/Cart/Checkout.module.css'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { useRouter } from 'next/router'
 import { getPrice } from '@/utilty/helper'
+import { useDispatch } from 'react-redux'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
@@ -17,10 +19,26 @@ const calculateSubtotal = cartItems => {
 
 const Checkout = ({ cartItems }) => {
   const router = useRouter()
+  const dispatch = useDispatch()
+  const proceed = () => {
+    if (cartItems.length < 1) {
+      dispatch(
+        showSnackBar({
+          message: 'Your Cart Is Empty !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      return
+    }
+    router.push('/checkout/address')
+  }
+
   return (
     <div className={styles.checkout__wrapper}>
       <div className={styles.flex}>
-        <div className={styles.left}>
+        <div className={styles.left} style={{ visibility: 'none' }}>
           <input type='text' placeholder='Coupon Code' />
           <button>Apply Coupon</button>
         </div>
@@ -36,9 +54,7 @@ const Checkout = ({ cartItems }) => {
           <button>Back To Shop</button>
         </div>
         <div className={styles.right}>
-          <button onClick={() => router.push('/checkout/address')}>
-            Proceed
-          </button>
+          <button onClick={() => proceed()}>Proceed</button>
         </div>
       </div>
     </div>

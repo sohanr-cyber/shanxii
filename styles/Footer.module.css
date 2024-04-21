@@ -3,10 +3,7 @@
     justify-content: space-between;
     gap: 25px;
     padding: 30px 25px;
-    background-color: rgb(0, 125, 0, 0.1);
-    /* color: white; */
-    background-color: white;
-
+    background: var(--nav);
 }
 
 .wrapper .mid,
@@ -51,8 +48,8 @@
 }
 
 .link:hover {
-    color: rgb(0, 183, 255);
-    color: green
+    color: var(--hoverColor);
+
 }
 
 

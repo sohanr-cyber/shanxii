@@ -1,36 +1,24 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import LinearProgress from "@mui/material/LinearProgress";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import React from 'react'
+import styles from '../../styles/Utility/ProgressBar.module.css'
 
-function LinearProgressWithLabel(props) {
+const ProgressBar = ({ height, percentage, pixel }) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Box sx={{ width: "100%", mr: 1 }}>
-        <LinearProgress variant="determinate" {...props} />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
-          props.value
-        )}%`}</Typography>
-      </Box>
-    </Box>
-  );
+    <div
+      className={styles.progressBar}
+      style={{ height: `${height || '3px'}` }}
+    >
+      <div
+        className={styles.progress}
+        style={
+          percentage
+            ? { width: `${percentage}$` }
+            : {
+                width: `${pixel}px`
+              }
+        }
+      ></div>
+    </div>
+  )
 }
 
-LinearProgressWithLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
-   */
-  value: PropTypes.number.isRequired,
-};
-
-export default function ProgressBar({ value }) {
-  return (
-    <Box sx={{ width: "100%" }}>
-      <LinearProgressWithLabel value={value} />
-    </Box>
-  );
-}
+export default ProgressBar

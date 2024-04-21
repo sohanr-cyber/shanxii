@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     font-weight: bolder;
-    font-size: 200%;
+    font-size: 180%;
     transform: scale(1, 0.9);
     color: black;
     /* gap: 1px; */
@@ -10,6 +10,8 @@
     -webkit-text-fill-color: transparent; */
     min-width: 100px;
     cursor: pointer;
+    
+    color: #424848
 }
 
 .wrapper div {
