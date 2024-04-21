@@ -72,7 +72,9 @@ const seoData = {
     images: [
       {
         url: '/images/ecomerce.png',
-        alt: 'Quince Cloth - Your Ultimate Fashion Destination'
+        alt: 'Quince Cloth - Your Ultimate Fashion Destination',
+        width: 1200,
+        height: 630
       }
     ],
     site_name: 'Quince Cloth'
@@ -95,8 +97,8 @@ const orderCartSeoData = {
     images: [
       {
         url: `${BASE_URL}/images/order-cart.png`,
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 630,
         alt: 'Order Cart - Quince Cloth'
       }
     ],
@@ -116,8 +118,8 @@ const orderDetailSeoData = {
     images: [
       {
         url: `${BASE_URL}/images/order-detail.png`,
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 630,
         alt: `Order Details - ${companyName}`
       }
     ],
@@ -187,8 +189,8 @@ const registerSeoData = {
     images: [
       {
         url: `${BASE_URL}/images/register.png`,
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 630,
         alt: `Register - ${companyName}`
       }
     ],
@@ -208,8 +210,8 @@ const loginSeoData = {
     images: [
       {
         url: `${BASE_URL}/images/login.png`,
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 630,
         alt: 'Login - Quince Cloth'
       }
     ],
