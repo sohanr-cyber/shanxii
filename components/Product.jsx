@@ -4,7 +4,7 @@ import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { getPrice } from '@/utilty/helper'
+import { getPrice } from '@/utility/helper'
 
 const Product = ({ item, redirect, rowDirection }) => {
   const router = useRouter()

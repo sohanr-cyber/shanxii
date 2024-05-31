@@ -4,7 +4,7 @@ import Order from '@/database/model/Order'
 import Product from '@/database/model/Product'
 import nc from 'next-connect'
 import Address from '@/database/model/Address'
-
+import Mail from '@/services/mail-service'
 const handler = nc()
 
 db.connect()
@@ -35,9 +35,21 @@ handler.get(async (req, res) => {
   }
 })
 
+// change order status by admin
 handler.put(async (req, res) => {
   const { id: orderId } = req.query
   const { newStatus } = req.body
+
+  // send mail
+  const mail = new Mail()
+  await mail.sendMail({
+    subject: 'Your Order Have Been Cancelled',
+    for: 'orderCanceled',
+    name: 'sohan',
+    to: 'sohanur01744@gmail.com',
+    orderId: '532532'
+  })
+  console.log("mail sent")
 
   try {
     const order = await Order.findById(orderId)
@@ -107,7 +119,7 @@ handler.put(async (req, res) => {
         })
       )
     }
-    
+
     await order.save()
 
     res.json({

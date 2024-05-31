@@ -1,4 +1,4 @@
-import { colors, themeBg, themeC, themeTransparent } from '@/utilty/const'
+import { colors, themeBg, themeC, themeTransparent } from '@/utility/const'
 import { handleClientScriptLoad } from 'next/script'
 import React, { useEffect, useState } from 'react'
 

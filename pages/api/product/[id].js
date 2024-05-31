@@ -1,8 +1,8 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utilty'
-import { getPrice } from '@/utilty/helper'
+import { isAuth } from '@/utility'
+import { getPrice } from '@/utility/helper'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
 

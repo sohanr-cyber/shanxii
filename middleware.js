@@ -19,7 +19,7 @@ export default function middleware (req) {
     return NextResponse.redirect(`${BASE_URL}/login`)
   }
 
-  if (verify && uri.includes('/login')) {
-    return NextResponse.redirect(new URL('/', uri))
-  }
+  // if (verify && uri.includes('/login')) {
+  //   return NextResponse.redirect(new URL('/', uri))
+  // }
 }

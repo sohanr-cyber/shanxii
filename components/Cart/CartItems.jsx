@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { removeItem } from '@/redux/cartSlice'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { getPrice } from '@/utilty/helper'
+import { getPrice } from '@/utility/helper'
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../../styles/Utility/Logo.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { colors } from '@/utilty/const'
+import { colors } from '@/utility/const'
 
 function hexToRGBA (hex, opacity) {
   // Remove '#' if present

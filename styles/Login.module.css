@@ -57,6 +57,12 @@
     cursor: pointer;
 }
 
+.wrapper .route {
+    display: flex;
+    align-items: left;
+
+}
+
 @media (max-width:410px) {
     .wrapper {
         padding: 10px

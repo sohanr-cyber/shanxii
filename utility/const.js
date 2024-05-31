@@ -235,5 +235,6 @@ export {
   reviewSeoData,
   addressSeoData,
   registerSeoData,
-  loginSeoData
+  loginSeoData,
+  companyName
 }

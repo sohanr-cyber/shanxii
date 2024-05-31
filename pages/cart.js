@@ -9,9 +9,9 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import { addItem, removeItem } from '@/redux/cartSlice'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { getPrice } from '@/utilty/helper'
+import { getPrice } from '@/utility/helper'
 import { NextSeo } from 'next-seo'
-import { orderCartSeoData } from '@/utilty/const'
+import { orderCartSeoData } from '@/utility/const'
 
 const Cart = () => {
   const cartItems = useSelector(state => state.cart.items)

@@ -9,7 +9,7 @@ import {
   generateTrackingNumber,
   getDeliveryCharge,
   getPrice
-} from '@/utilty/helper'
+} from '@/utility/helper'
 import Address from '@/database/model/Address'
 import Coupon from '@/database/model/Coupon'
 const handler = nc()

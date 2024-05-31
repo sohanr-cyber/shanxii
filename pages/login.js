@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { login } from '@/redux/userSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
-import { loginSeoData } from '@/utilty/const'
+import { loginSeoData } from '@/utility/const'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 
 const Login = () => {
@@ -35,15 +35,34 @@ const Login = () => {
       const { data } = await axios.post('/api/user/login', {
         ...user
       })
-      dispatch(login(data))
-      dispatch(
-        showSnackBar({
-          message: 'Succesfully Logged In '
-        })
-      )
-      dispatch(finishLoading())
+      if (!data.error) {
+        dispatch(login(data))
+        dispatch(
+          showSnackBar({
+            message: 'Succesfully Logged In '
+          })
+        )
 
-      router.push('/admin')
+        if (data.role == 'admin') {
+          router.push('/admin')
+        } else {
+          router.push('/')
+        }
+      }
+
+      if (data.error) {
+        dispatch(login(data))
+        dispatch(
+          showSnackBar({
+            message: data.error,
+            option: {
+              variant: 'error'
+            }
+          })
+        )
+      }
+
+      dispatch(finishLoading())
     } catch (error) {
       dispatch(finishLoading())
 
@@ -89,7 +108,11 @@ const Login = () => {
           </form>
           <p className={styles.route}>
             Dont have an account ?{' '}
-            <Link href='/register'>Click here to create new account</Link>
+            <Link href='/register'> Click here to create new account</Link>
+          </p>
+          <p className={styles.route}>
+            Forget Password ?{' '}
+            <Link href='/verify/existance'> Click here to reset password</Link>
           </p>
         </div>
       </div>

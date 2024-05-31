@@ -1,5 +1,5 @@
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utilty'
+import { isAuth } from '@/utility'
 import nextConnect from 'next-connect'
 
 const handler = nextConnect()

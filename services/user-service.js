@@ -7,11 +7,15 @@ import {
   GenerateSignature,
   ValidateSignature,
   FormateData
-} from '../utilty/index'
+} from '../utility/index'
+import { generateVerificationCode } from '@/utility/helper'
+import Mail from './mail-service'
+import { companyName } from '@/utility/const'
 
 class UserService {
   constructor () {
     this.repository = new UserRepository()
+    this.mailService = new Mail()
   }
 
   async SignUp (userInputs) {
@@ -22,11 +26,30 @@ class UserService {
     }
     let salt = await GenerateSalt()
     let userPassword = await GeneratePassword(password, salt)
+
+    const verificationCode = generateVerificationCode(6)
+    const expirationTime = new Date()
+    expirationTime.setMinutes(expirationTime.getMinutes() + 5)
+    // const profileId = await this.repository.generateId()
+
     const existUser = await this.repository.CreateUser({
       ...userInputs,
       password: userPassword,
-      salt
+      salt,
+      verificationCode,
+      expirationTime
     })
+
+    // send code to mail
+    await this.mailService.verification({
+      code: verificationCode,
+      expirationTime: '5 minutes',
+      to: existUser.email,
+      name: existUser.firstName,
+      verification: true,
+      subject: `Account Verification -${companyName}`
+    })
+
     console.log({ existUser })
 
     const token = await GenerateSignature({

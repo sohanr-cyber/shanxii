@@ -8,11 +8,12 @@ import Image from 'next/image'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { clearCart, clearCoupon } from '@/redux/cartSlice'
-import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utilty/helper'
-import { reviewSeoData, sellerNumber } from '@/utilty/const'
+import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utility/helper'
+import { reviewSeoData, sellerNumber } from '@/utility/const'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
   const buyNowItems = useSelector(state => state.cart.buyNow)

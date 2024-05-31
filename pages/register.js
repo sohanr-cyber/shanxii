@@ -8,7 +8,7 @@ import { login } from '@/redux/userSlice'
 import axios from 'axios'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
-import { registerSeoData } from '@/utilty/const'
+import { registerSeoData } from '@/utility/const'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 
 const Register = () => {
@@ -21,7 +21,7 @@ const Register = () => {
       !user.password ||
       !user.firstName ||
       !user.lastName ||
-      user.phone
+      !user.phone
     ) {
       dispatch(
         showSnackBar({
@@ -39,16 +39,20 @@ const Register = () => {
       const { data } = await axios.post('/api/user', {
         ...user
       })
-      dispatch(login(data))
-      router.push('/register')
-      dispatch(
-        showSnackBar({
-          message: 'Account Created',
-          option: {
-            variant: 'success'
-          }
-        })
-      )
+
+      if (!data.error) {
+        dispatch(login(data))
+        router.push('/verify')
+        dispatch(
+          showSnackBar({
+            message: 'Account Created',
+            option: {
+              variant: 'success'
+            }
+          })
+        )
+      }
+
       dispatch(finishLoading())
     } catch (error) {
       console.log(error)

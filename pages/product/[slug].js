@@ -9,9 +9,10 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
-import { generateProductSeoData, getPrice } from '@/utilty/helper'
+import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
+
 const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product.sizes?.split(',')[0])
@@ -182,11 +183,32 @@ const Product = ({ product }) => {
 
 export default Product
 
-export async function getServerSideProps (context) {
+export async function getStaticPaths () {
+  // Fetch the list of possible values for slug
+  const response = await axios.get(`${BASE_URL}/api/product/slugs`)
+  const products = response.data // Assuming the API returns an array of slugs
+
+  // Map the slugs to the required format
+  const paths = products.map(p => ({
+    params: { slug: p.slug }
+  }))
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export async function getStaticProps (context) {
+  const { slug } = context.params
+
   try {
-    const response = await axios.get(
-      `${BASE_URL}/api/product/slug/${context.query.slug}`
-    )
+    const start = new Date()
+    const response = await axios.get(`${BASE_URL}/api/product/slug/${slug}`)
+    const end = new Date()
+
+    console.log(`Data fetching time: ${end - start}ms`)
+
     return {
       props: {
         product: response.data

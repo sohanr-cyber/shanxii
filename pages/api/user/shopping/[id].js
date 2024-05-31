@@ -1,6 +1,6 @@
 import nextConnect from 'next-connect'
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utilty'
+import { isAuth } from '@/utility'
 import User from '@/database/model/User'
 import Product from '@/database/model/Product'
 import db from '@/database/connection'

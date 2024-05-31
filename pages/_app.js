@@ -7,7 +7,7 @@ import { store } from '@/redux/store'
 import BASE_URL from '@/config'
 import { SnackbarProvider } from 'notistack'
 import { DefaultSeo, NextSeo } from 'next-seo'
-import { seoData } from '@/utilty/const'
+import { seoData } from '@/utility/const'
 
 export default function App ({ Component, pageProps }) {
   return (

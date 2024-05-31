@@ -51,8 +51,13 @@ const userSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
       }
-    ]
+    ],
+    phone: { type: String },
+    isVerified: { type: Boolean, default: false },
+    verificationCode: { type: String },
+    expirationTime: { type: Date }
   },
+
   { timestamps: true }
 )
 

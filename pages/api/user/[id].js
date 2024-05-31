@@ -1,6 +1,6 @@
 import nextConnect from 'next-connect'
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utilty'
+import { isAuth } from '@/utility'
 
 const handler = nextConnect()
 handler.use(isAuth)

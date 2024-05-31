@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import styles from '../../styles/Cart/OrderSummary.module.css'
-import { calculateSubtotal, getPrice } from '@/utilty/helper'
+import { calculateSubtotal, getPrice } from '@/utility/helper'
 import { useRouter } from 'next/router'
 const OrderSummary = ({ cartItems, shipping, total, address, discount }) => {
   const router = useRouter()

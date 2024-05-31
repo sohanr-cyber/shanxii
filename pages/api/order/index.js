@@ -5,7 +5,7 @@ import Order from '@/database/model/Order'
 import Product from '@/database/model/Product'
 import Address from '@/database/model/Address'
 import nc from 'next-connect'
-import { generateTrackingNumber } from '@/utilty/helper'
+import { generateTrackingNumber } from '@/utility/helper'
 const handler = nc()
 const PAGE_SIZE = 10
 
