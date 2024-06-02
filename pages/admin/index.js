@@ -60,7 +60,7 @@ export async function getStaticProps () {
         products,
         orders
       },
-      revalidate: 60
+      revalidate: 10
     }
   } catch (error) {
     console.error('Error fetching products:', error)

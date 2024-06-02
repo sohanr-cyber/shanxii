@@ -13,6 +13,7 @@ import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 
+
 const Product = ({ product, error }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
@@ -180,6 +181,7 @@ const Product = ({ product, error }) => {
     </>
   )
 }
+
 
 export default Product
 
