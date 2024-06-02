@@ -199,13 +199,13 @@ export async function getStaticPaths () {
       fallback: 'blocking'
     }
   } catch (error) {
-    console.error(
+    console.log(
       'Error fetching product slugs:',
       error.response ? error.response.data : error.message
     )
     return {
       paths: [],
-      fallback: false
+      fallback: 'blocking'
     }
   }
 }
