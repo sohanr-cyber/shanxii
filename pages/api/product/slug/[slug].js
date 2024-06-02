@@ -5,6 +5,7 @@ import nextConnect from 'next-connect'
 import slugify from 'slugify'
 const handler = nextConnect()
 
+
 handler.get(async (req, res) => {
   try {
     await db.connect()
@@ -54,4 +55,6 @@ handler.delete(async (req, res) => {
     res.status(500).json({ message: 'Server Error' })
   }
 })
+
+
 export default handler

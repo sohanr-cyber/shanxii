@@ -13,7 +13,7 @@ import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 
-const Product = ({ product }) => {
+const Product = ({ product, error }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product.thumbnail)
@@ -21,7 +21,7 @@ const Product = ({ product }) => {
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const [isClient, setIsClient] = useState(false)
-
+  console.log({ product, error: error || '' })
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -230,7 +230,8 @@ export async function getStaticProps (context) {
     console.error('Error fetching products:', error)
     return {
       props: {
-        product: {}
+        product: {},
+        error: error
       }
     }
   }
