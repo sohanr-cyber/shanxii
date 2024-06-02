@@ -1,5 +1,6 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
+import Category from '@/database/model/Category'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
 const handler = nextConnect()
