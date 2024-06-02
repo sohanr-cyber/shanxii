@@ -1,10 +1,7 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
-import UserService from '@/services/user-service'
-import { isAuth } from '@/utility'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
-import Category from '@/database/model/Category'
 const handler = nextConnect()
 
 handler.get(async (req, res) => {
@@ -15,7 +12,7 @@ handler.get(async (req, res) => {
       path: 'categories',
       select: 'name _id'
     })
-    await db.connect()
+    await db.disconnect()
     res.json(product)
   } catch (error) {
     console.log(error)

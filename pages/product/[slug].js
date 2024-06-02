@@ -184,18 +184,29 @@ const Product = ({ product }) => {
 export default Product
 
 export async function getStaticPaths () {
-  // Fetch the list of possible values for slug
-  const response = await axios.get(`${BASE_URL}/api/product/slugs`)
-  const products = response.data // Assuming the API returns an array of slugs
+  try {
+    // Fetch the list of possible values for slug
+    const response = await axios.get(`${BASE_URL}/api/product/slugs`)
+    const products = response.data // Assuming the API returns an array of slugs
 
-  // Map the slugs to the required format
-  const paths = products.map(p => ({
-    params: { slug: p.slug }
-  }))
+    // Map the slugs to the required format
+    const paths = products.map(p => ({
+      params: { slug: p.slug }
+    }))
 
-  return {
-    paths,
-    fallback: false
+    return {
+      paths,
+      fallback: false
+    }
+  } catch (error) {
+    console.error(
+      'Error fetching product slugs:',
+      error.response ? error.response.data : error.message
+    )
+    return {
+      paths: [],
+      fallback: false
+    }
   }
 }
 
