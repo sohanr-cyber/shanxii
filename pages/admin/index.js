@@ -44,28 +44,31 @@ const index = ({ orders, products }) => {
 
 export default index
 
-
-
-export async function getStaticProps() {
+export async function getStaticProps () {
   try {
-    const page = 1;
+    const page = 1
 
-    const { data: { products } } = await axios.get(`${BASE_URL}/api/product`);
-    const { data: { orders } } = await axios.get(`${BASE_URL}/api/order`);
+    const {
+      data: { products }
+    } = await axios.get(`${BASE_URL}/api/product`)
+    const {
+      data: { orders }
+    } = await axios.get(`${BASE_URL}/api/order`)
 
     return {
       props: {
         products,
         orders
-      }
-    };
+      },
+      revalidate: 60
+    }
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error fetching products:', error)
     return {
       props: {
         products: [],
         orders: []
       }
-    };
+    }
   }
 }

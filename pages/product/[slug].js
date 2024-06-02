@@ -15,7 +15,7 @@ import { NextSeo } from 'next-seo'
 
 const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1)
-  const [size, setSize] = useState(product.sizes?.split(',')[0])
+  const [size, setSize] = useState(product?.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product.thumbnail)
   const router = useRouter()
   const userInfo = useSelector(state => state.user.userInfo)
@@ -196,7 +196,7 @@ export async function getStaticPaths () {
 
     return {
       paths,
-      fallback: false
+      fallback: 'blocking'
     }
   } catch (error) {
     console.error(
@@ -223,7 +223,8 @@ export async function getStaticProps (context) {
     return {
       props: {
         product: response.data
-      }
+      },
+      revalidate: 10 // Revalidate at most every 10 seconds
     }
   } catch (error) {
     console.error('Error fetching products:', error)
