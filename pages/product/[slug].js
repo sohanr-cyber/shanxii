@@ -108,11 +108,11 @@ const Product = ({ product }) => {
               ৳ {getPrice(product.price, product.discount)}
             </h1>
 
-            {product.sizes && (
+            {product?.sizes && (
               <div className={styles.sizes}>
                 <div>Sizes</div>
                 <div className={styles.options}>
-                  {product.sizes?.split(',').map((item, index) => (
+                  {product?.sizes?.split(',').map((item, index) => (
                     <div
                       className={styles.option}
                       key={index}
