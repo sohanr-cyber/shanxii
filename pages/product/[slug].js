@@ -16,7 +16,7 @@ import { NextSeo } from 'next-seo'
 const Product = ({ product, error }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
-  const [thumbnail, setThumbnail] = useState(product.thumbnail)
+  const [thumbnail, setThumbnail] = useState(product?.thumbnail)
   const router = useRouter()
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
