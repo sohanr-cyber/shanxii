@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
   GMAIL = process.env.GMAIL_USER_DEV
   PASSWORD = process.env.GMAIL_PASS_DEV
 } else {
-  BASE_URL = 'https://main.d32v01cv6lwr8k.amplifyapp.com'
+  BASE_URL = 'https://ecomerce-phi-gold.vercel.app'
   MONGODB_URI = process.env.MONGODB_URI
   // MONGODB_URI = process.env.MONGODB_URI
 

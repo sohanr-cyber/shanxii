@@ -31,6 +31,7 @@ const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
 const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
 const themeTransparent = 'rgb(8, 78, 67,0.1)'
 const themeC = 'rgb(8, 78, 67)'
+const buttonC = 'white'
 const colors = [
   { name: 'Black', code: '#000000' },
   { name: 'White', code: '#FFFFFF' },
@@ -229,6 +230,7 @@ export {
   themeBg,
   themeC,
   colors,
+  buttonC,
   seoData,
   orderCartSeoData,
   orderDetailSeoData,

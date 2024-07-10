@@ -30,7 +30,7 @@ handler.get(async (req, res) => {
     const page = parseInt(req.query.page) || 1
 
     // Calculate the skip value based on the page number and page size
-    const skip = (page - 1) * PAGE_SIZE
+    const skip = (page - 1) * (req.query.pageSize || PAGE_SIZE)
     // Retrieve total count of products
     const totalCount = await Category.countDocuments()
 

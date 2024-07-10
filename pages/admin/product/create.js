@@ -5,13 +5,13 @@ import Upload from '@/components/Utility/Upload'
 import UploadMany from '@/components/Utility/UploadMany'
 import axios from 'axios'
 import BASE_URL from '@/config'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { useRouter } from 'next/router'
 import TextEditor from '@/components/Utility/TextEditor'
 import { showSnackBar } from '@/redux/notistackSlice'
 
-const Create = ({ product: data, categories }) => {
+const Create = ({ product: data }) => {
   const [images, setImages] = useState([])
   const [product, setProduct] = useState(data)
   const [error, setError] = useState('')
@@ -21,6 +21,7 @@ const Create = ({ product: data, categories }) => {
   const handleImages = files => {
     setProduct(prev => ({ ...prev, images: files }))
   }
+
   const refreshPage = () => {
     // Get the current route's pathname and query parameters
     const { pathname, query } = router
@@ -31,6 +32,7 @@ const Create = ({ product: data, categories }) => {
       query: query // Same as current query parameters
     })
   }
+  const categories = useSelector(state => state.product.categories)
 
   const saveProduct = async () => {
     setError('')
@@ -189,30 +191,62 @@ const Create = ({ product: data, categories }) => {
             <div className={styles.field}>
               <label>Category</label>
               <div className={styles.options}>
-                {categories.map((item, index) => (
-                  <span
+                {categories?.map((item, index) => (
+                  <div
                     key={index}
-                    style={
-                      product.categories?.find(i => i._id == item._id)
-                        ? { background: 'black', color: 'white' }
-                        : {}
-                    }
-                    onClick={() =>
-                      product.categories?.find(i => i._id == item._id)
-                        ? setProduct({
-                            ...product,
-                            categories: product.categories.filter(
-                              i => i._id != item._id
-                            )
-                          })
-                        : setProduct({
-                            ...product,
-                            categories: [...product.categories, item]
-                          })
-                    }
+                    style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}
                   >
-                    {item.name}
-                  </span>
+                    <span
+                      key={index}
+                      style={
+                        product.categories?.find(i => i._id == item._id)
+                          ? { background: 'black', color: 'white' }
+                          : {}
+                      }
+                      onClick={() =>
+                        product.categories?.find(i => i._id == item._id)
+                          ? setProduct({
+                              ...product,
+                              categories: product.categories.filter(
+                                i => i._id != item._id
+                              )
+                            })
+                          : setProduct({
+                              ...product,
+                              categories: [...product.categories, item]
+                            })
+                      }
+                    >
+                      {item.name}
+                    </span>
+                    {item.children.length > 0 && <>{'-->'}</>}
+                    {item.children.length > 0 &&
+                      item.children.map((item, index) => (
+                        <span
+                          key={index}
+                          style={
+                            product.categories?.find(i => i._id == item._id)
+                              ? { background: 'black', color: 'white' }
+                              : {}
+                          }
+                          onClick={() =>
+                            product.categories?.find(i => i._id == item._id)
+                              ? setProduct({
+                                  ...product,
+                                  categories: product.categories.filter(
+                                    i => i._id != item._id
+                                  )
+                                })
+                              : setProduct({
+                                  ...product,
+                                  categories: [...product.categories, item]
+                                })
+                          }
+                        >
+                          {item.name}
+                        </span>
+                      ))}
+                  </div>
                 ))}
               </div>
             </div>

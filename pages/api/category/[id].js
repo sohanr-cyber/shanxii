@@ -27,6 +27,7 @@ handler.get(async (req, res) => {
 
 // Update category by ID
 handler.put(async (req, res) => {
+  console.log(req.body)
   try {
     const { id } = req.query
     const updatedCategory = await Category.findByIdAndUpdate(
@@ -39,7 +40,11 @@ handler.put(async (req, res) => {
     if (!updatedCategory) {
       return res.status(404).json({ message: 'Category not found' })
     }
-    res.status(200).json(updatedCategory)
+    const category = await Category.findById(id).populate({
+      path: 'children'
+    })
+    res.status(200).json(category)
+    
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

@@ -43,18 +43,7 @@ const Navbar = () => {
     setIsClient(true)
   }, [])
 
-  const fetchCategory = async () => {
-    try {
-      const { data } = await axios.get('/api/category')
-      dispatch(setCategories(data.categories))
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
-  useEffect(() => {
-    fetchCategory()
-  }, [])
 
   return (
     <div className={styles.wrapper}>

@@ -11,6 +11,8 @@ const Categories = () => {
   const [open, setOpen] = useState(false)
   const categories = useSelector(state => state.product.categories)
   const router = useRouter()
+  const [opened, setOpened] = useState('')
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
@@ -25,9 +27,42 @@ const Categories = () => {
             <div className={styles.category__list}>
               {categories
                 ? categories.map((item, index) => (
-                    <div className={styles.category__item} key={index}>
-                      {item.name}
-                    </div>
+                    <>
+                      <div
+                        className={styles.category__item}
+                        key={index}
+                        style={
+                          item.children.length > 0 ? { fontWeight: 'bold' } : {}
+                        }
+                      >
+                        <span>{item.name}</span>
+                        {item.children.length > 0 && (
+                          <span
+                            onClick={() =>
+                              setOpened(item._id == opened ? '' : item._id)
+                            }
+                          >
+                            {opened == item._id ? '-' : '+'}
+                          </span>
+                        )}
+                      </div>
+                      {opened == item._id &&
+                        item.children.length > 0 &&
+                        item.children.map((item, index) => (
+                          <div
+                            className={styles.category__item}
+                            key={index}
+                            style={
+                              item.children.length > 0
+                                ? { fontWeight: 'bold' }
+                                : {}
+                            }
+                          >
+                            <span>{item.name}</span>
+                            {item.children.length > 0 && <span>+</span>}
+                          </div>
+                        ))}
+                    </>
                   ))
                 : [1, 2, 3, 3, 4].map((item, index) => (
                     <div className={styles.category__item} key={index}>

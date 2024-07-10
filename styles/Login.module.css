@@ -63,6 +63,14 @@
 
 }
 
+.route .cooldown {
+    margin-left: 5px;
+    color: skyblue;
+    display: flex;
+    gap: 5px;
+
+}
+
 @media (max-width:410px) {
     .wrapper {
         padding: 10px

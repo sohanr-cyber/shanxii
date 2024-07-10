@@ -179,8 +179,11 @@ const Login = () => {
             </div>
           </form>{' '}
           <p className={styles.route}>
-            Did not get the code ?<span onClick={() => resend()}>Resend</span>
-            <span>{cooldown}</span>
+            Did not get the code ?
+            <span className={styles.cooldown}>
+              <span onClick={() => resend()}>Resend</span>
+              <span>{cooldown}</span>
+            </span>
           </p>
           <p className={styles.route}>
             Already have an account ?{' '}

@@ -71,36 +71,88 @@ const Filter = ({ setOpen }) => {
       <div className={styles.filterOptions}>
         {categories
           ? categories.map((item, index) => (
-              <div className={styles.option} key={index}>
-                {router.query.categories
-                  ?.split(',')
-                  .find(each => each == item._id) ? (
-                  <CheckBoxIcon
-                    onClick={() =>
-                      updateRoute({
-                        categories: router.query.categories
-                          ?.split(',')
-                          .filter(i => i != item._id)
-                          .join(',')
-                      })
+              <>
+                {' '}
+                <div className={styles.option} key={index}>
+                  {router.query.categories
+                    ?.split(',')
+                    .find(each => each == item._id) ? (
+                    <CheckBoxIcon
+                      onClick={() =>
+                        updateRoute({
+                          categories: router.query.categories
+                            ?.split(',')
+                            .filter(i => i != item._id)
+                            .join(',')
+                        })
+                      }
+                    />
+                  ) : (
+                    <CheckBoxOutlineBlankIcon
+                      onClick={() =>
+                        updateRoute({
+                          categories: router.query.categories
+                            ? [
+                                ...router.query.categories.split(','),
+                                item._id
+                              ].join(',')
+                            : [item._id].join(',')
+                        })
+                      }
+                    />
+                  )}{' '}
+                  <span
+                    style={
+                      item.children.length > 0 ? { fontWeight: 'bold' } : {}
                     }
-                  />
-                ) : (
-                  <CheckBoxOutlineBlankIcon
-                    onClick={() =>
-                      updateRoute({
-                        categories: router.query.categories
-                          ? [
-                              ...router.query.categories.split(','),
-                              item._id
-                            ].join(',')
-                          : [item._id].join(',')
-                      })
-                    }
-                  />
-                )}{' '}
-                <span>{item.name}</span>
-              </div>
+                  >
+                    {item.name}
+                  </span>
+                </div>
+                {item.children.length > 0 &&
+                  item.children.map((item, index) => (
+                    <div
+                      className={styles.option}
+                      key={index}
+                      style={{ marginLeft: '25px' }}
+                    >
+                      {router.query.categories
+                        ?.split(',')
+                        .find(each => each == item._id) ? (
+                        <CheckBoxIcon
+                          onClick={() =>
+                            updateRoute({
+                              categories: router.query.categories
+                                ?.split(',')
+                                .filter(i => i != item._id)
+                                .join(',')
+                            })
+                          }
+                        />
+                      ) : (
+                        <CheckBoxOutlineBlankIcon
+                          onClick={() =>
+                            updateRoute({
+                              categories: router.query.categories
+                                ? [
+                                    ...router.query.categories.split(','),
+                                    item._id
+                                  ].join(',')
+                                : [item._id].join(',')
+                            })
+                          }
+                        />
+                      )}{' '}
+                      <span
+                        style={
+                          item.children.length > 0 ? { fontWeight: 'bold' } : {}
+                        }
+                      >
+                        {item.name}
+                      </span>
+                    </div>
+                  ))}
+              </>
             ))
           : [1, 2, 3, 4].map((item, index) => (
               <div className={styles.option} key={index}>

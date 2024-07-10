@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/Admin/ProductCreate.module.css'
 import Upload from '@/components/Utility/Upload'
 import axios from 'axios'
@@ -10,12 +10,19 @@ import { finishLoading, startLoading } from '@/redux/stateSlice'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { showSnackBar } from '@/redux/notistackSlice'
+import { buttonC, themeBg } from '@/utility/const'
+import AddCategory from '@/components/Admin/AddCategory'
 // Order Craetion Form
-const Create = ({ category: data }) => {
+const Create = ({ category: data, categories }) => {
   const [category, setCategory] = useState(data)
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   const router = useRouter()
+
+  useEffect(() => {
+    setCategory(data)
+  }, [router.query])
+
   const saveCategory = async () => {
     setError('')
     if (!category.name) {
@@ -32,7 +39,9 @@ const Create = ({ category: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.post('/api/category', category)
+      const { data } = await axios.post('/api/category', {
+        ...category
+      })
       setCategory({
         name: '',
         image: ''
@@ -60,8 +69,8 @@ const Create = ({ category: data }) => {
     }
   }
 
+  console.log({ categories })
   const updateCategory = async () => {
-    setError('')
     if (!category.name) {
       setError('Pleas fill all the necessaary field')
       dispatch(
@@ -104,7 +113,7 @@ const Create = ({ category: data }) => {
   }
   return (
     <div className={styles.wrapper}>
-      <h2>Add Category</h2>
+      <h2>{router.query.id ? 'Update' : 'Add'} Category</h2>
       <form className={styles.forms}>
         <div className={styles.left}>
           <div className={styles.field}>
@@ -142,6 +151,48 @@ const Create = ({ category: data }) => {
                 No Photo Uploaded
               </div>
             )}
+          </div>
+          <div className={styles.field}>
+            <label>Chose Parent Category</label>
+            <div className={styles.options}>
+              {categories
+                .filter(e => e._id != category?._id)
+                .map((item, index) => (
+                  <span
+                    key={index}
+                    style={
+                      category.parent == item._id
+                        ? { background: 'black', color: 'white' }
+                        : {}
+                    }
+                    onClick={() =>
+                      category.parent == item._id
+                        ? setCategory({
+                            ...category,
+                            parent: ''
+                          })
+                        : setCategory({
+                            ...category,
+                            parent: item._id
+                          })
+                    }
+                  >
+                    {item.name}
+                  </span>
+                ))}
+              <span
+                style={{
+                  background: `${themeBg}`,
+                  color: `${buttonC}`,
+                  padding: '3px 9px'
+                }}
+              >
+                +
+              </span>
+            </div>
+          </div>
+          <div className={styles.field}>
+            <AddCategory />
           </div>
           <div
             className={styles.field}
@@ -209,12 +260,19 @@ export async function getServerSideProps ({ query }) {
     return data
   }
 
+  const fetchCategories = async () => {
+    const { data } = await axios.get(`${BASE_URL}/api/category`)
+    return data.categories
+  }
+
+  const categories = await fetchCategories()
+
   if (id) {
     const category = await fetchCategory()
-
     return {
       props: {
-        category
+        category,
+        categories
       }
     }
   }
@@ -223,8 +281,10 @@ export async function getServerSideProps ({ query }) {
     props: {
       category: {
         name: '',
-        image: ''
-      }
+        image: '',
+        children: []
+      },
+      categories: categories
     }
   }
 }

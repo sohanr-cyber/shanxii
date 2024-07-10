@@ -41,11 +41,12 @@ class UserService {
     })
 
     // send code to mail
-    await this.mailService.verification({
+    await this.mailService.sendMail({
       code: verificationCode,
       expirationTime: '5 minutes',
       to: existUser.email,
       name: existUser.firstName,
+      for: 'verification',
       verification: true,
       subject: `Account Verification -${companyName}`
     })

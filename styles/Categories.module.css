@@ -49,7 +49,8 @@
     position: relative;
     background: var(--buttonBg);
     color: var(--buttonC);
-    padding: 7px
+    padding: 7px;
+
 }
 
 
@@ -81,12 +82,26 @@
 
 .category__item {
     padding: 10px;
-    width: 100%;
+    width: 85%;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
-
+    color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red */
 }
+
+
+
+.category__item summary {
+    font-weight: bold;
+}
+
+/* .category__item span:hover {
+    color: green;
+
+} */
 
 .category__list,
 .category__item:hover {

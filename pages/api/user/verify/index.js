@@ -69,6 +69,7 @@ handler.post(async (req, res) => {
   }
 })
 
+// resend verification code to user
 handler.put(async (req, res) => {
   try {
     const { email, id } = req.body
@@ -94,12 +95,12 @@ handler.put(async (req, res) => {
     // send mail
     const mail = new Mail()
     // send code to mail
-    await mail.verification({
+    await mail.sendMail({
       code: verificationCode,
       expirationTime: '5 minutes',
       to: 'sohanur01744@gmail.com',
       name: user.firstName,
-      verification: true,
+      for: 'verification',
       subject: `Account Verification -${companyName}`
     })
 
