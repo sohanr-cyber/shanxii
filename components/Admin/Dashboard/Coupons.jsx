@@ -85,7 +85,14 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
             </thead>
             <tbody>
               {[...filteredCoupons]?.map((c, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  style={
+                    new Date(c.expiryDate) < new Date()
+                      ? { backgroundColor: '#D3D3D3', color: '#000000' }
+                      : {}
+                  }
+                >
                   <td>{c.code}</td>
                   <td>{c.discountType}</td>
                   <td>{c.discountValue && <> -{c.discountValue} %</>}</td>

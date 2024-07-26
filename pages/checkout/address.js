@@ -6,7 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import OrderSummary from '@/components/Order/OrderSummary'
 import { useRouter } from 'next/router'
 import { setAddress as setNewAddress } from '@/redux/addressSlice'
-import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utility/helper'
+import {
+  calculateSubtotal,
+  getDeliveryCharge,
+  getPrice
+} from '@/utility/helper'
 import { addressSeoData, delivery_positions } from '@/utility/const'
 import { NextSeo } from 'next-seo'
 import { showSnackBar } from '@/redux/notistackSlice'
@@ -24,6 +28,7 @@ const Address = () => {
   }, [])
   const [address, setAddress] = useState({})
   const dispatch = useDispatch()
+
   const discount =
     coupon?.discountType == 'percentage'
       ? getPrice(
@@ -37,7 +42,9 @@ const Address = () => {
               coupon.discountValue
             )
         )
-      : getDeliveryCharge(address.position)
+      : coupon?.discountType == 'free_shipping'
+      ? getDeliveryCharge(address.position)
+      : 0
 
   const redirectToReview = () => {
     if (

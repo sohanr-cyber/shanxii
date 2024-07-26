@@ -20,16 +20,18 @@ handler.get(async (req, res) => {
       return res.status(200).json({ error: 'Coupon code does not exists' })
     }
 
-    // Get the current date
+    // console.log({ existingCoupon })
+    // Assuming currentDate is already defined as the current date
     const currentDate = new Date()
 
-    // Check if the current date is within the validity period of the coupon code
-    if (
-      currentDate < existingCoupon.startDate ||
-      currentDate > existingCoupon.expiryDate
-    ) {
+    // Convert existingCoupon.startDate and existingCoupon.expiryDate to Date objects
+    const startDate = new Date(existingCoupon.startDate)
+    const expiryDate = new Date(existingCoupon.expiryDate)
+
+    // Check if the current date is outside the validity period of the coupon code
+    if (currentDate < startDate || currentDate > expiryDate) {
       return res
-        .status(204)
+        .status(200)
         .json({ error: 'Coupon code is inactive or expired' })
     }
 

@@ -26,6 +26,13 @@
     gap: 15px;
 }
 
+.right .item {
+    cursor: pointer;
+}
+
+.right .item:hover {
+    color: var(--theme)
+}
 
 .products {
     display: grid;

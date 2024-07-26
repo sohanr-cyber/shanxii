@@ -9,6 +9,7 @@ import { TurnRightSharp } from '@mui/icons-material'
 import Filter from '@/components/Shop/Filter'
 import Pagination from '@/components/Utility/Pagination'
 import { useRouter } from 'next/router'
+
 const sortOptions = [
   {
     value: 'Best Match',
@@ -34,15 +35,15 @@ const sortOptions = [
   {
     value: 'Newest To Oldest',
     query: {
-      sortBy: 'price',
-      sortOrder: 'desc'
+      sortBy: 'createdAt',
+      sortOrder: 'asc'
     }
   },
   {
     value: 'Oldest To Newest',
     query: {
-      sortBy: 'price',
-      sortOrder: 'asc'
+      sortBy: 'createdAt',
+      sortOrder: 'desc'
     }
   }
 ]

@@ -44,14 +44,14 @@ handler.post(async (req, res) => {
     // Check if the coupon code already exists
     const existingCoupon = await Coupon.findOne({ code })
     if (existingCoupon) {
-      return res.status(400).json({ error: 'Coupon code already exists' })
+      return res.status(200).json({ error: 'Coupon code already exists' })
     }
     const coupon = new Coupon({
       ...req.body,
       code,
       discount
     })
-    
+
     await coupon.save()
     await db.disconnect()
     return res.status(201).json(coupon)

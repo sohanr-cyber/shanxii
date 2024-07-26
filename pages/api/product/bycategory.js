@@ -11,11 +11,16 @@ handler.get(async (req, res) => {
     const fc = await Category.find({ isFeatured: 'true' }).sort({
       updatedAt: -1
     })
+    console.log({ fc })
     const pfc = await Promise.all(
       fc.map(async item => {
         const products = await Product.find({ categories: { $in: item._id } })
+        const subCategory = await Category.find({ parent: item._id }).select(
+          '_id name'
+        )
         return {
           category: item.name,
+          subCategory,
           updatedAt: item.updatedAt,
           products
         }
@@ -24,7 +29,6 @@ handler.get(async (req, res) => {
 
     await db.disconnect()
     return res.status(200).send(pfc)
-    
   } catch (error) {
     console.log(error)
     return res.status(400).send('server error')

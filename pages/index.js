@@ -46,6 +46,7 @@ export default function Home ({ data }) {
           <ProductsByCategory
             category={i.category}
             products={i.products}
+            subCategory={i.subCategory}
             key={index}
             rowDirection={(index + 1) % 2 == 0 ? true : false}
           />

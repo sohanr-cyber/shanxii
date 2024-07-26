@@ -24,6 +24,7 @@ const Filter = ({ setOpen }) => {
       query: queryParams,
       shallow: false
     })
+    setOpen(false)
   }
 
   const setColor = color => [
@@ -72,42 +73,47 @@ const Filter = ({ setOpen }) => {
         {categories
           ? categories.map((item, index) => (
               <>
-                {' '}
                 <div className={styles.option} key={index}>
                   {router.query.categories
                     ?.split(',')
                     .find(each => each == item._id) ? (
-                    <CheckBoxIcon
+                    <div
+                      className={styles.option}
                       onClick={() =>
                         updateRoute({
-                          categories: router.query.categories
-                            ?.split(',')
-                            .filter(i => i != item._id)
-                            .join(',')
+                          categories: null
                         })
                       }
-                    />
+                    >
+                      <CheckBoxIcon />
+                      <span
+                        style={
+                          item.children.length > 0 ? { fontWeight: 'bold' } : {}
+                        }
+                      >
+                        {item.name}
+                      </span>
+                    </div>
                   ) : (
-                    <CheckBoxOutlineBlankIcon
+                    <div
+                      className={styles.option}
                       onClick={() =>
                         updateRoute({
-                          categories: router.query.categories
-                            ? [
-                                ...router.query.categories.split(','),
-                                item._id
-                              ].join(',')
-                            : [item._id].join(',')
+                          categories: item._id
                         })
                       }
-                    />
+                    >
+                      {' '}
+                      <CheckBoxOutlineBlankIcon />
+                      <span
+                        style={
+                          item.children.length > 0 ? { fontWeight: 'bold' } : {}
+                        }
+                      >
+                        {item.name}
+                      </span>
+                    </div>
                   )}{' '}
-                  <span
-                    style={
-                      item.children.length > 0 ? { fontWeight: 'bold' } : {}
-                    }
-                  >
-                    {item.name}
-                  </span>
                 </div>
                 {item.children.length > 0 &&
                   item.children.map((item, index) => (
@@ -119,37 +125,56 @@ const Filter = ({ setOpen }) => {
                       {router.query.categories
                         ?.split(',')
                         .find(each => each == item._id) ? (
-                        <CheckBoxIcon
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '10px',
+                            alignItems: 'center'
+                          }}
                           onClick={() =>
                             updateRoute({
-                              categories: router.query.categories
-                                ?.split(',')
-                                .filter(i => i != item._id)
-                                .join(',')
+                              categories: null
                             })
                           }
-                        />
+                        >
+                          {' '}
+                          <CheckBoxIcon />
+                          <span
+                            style={
+                              item.children.length > 0
+                                ? { fontWeight: 'bold' }
+                                : {}
+                            }
+                          >
+                            {item.name}
+                          </span>
+                        </div>
                       ) : (
-                        <CheckBoxOutlineBlankIcon
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '10px',
+                            alignItems: 'center'
+                          }}
                           onClick={() =>
                             updateRoute({
-                              categories: router.query.categories
-                                ? [
-                                    ...router.query.categories.split(','),
-                                    item._id
-                                  ].join(',')
-                                : [item._id].join(',')
+                              categories: item._id
                             })
                           }
-                        />
+                        >
+                          {' '}
+                          <CheckBoxOutlineBlankIcon />{' '}
+                          <span
+                            style={
+                              item.children.length > 0
+                                ? { fontWeight: 'bold' }
+                                : {}
+                            }
+                          >
+                            {item.name}
+                          </span>
+                        </div>
                       )}{' '}
-                      <span
-                        style={
-                          item.children.length > 0 ? { fontWeight: 'bold' } : {}
-                        }
-                      >
-                        {item.name}
-                      </span>
                     </div>
                   ))}
               </>

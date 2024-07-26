@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 // Order Craetion Form
 const Create = ({ coupon: data }) => {
@@ -22,23 +23,60 @@ const Create = ({ coupon: data }) => {
       !coupon.startDate ||
       !coupon.discountType
     ) {
-      setError('Please fill all the necessaary field')
+      dispatch(
+        showSnackBar({
+          message: 'Please Enter All The Field!',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
       return
     }
     try {
       dispatch(startLoading())
       const { data } = await axios.post('/api/coupon', coupon)
+      if (data.error) {
+        dispatch(
+          showSnackBar({
+            message: data.error,
+            option: {
+              variant: 'error'
+            }
+          })
+        )
+        dispatch(finishLoading())
+        return
+      }
       setCoupon({
         code: '',
         expiryDate: '',
-        startDate: new Date(),
+        startDate: '',
         discountType: '',
         discountValue: 0
       })
+
+      dispatch(
+        showSnackBar({
+          message: 'Coupon Created ',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
+
       dispatch(finishLoading())
     } catch (error) {
       dispatch(finishLoading())
       setError(error.response.data.message)
+      dispatch(
+        showSnackBar({
+          message: error.response.data.message || 'Something went Wrong !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
     }
   }
 
@@ -50,7 +88,14 @@ const Create = ({ coupon: data }) => {
       !coupon.startDate ||
       !coupon.discountType
     ) {
-      setError('Please fill all the necessaary field')
+      dispatch(
+        showSnackBar({
+          message: 'Please Enter All The Field!',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
       return
     }
     try {
@@ -59,6 +104,14 @@ const Create = ({ coupon: data }) => {
         ...coupon
       })
       setCoupon(data)
+      dispatch(
+        showSnackBar({
+          message: 'Coupon Updated ',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
       dispatch(finishLoading())
     } catch (error) {
       dispatch(finishLoading())
@@ -116,7 +169,7 @@ const Create = ({ coupon: data }) => {
             <div className={styles.field}>
               <label>Discount Type</label>
               <div className={styles.options}>
-                {['percentage', 'fixed_amount', 'free_shipping'].map(
+                {['percentage', 'free_shipping'].map(
                   (item, index) => (
                     <span
                       key={index}
@@ -141,7 +194,7 @@ const Create = ({ coupon: data }) => {
                 <input
                   type='number'
                   placeholder='Enter Discount'
-                  value={coupon.discountValue}
+                  value={coupon.discountValue || 0}
                   onChange={e =>
                     setCoupon({ ...coupon, discountValue: e.target.value })
                   }
