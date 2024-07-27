@@ -15,10 +15,10 @@ import Navbar from '@/components/Admin/Navbar'
 import axios from 'axios'
 import BASE_URL from '@/config'
 
-const index = ({ orders, products, total, orderGraph }) => {
+const index = ({ orders, products, orderGraph }) => {
   return (
     <div className={styles.wrapper}>
-      <Cards total={total} />
+      {/* <Cards total={total} /> */}
       <Orders
         title={'Recently Created Orders'}
         dashboard={true}
@@ -55,10 +55,10 @@ export async function getStaticProps () {
       data: { orders }
     } = await axios.get(`${BASE_URL}/api/order`)
 
-    const { data: total } = await axios.get(
-      `${BASE_URL}/api/summary/order-total`
-    )
-    console.log({ total })
+    // const { data: total } = await axios.get(
+    //   `${BASE_URL}/api/summary/order-total`
+    // )
+    
     const { data: orderGraph } = await axios.get(
       `${BASE_URL}/api/summary/order-graph`
     )
@@ -67,7 +67,7 @@ export async function getStaticProps () {
       props: {
         products,
         orders,
-        total,
+        // total,
         orderGraph
       },
       revalidate: 10
@@ -78,7 +78,8 @@ export async function getStaticProps () {
       props: {
         products: [],
         orders: [],
-        total: {}
+        // total: {},
+        orderGraph: {}
       }
     }
   }

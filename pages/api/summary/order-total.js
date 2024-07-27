@@ -37,9 +37,10 @@ handler.get(async (req, res) => {
     // Extract the totals from the result
     const summary = orderSummary.length > 0 ? orderSummary[0] : null
     console.log({ summary })
+    await db.disconnect()
     return res.status(200).json(summary)
   } catch (error) {
-    console.error(error)
+    console.log(error)
     return res.status(500).json({ message: 'Server Error' })
   }
 })
