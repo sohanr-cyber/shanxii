@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
 import axios from 'axios'
 import { setCoupon } from '@/redux/cartSlice'
+import { finishLoading, startLoading } from '@/redux/stateSlice'
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
@@ -53,8 +54,10 @@ const Checkout = ({ cartItems }) => {
       return
     }
     try {
+      dispatch(startLoading())
       const { data } = await axios.get(`/api/coupon/${code}`)
       console.log({ data })
+      dispatch(finishLoading())
       if (data.error) {
         dispatch(
           showSnackBar({
@@ -79,6 +82,8 @@ const Checkout = ({ cartItems }) => {
       )
     } catch (error) {
       console.log({ error })
+      dispatch(finishLoading())
+
       showSnackBar({
         message: 'Something Went Wrong !',
         option: {

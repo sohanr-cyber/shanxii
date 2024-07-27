@@ -37,7 +37,7 @@ const OrderSummary = ({ cartItems, shipping, total, address, discount }) => {
           <div
             className={styles.item}
             key={index}
-            onClick={() => router.push(`/product/${item.slug}`)}
+            onClick={() => router.push(`/product/${item.product.slug}`)}
           >
             <div className={styles.left}>
               <Image
