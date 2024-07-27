@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
           {categories &&
             chunkArray(categories, 2)?.map((i, index) => (
-              <div className={styles.flex}>
+              <div className={styles.flex} key={index}>
                 <div className={styles.link} onClick={() => router.push('/')}>
                   {i[0]?.name}
                 </div>
