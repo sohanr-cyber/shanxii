@@ -25,25 +25,25 @@ function transformData (inputData) {
   return result
 }
 
-const data = {
-  '2024-03': {
-    total: 22,
-    pending: 22
-  },
-  '2024-04': {
-    total: 33,
-    pending: 13,
-    Pending: 3,
-    Processing: 1,
-    Canceled: 6,
-    Failed: 5,
-    Delivered: 4,
-    Packing: 1
-  },
-  '2024-07': {
-    total: 1,
-    Pending: 1
-  }
-}
+// const data = {
+//   '2024-03': {
+//     total: 22,
+//     pending: 22
+//   },
+//   '2024-04': {
+//     total: 33,
+//     pending: 13,
+//     Pending: 3,
+//     Processing: 1,
+//     Canceled: 6,
+//     Failed: 5,
+//     Delivered: 4,
+//     Packing: 1
+//   },
+//   '2024-07': {
+//     total: 1,
+//     Pending: 1
+//   }
+// }
 
 console.log(transformData(data))
