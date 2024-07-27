@@ -3,6 +3,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage'
 import { storage } from '@/database/firebase'
 // import ProgressBar from './ProgressBar'
 import styles from '../../styles/Utility/Upload.module.css'
+import Loading from './Loading'
 
 const Upload = ({ handle }) => {
   const [file, setFile] = useState('')
@@ -53,10 +54,11 @@ const Upload = ({ handle }) => {
       className={styles.container}
       style={{ width: '100%', background: 'lightgrey', borderRadius: '5px' }}
     >
-      {/* {uploading && <ProgressBar value={progresspercent} />} */}
+      {uploading && <Loading />}
 
       <input
         type='file'
+        accept='image/*'
         className={styles.inputfile}
         onChange={e => {
           setFile(e.target.files[0])

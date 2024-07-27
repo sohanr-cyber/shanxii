@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Utility/Upload.module.css'
 import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage'
 import { storage } from '@/database/firebase'
+import Loading from './Loading'
 // import ProgressBar from './ProgressBar'
-
 
 const UploadMany = ({ handle }) => {
   const [files, setFiles] = useState([''])
@@ -58,9 +58,10 @@ const UploadMany = ({ handle }) => {
   }
   return (
     <div className={styles.container}>
-      {/* {uploading && <ProgressBar value={progressPercent} />} */}
+      {uploading && <Loading />}
       <input
         type='file'
+        accept='image/*'
         className={styles.inputfile}
         multiple
         onChange={e => {

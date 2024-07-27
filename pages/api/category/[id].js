@@ -44,7 +44,6 @@ handler.put(async (req, res) => {
       path: 'children'
     })
     res.status(200).json(category)
-    
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })
@@ -55,11 +54,13 @@ handler.put(async (req, res) => {
 handler.delete(async (req, res) => {
   try {
     const { id } = req.query
+    await db.connect()
     const deletedCategory = await Category.findByIdAndDelete(id)
     if (!deletedCategory) {
       return res.status(404).json({ message: 'Category not found' })
     }
-    res.status(200).json({ message: 'Category deleted successfully' })
+    await db.disconnect()
+    return res.status(200).json({ message: 'Category deleted successfully' })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })
