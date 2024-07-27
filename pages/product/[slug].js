@@ -11,9 +11,8 @@ import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
 import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
+
 import { NextSeo } from 'next-seo'
-
-
 const Product = ({ product, error }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
@@ -22,7 +21,7 @@ const Product = ({ product, error }) => {
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const [isClient, setIsClient] = useState(false)
-  console.log({ product, error: error || '' })
+
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -69,7 +68,16 @@ const Product = ({ product, error }) => {
         <div className={styles.container}>
           <div className={styles.left}>
             <div className={styles.image__container}>
-              <Image src={thumbnail} width='400' height='400' alt='' />
+              <Image
+                src={thumbnail}
+                width='400'
+                height='400'
+                alt=''
+                placeholder='blur'
+                blurDataURL={
+                  product?.placeholder ? product.placeholder : undefined
+                }
+              />
             </div>
             <div className={styles.flex}>
               {product.images?.map((item, index) => (
@@ -181,7 +189,6 @@ const Product = ({ product, error }) => {
     </>
   )
 }
-
 
 export default Product
 
