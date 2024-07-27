@@ -27,10 +27,10 @@ function containsAdmin (url) {
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
-  cartItems.forEach(item => {
+  cartItems?.forEach(item => {
     subtotal +=
-      (item.product.price -
-        item.product.price * (item.product.discount / 100)) *
+      (item.product?.price -
+        item.product?.price * (item.product?.discount / 100)) *
       item.quantity
   })
   return subtotal
@@ -88,6 +88,18 @@ const generateProductSeoData = productData => {
 
   return productSeoData
 }
+function chunkArray (array, chunkSize) {
+  // Initialize an empty array to hold the chunks
+  let result = []
+
+  // Loop through the input array in steps of chunkSize
+  for (let i = 0; i < array.length; i += chunkSize) {
+    // Use the slice method to create a chunk and push it to the result array
+    result.push(array.slice(i, i + chunkSize))
+  }
+
+  return result
+}
 
 function generateVerificationCode (length) {
   const characters =
@@ -116,6 +128,33 @@ function generateUniqueID (existingIDs) {
   return number
 }
 
+function orderToGraph (inputData) {
+  const result = []
+
+  for (const [date, values] of Object.entries(inputData)) {
+    const total = values.total || 0
+    const pending = (values.pending || 0) + (values.Pending || 0)
+    const processing = values.Processing || 0
+    const canceled = values.Canceled || 0
+    const failed = values.Failed || 0
+    const delivered = values.Delivered || 0
+    const packing = values.Packing || 0
+
+    result.push({
+      date: date,
+      total: total,
+      pending: pending,
+      processing: processing,
+      canceled: canceled,
+      failed: failed,
+      delivered: delivered,
+      packing: packing
+    })
+  }
+
+  return result
+}
+
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -125,5 +164,7 @@ export {
   getTime,
   generateProductSeoData,
   generateUniqueID,
-  generateVerificationCode
+  generateVerificationCode,
+  chunkArray,
+  orderToGraph
 }

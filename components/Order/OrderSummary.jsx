@@ -41,14 +41,14 @@ const OrderSummary = ({ cartItems, shipping, total, address, discount }) => {
           >
             <div className={styles.left}>
               <Image
-                src={item.product.thumbnail}
+                src={item.product?.thumbnail}
                 width='40'
                 height='40'
                 alt=''
               />
             </div>
             <div className={styles.right}>
-              <div>{item.product.name}</div>
+              <div>{item.product?.name}</div>
               {item.size && (
                 <div style={{ fontSize: '80%', marginTop: '2px' }}>
                   {item.size}

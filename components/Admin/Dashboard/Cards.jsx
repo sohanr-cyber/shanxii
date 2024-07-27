@@ -3,11 +3,11 @@ import React from 'react'
 import styles from '../../../styles/Admin/Cards.module.css'
 
 const data = [
-  {
-    icon: 'https://cdn-icons-png.flaticon.com/128/8564/8564090.png',
-    number: '$405,30',
-    title: 'Total Sales'
-  },
+  // {
+  //   icon: 'https://cdn-icons-png.flaticon.com/128/8564/8564090.png',
+  //   number: '$405,30',
+  //   title: 'Total Sales'
+  // },
   {
     icon: 'https://cdn-icons-png.flaticon.com/128/6815/6815043.png',
     number: '530',
@@ -25,12 +25,13 @@ const data = [
   }
 ]
 
-const Cards = () => {
+const Cards = ({ total }) => {
   return (
     <div className={styles.wrapper}>
-      {[...data].map((item, index) => (
-        <Card key={index} item={item} index={index} />
-      ))}
+      <Card item={{ ...data[0], number: total.totalOrders }} index={0} />
+      <Card item={{ ...data[1], number: total.totalCompleted }} index={1} />
+      <Card item={{ ...data[2], number: total.totalPending }} index={2} />
+      {/* <Card item={{ ...data[3], number: total.totalOrders }} index={3} /> */}
     </div>
   )
 }

@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
+import { showSnackBar } from '@/redux/notistackSlice'
 
 const Orders = ({ title, dashboard, orders, totalPages }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
@@ -18,7 +19,7 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
   }, [orders])
 
   const updateRoute = data => {
-    const queryParams = { ...router.query, ...data }
+    const queryParams = { ...router.query, ...data, page: 1 }
     router.push({
       pathname: router.pathname,
       query: queryParams,
@@ -29,8 +30,15 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/product/${id}`)
+      const { data } = await axios.delete(`/api/order/${id}`)
       setFilteredOrders(filteredOrders.filter(i => i._id != id))
+      if (data.message) {
+        dispatch(
+          showSnackBar({
+            message: data.message
+          })
+        )
+      }
       dispatch(finishLoading())
     } catch (error) {
       dispatch(finishLoading())
@@ -61,7 +69,11 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
               className={styles.right}
               style={{ display: 'flex', gap: '10px' }}
             >
-              <select>
+              <select
+                onChange={e =>
+                  updateRoute({ status: e.target.value.toLowerCase() })
+                }
+              >
                 {[
                   // 'Select Order Status',
                   'All',
@@ -72,10 +84,10 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
                   <option key={index}>{item}</option>
                 ))}
               </select>
-              <button onClick={() => router.push('/admin/product/create')}>
+              {/* <button onClick={() => router.push('/admin/product/create')}>
                 <span className={styles.plus__btn}>Add Product</span>
                 <span className={styles.plus__icon}>+</span>
-              </button>
+              </button> */}
             </div>
           </div>
         )}

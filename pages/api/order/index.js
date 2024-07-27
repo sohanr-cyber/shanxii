@@ -35,7 +35,7 @@ handler.post(async (req, res) => {
         // Calculate the total price and discount based on the product's price and discount
         const price = product.price * quantity
         const discount = (product.discount / 100) * price
-        
+
         return {
           product: productId,
           quantity,
@@ -80,7 +80,7 @@ handler.get(async (req, res) => {
   try {
     await db.connect()
     const page = parseInt(req.query.page) || 1
-    const { query } = req.query
+    const { query, status } = req.query
 
     // Calculate the skip value based on the page number and page size
     const skip = (page - 1) * PAGE_SIZE
@@ -94,19 +94,33 @@ handler.get(async (req, res) => {
       ]
     }
 
+    console.log({ query, page, PAGE_SIZE, status })
+
     const addresses = await Address.find(filter).select('_id')
     const addressList = addresses.map(i => i._id)
-    console.log(addressList)
+    // console.log(addressList)
     // Retrieve total count of products
-    const totalCount = await Order.countDocuments({
-      shippingAddress: { $in: addressList }
-    })
+
+    const orderFilter = { shippingAddress: { $in: addressList } }
+
+    if (
+      status != 'all' &&
+      status != '' &&
+      status != undefined &&
+      status != 'undefined'
+    ) {
+      orderFilter.status = { $regex: status, $options: 'i' }
+    }
+
+    // console.log(orderFilter)
+
+    const totalCount = await Order.countDocuments(orderFilter)
 
     // Calculate total pages
     const totalPages = Math.ceil(totalCount / PAGE_SIZE)
 
     // Perform the query with population and filtering
-    const orders = await Order.find({ shippingAddress: { $in: addressList } })
+    const orders = await Order.find(orderFilter)
       .populate({
         path: 'shippingAddress',
         select: 'fullName phone' // Select the fields you want to query on
@@ -115,8 +129,9 @@ handler.get(async (req, res) => {
       .skip(skip)
       .limit(PAGE_SIZE)
 
+    // console.log({ orders, totalPages, totalCount })
     await db.disconnect()
-    res.json({ page, totalPages, count: totalCount, orders })
+    return res.status(200).json({ page, totalPages, count: totalCount, orders })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

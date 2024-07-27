@@ -14,7 +14,7 @@ handler.get(async (req, res) => {
       const monthlyRevenueData = await Order.aggregate([
         {
           $match: {
-            paymentStatus: 'completed', // Filter orders with completed payment status
+            status: 'Delivered', // Filter orders with completed payment status
           }
         },
         {

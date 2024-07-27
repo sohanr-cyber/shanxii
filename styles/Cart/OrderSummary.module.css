@@ -8,6 +8,8 @@
     ;
 }
 
+
+
 .title {
     font-size: 100%;
     font-weight: bold;
@@ -43,11 +45,17 @@
     border-bottom: 1px solid var(--borderColor);
 }
 
+.cart__items .left {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+
+}
 
 
-.cart__items .item img {
-    width: auto;
-    height: auto;
+
+.cart__items .left img {
+
+    object-fit: cover;
 
 }
 

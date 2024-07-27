@@ -6,10 +6,11 @@ import nc from 'next-connect'
 
 const handler = nc()
 
-db.connect()
-
+// retrieve totalOrders , totalPending , totalConfirmed , totalCompleted , total Paid
 handler.get(async (req, res) => {
   try {
+    await db.connect()
+
     // Aggregate orders and calculate totals for different categories
     const orderSummary = await Order.aggregate([
       {
@@ -35,11 +36,11 @@ handler.get(async (req, res) => {
 
     // Extract the totals from the result
     const summary = orderSummary.length > 0 ? orderSummary[0] : null
-
-    res.status(200).json(summary)
+    console.log({ summary })
+    return res.status(200).json(summary)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Server Error' })
+    return res.status(500).json({ message: 'Server Error' })
   }
 })
 export default handler

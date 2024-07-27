@@ -49,7 +49,7 @@ handler.put(async (req, res) => {
     to: 'sohanur01744@gmail.com',
     orderId: '532532'
   })
-  console.log("mail sent")
+  console.log('mail sent')
 
   try {
     const order = await Order.findById(orderId)
@@ -128,6 +128,17 @@ handler.put(async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Internal Server Error' })
+  }
+})
+
+// Delete Order by Id
+handler.delete(async (req, res) => {
+  try {
+    await db.connect()
+    const deleted = await Order.deleteOne({ _id: req.query.id })
+    return res.status(200).send({ message: 'Order Deleted' })
+  } catch (error) {
+    return res.status(400).send(error)
   }
 })
 

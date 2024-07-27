@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "../../styles/Admin/Graph.module.css";
+import React from 'react'
+import styles from '../../styles/Admin/Graph.module.css'
 import {
   AreaChart,
   Area,
@@ -10,68 +10,81 @@ import {
   ResponsiveContainer,
   Brush,
   LineChart,
-  Line,
-} from "recharts";
+  Line
+} from 'recharts'
+import { orderToGraph } from '@/utility/helper'
 
 const data = [
   {
-    name: "Page A",
+    name: 'Page A',
     uv: 0,
     pv: 0,
-    amt: 0,
+    amt: 0
   },
   {
-    name: "Page A",
+    name: 'Page A',
     uv: 400,
     pv: 240,
-    amt: 240,
+    amt: 240
   },
   {
-    name: "Page B",
+    name: 'Page B',
     uv: 300,
     pv: 139,
-    amt: 221,
+    amt: 221
   },
   {
-    name: "Page C",
+    name: 'Page C',
     uv: 200,
     pv: 980,
-    amt: 229,
+    amt: 229
   },
   {
-    name: "Page D",
+    name: 'Page D',
     uv: 278,
     pv: 390,
-    amt: 200,
+    amt: 200
   },
   {
-    name: "Page E",
+    name: 'Page E',
     uv: 189,
     pv: 480,
-    amt: 218,
-  },
-];
+    amt: 218
+  }
+]
 
-const ChartArea = ({ title, number, percent }) => {
+const ChartArea = ({ title, number, percent, orderGraph }) => {
   return (
-    <div className={styles.graph__wrapper} style={{ width: "100%" }}>
-      <h3 style={{ marginLeft: "10px" }}>Customer Statistics</h3>
-      <ResponsiveContainer width="100%" aspect={7 / 3}>
+    <div className={styles.graph__wrapper} style={{ width: '100%' }}>
+      <h3 style={{ marginLeft: '10px' }}>{title}</h3>
+      <ResponsiveContainer width='100%' aspect={7 / 3}>
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={orderToGraph(orderGraph)}
           margin={{ left: 0, bottom: 0 }}
         >
-          <XAxis dataKey="name" />
+          <XAxis dataKey='date' />
           <YAxis hide={true} />
-          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-          <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-          <Line type="monotone" dataKey="amt" stroke="#82ca9d" />
+          <CartesianGrid stroke='#eee' strokeDasharray='5 5' />
+          <Line
+            type='monotone'
+            dataKey='total'
+            stroke='#8884d8'
+            strokeWidth={2}
+          />
+          <Line
+            type='monotone'
+            dataKey='delivered'
+            stroke='#05e308'
+            strokeWidth={2}
+          />
+          <Line type='monotone' dataKey='canceled' stroke='#eb2121' />
+          <Line type='monotone' dataKey='failed' stroke='#eb2121' />
         </LineChart>
       </ResponsiveContainer>
     </div>
-  );
-};
+  )
+}
 
-export default ChartArea;
+export default ChartArea

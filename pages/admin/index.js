@@ -15,10 +15,10 @@ import Navbar from '@/components/Admin/Navbar'
 import axios from 'axios'
 import BASE_URL from '@/config'
 
-const index = ({ orders, products }) => {
+const index = ({ orders, products, total, orderGraph }) => {
   return (
     <div className={styles.wrapper}>
-      <Cards />
+      <Cards total={total} />
       <Orders
         title={'Recently Created Orders'}
         dashboard={true}
@@ -30,13 +30,13 @@ const index = ({ orders, products }) => {
         products={products}
       />
       <div className={styles.flex}>
-        <Graph title={'Recent Orders'} />
+        <LineChart title={'Recent Orders'} orderGraph={orderGraph} />
         <BarChart title={'Revinue'} />
       </div>{' '}
-      {/* <div className={styles.flex} style={{ margin: '15px 0;' }}>
+      <div className={styles.flex} style={{ margin: '15px 0;' }}>
         <BarChart title={'Revinue'} />
-        <Graph />
-      </div> */}
+        <Graph title={'Recent Orders'} orderGraph={orderGraph} />
+      </div>
       {/* <Reviews /> */}
     </div>
   )
@@ -55,10 +55,20 @@ export async function getStaticProps () {
       data: { orders }
     } = await axios.get(`${BASE_URL}/api/order`)
 
+    const { data: total } = await axios.get(
+      `${BASE_URL}/api/summary/order-total`
+    )
+    console.log({ total })
+    const { data: orderGraph } = await axios.get(
+      `${BASE_URL}/api/summary/order-graph`
+    )
+
     return {
       props: {
         products,
-        orders
+        orders,
+        total,
+        orderGraph
       },
       revalidate: 10
     }
@@ -67,7 +77,8 @@ export async function getStaticProps () {
     return {
       props: {
         products: [],
-        orders: []
+        orders: [],
+        total: {}
       }
     }
   }

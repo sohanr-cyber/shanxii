@@ -4,7 +4,7 @@ import Upload from '@/components/Utility/Upload'
 import axios from 'axios'
 import BASE_URL from '@/config'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
@@ -13,12 +13,13 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import AddCategory from '@/components/Admin/AddCategory'
 // Order Craetion Form
-const Create = ({ category: data, categories }) => {
+const Create = ({ category: data }) => {
   const [category, setCategory] = useState(data)
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   const router = useRouter()
-
+  const [newCategory, setNewCategory] = useState(false)
+  const categories = useSelector(state => state.product.categories)
   useEffect(() => {
     setCategory(data)
   }, [router.query])
@@ -155,45 +156,78 @@ const Create = ({ category: data, categories }) => {
           <div className={styles.field}>
             <label>Chose Parent Category</label>
             <div className={styles.options}>
-              {categories
-                .filter(e => e._id != category?._id)
-                .map((item, index) => (
-                  <span
-                    key={index}
-                    style={
-                      category.parent == item._id
-                        ? { background: 'black', color: 'white' }
-                        : {}
-                    }
-                    onClick={() =>
-                      category.parent == item._id
-                        ? setCategory({
-                            ...category,
-                            parent: ''
-                          })
-                        : setCategory({
-                            ...category,
-                            parent: item._id
-                          })
-                    }
-                  >
-                    {item.name}
-                  </span>
-                ))}
+              {categories &&
+                categories
+                  .filter(e => e._id != category?._id)
+                  .map((item, index) => (
+                    <>
+                      {' '}
+                      <span
+                        key={index}
+                        style={
+                          category.parent == item._id
+                            ? { background: 'black', color: 'white' }
+                            : {}
+                        }
+                        onClick={() =>
+                          category.parent == item._id
+                            ? setCategory({
+                                ...category,
+                                parent: ''
+                              })
+                            : setCategory({
+                                ...category,
+                                parent: item._id
+                              })
+                        }
+                      >
+                        {item.name}
+                      </span>
+                      {item.children.length > 0 && '-->'}
+                      {item.children.length > 0 &&
+                        item.children.map((item, index) => (
+                          <span
+                            key={index}
+                            style={
+                              category.parent == item._id
+                                ? { background: 'black', color: 'white' }
+                                : {}
+                            }
+                            onClick={() =>
+                              category.parent == item._id
+                                ? setCategory({
+                                    ...category,
+                                    parent: ''
+                                  })
+                                : setCategory({
+                                    ...category,
+                                    parent: item._id
+                                  })
+                            }
+                          >
+                            {item.name}
+                          </span>
+                        ))}
+                    </>
+                  ))}
               <span
                 style={{
                   background: `${themeBg}`,
                   color: `${buttonC}`,
                   padding: '3px 9px'
                 }}
+                onClick={() => setNewCategory(true)}
               >
                 +
               </span>
             </div>
           </div>
-          <div className={styles.field}>
-            <AddCategory />
-          </div>
+          {newCategory && (
+            <div className={styles.field}>
+              <AddCategory categories={categories} />
+            </div>
+          )}
+
           <div
             className={styles.field}
             style={{
@@ -265,14 +299,14 @@ export async function getServerSideProps ({ query }) {
     return data.categories
   }
 
-  const categories = await fetchCategories()
+  // const categories = await fetchCategories()
 
   if (id) {
     const category = await fetchCategory()
     return {
       props: {
-        category,
-        categories
+        category
+        // categories
       }
     }
   }
@@ -283,8 +317,8 @@ export async function getServerSideProps ({ query }) {
         name: '',
         image: '',
         children: []
-      },
-      categories: categories
+      }
+      // categories: categories
     }
   }
 }

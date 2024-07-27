@@ -1,4 +1,5 @@
 import { showSnackBar } from '@/redux/notistackSlice'
+import { setCategories } from '@/redux/productSlice'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import { BorderAllRounded } from '@mui/icons-material'
@@ -6,7 +7,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-const AddCategory = () => {
+const AddCategory = ({ categories }) => {
   const [category, setCategory] = useState({})
   const dispatch = useDispatch()
 
@@ -30,6 +31,7 @@ const AddCategory = () => {
         name: '',
         image: ''
       })
+      dispatch(setCategories([...categories, data]))
       dispatch(finishLoading())
       dispatch(
         showSnackBar({

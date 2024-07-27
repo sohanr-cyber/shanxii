@@ -6,10 +6,23 @@ import nc from 'next-connect'
 
 const handler = nc()
 
-db.connect()
+function sortDataByDate (data) {
+  // Convert the object to an array of [key, value] pairs
+  const entries = Object.entries(data)
+
+  // Sort the entries by the date keys in ascending order
+  entries.sort((a, b) => new Date(a[0]) - new Date(b[0]))
+
+  // Convert the sorted array of entries back to an object
+  const sortedData = Object.fromEntries(entries)
+
+  return sortedData
+}
 
 handler.get(async (req, res) => {
   try {
+    await db.connect()
+
     // Aggregate orders by month and status and calculate the count for each category
     const orderData = await Order.aggregate([
       {
@@ -23,6 +36,8 @@ handler.get(async (req, res) => {
       }
     ])
 
+    console.log({ orderData })
+
     // Restructure the data into a suitable format for graphical representation
     const graphicalData = {}
     orderData.forEach(({ _id, count }) => {
@@ -34,7 +49,7 @@ handler.get(async (req, res) => {
       graphicalData[month].total += count
     })
 
-    res.status(200).json(graphicalData)
+    res.status(200).json(sortDataByDate(graphicalData))
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server Error' })

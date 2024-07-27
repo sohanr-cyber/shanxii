@@ -24,11 +24,14 @@ export default index
 
 export async function getServerSideProps (context) {
   try {
-    const { page, query } = context.query
+    const { page, query, status } = context.query
     const response = await axios.get(
-      `${BASE_URL}/api/order?page=${page}&query=${query}`
+      `${BASE_URL}/api/order?page=${page || 1}&query=${
+        query || ''
+      }&status=${status}`
     )
     const { orders, totalPages, page: currentPage } = response.data
+    console.log({ orders })
     return {
       props: {
         title: 'Product List',

@@ -79,8 +79,9 @@ const Categories = ({
             </div>
             <div className={styles.right}>
               <button onClick={() => router.push('/admin/category/create')}>
-                Add Category
-              </button>
+                <span className={styles.plus__btn}>Add Category</span>
+                <span className={styles.plus__icon}>+</span>
+              </button>{' '}
             </div>
           </div>
         )}

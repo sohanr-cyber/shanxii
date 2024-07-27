@@ -3,9 +3,12 @@ import styles from '../styles/Footer.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Logo from './Utility/Logo'
+import { useSelector } from 'react-redux'
+import { chunkArray } from '@/utility/helper'
 
 const Footer = () => {
   const router = useRouter()
+  const categories = useSelector(state => state.product.categories)
 
   return (
     <>
@@ -27,18 +30,16 @@ const Footer = () => {
               Shop
             </div>
           </div>
-          <div className={styles.flex}>
-            <div className={styles.link} onClick={() => router.push('/')}>
-              Gents
-            </div>
-            <div className={styles.link}>Shoes</div>
-          </div>
-          <div className={styles.flex}>
-            <div className={styles.link} onClick={() => router.push('/')}>
-              Kids
-            </div>
-            <div className={styles.link}>Winter Collection</div>
-          </div>
+          {categories &&
+            chunkArray(categories, 2)?.map((i, index) => (
+              <div className={styles.flex}>
+                <div className={styles.link} onClick={() => router.push('/')}>
+                  {i[0]?.name}
+                </div>
+                <div className={styles.link}>{i[1]?.name}</div>
+              </div>
+            ))}
+
           <div className={styles.flex}>
             <div className={styles.link} onClick={() => router.push('/login')}>
               Login
