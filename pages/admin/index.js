@@ -15,7 +15,7 @@ import Navbar from '@/components/Admin/Navbar'
 import axios from 'axios'
 import BASE_URL from '@/config'
 
-const index = ({ orders, products, orderGraph }) => {
+const index = ({ orders, products, orderGraph, total }) => {
   return (
     <div className={styles.wrapper}>
       <Cards total={total} />
