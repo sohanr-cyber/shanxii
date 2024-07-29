@@ -2,6 +2,7 @@
 
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
+import { getPlaceholderImage } from '@/utility/image'
 import nc from 'next-connect'
 
 const handler = nc()
@@ -46,7 +47,8 @@ handler.get(async (req, res) => {
       page,
       sortBy, // New parameter for sorting
       sortOrder, // New parameter for sorting order,
-      limit = 10
+      limit = 10,
+      blur
     } = req.query
 
     // Construct the filter object based on the provided parameters
@@ -90,6 +92,18 @@ handler.get(async (req, res) => {
       })
       .skip(skip)
       .limit(parseInt(limit))
+
+    // if (blur) {
+    //   products = await Promise.all(
+    //     products.map(async p => {
+    //       const blurData = await getPlaceholderImage(p.thumbnail, 5, 10)
+    //       return {
+    //         ...p.toObject(), // Ensure you're working with plain objects
+    //         blurData: blurData.placeholder
+    //       }
+    //     })
+    //   )
+    // }
 
     // Sorting
     if (sortBy && sortOrder) {

@@ -16,15 +16,15 @@ handler.get(async (req, res) => {
       fc.map(async item => {
         const products = await Product.find({ categories: { $in: item._id } })
 
-        const productsWithBlurData = await Promise.all(
-          products.map(async p => {
-            const blurData = await getPlaceholderImage(p.thumbnail)
-            return {
-              ...p.toObject(), // Ensure you're working with plain objects
-              blurData: blurData.placeholder
-            }
-          })
-        )
+        // const productsWithBlurData = await Promise.all(
+        //   products.map(async p => {
+        //     const blurData = await getPlaceholderImage(p.thumbnail, 5, 10)
+        //     return {
+        //       ...p.toObject(), // Ensure you're working with plain objects
+        //       blurData: blurData.placeholder
+        //     }
+        //   })
+        // )
 
         const subCategory = await Category.find({ parent: item._id }).select(
           '_id name'
@@ -34,7 +34,7 @@ handler.get(async (req, res) => {
           category: item.name,
           subCategory,
           updatedAt: item.updatedAt,
-          products: productsWithBlurData
+          products
         }
       })
     )

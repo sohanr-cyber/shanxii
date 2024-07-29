@@ -12,7 +12,6 @@ import { useRouter } from 'next/router'
 import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
-import fetchAndBlurImage from '@/utility/pika'
 
 export async function getStaticPaths () {
   try {
@@ -78,19 +77,6 @@ const Product = ({ product, error }) => {
   const [isClient, setIsClient] = useState(false)
   const [blurDataURL, setBlurDataURL] = useState(null)
 
-  const generateBlurredImage = async () => {
-    try {
-      const blurredImage = await fetchAndBlurImage(product.thumbnail)
-      setBlurDataURL(blurredImage)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    generateBlurredImage()
-  }, [])
-
   useEffect(() => {
     setIsClient(true)
     // product.thumbnail && console.log(getPlaceholderImage(product.thumbnail))
@@ -144,8 +130,8 @@ const Product = ({ product, error }) => {
                   width='400'
                   height='400'
                   alt=''
-                  // placeholder='blur'
-                  // blurDataURL={isClient && fetchAndBlurImage(product.thumbnail)}
+                  placeholder='blur'
+                  blurDataURL={product.placeholder}
                 />
               </div>
               <div className={styles.flex}>

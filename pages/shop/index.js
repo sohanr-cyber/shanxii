@@ -118,7 +118,7 @@ export async function getServerSideProps (context) {
   } = context.query
   try {
     const response = await axios.get(
-      `${BASE_URL}/api/product/filter?name=${name || ''}&categories=${
+      `${BASE_URL}/api/product/filter?blur=true&name=${name || ''}&categories=${
         categories || 'all'
       }&colors=${colors || 'all'}&minPrice=${minPrice || 'all'}&maxPrice=${
         maxPrice || 'all'
