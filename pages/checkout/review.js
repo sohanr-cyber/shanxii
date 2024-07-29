@@ -8,7 +8,11 @@ import Image from 'next/image'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { clearCart, clearCoupon } from '@/redux/cartSlice'
-import { calculateSubtotal, getDeliveryCharge, getPrice } from '@/utility/helper'
+import {
+  calculateSubtotal,
+  getDeliveryCharge,
+  getPrice
+} from '@/utility/helper'
 import { reviewSeoData, sellerNumber } from '@/utility/const'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
@@ -56,8 +60,21 @@ const Address = () => {
           color: i.color
         })),
         shippingAddress: { ...addressInfo, type: 'Home' },
-        code: coupon.code
+        code: coupon?.code
       })
+
+      if (data.error) {
+        dispatch(
+          showSnackBar({
+            message: data.error,
+            option: {
+              variant: 'error'
+            }
+          })
+        )
+        dispatch(finishLoading())
+        return
+      }
       dispatch(finishLoading())
       // console.log(data)
       dispatch(

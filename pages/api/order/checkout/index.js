@@ -80,6 +80,8 @@ handler.post(async (req, res) => {
             ? getPrice(subtotal) -
               getPrice(subtotal, existingCoupon.discountValue)
             : getDeliveryCharge(address.position)
+      } else {
+        return status(200).send({ error: 'Coupon is Invalid or Expired !' })
       }
     }
 
