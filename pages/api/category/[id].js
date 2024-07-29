@@ -6,12 +6,11 @@ import slugify from 'slugify'
 
 const handler = nc()
 
-db.connect()
-
 // Get category by ID
 handler.get(async (req, res) => {
   try {
     const { id } = req.query
+    await db.connect()
     const category = await Category.findById(id).populate({
       path: 'children'
     })
@@ -28,8 +27,10 @@ handler.get(async (req, res) => {
 // Update category by ID
 handler.put(async (req, res) => {
   console.log(req.body)
+
   try {
     const { id } = req.query
+    await db.connect()
     const updatedCategory = await Category.findByIdAndUpdate(
       id,
       { ...req.body, slug: slugify(req.body.name) },
@@ -43,6 +44,9 @@ handler.put(async (req, res) => {
     const category = await Category.findById(id).populate({
       path: 'children'
     })
+    
+    await db.disconnect()
+
     res.status(200).json(category)
   } catch (error) {
     console.error(error)
