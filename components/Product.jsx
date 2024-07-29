@@ -15,7 +15,18 @@ const Product = ({ item, redirect, rowDirection }) => {
       onClick={() => redirect && router.push(`/product/${item.slug}`)}
     >
       <div className={styles.pic}>
-        <Image src={item.thumbnail} width={250} height={250} alt='' />
+        {item.blurData ? (
+          <Image
+            src={item.thumbnail}
+            width={250}
+            height={250}
+            alt=''
+            placeholder='blur'
+            blurDataURL={item.blurData}
+          />
+        ) : (
+          <Image src={item.thumbnail} width={250} height={250} alt='' />
+        )}
       </div>
       <div className={styles.details}>
         <div className={styles.category}>

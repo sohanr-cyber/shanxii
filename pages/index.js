@@ -13,7 +13,7 @@ import Footer from '@/components/Footer'
 import ImageSlider from '@/components/Utility/ImageSlider'
 import BASE_URL from '@/config'
 import axios from 'axios'
-
+import fetchAndBlurImage from '@/utility/pika'
 const inter = Inter({ subsets: ['latin'] })
 const contents = [
   {

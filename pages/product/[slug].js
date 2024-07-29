@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
-
+import fetchAndBlurImage from '@/utility/pika'
 
 export async function getStaticPaths () {
   try {
@@ -68,7 +68,6 @@ export async function getStaticProps (context) {
   }
 }
 
-
 const Product = ({ product, error }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
@@ -77,6 +76,20 @@ const Product = ({ product, error }) => {
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
   const [isClient, setIsClient] = useState(false)
+  const [blurDataURL, setBlurDataURL] = useState(null)
+
+  const generateBlurredImage = async () => {
+    try {
+      const blurredImage = await fetchAndBlurImage(product.thumbnail)
+      setBlurDataURL(blurredImage)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    generateBlurredImage()
+  }, [])
 
   useEffect(() => {
     setIsClient(true)
@@ -121,128 +134,128 @@ const Product = ({ product, error }) => {
   return (
     <>
       <NextSeo {...generateProductSeoData(product)} />{' '}
-      <div className={styles.wrapper}>
-        <div className={styles.container}>
-          <div className={styles.left}>
-            <div className={styles.image__container}>
-              <Image
-                src={thumbnail}
-                width='400'
-                height='400'
-                alt=''
-                placeholder='blur'
-                blurDataURL={
-                  product?.placeholder ? product.placeholder : undefined
-                }
-              />
-            </div>
-            <div className={styles.flex}>
-              {product.images?.map((item, index) => (
+      {
+        <div className={styles.wrapper}>
+          <div className={styles.container}>
+            <div className={styles.left}>
+              <div className={styles.image__container}>
                 <Image
-                  src={item}
-                  width='50'
-                  height='50'
+                  src={thumbnail}
+                  width='400'
+                  height='400'
                   alt=''
-                  key={index}
-                  onClick={() => setThumbnail(item)}
+                  // placeholder='blur'
+                  // blurDataURL={isClient && fetchAndBlurImage(product.thumbnail)}
                 />
-              ))}
-            </div>
-          </div>
-          <div className={styles.right}>
-            <h2 className={styles.title}>{product.name}</h2>
-            <div className={styles.flex}>
-              <div className={styles.ratings}>
-                {' '}
-                <Stack spacing={1}>
-                  <Rating
-                    name='half-rating-read'
-                    defaultValue={product.ratings}
-                    precision={0.5}
-                    readOnly
-                    size='small'
+              </div>
+              <div className={styles.flex}>
+                {product.images?.map((item, index) => (
+                  <Image
+                    src={item}
+                    width='50'
+                    height='50'
+                    alt=''
+                    key={index}
+                    onClick={() => setThumbnail(item)}
                   />
-                </Stack>
-              </div>
-              <div className={styles.stock}>
-                {product.stockQuantity > 0
-                  ? `In Stock(${product.stockQuantity})`
-                  : 'Out Of Stock'}
-              </div>
-            </div>
-            <h1 className={styles.price}>
-              ৳ {getPrice(product.price, product.discount)}
-            </h1>
-
-            {product?.sizes && (
-              <div className={styles.sizes}>
-                <div>Sizes</div>
-                <div className={styles.options}>
-                  {product?.sizes?.split(',').map((item, index) => (
-                    <div
-                      className={styles.option}
-                      key={index}
-                      style={
-                        item == size
-                          ? { background: 'black', color: 'white' }
-                          : {}
-                      }
-                      onClick={() => setSize(item)}
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div className={styles.flex}>
-              <div className={styles.quantity}>
-                <span onClick={incrementQuantity}>
-                  <AddIcon />
-                </span>
-                <span>{quantity}</span>
-                <span onClick={decrementQuantity}>
-                  <RemoveIcon />
-                </span>
-              </div>
-              <button onClick={() => handleAddToCart()}>Add To Cart</button>
-              <button onClick={() => handleBuyNow()}>Buy Now</button>
-              {isClient && userInfo?.role == 'admin' && (
-                <button
-                  onClick={() =>
-                    router.push(`/admin/product/create?id=${product._id}`)
-                  }
-                >
-                  Update Product
-                </button>
-              )}
-            </div>
-
-            {product.categories?.length > 0 && (
-              <div className={styles.categories}>
-                Categories:{' '}
-                {product.categories?.map((item, index) => (
-                  <span key={index}>{item.name}</span>
                 ))}
               </div>
-            )}
+            </div>
+            <div className={styles.right}>
+              <h2 className={styles.title}>{product.name}</h2>
+              <div className={styles.flex}>
+                <div className={styles.ratings}>
+                  {' '}
+                  <Stack spacing={1}>
+                    <Rating
+                      name='half-rating-read'
+                      defaultValue={product.ratings}
+                      precision={0.5}
+                      readOnly
+                      size='small'
+                    />
+                  </Stack>
+                </div>
+                <div className={styles.stock}>
+                  {product.stockQuantity > 0
+                    ? `In Stock(${product.stockQuantity})`
+                    : 'Out Of Stock'}
+                </div>
+              </div>
+              <h1 className={styles.price}>
+                ৳ {getPrice(product.price, product.discount)}
+              </h1>
 
-            <div className={styles.flex}>
-              <button>Add To Wishlist</button>
+              {product?.sizes && (
+                <div className={styles.sizes}>
+                  <div>Sizes</div>
+                  <div className={styles.options}>
+                    {product?.sizes?.split(',').map((item, index) => (
+                      <div
+                        className={styles.option}
+                        key={index}
+                        style={
+                          item == size
+                            ? { background: 'black', color: 'white' }
+                            : {}
+                        }
+                        onClick={() => setSize(item)}
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className={styles.flex}>
+                <div className={styles.quantity}>
+                  <span onClick={incrementQuantity}>
+                    <AddIcon />
+                  </span>
+                  <span>{quantity}</span>
+                  <span onClick={decrementQuantity}>
+                    <RemoveIcon />
+                  </span>
+                </div>
+                <button onClick={() => handleAddToCart()}>Add To Cart</button>
+                <button onClick={() => handleBuyNow()}>Buy Now</button>
+                {isClient && userInfo?.role == 'admin' && (
+                  <button
+                    onClick={() =>
+                      router.push(`/admin/product/create?id=${product._id}`)
+                    }
+                  >
+                    Update Product
+                  </button>
+                )}
+              </div>
+
+              {product.categories?.length > 0 && (
+                <div className={styles.categories}>
+                  Categories:{' '}
+                  {product.categories?.map((item, index) => (
+                    <span key={index}>{item.name}</span>
+                  ))}
+                </div>
+              )}
+
+              <div className={styles.flex}>
+                <button>Add To Wishlist</button>
+              </div>
+            </div>
+          </div>
+          <div className={styles.bottom__container}>
+            <div className={styles.top}>
+              <button className={styles.button}>Description</button>
+              {/* <button className={styles.button}>Reviews</button> */}
+            </div>
+            <div className={styles.description}>
+              <div dangerouslySetInnerHTML={{ __html: product.description }} />
             </div>
           </div>
         </div>
-        <div className={styles.bottom__container}>
-          <div className={styles.top}>
-            <button className={styles.button}>Description</button>
-            {/* <button className={styles.button}>Reviews</button> */}
-          </div>
-          <div className={styles.description}>
-            <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          </div>
-        </div>
-      </div>
+      }
     </>
   )
 }
