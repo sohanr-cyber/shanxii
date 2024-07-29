@@ -108,7 +108,7 @@ const Reset = () => {
             </div>
           </form>
           <p className={styles.route}>
-            Don't have an account ?{' '}
+            Don&apos;t have an account ?{' '}
             <Link href='/register'>&nbsp;create new account</Link>
           </p>
         </div>

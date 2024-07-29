@@ -179,7 +179,7 @@ const Login = () => {
             </div>
           </form>{' '}
           <p className={styles.route}>
-            Did not get the code ?
+            Didn&apos;t get the code ?
             <span className={styles.cooldown}>
               <span onClick={() => resend()}>Resend</span>
               <span>{cooldown}</span>
