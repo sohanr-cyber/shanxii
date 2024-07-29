@@ -45,10 +45,16 @@ export const cartSlice = createSlice({
       state.buyNow = [action.payload]
       Cookies.set('buyNow', JSON.stringify(state.buyNow), { expires: 7 })
     },
+
     setCoupon: (state, action) => {
       state.coupon = action.payload
+
+      // Calculate the expiration date 10 minutes from now
+      const expires = new Date()
+      expires.setMinutes(expires.getMinutes() + 10)
+
       Cookies.set('coupon', JSON.stringify(state.coupon), {
-        expires: 7
+        expires: expires
       })
     },
     clearCoupon: (state, action) => {

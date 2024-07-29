@@ -29,10 +29,13 @@ const Address = () => {
   useEffect(() => {
     setIsClient(true)
     setAddress(addressInfo)
+    if (cartItems.length == 0 || buyNowItems.length == 0) {
+      router.push('/')
+    }
   }, [])
   const coupon = useSelector(state => state.cart.coupon)
-  const discount =
-    coupon?.discountType == 'percentage'
+  const discount = coupon
+    ? coupon?.discountType == 'percentage'
       ? getPrice(
           calculateSubtotal(
             router.query.buyNow == 'true' ? buyNowItems : cartItems
@@ -45,7 +48,8 @@ const Address = () => {
             )
         )
       : getDeliveryCharge(address.position)
-
+    : 0
+    
   const makeOrder = async cartItems => {
     if (cartItems.length == 0) {
       return
