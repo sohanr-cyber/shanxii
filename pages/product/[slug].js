@@ -11,8 +11,64 @@ import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
 import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
-
 import { NextSeo } from 'next-seo'
+
+
+export async function getStaticPaths () {
+  try {
+    // Fetch the list of possible values for slug
+    const response = await axios.get(`${BASE_URL}/api/product/slugs`)
+    const products = response.data // Assuming the API returns an array of slugs
+
+    // Map the slugs to the required format
+    const paths = products.map(p => ({
+      params: { slug: p.slug }
+    }))
+
+    return {
+      paths,
+      fallback: 'blocking'
+    }
+  } catch (error) {
+    console.log(
+      'Error fetching product slugs:',
+      error.response ? error.response.data : error.message
+    )
+    return {
+      paths: [],
+      fallback: 'blocking'
+    }
+  }
+}
+
+export async function getStaticProps (context) {
+  const { slug } = context.params
+
+  try {
+    const start = new Date()
+    const response = await axios.get(`${BASE_URL}/api/product/slug/${slug}`)
+    const end = new Date()
+
+    console.log(`Data fetching time: ${end - start}ms`)
+
+    return {
+      props: {
+        product: response.data
+      },
+      revalidate: 10 // Revalidate at most every 10 seconds
+    }
+  } catch (error) {
+    console.error('Error fetching products:', error)
+    return {
+      props: {
+        product: {},
+        error: error
+      }
+    }
+  }
+}
+
+
 const Product = ({ product, error }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
@@ -24,6 +80,7 @@ const Product = ({ product, error }) => {
 
   useEffect(() => {
     setIsClient(true)
+    // product.thumbnail && console.log(getPlaceholderImage(product.thumbnail))
   }, [])
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
@@ -191,57 +248,3 @@ const Product = ({ product, error }) => {
 }
 
 export default Product
-
-export async function getStaticPaths () {
-  try {
-    // Fetch the list of possible values for slug
-    const response = await axios.get(`${BASE_URL}/api/product/slugs`)
-    const products = response.data // Assuming the API returns an array of slugs
-
-    // Map the slugs to the required format
-    const paths = products.map(p => ({
-      params: { slug: p.slug }
-    }))
-
-    return {
-      paths,
-      fallback: 'blocking'
-    }
-  } catch (error) {
-    console.log(
-      'Error fetching product slugs:',
-      error.response ? error.response.data : error.message
-    )
-    return {
-      paths: [],
-      fallback: 'blocking'
-    }
-  }
-}
-
-export async function getStaticProps (context) {
-  const { slug } = context.params
-
-  try {
-    const start = new Date()
-    const response = await axios.get(`${BASE_URL}/api/product/slug/${slug}`)
-    const end = new Date()
-
-    console.log(`Data fetching time: ${end - start}ms`)
-
-    return {
-      props: {
-        product: response.data
-      },
-      revalidate: 10 // Revalidate at most every 10 seconds
-    }
-  } catch (error) {
-    console.error('Error fetching products:', error)
-    return {
-      props: {
-        product: {},
-        error: error
-      }
-    }
-  }
-}

@@ -107,12 +107,12 @@ const Login = () => {
             </div>
           </form>
           <p className={styles.route}>
-            Dont have an account ?{' '}
-            <Link href='/register'> Click here to create new account</Link>
+            Don't have an account ?{' '}
+            <Link href='/register'>&nbsp; Create new one</Link>
           </p>
           <p className={styles.route}>
             Forget Password ?{' '}
-            <Link href='/verify/existance'> Click here to reset password</Link>
+            <Link href='/verify/existance'>&nbsp; Reset password</Link>
           </p>
         </div>
       </div>

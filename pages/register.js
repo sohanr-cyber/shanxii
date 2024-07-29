@@ -117,7 +117,7 @@ const Register = () => {
           </form>
           <p className={styles.route}>
             Already have an account ?{' '}
-            <Link href='/login'>Click here to Sign In</Link>
+            <Link href='/login'>&nbsp;Sign In Here</Link>
           </p>
         </div>
       </div>

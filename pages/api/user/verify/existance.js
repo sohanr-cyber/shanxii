@@ -8,6 +8,8 @@ const handler = nextConnect()
 import Mail from '@/services/mail-service'
 import { companyName } from '@/utility/const'
 
+// Password Reset Code
+// Check Existance of Mail , Send Verification Code to That Mail For Password Reset
 handler.post(async (req, res) => {
   try {
     const { email } = req.body
@@ -29,11 +31,12 @@ handler.post(async (req, res) => {
     await user.save()
     console.log(user)
     // send notification with Password Reset Code
-    await mailService.verification({
+    await mailService.sendMail({
       code: verificationCode,
       expirationTime: '5 minutes',
       subject: `Account Password Reset -${companyName}`,
-      to: user.email
+      to: user.email,
+      for: 'Verification'
     })
 
     return res.status(200).json({ message: 'Code Sent To Your Mail' })

@@ -25,9 +25,7 @@ const Create = ({ category: data }) => {
   }, [router.query])
 
   const saveCategory = async () => {
-    setError('')
     if (!category.name) {
-      setError('Please fill all the necessaary field')
       dispatch(
         showSnackBar({
           message: 'Please fill all the necessaary field',
@@ -43,6 +41,18 @@ const Create = ({ category: data }) => {
       const { data } = await axios.post('/api/category', {
         ...category
       })
+      if (data.error) {
+        dispatch(
+          showSnackBar({
+            message: data.error,
+            option: {
+              variant: 'error'
+            }
+          })
+        )
+        dispatch(finishLoading())
+        return
+      }
       setCategory({
         name: '',
         image: ''
@@ -66,7 +76,6 @@ const Create = ({ category: data }) => {
           }
         })
       )
-      setError('Error While Creating Category !')
     }
   }
 

@@ -77,8 +77,8 @@ const Login = () => {
             </div>
           </form>
           <p className={styles.route}>
-            Dont have an account ?{' '}
-            <Link href='/register'>Click here to create new account</Link>
+            Don't have an account ?{' '}
+            <Link href='/register'>&nbsp;create new account</Link>
           </p>
         </div>
       </div>

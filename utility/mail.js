@@ -90,27 +90,32 @@ const template = data => {
       font-family: 'Ubuntu', sans-serif;
     "
   >
-    <div
-      style="
-        background-color:aliceblue;
-        max-width: 570px;
-        min-width: 320px;
-        width: 100%;
-        min-height: 100vh;
-      "
-    >
-    ${navbar}
-    ${
-      data.for == 'verification'
-        ? mailVerification(data)
-        : data.for == 'reset'
-        ? resetPassword(data)
-        : data.for == 'orderCanceled'
-        ? orderCanceled(data)
-        : resetPassword(data)
-    }
-   ${footer}
-    </div>
+ <table style = "width:100%;height:100%">
+ <tr>
+ <td align="center">   <div
+ style="
+   background-color:aliceblue;
+   max-width: 570px;
+   min-width: 320px;
+   width: 100%;
+   min-height: 100vh;
+   text-align:left;
+ "
+>
+${navbar}
+${
+  data.for == 'verification'
+    ? mailVerification(data)
+    : data.for == 'reset'
+    ? resetPassword(data)
+    : data.for == 'orderCanceled'
+    ? orderCanceled(data)
+    : resetPassword(data)
+}
+${footer}
+</div></td>
+ </tr>
+ </table>
   </div>
     `
 }
