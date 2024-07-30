@@ -8,7 +8,7 @@ const handler = nextConnect()
 handler.get(async (req, res) => {
   try {
     await db.connect()
-    const { slug } = req.query // Use slug instead of id
+    const { slug, blur } = req.query // Use slug instead of id
     let product = await Product.findOne({ slug }).populate({
       path: 'categories',
       select: 'name _id'
@@ -16,11 +16,14 @@ handler.get(async (req, res) => {
     await db.disconnect()
     console.log(product)
     if (product) {
-      const placeholder = await getPlaceholderImage(product.thumbnail)
+      if (blur) {
+        const placeholder = await getPlaceholderImage(product.thumbnail)
 
-      // Ensure the product is a plain object
-      product = product.toObject()
-      product.placeholder = placeholder.placeholder
+        // Ensure the product is a plain object
+        product = product.toObject()
+        product.placeholder = placeholder.placeholder
+      }
+
       res.status(200).send(product)
     } else {
       res.status(404).json({ message: 'Product not found' })

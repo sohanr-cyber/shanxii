@@ -36,14 +36,14 @@ const sortOptions = [
     value: 'Newest To Oldest',
     query: {
       sortBy: 'createdAt',
-      sortOrder: 'asc'
+      sortOrder: 'desc'
     }
   },
   {
     value: 'Oldest To Newest',
     query: {
       sortBy: 'createdAt',
-      sortOrder: 'desc'
+      sortOrder: 'asc'
     }
   }
 ]

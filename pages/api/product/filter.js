@@ -84,12 +84,14 @@ handler.get(async (req, res) => {
     const totalPages = Math.ceil(count / limit)
     let products = await Product.find(filter, {
       metaTitle: 0,
-      images: 0
+      images: 0,
+      description: 0
     })
       .populate({
         path: 'categories',
         select: 'name'
       })
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(parseInt(limit))
 
