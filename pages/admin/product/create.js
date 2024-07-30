@@ -245,7 +245,8 @@ const Create = ({ product: data }) => {
                         >
                           {item.name}
                         </span>
-                      ))}
+                      ))}{' '}
+                    ||
                   </div>
                 ))}
               </div>

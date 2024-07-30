@@ -192,7 +192,7 @@ const Create = ({ category: data }) => {
                       >
                         {item.name}
                       </span>
-                      {item.children.length > 0 && '-->'}
+                      {/* {item.children.length > 0 && '-->'}
                       {item.children.length > 0 &&
                         item.children.map((item, index) => (
                           <span
@@ -216,7 +216,8 @@ const Create = ({ category: data }) => {
                           >
                             {item.name}
                           </span>
-                        ))}
+                        ))} */}
+                      ||{' '}
                     </>
                   ))}
               <span
@@ -264,7 +265,7 @@ const Create = ({ category: data }) => {
               alignItems: 'flex-start'
             }}
           >
-            <span
+            {/* <span
               onClick={() =>
                 setCategory({ ...category, isShown: !category.isShown })
               }
@@ -278,7 +279,7 @@ const Create = ({ category: data }) => {
             <span>
               {' '}
               This category name will be shown in product details page
-            </span>{' '}
+            </span>{' '} */}
           </div>
         </div>
         {/* <div className={styles.right}></div> */}
