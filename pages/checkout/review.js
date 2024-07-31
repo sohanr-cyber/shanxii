@@ -29,7 +29,7 @@ const Address = () => {
   useEffect(() => {
     setIsClient(true)
     setAddress(addressInfo)
-    if (cartItems.length == 0 || buyNowItems.length == 0) {
+    if (!(cartItems.length != 0 || buyNowItems.length != 0)) {
       router.push('/')
     }
   }, [])
@@ -49,7 +49,7 @@ const Address = () => {
         )
       : getDeliveryCharge(address.position)
     : 0
-    
+
   const makeOrder = async cartItems => {
     if (cartItems.length == 0) {
       return

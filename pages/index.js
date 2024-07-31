@@ -14,6 +14,8 @@ import ImageSlider from '@/components/Utility/ImageSlider'
 import BASE_URL from '@/config'
 import axios from 'axios'
 import fetchAndBlurImage from '@/utility/pika'
+import Header2 from '@/components/Heder/Header2'
+import Header3 from '@/components/Heder/Header3'
 const inter = Inter({ subsets: ['latin'] })
 const contents = [
   {
@@ -33,7 +35,7 @@ const contents = [
       'https://images.pexels.com/photos/46212/men-s-shirt-shirt-attire-clothing-46212.jpeg?auto=compress&cs=tinysrgb&w=600'
   }
 ]
-export default function Home ({ data }) {
+export default function Home ({ data, contents }) {
   return (
     <>
       <div className={styles.wrapper}>
@@ -42,7 +44,8 @@ export default function Home ({ data }) {
           <Categories />
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
-        <Header />
+        {/* <Header2 /> */}
+        <Header3 contents={contents} />
         {data.map((i, index) => (
           <ProductsByCategory
             category={i.category}
@@ -60,12 +63,15 @@ export default function Home ({ data }) {
 export async function getStaticProps () {
   try {
     const start = new Date()
+    const { data: contents } = await axios.get(`${BASE_URL}/api/content`)
+
     const { data } = await axios.get(`${BASE_URL}/api/product/bycategory`)
     const end = new Date()
     console.log(`time : ${end - start}ms`)
     return {
       props: {
-        data
+        data,
+        contents: contents.contents
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }
@@ -73,7 +79,8 @@ export async function getStaticProps () {
     console.error('Error fetching products:', error)
     return {
       props: {
-        data: []
+        data: [],
+        contents: []
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }

@@ -92,6 +92,7 @@ handler.put(async (req, res) => {
     // Update the order status
     order.status = newStatus
 
+    // confirming order deduce product quantity
     if (newStatus == 'Confirmed') {
       await Promise.all(
         order.items.map(async item => {
@@ -106,6 +107,7 @@ handler.put(async (req, res) => {
       )
     }
 
+    // failed or canceled order + product stock quantity
     if (newStatus == 'Failed' || newStatus == 'Canceled') {
       await Promise.all(
         order.items.map(async item => {
@@ -118,6 +120,11 @@ handler.put(async (req, res) => {
           }
         })
       )
+    }
+
+    // delivering make payment status completed
+    if (newStatus == 'Delivered') {
+      order.paymentStatus = 'completed'
     }
 
     await order.save()

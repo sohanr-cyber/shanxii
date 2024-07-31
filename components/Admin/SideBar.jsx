@@ -21,6 +21,7 @@ import CommentIcon from '@mui/icons-material/Comment'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
+import CameraIcon from '@mui/icons-material/Camera'
 // import { logout } from '@/redux/userSlice'
 // import { useDispatch } from 'react-redux'
 const SideBar = ({ setOpen }) => {
@@ -40,7 +41,7 @@ const SideBar = ({ setOpen }) => {
       </div>
       <div className={styles.navigators}>
         {' '}
-        <div className={styles.item} onClick={() => router.push('/dashobard')}>
+        <div className={styles.item} onClick={() => router.push('/admin')}>
           <div className={styles.flex}>
             {' '}
             <div className={styles.icon}>
@@ -49,6 +50,55 @@ const SideBar = ({ setOpen }) => {
             <div className={styles.title}>Dashboard</div>
           </div>
         </div>
+        <div
+          className={styles.item}
+          onClick={() =>
+            setVisible(prev => (prev == 'content' ? '' : 'content'))
+          }
+        >
+          <div className={styles.flex}>
+            {' '}
+            <div className={styles.icon}>
+              <CameraIcon />
+            </div>
+            <div className={styles.title}>Content</div>{' '}
+          </div>
+          <div className={styles.icon}>
+            {visible == 'content' ? (
+              <KeyboardArrowUpIcon />
+            ) : (
+              <KeyboardArrowDownIcon />
+            )}{' '}
+          </div>
+        </div>{' '}
+        {visible == 'content' && (
+          <div className={styles.inner__items}>
+            <div
+              className={styles.item}
+              onClick={() => router.push('/admin/content')}
+            >
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <FormatListBulletedIcon />
+                </div>
+                <div className={styles.title}>Content List</div>
+              </div>
+            </div>{' '}
+            <div
+              className={styles.item}
+              onClick={() => router.push('/admin/content/create')}
+            >
+              <div className={styles.flex}>
+                {' '}
+                <div className={styles.icon}>
+                  <AddCircleIcon />
+                </div>
+                <div className={styles.title}>Add Content</div>
+              </div>
+            </div>
+          </div>
+        )}
         <div
           className={styles.item}
           onClick={() =>

@@ -94,8 +94,10 @@ const Order = ({ order: orderDetail }) => {
                 className={styles.item}
                 key={index}
                 style={
-                  _.status == 'Failed' || _.status == 'Canceled'
+                  _.status === 'Failed' || _.status === 'Canceled'
                     ? { color: 'red' }
+                    : _.status == 'Delivered'
+                    ? { color: 'green' }
                     : {}
                 }
               >

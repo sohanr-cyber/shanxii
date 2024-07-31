@@ -10,6 +10,7 @@ import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { useRouter } from 'next/router'
 import TextEditor from '@/components/Utility/TextEditor'
 import { showSnackBar } from '@/redux/notistackSlice'
+import Colors from '@/components/Shop/Colors'
 
 const Create = ({ product: data }) => {
   const [images, setImages] = useState([])
@@ -91,14 +92,28 @@ const Create = ({ product: data }) => {
   }
 
   const updateProduct = async () => {
-    setError('')
     if (
       !product.name ||
       !product.thumbnail ||
       !product.price ||
       !product.thumbnail
+      // !product.stockQuantity
     ) {
-      setError('Pleas fill all the necessaary field')
+      console.log(
+        product.name,
+        product.thumbnail,
+        product.price,
+        product.stockQuantity
+      )
+      dispatch(
+        showSnackBar({
+          message: 'Please Fill All The Field !',
+          option: {
+            variant: 'info'
+          }
+        })
+      )
+
       return
     }
     try {
@@ -133,6 +148,10 @@ const Create = ({ product: data }) => {
     }
   }
 
+  const setColor = c => {
+    setProduct({ ...product, color: product.color == c ? '' : c })
+  }
+
   return (
     <div className={styles.wrapper}>
       <h2>Add Product</h2>
@@ -159,10 +178,11 @@ const Create = ({ product: data }) => {
                 onChange={e =>
                   setProduct(prev => ({ ...prev, price: e.target.value }))
                 }
+                min='0'
               />
             </div>
             <div className={styles.field}>
-              <label>discount</label>
+              <label>discount in percentage</label>
               <input
                 type='number'
                 placeholder='Enter Product Discount'
@@ -170,12 +190,13 @@ const Create = ({ product: data }) => {
                 onChange={e =>
                   setProduct(prev => ({ ...prev, discount: e.target.value }))
                 }
+                min='0'
               />
             </div>
           </div>
           <div className={styles.flex}>
             <div className={styles.field}>
-              <label>Stock Quantity</label>
+              <label>Stock Quantity {product.stockQuantity}</label>
               <input
                 type='Number'
                 placeholder=''
@@ -186,6 +207,7 @@ const Create = ({ product: data }) => {
                     stockQuantity: e.target.value
                   }))
                 }
+                min='0'
               />
             </div>
             <div className={styles.field}>
@@ -312,6 +334,10 @@ const Create = ({ product: data }) => {
             />
           </div>
           <div className={styles.field}>
+            <label>Chose Product Color</label>
+            <Colors selectedColors={product.color} handleClick={setColor} />
+          </div>
+          <div className={styles.field}>
             <label>Product Thumbnail</label>
             <Upload
               handle={files => {
@@ -425,7 +451,8 @@ export async function getServerSideProps ({ query }) {
         metaDescription: '',
         attributes: {},
         stockQuantity: '',
-        sold: ''
+        sold: '',
+        color: c
       },
       categories
     }

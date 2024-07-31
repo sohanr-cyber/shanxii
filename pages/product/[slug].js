@@ -119,6 +119,17 @@ const Product = ({ product, error, relatedProducts }) => {
   }
 
   const handleAddToCart = () => {
+    if (product.stockQuantity < 1) {
+      dispatch(
+        showSnackBar({
+          message: 'Out Of Stock !',
+          option: {
+            variant: 'info'
+          }
+        })
+      )
+      return
+    }
     dispatch(
       addItem({
         product,
@@ -131,6 +142,17 @@ const Product = ({ product, error, relatedProducts }) => {
   }
 
   const handleBuyNow = () => {
+    if (product.stockQuantity < 1) {
+      dispatch(
+        showSnackBar({
+          message: 'Out Of Stock !',
+          option: {
+            variant: 'info'
+          }
+        })
+      )
+      return
+    }
     dispatch(
       addToBuyNow({
         product,
@@ -186,7 +208,14 @@ const Product = ({ product, error, relatedProducts }) => {
                   />
                 </Stack>
               </div> */}
-              <div className={styles.stock}>
+              <div
+                className={styles.stock}
+                style={
+                  product.stockQuantity > 0
+                    ? { color: 'green' }
+                    : { color: 'red' }
+                }
+              >
                 {product.stockQuantity > 0
                   ? `In Stock(${product.stockQuantity})`
                   : 'Out Of Stock'}

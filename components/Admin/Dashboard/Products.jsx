@@ -94,9 +94,7 @@ const Products = ({
               <tr>
                 <th>Product Name</th>
                 <th>Price</th>
-                <th>Discount</th>
-                <th>Stock</th>
-                <th>Categories</th>
+                <th>Discount</th> <th>Categories</th>
                 <th>Stock Quantity</th>
                 <th>Sold</th>
                 <th>Action</th>
@@ -105,11 +103,19 @@ const Products = ({
             </thead>
             <tbody>
               {filteredProducts?.products?.map((product, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  style={
+                    product.stockQuantity < 5
+                      ? { background: 'yellow' }
+                      : product.stockQuantity == 0
+                      ? { bakcground: 'red' }
+                      : {}
+                  }
+                >
                   <td>{product.name}</td>
                   <td>{product.price}</td>
-                  <td>{product.discount}</td>
-                  <td>{product.stock}</td>
+                  <td>{product.discount}%</td>
                   <td>
                     {product.categories?.map((item, index) => (
                       <span key={index}>
