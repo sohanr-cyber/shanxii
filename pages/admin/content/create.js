@@ -53,7 +53,7 @@ const Create = ({ content: data }) => {
         return
       }
       setContent({
-        name: '',
+        title: '',
         image: '',
         isShown: false,
         buttonTitle: '',
@@ -132,9 +132,9 @@ const Create = ({ content: data }) => {
             <label>Content Name</label>
             <input
               type='text'
-              placeholder='Enter Content Name'
-              value={content.name}
-              onChange={e => setContent({ ...content, name: e.target.value })}
+              placeholder='Enter Content Title'
+              value={content.title}
+              onChange={e => setContent({ ...content, title: e.target.value })}
             />
           </div>
           <div className={styles.flex}>
@@ -261,7 +261,7 @@ export async function getServerSideProps ({ query }) {
   return {
     props: {
       content: {
-        name: '',
+        title: '',
         image: '',
         children: []
       }

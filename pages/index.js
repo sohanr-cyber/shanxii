@@ -14,8 +14,8 @@ import ImageSlider from '@/components/Utility/ImageSlider'
 import BASE_URL from '@/config'
 import axios from 'axios'
 import fetchAndBlurImage from '@/utility/pika'
-import Header2 from '@/components/Heder/Header2'
-import Header3 from '@/components/Heder/Header3'
+import Header2 from '@/components/Header/Header2'
+import Header3 from '@/components/Header/Header3'
 const inter = Inter({ subsets: ['latin'] })
 const contents = [
   {
@@ -44,7 +44,7 @@ export default function Home ({ data, contents }) {
           <Categories />
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
-        {/* <Header2 /> */}
+        {/* <Header2 contents={contents} /> */}
         <Header3 contents={contents} />
         {data.map((i, index) => (
           <ProductsByCategory

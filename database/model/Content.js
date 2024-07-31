@@ -2,11 +2,10 @@ import mongoose from 'mongoose'
 
 const contentSchema = new mongoose.Schema(
   {
-    name: {
+    image: {
       type: String
     },
-
-    image: {
+    title: {
       type: String
     },
     buttonText: {
