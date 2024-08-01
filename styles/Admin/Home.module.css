@@ -8,6 +8,10 @@
     align-items: flex-start;
     gap: 15px;
     margin: 15px 0
+}@media (min-width:1024px) {
+    .wrapper {
+        padding: 25px var(--percent);
+    }
 }
 
 @media (max-width:720px) {

@@ -110,7 +110,7 @@ const Categories = ({
                   </td>
 
                   <td className={styles.action}>
-                    <span onClick={() => remove(c._id)}>Delete</span>
+                    <span onDoubleClick={() => remove(c._id)}>Delete</span>
                     <span
                       onClick={() =>
                         router.push(`/admin/category/create?id=${c._id}`)

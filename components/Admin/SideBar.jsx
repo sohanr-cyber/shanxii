@@ -33,7 +33,7 @@ const SideBar = ({ setOpen }) => {
     <div className={styles.wrapper}>
       <div className={styles.top}>
         <div className={styles.logo}>
-          <Logo />
+          <Logo color={'aliceblue'} />
         </div>
         <div className={styles.exit} onClick={() => setOpen(setOpen(false))}>
           <ExitToAppIcon />

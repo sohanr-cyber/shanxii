@@ -51,7 +51,16 @@ const Header3 = ({ contents }) => {
                 backgroundRepeat: 'no-repeat',
                 transform: `translateX(-${currentSlide * 100}%)`
               }}
-            ></div>
+            >
+              <div className={styles.surface}>
+                {slide.title && <h2>{slide.title}</h2>}
+                {slide.buttonText && slide.buttonHref && (
+                  <button onClick={() => router.push(slide.buttonHref)}>
+                    {slide.buttonText}
+                  </button>
+                )}{' '}
+              </div>
+            </div>
           ))}
         </>
       </div>

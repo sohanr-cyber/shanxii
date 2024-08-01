@@ -77,6 +77,11 @@
     cursor: pointer;
 
 }
+@media (min-width:1024px) {
+    .wrapper {
+        padding: 25px var(--percent);
+    }
+}
 
 @media (max-width:570px) {
     .wrapper {
@@ -86,6 +91,10 @@
     .table__wrapper {
         padding: 10px;
     }
+
+
+
+    
 }
 
 @media (max-width:410px) {

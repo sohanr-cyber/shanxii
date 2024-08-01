@@ -23,7 +23,7 @@
 
 .flex button,
 .flex input {
-    padding: 7px;
+    padding: var(--buttonPadding)
 }
 
 

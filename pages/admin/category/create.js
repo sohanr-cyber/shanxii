@@ -226,9 +226,9 @@ const Create = ({ category: data }) => {
                   color: `${buttonC}`,
                   padding: '3px 9px'
                 }}
-                onClick={() => setNewCategory(true)}
+                onClick={() => setNewCategory(prev => !prev)}
               >
-                +
+                {newCategory ? '-' : '+'}
               </span>
             </div>
           </div>

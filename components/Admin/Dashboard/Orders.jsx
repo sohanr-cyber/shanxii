@@ -8,7 +8,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
 
-const Orders = ({ title, dashboard, orders, totalPages }) => {
+const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState(router.query.query)
@@ -117,7 +117,7 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
                   <td>{order.status}</td>
                   <td>{order.paymentStatus}</td>
                   <td className={styles.action}>
-                    <span onClick={() => remove(order._id)}>Delete</span>
+                    <span onDoubleClick={() => remove(order._id)}>Delete</span>
                     <span onClick={() => router.push(`/order/${order._id}`)}>
                       {' '}
                       View
@@ -131,7 +131,10 @@ const Orders = ({ title, dashboard, orders, totalPages }) => {
         </div>
         {!dashboard && (
           <div className={styles.pagination}>
-            <Pages totalPages={totalPages} currentPage={router.query.page} />
+            <Pages
+              totalPages={totalPages}
+              currentPage={router.query.page || currentPage}
+            />
           </div>
         )}
       </div>

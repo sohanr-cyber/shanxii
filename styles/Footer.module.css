@@ -52,6 +52,11 @@
 
 }
 
+@media (min-width:1024px) {
+    .wrapper {
+        padding: 30px var(--percent);
+    }
+}
 
 @media (max-width: 570px) {
     .wrapper {

@@ -107,6 +107,11 @@
 .category__item:hover {
     background: var(--hoverBgColor)
 }
+@media (min-width:1024px) {
+    .wrapper {
+        padding: 0 var(--percent);
+    }
+}
 
 @media (max-width:570px) {
     .wrapper {

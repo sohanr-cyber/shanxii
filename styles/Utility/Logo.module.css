@@ -3,12 +3,8 @@
     font-weight: bolder;
     font-size: 180%;
     transform: scale(1, 0.9);
-    color: black;
-    background: var(--logo);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    min-width: 100px;
-    cursor: pointer;
+    color: var(--icon);
+
 
 }
 

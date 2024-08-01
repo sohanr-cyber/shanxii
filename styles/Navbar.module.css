@@ -147,6 +147,12 @@
     display: block;
 }
 
+@media (min-width:1024px) {
+    .wrapper {
+        padding: 15px var(--percent);
+    }
+}
+
 @media (max-width:570px) {
     .opened__searchBox {
         display: flex;

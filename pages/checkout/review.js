@@ -144,13 +144,12 @@ const Address = () => {
               </div>{' '}
               <div style={{ color: 'blue' }}>Cash On Delivery</div>
             </div>
-            <div className={styles.bkash}>
+            {/* <div className={styles.bkash}>
               <div>
                 {' '}
                 <Image src='/images/bkash.png' width='80' height='50' alt='' />
               </div>{' '}
-              {/* <div>Payment</div>{' '} */}
-            </div>
+            </div> */}
           </div>
           <button
             onClick={() =>

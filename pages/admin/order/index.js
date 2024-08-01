@@ -7,7 +7,7 @@ import Orders from '@/components/Admin/Dashboard/Orders'
 import BASE_URL from '@/config'
 import axios from 'axios'
 
-const index = ({ orders, totalPages, currentPage }) => {
+const index = ({ orders, totalPages, currentPage, page }) => {
   return (
     <div className={styles.wrapper}>
       <Orders
@@ -34,7 +34,7 @@ export async function getServerSideProps (context) {
     console.log({ orders })
     return {
       props: {
-        title: 'Product List',
+        title: 'Order List',
         orders,
         totalPages,
         currentPage
@@ -44,8 +44,10 @@ export async function getServerSideProps (context) {
     console.error('Error fetching products:', error)
     return {
       props: {
-        title: 'Product List',
-        products: []
+        title: 'Order List',
+        orders: [],
+        totalPages: 0,
+        currentPage: 0
       }
     }
   }

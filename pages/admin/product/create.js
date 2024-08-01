@@ -452,7 +452,7 @@ export async function getServerSideProps ({ query }) {
         attributes: {},
         stockQuantity: '',
         sold: '',
-        color: c
+        color: ''
       },
       categories
     }

@@ -127,7 +127,9 @@ const Products = ({
                   <td>{product.sold}</td>
 
                   <td className={styles.action}>
-                    <span onClick={() => remove(product._id)}>Delete</span>
+                    <span onDoubleClick={() => remove(product._id)}>
+                      Delete
+                    </span>
                     <span
                       onClick={() =>
                         router.push(`/admin/product/create?id=${product._id}`)

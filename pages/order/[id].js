@@ -108,7 +108,9 @@ const Order = ({ order: orderDetail }) => {
               </div>
             ))}
           </div>
-          <button onClick={() => router.push('/')}>Go Back To Shopping</button>
+          <button onClick={() => router.push('/shop')}>
+            Go Back To Shopping
+          </button>
         </div>
         <div className={styles.right}>
           {isClient && (

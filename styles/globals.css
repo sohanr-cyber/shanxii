@@ -21,9 +21,10 @@
   --scrollbar: rgb(9, 82, 71);
   --icon: rgb(9, 82, 71);
   --logo: linear-gradient(45deg, rgb(8, 78, 67) 50%, rgb(0, 183, 255) 50%);
-
-
-  /* --background: #fbfbfb;
+  --buttonPadding: 7px 10px;
+  --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1));
+  --percent: 10%
+    /* --background: #fbfbfb;
   --nav: rgb(213, 227, 228);
   --cardBg: rgb(231, 238, 238, 0.7);
   --buttonBg: linear-gradient(45deg, #647c7a, #647c7a);
@@ -38,7 +39,7 @@
   --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%); */
 
 
-  /* --background: white;
+    /* --background: white;
   --nav: rgb(246, 241, 231);
   --cardBg: rgba(164, 148, 128, 0.1);
   --buttonBg: linear-gradient(45deg, rgb(255, 136, 0), gold);

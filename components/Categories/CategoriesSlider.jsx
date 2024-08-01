@@ -14,7 +14,7 @@ const CategoriesSlider = ({ setOpen }) => {
     <div className={styles.wrapper}>
       <div className={styles.top}>
         {' '}
-        <Logo />
+        <Logo color={'white'} />
         <div className={styles.close__btn} onClick={() => setOpen(false)}>
           X
         </div>
