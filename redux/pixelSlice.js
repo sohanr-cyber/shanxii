@@ -9,7 +9,7 @@ export const pixelSlice = createSlice({
 
   reducers: {
     setPixel: (state, action) => {
-      state.pixel = action.payload
+      // state.pixel = action.payload
     }
   }
 })

@@ -11,6 +11,7 @@ import { useSnackbar } from 'notistack'
 import { setCategories } from '@/redux/productSlice'
 import axios from 'axios'
 import { setPixel } from '@/redux/pixelSlice'
+import { PIXEL_ID } from '@/config'
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
   const router = useRouter()
@@ -34,7 +35,11 @@ const Layout = ({ children }) => {
     import('react-facebook-pixel')
       .then(x => x.default)
       .then(ReactPixel => {
-        ReactPixel.init('1040750500772753')
+        const options = {
+          autoConfig: false, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+          debug: false // enable logs
+        }
+        ReactPixel.init(PIXEL_ID, {}, options)
         dispatch(setPixel(ReactPixel))
         ReactPixel.pageView()
 
