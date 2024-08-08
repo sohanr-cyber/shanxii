@@ -10,6 +10,7 @@ import Loading from './Utility/Loading'
 import { useSnackbar } from 'notistack'
 import { setCategories } from '@/redux/productSlice'
 import axios from 'axios'
+import { setPixel } from '@/redux/pixelSlice'
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
   const router = useRouter()
@@ -34,6 +35,7 @@ const Layout = ({ children }) => {
       .then(x => x.default)
       .then(ReactPixel => {
         ReactPixel.init('1040750500772753')
+        dispatch(setPixel(ReactPixel))
         ReactPixel.pageView()
 
         router.events.on('routeChangeComplete', () => {

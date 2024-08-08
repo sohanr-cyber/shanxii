@@ -101,7 +101,7 @@ const Product = ({ product, error, relatedProducts }) => {
   const dispatch = useDispatch()
   const [isClient, setIsClient] = useState(false)
   const [blurDataURL, setBlurDataURL] = useState(null)
-
+  const ReactPixel = useSelector(state => state.pixel.pixel)
   useEffect(() => {
     setIsClient(true)
     // product.thumbnail && console.log(getPlaceholderImage(product.thumbnail))
@@ -142,6 +142,11 @@ const Product = ({ product, error, relatedProducts }) => {
   }
 
   const handleBuyNow = () => {
+    // Example: Tracking a purchase event
+    ReactPixel.track('Purchase', {
+      value: 30.0,
+      currency: 'USD'
+    })
     if (product.stockQuantity < 1) {
       dispatch(
         showSnackBar({
