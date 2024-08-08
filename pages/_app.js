@@ -10,11 +10,13 @@ import { DefaultSeo, NextSeo } from 'next-seo'
 import { seoData } from '@/utility/const'
 import Script from 'next/script'
 
+
 export default function App ({ Component, pageProps }) {
+
   return (
     <>
       <DefaultSeo {...seoData} />
-      <Script
+      {/* <Script
         id='gtm'
         strategy='afterInteractive'
         dangerouslySetInnerHTML={{
@@ -24,7 +26,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M93FPKM6');`
         }}
-      ></Script>
+      ></Script> */}
 
       <Provider store={store}>
         <SnackbarProvider>
