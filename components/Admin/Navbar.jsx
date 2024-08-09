@@ -4,8 +4,10 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Logo from '../Utility/Logo'
 import Image from 'next/image'
 import SideBar from './SideBar'
+import { useRouter } from 'next/router'
 const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const router = useRouter()
   return (
     <div className={styles.wrapper}>
       {open && <SideBar setOpen={setOpen} />}
@@ -18,7 +20,10 @@ const Navbar = () => {
         </div>
       </div>
       <div className={styles.right}>
-        <div className={styles.item}>
+        <div
+          className={styles.item}
+          onClick={() => router.push(`/admin/order`)}
+        >
           <Image
             src='https://cdn-icons-png.flaticon.com/128/15414/15414285.png'
             width='35'
@@ -26,7 +31,7 @@ const Navbar = () => {
             alt=''
           />
         </div>
-        <div className={styles.item}>
+        <div className={styles.item} onClick={() => router.push(`/admin`)}>
           <Image
             src='https://cdn-icons-png.flaticon.com/128/3665/3665909.png'
             width='35'

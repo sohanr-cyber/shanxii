@@ -64,7 +64,10 @@ const Address = () => {
           size: i.size,
           color: i.color
         })),
-        shippingAddress: { ...addressInfo, type: 'Home' },
+        shippingAddress: {
+          ...addressInfo,
+          type: 'Home',
+        },
         code: coupon?.code
       })
 

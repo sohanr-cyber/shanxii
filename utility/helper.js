@@ -155,6 +155,17 @@ function orderToGraph (inputData) {
   return result
 }
 
+
+const getTotalProfit = arr => {
+  let total = 0
+  arr.forEach(i => {
+    total += i.revenue
+  })
+  return total.toFixed(0)
+}
+
+
+
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -166,5 +177,6 @@ export {
   generateUniqueID,
   generateVerificationCode,
   chunkArray,
-  orderToGraph
+  orderToGraph,
+  getTotalProfit
 }

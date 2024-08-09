@@ -15,10 +15,10 @@ import Navbar from '@/components/Admin/Navbar'
 import axios from 'axios'
 import BASE_URL from '@/config'
 
-const index = ({ orders, products, orderGraph, total }) => {
+const index = ({ orders, products, orderGraph, total, profit }) => {
   return (
     <div className={styles.wrapper}>
-      <Cards total={total} />
+      <Cards total={total} profit={profit} />
       <Orders
         title={'Recently Created Orders'}
         dashboard={true}
@@ -30,13 +30,13 @@ const index = ({ orders, products, orderGraph, total }) => {
         products={products}
       />
       <div className={styles.flex}>
-        <LineChart title={'Recent Orders'} orderGraph={orderGraph} />
-        <BarChart title={'Revinue'} />
+        <LineChart title={'Orders By Month'} orderGraph={orderGraph} />
+        <BarChart title={'Revenue'} profit={profit} />
       </div>{' '}
-      <div className={styles.flex} style={{ margin: '15px 0;' }}>
+      {/* <div className={styles.flex} style={{ margin: '15px 0;' }}>
         <BarChart title={'Revinue'} />
         <Graph title={'Recent Orders'} orderGraph={orderGraph} />
-      </div>
+      </div> */}
       {/* <Reviews /> */}
     </div>
   )
@@ -63,12 +63,17 @@ export async function getStaticProps () {
       `${BASE_URL}/api/summary/order-total`
     )
 
+    const { data: profit } = await axios.get(
+      `${BASE_URL}/api/summary/revenue-graph`
+    )
+
     return {
       props: {
         products,
         orders,
         total,
-        orderGraph
+        orderGraph,
+        profit
       },
       revalidate: 10
     }

@@ -52,7 +52,7 @@ const Upload = ({ handle }) => {
   return (
     <div
       className={styles.container}
-      style={{ width: '100%', background: 'lightgrey', borderRadius: '5px' }}
+      // style={{ width: '100%', background: 'lightgrey', borderRadius: '5px' }}
     >
       {uploading && <Loading />}
 

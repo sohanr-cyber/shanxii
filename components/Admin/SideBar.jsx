@@ -288,7 +288,10 @@ const SideBar = ({ setOpen }) => {
             </div>
           </div>
         )}
-        <div className={styles.item}>
+        <div
+          className={styles.item}
+          onClick={() => router.push('/admin/address')}
+        >
           <div className={styles.flex}>
             {' '}
             <div className={styles.icon}>
