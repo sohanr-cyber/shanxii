@@ -14,6 +14,7 @@ import {
 import { addressSeoData, delivery_positions } from '@/utility/const'
 import { NextSeo } from 'next-seo'
 import { showSnackBar } from '@/redux/notistackSlice'
+import { handleAddPaymentInfo } from '@/redux/pixelSlice'
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
   const buyNowItems = useSelector(state => state.cart.buyNow)
@@ -66,6 +67,7 @@ const Address = () => {
     }
 
     dispatch(setNewAddress(address))
+    dispatch(handleAddPaymentInfo({ address, cartItems }))
     router.push({
       pathname: '/checkout/review',
       query: router.query

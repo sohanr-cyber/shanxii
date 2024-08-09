@@ -8,6 +8,7 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import axios from 'axios'
 import { setCoupon } from '@/redux/cartSlice'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { handleInitiateCheckout } from '@/redux/pixelSlice'
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
@@ -38,6 +39,7 @@ const Checkout = ({ cartItems }) => {
       )
       return
     }
+    dispatch(handleInitiateCheckout(cartItems))
     router.push('/checkout/address')
   }
 

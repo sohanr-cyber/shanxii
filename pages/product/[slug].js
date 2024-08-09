@@ -13,6 +13,11 @@ import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import ProductsByCategory from '@/components/ProductsByCategory'
+import {
+  handleAddItemToCart,
+  handleInitiateCheckout,
+  handleViewProduct
+} from '@/redux/pixelSlice'
 
 export async function getStaticPaths () {
   try {
@@ -102,10 +107,11 @@ const Product = ({ product, error, relatedProducts }) => {
   const [isClient, setIsClient] = useState(false)
   const [blurDataURL, setBlurDataURL] = useState(null)
   const ReactPixel = useSelector(state => state.pixel.pixel)
+  const buyNowItems = useSelector(state => state.cart.buyNow)
+
   useEffect(() => {
     setIsClient(true)
-    // product.thumbnail && console.log(getPlaceholderImage(product.thumbnail))
-  }, [])
+  }, [product.slug])
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
       setQuantity(prevQuantity => prevQuantity + 1)
@@ -119,6 +125,8 @@ const Product = ({ product, error, relatedProducts }) => {
   }
 
   const handleAddToCart = () => {
+    dispatch(handleAddItemToCart(product))
+
     if (product.stockQuantity < 1) {
       dispatch(
         showSnackBar({
@@ -142,11 +150,6 @@ const Product = ({ product, error, relatedProducts }) => {
   }
 
   const handleBuyNow = () => {
-    // Example: Tracking a purchase event
-    ReactPixel.track('Purchase', {
-      value: 30.0,
-      currency: 'USD'
-    })
     if (product.stockQuantity < 1) {
       dispatch(
         showSnackBar({
@@ -166,6 +169,8 @@ const Product = ({ product, error, relatedProducts }) => {
         available: product.stockQuantity
       })
     )
+    dispatch(handleInitiateCheckout(buyNowItems)
+  )
     router.push('/checkout/address?buyNow=true')
   }
 

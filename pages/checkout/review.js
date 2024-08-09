@@ -17,6 +17,7 @@ import { reviewSeoData, sellerNumber } from '@/utility/const'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { handlePurchase } from '@/redux/pixelSlice'
 
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
@@ -79,7 +80,9 @@ const Address = () => {
         dispatch(finishLoading())
         return
       }
+
       dispatch(finishLoading())
+
       // console.log(data)
       dispatch(
         showSnackBar({
@@ -89,6 +92,7 @@ const Address = () => {
           }
         })
       )
+      dispatch(handlePurchase(data))
       router.push(`/order/${data._id}`)
       dispatch(clearCart())
       dispatch(clearCoupon())

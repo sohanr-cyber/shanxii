@@ -39,6 +39,7 @@ const Layout = ({ children }) => {
           autoConfig: false, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
           debug: false // enable logs
         }
+        console.log({ PIXEL_ID })
         ReactPixel.init(PIXEL_ID, {}, options)
         dispatch(setPixel(ReactPixel))
         ReactPixel.pageView()

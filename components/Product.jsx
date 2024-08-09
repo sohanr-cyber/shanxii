@@ -5,14 +5,21 @@ import Stack from '@mui/material/Stack'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { getPrice } from '@/utility/helper'
+import { useDispatch } from 'react-redux'
+import { handleViewProduct } from '@/redux/pixelSlice'
 
 const Product = ({ item, redirect, rowDirection }) => {
+  const dispatch = useDispatch()
   const router = useRouter()
+  const handleClick = () => {
+    redirect && router.push(`/product/${item.slug}`)
+    dispatch(handleViewProduct(item))
+  }
 
   return (
     <div
       className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
-      onClick={() => redirect && router.push(`/product/${item.slug}`)}
+      onClick={() => handleClick()}
     >
       <div className={styles.pic}>
         {item.blurData ? (
