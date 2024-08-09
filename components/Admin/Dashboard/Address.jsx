@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from '../../../styles/Admin/orders.module.css'
+import styles from '../../../styles/Admin/Orders.module.css'
 import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
