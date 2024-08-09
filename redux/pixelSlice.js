@@ -81,6 +81,7 @@ export const pixelSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
+
 export const {
   setPixel,
   handleViewProduct,
