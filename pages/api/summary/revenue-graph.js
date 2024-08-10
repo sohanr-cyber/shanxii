@@ -10,6 +10,7 @@ db.connect()
 
 handler.get(async (req, res) => {
     try {
+      await db.connect()
       // Aggregate orders by month and calculate revenue for each month
       const monthlyRevenueData = await Order.aggregate([
         {
@@ -30,6 +31,8 @@ handler.get(async (req, res) => {
         month: _id,
         revenue
       }));
+
+      await db.disconnect()
   
       res.status(200).json(graphicalData);
     } catch (error) {
