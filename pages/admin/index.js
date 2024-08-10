@@ -63,9 +63,10 @@ export async function getStaticProps () {
       `${BASE_URL}/api/summary/order-total`
     )
 
-    const { data: profit } = await axios.get(
-      `${BASE_URL}/api/summary/profit-graph`
-    )
+    // const { data: profit } = await axios.get(
+    //   `${BASE_URL}/api/summary/profit-graph`
+    // )
+    const profit = {}
 
     return {
       props: {

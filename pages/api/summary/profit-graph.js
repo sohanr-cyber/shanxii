@@ -30,6 +30,8 @@ handler.get(async (req, res) => {
       revenue
     }))
 
+    console.log({graphicalData})
+
     await db.disconnect()
 
     return res.status(200).json(graphicalData)

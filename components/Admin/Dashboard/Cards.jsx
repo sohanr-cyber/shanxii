@@ -29,10 +29,10 @@ const data = [
 const Cards = ({ total, profit }) => {
   return (
     <div className={styles.wrapper}>
-      <Card
+      {/* <Card
         item={{ ...data[0], number: `${getTotalProfit(profit)} TK.` }}
         index={0}
-      />
+      /> */}
 
       <Card item={{ ...data[1], number: total.totalOrders }} index={1} />
       <Card item={{ ...data[2], number: total.totalCompleted }} index={2} />
