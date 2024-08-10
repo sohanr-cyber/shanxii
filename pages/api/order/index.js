@@ -123,7 +123,7 @@ handler.get(async (req, res) => {
     const orders = await Order.find(orderFilter)
       .populate({
         path: 'shippingAddress',
-        select: 'fullName phone' // Select the fields you want to query on
+        select: 'fullName phone email' // Select the fields you want to query on
       })
       .sort({ createdAt: -1 })
       .skip(skip)

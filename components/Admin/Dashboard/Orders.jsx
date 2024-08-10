@@ -7,12 +7,14 @@ import { finishLoading, startLoading } from '@/redux/stateSlice'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
+import MailBox from '@/components/Utility/MailBox'
 
 const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState(router.query.query)
   const dispatch = useDispatch()
+  const [recipents, setRecipents] = useState([orders[0].shippingAddress])
 
   useEffect(() => {
     setFilteredOrders(orders)
@@ -47,6 +49,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   }
   return (
     <>
+      {recipents && <MailBox recipents={recipents} close={setRecipents} />}
       {!dashboard && <h2>{title}</h2>}
 
       <div className={styles.wrapper}>
@@ -121,6 +124,10 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                     <span onClick={() => router.push(`/order/${order._id}`)}>
                       {' '}
                       View
+                    </span>
+
+                    <span onClick={() => setRecipents([order.shippingAddress])}>
+                      Mail
                     </span>
                   </td>
                   {/* Add more table cells as needed */}
