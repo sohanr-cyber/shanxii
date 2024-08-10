@@ -54,19 +54,15 @@ export async function getStaticProps () {
     const {
       data: { orders }
     } = await axios.get(`${BASE_URL}/api/order`)
-
     const { data: orderGraph } = await axios.get(
       `${BASE_URL}/api/summary/order-graph`
     )
-
     const { data: total } = await axios.get(
       `${BASE_URL}/api/summary/order-total`
     )
-
-    // const { data: profit } = await axios.get(
-    //   `${BASE_URL}/api/summary/profit-graph`
-    // )
-    const profit = {}
+    const { data: profit } = await axios.get(
+      `${BASE_URL}/api/summary/profit-graph`
+    )
 
     return {
       props: {
@@ -79,13 +75,14 @@ export async function getStaticProps () {
       revalidate: 10
     }
   } catch (error) {
-    console.error('Error fetching products:', error)
+    console.error('Error fetching data:', error)
     return {
       props: {
         products: [],
         orders: [],
         total: {},
-        orderGraph: {}
+        orderGraph: {},
+        profit: {} // Include profit in the error case
       }
     }
   }
