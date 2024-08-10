@@ -6,9 +6,10 @@ import nc from 'next-connect'
 
 const handler = nc()
 
-db.connect()
 handler.get(async (req, res) => {
   try {
+    await db.connect()
+
     // Calculate total revenue by summing the 'total' field from all orders
     const totalRevenue = await Order.aggregate([
       {
@@ -26,7 +27,7 @@ handler.get(async (req, res) => {
 
     // Extract total revenue from the result
     const revenue = totalRevenue.length > 0 ? totalRevenue[0].total : 0
-
+    await db.disconnect()
     res.status(200).json({ revenue })
   } catch (error) {
     console.error(error)

@@ -64,7 +64,7 @@ export async function getStaticProps () {
     )
 
     const { data: profit } = await axios.get(
-      `${BASE_URL}/api/summary/revenue-graph`
+      `${BASE_URL}/api/summary/profit-graph`
     )
 
     return {
