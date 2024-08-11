@@ -43,8 +43,6 @@ const Navbar = () => {
     setIsClient(true)
   }, [])
 
-
-
   return (
     <div className={styles.wrapper}>
       {openSearch && (
@@ -67,8 +65,11 @@ const Navbar = () => {
           <SearchBox />
         </div>
         <div className={styles.right}>
-          <div className={`${styles.item} ${styles.search__icon}`}>
-            <SearchIcon onClick={() => setOpenSearch(true)} />
+          <div
+            className={`${styles.item} ${styles.search__icon}`}
+            onClick={() => setOpenSearch(true)}
+          >
+            <SearchIcon />
           </div>
           <div className={styles.item}>
             <ShoppingCartIcon onClick={() => redirectToCart()} />
@@ -86,8 +87,11 @@ const Navbar = () => {
               <AccountCircleIcon />
             </div>
           )}
-          <div className={`${styles.item} ${styles.menu}`}>
-            <MenuIcon onClick={() => setOpen(prev => !prev)} />
+          <div
+            className={`${styles.item} ${styles.menu}`}
+            onClick={() => setOpen(prev => !prev)}
+          >
+            <MenuIcon />
           </div>
         </div>
       </div>

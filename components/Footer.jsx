@@ -25,18 +25,28 @@ const Footer = () => {
         <div className={styles.mid}>
           <h2 className={styles.heading}>Links</h2>
           <div className={styles.flex}>
-            <div className={styles.link}>Home</div>{' '}
             <div className={styles.link} onClick={() => router.push('/')}>
+              Home
+            </div>{' '}
+            <div className={styles.link} onClick={() => router.push('/shop')}>
               Shop
             </div>
           </div>
           {categories &&
             chunkArray(categories, 2)?.map((i, index) => (
               <div className={styles.flex} key={index}>
-                <div className={styles.link} onClick={() => router.push('/')}>
+                <div
+                  className={styles.link}
+                  onClick={() => router.push(`/shop?categories=${i[0]._id}`)}
+                >
                   {i[0]?.name}
                 </div>
-                <div className={styles.link}>{i[1]?.name}</div>
+                <div
+                  className={styles.link}
+                  onClick={() => router.push(`/shop?categories=${i[1]._id}`)}
+                >
+                  {i[1]?.name}
+                </div>
               </div>
             ))}
 

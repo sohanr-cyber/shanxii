@@ -73,6 +73,18 @@ const Categories = () => {
           )}
         </div>
         <div className={styles.items}>
+          {categories && (
+            <div
+              className={styles.item}
+              style={{
+                minWidth: `${'Shop'.length * 8}px`
+                // background: 'red'
+              }}
+              onClick={() => router.push(`/shop`)}
+            >
+              Shop
+            </div>
+          )}
           {categories
             ? categories.map((item, index) => (
                 <div

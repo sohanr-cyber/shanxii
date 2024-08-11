@@ -5,20 +5,20 @@ import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { useDispatch } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
 
-const MailBox = ({ recipents, close }) => {
+const MailBox = ({ recipent, close }) => {
   const [mail, setMail] = useState({
     subject: '',
-    message: '',
-    email: recipents[0]?.email,
-    name: recipents[0]?.name
+    content: '',
+    email: recipent.email,
+    name: recipent.fullName
   })
   const dispatch = useDispatch()
 
   const sendMail = async () => {
-    if (!mail.message || !mail.subject) {
+    if (!mail.content || !mail.subject || !mail.email) {
       dispatch(
         showSnackBar({
-          message: 'Subject & Message Body is required !',
+          message: 'Subject , Reciever Email &  Message Body are required !',
           option: {
             variant: 'error'
           }
@@ -29,7 +29,7 @@ const MailBox = ({ recipents, close }) => {
     try {
       dispatch(startLoading())
 
-      const { data } = await axios.post('/api/user/mail', {
+      const { data } = await axios.post('/api/utils/mail', {
         ...mail
       })
 
@@ -43,7 +43,7 @@ const MailBox = ({ recipents, close }) => {
       }
       dispatch(finishLoading())
     } catch (error) {
-      dispatch(startLoading())
+      dispatch(finishLoading())
       dispatch(
         showSnackBar({
           message: 'Something Went Wrong !',
@@ -67,9 +67,7 @@ const MailBox = ({ recipents, close }) => {
         </div>{' '}
         <div className={styles.recipents}>
           <b> To :</b>
-          {[...recipents].map((item, index) => (
-            <span key={index}>{item.email}</span>
-          ))}
+          <span>{recipent.email}</span>
         </div>
         <div className={styles.subject}>
           <label>
@@ -83,8 +81,8 @@ const MailBox = ({ recipents, close }) => {
         </div>
         <div className={styles.textArea}>
           <textarea
-            value={mail.message}
-            onChange={e => setMail({ ...mail, message: e.target.value })}
+            value={mail.content}
+            onChange={e => setMail({ ...mail, content: e.target.value })}
           ></textarea>
         </div>
         <div className={styles.button} onClick={() => sendMail()}>

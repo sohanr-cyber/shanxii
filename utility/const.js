@@ -1,5 +1,5 @@
 import BASE_URL from '@/config'
-const companyName = 'Quince Cloth'
+const companyName = 'Quince'
 
 const Inside_Dhaka = 70
 const Outside_Dhaka = 145
@@ -28,10 +28,7 @@ const statusMessages = {
 
 const sellerNumber = '01744329811'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
-const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-const themeTransparent = 'rgb(8, 78, 67,0.1)'
-const themeC = 'rgb(8, 78, 67)'
-const buttonC = 'white'
+
 const colors = [
   { name: 'Black', code: '#000000' },
   { name: 'White', code: '#FFFFFF' },
@@ -221,6 +218,23 @@ const loginSeoData = {
   twitter: seoData.twitter
 }
 
+// const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+// const themeTransparent = 'rgb(8, 78, 67,0.1)'
+// const themeC = 'rgb(8, 78, 67)'
+// const buttonC = 'white'
+// const bg = 'aliceblue'
+// const outerBg = 'lightgrey'
+
+const themeBg =
+  'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
+const themeTransparent = 'rgba(7, 121, 214,0.1)'
+const themeC = 'rgba(7, 121, 214, 255)'
+const buttonC = 'white'
+const buttonBg =
+  'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
+const bg = 'white'
+const outerBg = ' rgb(232, 241, 247)'
+
 export {
   delivery_charge,
   delivery_positions,
@@ -229,8 +243,11 @@ export {
   themeTransparent,
   themeBg,
   themeC,
+  outerBg,
+  bg,
   colors,
   buttonC,
+  buttonBg,
   seoData,
   orderCartSeoData,
   orderDetailSeoData,

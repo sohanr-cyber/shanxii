@@ -42,14 +42,22 @@ handler.put(async (req, res) => {
 
   // send mail
   const mail = new Mail()
+
+  // await mail.sendMail({
+  //   subject: 'Your Order Have Been Cancelled',
+  //   for: 'orderCanceled',
+  //   name: 'sohan',
+  //   to: 'sohanur01744@gmail.com',
+  //   orderId: '532532'
+  // })
+
   await mail.sendMail({
-    subject: 'Your Order Have Been Cancelled',
-    for: 'orderCanceled',
+    subject: `Order Confirmation - #532532`,
+    for: 'orderConfirmed',
     name: 'sohan',
     to: 'sohanur01744@gmail.com',
     orderId: '532532'
   })
-  console.log('mail sent')
 
   try {
     const order = await Order.findById(orderId)

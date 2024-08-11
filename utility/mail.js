@@ -1,3 +1,6 @@
+import BASE_URL from '@/config'
+import { bg, buttonBg, buttonC, companyName, outerBg, themeC } from './const'
+
 const navbar = `  <div
 style="
   background-color: rgb(8, 78, 67,0.1);
@@ -5,7 +8,7 @@ style="
 
 "
 >
-<div style ="font-weight: bold;font-size: 200%;color:rgb(8, 78, 67);">Quince</div>
+<div style ="font-weight: bold;font-size: 200%;color:${themeC};">Quince</div>
 </div>`
 
 const footer = `<div style ="padding:0 10px">
@@ -41,7 +44,9 @@ const orderCancelMessage = data => {
   <p>We are sorry that item from order <b>${data.orderId} </b>has been cancelled .</p>
   <p>If you have prepaid for the order , the amount will be refunded back to you.</p>
   <p>
-    <button style = "padding:10px 25px; background:rgb(7, 93, 54); border:none;color:white;font-weight: bold;border-radius: 5px;">View My Order</button>
+    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 5px;">
+    <a href="${BASE_URL}/order/${data.orderId}" style="text-decoration:none; color:${buttonC}">View My Order</a>
+    </button>
   </p>`
 }
 
@@ -52,7 +57,7 @@ const products = data => {
                 i,
                 index
               ) => `  <div style ="display:flex;align-items:flex-start;border:1px solid rgb(200, 200, 200);background:white;border-radius: 5px;">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCnTzKMUC_kbG03XZZ4IeuDS8WBJJL1ESOxw&s" width="150px" height="130px" alt="Product" style="object-fit: cover;aspect-ratio: 1/1;"/>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCnTzKMUC_kbG03XZZ4IeuDS8WBJJL1ESOxw&s" width="140px" height="100px" alt="Product" style="object-fit: cover;aspect-ratio: 1/1;"/>
             <div style ="margin-left:10px">
              <p>Almond & Avocado Products .. - 17 ml</p>
              <p>Tk 183 X 1</p>
@@ -77,29 +82,53 @@ const orderCanceled = data => {
 </div> `
 }
 
+const orderConfirmationMessage = data => {
+  return `
+  <p>Hi , ${data.name}</p>
+  <p>Thank you for shopping with us at <b>${companyName} </b></p>
+  <p>We are excited to confirm your order.</p>
+  <p>
+    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 5px;">
+    <a href="${BASE_URL}/order/${data.orderId}" style="text-decoration:none; color:${buttonC}">View My Order</a>
+    </button>
+  </p>`
+}
+const orderConfirmed = data => {
+  return `
+ <div style = "padding:10px"> ${orderConfirmationMessage(data)}
+ ${orderDetails(data)}
+</div> `
+}
+
+const sendMessage = data => {
+  return `<div style='padding:10px'> ${data.content} </div>`
+}
+
 const template = data => {
   return `
     <div
     style="
       min-height: 100vh;
-      min-width:100vw;
-      background-color: rgb(255, 6, 255);
       display: flex;
       align-items: flex-start;
       justify-content: center;
       font-family: 'Ubuntu', sans-serif;
+      background:${outerBg};
+
     "
   >
- <table style = "width:100%;height:100%">
- <tr>
+ <table style = "width:100%;height:100%;">
+ <tr >
  <td align="center">   <div
  style="
-   background-color:aliceblue;
    max-width: 570px;
    min-width: 320px;
    width: 100%;
    min-height: 100vh;
    text-align:left;
+   background:${bg};
+   padding-bottom:15px;
+
  "
 >
 ${navbar}
@@ -110,6 +139,10 @@ ${
     ? resetPassword(data)
     : data.for == 'orderCanceled'
     ? orderCanceled(data)
+    : data.for == 'orderConfirmed'
+    ? orderConfirmed(data)
+    : data.for == 'message'
+    ? sendMessage(data)
     : resetPassword(data)
 }
 ${footer}

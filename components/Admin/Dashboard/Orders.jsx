@@ -8,13 +8,14 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
 import MailBox from '@/components/Utility/MailBox'
+import validator from 'email-validator'
 
 const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState(router.query.query)
   const dispatch = useDispatch()
-  const [recipents, setRecipents] = useState([orders[0].shippingAddress])
+  const [recipent, setRecipent] = useState()
 
   useEffect(() => {
     setFilteredOrders(orders)
@@ -49,7 +50,9 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   }
   return (
     <>
-      {recipents && <MailBox recipents={recipents} close={setRecipents} />}
+      {recipent && validator.validate(recipent.email) && (
+        <MailBox recipent={recipent} close={setRecipent} />
+      )}
       {!dashboard && <h2>{title}</h2>}
 
       <div className={styles.wrapper}>
@@ -104,7 +107,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                 <th>Total Amount</th>
                 <th>Order Status</th>
                 <th>Payment Status</th>
-                <th>Action</th>
+                <th style={{ minWidth: '180px' }}>Action</th>
                 {/* Add more table headers as needed */}
               </tr>
             </thead>
@@ -126,7 +129,14 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       View
                     </span>
 
-                    <span onClick={() => setRecipents([order.shippingAddress])}>
+                    <span
+                      onClick={() => setRecipent(order.shippingAddress)}
+                      style={
+                        validator.validate(order.shippingAddress.email)
+                          ? {}
+                          : { background: 'lightgrey' }
+                      }
+                    >
                       Mail
                     </span>
                   </td>
