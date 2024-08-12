@@ -11,7 +11,6 @@ import {
   support_mail
 } from './const'
 
-
 const navbar = `  <div
 style="
   background-color: rgb(8, 78, 67,0.1);
@@ -73,7 +72,7 @@ const products = data => {
 }
 
 const orderDetails = data => {
-  return `<h3 tyle ="color:${themeC}">Order Items</h3>
+  return `<h3 style ="color:${themeC}">Order Items</h3>
 <hr style="border-top: 1px solid ${themeC};" />  ${products(data)}
  
   `
@@ -113,7 +112,7 @@ const orderTotal = data => {
 }
 
 const deliveryDetails = data => {
-  return `          <h3>Delivery Details</h3>
+  return `          <h3 style ="color:${themeC}">Delivery Details</h3>
 <hr style="border-top: 1px solid ${themeC};" /><table style="width: 100%; margin: 10px 0;">
   <tr>
     <td><b>Name</b></td>

@@ -27,6 +27,7 @@ const Address = () => {
   const addressInfo = useSelector(state => state.address.addressInfo)
   const [address, setAddress] = useState({})
   const dispatch = useDispatch()
+  
   useEffect(() => {
     setIsClient(true)
     setAddress(addressInfo)
@@ -34,6 +35,7 @@ const Address = () => {
       router.push('/')
     }
   }, [])
+
   const coupon = useSelector(state => state.cart.coupon)
   const discount = coupon
     ? coupon?.discountType == 'percentage'

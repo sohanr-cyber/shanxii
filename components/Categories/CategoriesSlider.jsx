@@ -20,6 +20,11 @@ const CategoriesSlider = ({ setOpen }) => {
         </div>
       </div>
       <div className={styles.categories}>
+        {categories && (
+          <div className={styles.category} >
+            <div onClick={() => router.push(`/shop`)}>Shop</div>
+          </div>
+        )}
         {categories
           ? categories.map((i, index) => (
               <>
