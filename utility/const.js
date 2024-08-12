@@ -25,8 +25,8 @@ const statusMessages = {
   failed:
     'There was an issue processing your order. Please contact customer support for assistance.'
 }
-
-const sellerNumber = '01744329811'
+const support_number = '01744329811'
+const support_mail = 'contactus@gmail.com'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
 
 const colors = [
@@ -233,13 +233,13 @@ const buttonC = 'white'
 const buttonBg =
   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
 const bg = 'white'
-const outerBg = ' rgb(232, 241, 247)'
+const outerBg = 'rgb(232, 241, 247)'
+const borderColor = 'rgba(197, 223, 244, 255)'
 
 export {
   delivery_charge,
   delivery_positions,
   statusMessages,
-  sellerNumber,
   themeTransparent,
   themeBg,
   themeC,
@@ -248,6 +248,7 @@ export {
   colors,
   buttonC,
   buttonBg,
+  borderColor,
   seoData,
   orderCartSeoData,
   orderDetailSeoData,
@@ -255,5 +256,7 @@ export {
   addressSeoData,
   registerSeoData,
   loginSeoData,
-  companyName
+  companyName,
+  support_mail,
+  support_number
 }

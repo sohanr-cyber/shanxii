@@ -111,7 +111,9 @@ const Product = ({ product, error, relatedProducts }) => {
 
   useEffect(() => {
     setIsClient(true)
+    setThumbnail(product.thumbnail)
   }, [product.slug])
+  
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
       setQuantity(prevQuantity => prevQuantity + 1)
@@ -169,8 +171,7 @@ const Product = ({ product, error, relatedProducts }) => {
         available: product.stockQuantity
       })
     )
-    dispatch(handleInitiateCheckout(buyNowItems)
-  )
+    dispatch(handleInitiateCheckout(buyNowItems))
     router.push('/checkout/address?buyNow=true')
   }
 

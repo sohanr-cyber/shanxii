@@ -9,7 +9,7 @@ const BottomFooter = () => {
     <div className={styles.wrapper}>
       <div className={styles.c}>
         <CopyrightIcon />
-        2022 All Rights Reserved
+        2024 All Rights Reserved
       </div>
       <div style={{ color: '' }}>
         Design, Developed and Technical Supported by{' '}
@@ -21,9 +21,9 @@ const BottomFooter = () => {
             borderBottom: '1px solid blue',
             paddingBottom: '3px'
           }}
-          onClick={() => router.push('https://quince-tech.vercel.app/')}
+          onClick={() => router.push('https://quince-Software.vercel.app/')}
         >
-          Quince.Tech
+          Quince.Software
         </span>
       </div>
     </div>

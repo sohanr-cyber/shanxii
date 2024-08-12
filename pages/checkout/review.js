@@ -13,7 +13,7 @@ import {
   getDeliveryCharge,
   getPrice
 } from '@/utility/helper'
-import { reviewSeoData, sellerNumber } from '@/utility/const'
+import { reviewSeoData, support_number } from '@/utility/const'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
@@ -66,7 +66,7 @@ const Address = () => {
         })),
         shippingAddress: {
           ...addressInfo,
-          type: 'Home',
+          type: 'Home'
         },
         code: coupon?.code
       })
@@ -167,8 +167,9 @@ const Address = () => {
           </button>
           <p>
             After placing your order, we will be contacting you shortly to
-            confirm it. Please anticipate a call from <b>us({sellerNumber})</b>{' '}
-            at <b>{address.phone}</b> to complete your purchase.
+            confirm it. Please anticipate a call from{' '}
+            <b>us({support_number})</b> at <b>{address.phone}</b> to complete
+            your purchase.
           </p>
         </div>
         <div className={styles.right}>

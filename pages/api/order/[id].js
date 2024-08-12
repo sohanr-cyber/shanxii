@@ -17,7 +17,7 @@ handler.get(async (req, res) => {
     const order = await Order.findById(id)
       .populate({
         path: 'items.product',
-        select: 'name slug  price discount color thumbnail '
+        select: 'name slug  price discount priceWithDiscount color thumbnail '
       })
       .populate({
         path: 'shippingAddress',
@@ -43,24 +43,17 @@ handler.put(async (req, res) => {
   // send mail
   const mail = new Mail()
 
-  // await mail.sendMail({
-  //   subject: 'Your Order Have Been Cancelled',
-  //   for: 'orderCanceled',
-  //   name: 'sohan',
-  //   to: 'sohanur01744@gmail.com',
-  //   orderId: '532532'
-  // })
-
-  await mail.sendMail({
-    subject: `Order Confirmation - #532532`,
-    for: 'orderConfirmed',
-    name: 'sohan',
-    to: 'sohanur01744@gmail.com',
-    orderId: '532532'
-  })
-
   try {
     const order = await Order.findById(orderId)
+      .populate({
+        path: 'items.product',
+        select: 'name slug  price priceWithDiscount discount color thumbnail '
+      })
+      .populate({
+        path: 'shippingAddress',
+        select: 'address email fullName phone'
+      })
+
     if (!order) {
       return res.status(404).json({ message: 'Order not found' })
     }
@@ -136,6 +129,59 @@ handler.put(async (req, res) => {
     }
 
     await order.save()
+
+    // send mail based on status
+    if (order.shippingAddress.email) {
+      let leanOrder = order.toObject()
+
+      if (newStatus == 'Confirmed') {
+        await mail.sendMail({
+          subject: 'Your Order Have Been Confirmed',
+          for: 'orderConfirmed',
+          ...leanOrder.shippingAddress,
+          name: order.shippingAddress.fullName,
+          to: order.shippingAddress.email,
+          orderId: order._id,
+          ...leanOrder
+        })
+      }
+
+      if (newStatus == 'Canceled') {
+        await mail.sendMail({
+          subject: 'Your Order Have Been Cancelled',
+          for: `order${newStatus}`,
+          ...leanOrder.shippingAddress,
+          name: order.shippingAddress.fullName,
+          to: order.shippingAddress.email,
+          orderId: order._id,
+          ...leanOrder
+        })
+      }
+
+      if (newStatus == 'Failed') {
+        await mail.sendMail({
+          subject: 'Your Order Have Been Failed',
+          for: `order${newStatus}`,
+          ...leanOrder.shippingAddress,
+          name: order.shippingAddress.fullName,
+          to: order.shippingAddress.email,
+          orderId: order._id,
+          ...leanOrder
+        })
+      }
+
+      if (newStatus == 'Delivered') {
+        await mail.sendMail({
+          subject: 'Your Order Have Been Delivered',
+          for: 'orderDelivered',
+          ...leanOrder.shippingAddress,
+          name: order.shippingAddress.fullName,
+          to: order.shippingAddress.email,
+          orderId: order._id,
+          ...leanOrder
+        })
+      }
+    }
 
     res.json({
       message: `Order status updated from ${currentStatus} to ${newStatus}`

@@ -24,7 +24,15 @@ const Categories = () => {
             </span>
           </div>
           {open && (
-            <div className={styles.category__list}>
+            <div className={styles.category__list} style={{ color: 'black' }}>
+              {categories && (
+                <div
+                  className={styles.category__item}
+                  onClick={() => router.push('/shop')}
+                >
+                  Shop
+                </div>
+              )}{' '}
               {categories
                 ? categories.map((item, index) => (
                     <>
@@ -85,6 +93,7 @@ const Categories = () => {
               Shop
             </div>
           )}
+
           {categories
             ? categories.map((item, index) => (
                 <div

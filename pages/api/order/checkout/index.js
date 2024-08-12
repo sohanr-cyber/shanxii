@@ -12,8 +12,10 @@ import {
 } from '@/utility/helper'
 import Address from '@/database/model/Address'
 import Coupon from '@/database/model/Coupon'
+import Mail from '@/services/mail-service'
 const handler = nc()
 const Delivery = 50
+const mail = new Mail()
 
 handler.post(async (req, res) => {
   try {
@@ -47,21 +49,28 @@ handler.post(async (req, res) => {
         const price = product.price
         const discount = product.discount
         return {
-          product: productId,
-          quantity,
-          price,
-          discount,
-          size,
-          color
+          order: { product: productId, quantity, price, discount, size, color },
+          item: {
+            product,
+            quantity,
+            price,
+            discount,
+            size,
+            color
+          }
         }
       })
     )
 
-    const subtotal = populatedItems.reduce((acc, item) => {
-      // Calculate total price for each item (considering discount)
-      const totalPrice = item.price * item.quantity * (1 - item.discount / 100)
-      return acc + totalPrice
-    }, 0)
+    console.log(populatedItems.map(i => i.item))
+    const subtotal = populatedItems
+      .map(i => i.order)
+      .reduce((acc, item) => {
+        // Calculate total price for each item (considering discount)
+        const totalPrice =
+          item.price * item.quantity * (1 - item.discount / 100)
+        return acc + totalPrice
+      }, 0)
 
     let total = subtotal + getDeliveryCharge(address.position)
 
@@ -90,7 +99,7 @@ handler.post(async (req, res) => {
     // Create the new order with the populated item details
     const newOrder = await Order.create({
       user,
-      items: populatedItems,
+      items: populatedItems.map(i => i.order),
       shippingAddress: address._id,
       billingAddress: address._id,
       status,
@@ -104,10 +113,31 @@ handler.post(async (req, res) => {
       trackingNumber: generateTrackingNumber()
     })
 
-    console.log(newOrder)
-    return res.status(201).json(newOrder)
+    res.status(200).json(newOrder)
+
+    newOrder &&
+      address.email &&
+      (await mail.sendMail({
+        subject: 'Your Order Is Being Processed',
+        for: 'orderProcessing',
+        to: address.email,
+        name: address.fullName,
+        phone: address.phone,
+        email: address.email,
+        address: address.address,
+        shippingCost: newOrder.shippingCost,
+        paymentMethod: newOrder.paymentMethod,
+        paymentStatus: newOrder.paymentStatus,
+
+        trackingNumber: newOrder.trackingNumber,
+        total: newOrder.total,
+        subtotal: newOrder.subtotal,
+        discount: newOrder.discount,
+        items: populatedItems.map(i => i.item),
+        orderId: newOrder._id
+      }))
   } catch (error) {
-    console.error(error)
+    console.log(error)
     res.status(500).json({ message: 'Server Error' })
   }
 })
