@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Header/Header3.module.css'
 import Image from 'next/image'
 import { themeBg } from '@/utility/const'
+import { useRouter } from 'next/router'
 
 // const contents = [
 //   {
@@ -24,6 +25,7 @@ import { themeBg } from '@/utility/const'
 
 const Header3 = ({ contents }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const router = useRouter()
 
   useEffect(() => {
     const interval = setInterval(() => {

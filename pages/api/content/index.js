@@ -28,7 +28,10 @@ handler.get(async (req, res) => {
     await db.connect()
     // Get the page number from the query parameters, default to 1
     const page = parseInt(req.query.page) || 1
-
+    let query = {}
+    if (req.query.show) {
+      query['isShown'] = true
+    }
     // Calculate the skip value based on the page number and page size
     const skip = (page - 1) * (req.query.pageSize || PAGE_SIZE)
     // Retrieve total count of products
@@ -38,7 +41,7 @@ handler.get(async (req, res) => {
     const totalPages = Math.ceil(totalCount / PAGE_SIZE)
 
     // Retrieve products with pagination and sorting
-    const contents = await Content.find()
+    const contents = await Content.find(query)
       .sort({ updatedAt: -1 })
       .skip(skip)
       .limit(PAGE_SIZE)

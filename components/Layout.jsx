@@ -12,6 +12,7 @@ import { setCategories } from '@/redux/productSlice'
 import axios from 'axios'
 import { setPixel } from '@/redux/pixelSlice'
 import { PIXEL_ID } from '@/config'
+import ChatButton from './Chat/ChatButton'
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
   const router = useRouter()
@@ -62,6 +63,7 @@ const Layout = ({ children }) => {
       {children}
       <Footer />
       <BottomFooter />
+      {!containsAdmin(router.asPath) && <ChatButton />}
       {loading && <Loading />}
     </div>
   )

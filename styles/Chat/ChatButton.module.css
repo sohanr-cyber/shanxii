@@ -1,0 +1,12 @@
+.wrapper {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 4;
+
+}
+
+.wrapper img {
+    cursor: pointer;
+    
+}

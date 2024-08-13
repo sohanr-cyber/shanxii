@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import TextEditor from '@/components/Utility/TextEditor'
 import { showSnackBar } from '@/redux/notistackSlice'
 import Colors from '@/components/Shop/Colors'
+import ControlPointDuplicateOutlinedIcon from '@mui/icons-material/ControlPointDuplicateOutlined';
 
 const Create = ({ product: data }) => {
   const [images, setImages] = useState([])

@@ -28,6 +28,10 @@ const statusMessages = {
 const support_number = '01744329811'
 const support_mail = 'contactus@gmail.com'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
+const feacebook_page = 'https://www.facebook.com/'
+const messenger = 'https://www.facebook.com/'
+const whatsapp = 'https://web.whatsapp.com/'
+const instagram = 'https://www.instagram.com/'
 
 const colors = [
   { name: 'Black', code: '#000000' },
@@ -237,16 +241,16 @@ const outerBg = 'rgb(232, 241, 247)'
 const borderColor = 'rgba(197, 223, 244, 255)'
 
 const orderStatusColors = {
-  pending: 'rgb(255, 165, 0)',      // Orange
-  processing: 'rgb(0, 0, 255)',     // Blue
-  confirmed: 'rgb(0, 128, 0)',      // Green
-  packing: 'rgb(255, 215, 0)',      // Gold
-  packed: 'rgb(255, 140, 0)',       // Dark Orange
-  delivering: 'rgb(30, 144, 255)',  // Dodger Blue
-  delivered: 'rgb(50, 205, 50)',    // Lime Green
-  canceled: 'rgb(255, 0, 0)',       // Red
-  failed: 'rgb(139, 0, 0)'          // Dark Red
-};
+  pending: 'rgb(255, 165, 0)', // Orange
+  processing: 'rgb(0, 0, 255)', // Blue
+  confirmed: 'rgb(0, 128, 0)', // Green
+  packing: 'rgb(255, 215, 0)', // Gold
+  packed: 'rgb(255, 140, 0)', // Dark Orange
+  delivering: 'rgb(30, 144, 255)', // Dodger Blue
+  delivered: 'rgb(50, 205, 50)', // Lime Green
+  canceled: 'rgb(255, 0, 0)', // Red
+  failed: 'rgb(139, 0, 0)' // Dark Red
+}
 
 export {
   delivery_charge,
@@ -270,6 +274,10 @@ export {
   loginSeoData,
   companyName,
   support_mail,
-  support_number,orderStatusColors 
-  
+  support_number,
+  orderStatusColors,
+  feacebook_page,
+  whatsapp,
+  messenger,
+  instagram
 }

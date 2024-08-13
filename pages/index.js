@@ -62,7 +62,9 @@ export default function Home ({ data, contents }) {
 export async function getStaticProps () {
   try {
     const start = new Date()
-    const { data: contents } = await axios.get(`${BASE_URL}/api/content`)
+    const { data: contents } = await axios.get(
+      `${BASE_URL}/api/content?show=true`
+    )
 
     const { data } = await axios.get(`${BASE_URL}/api/product/bycategory`)
     const end = new Date()

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Logo from './Utility/Logo'
 import { useSelector } from 'react-redux'
 import { chunkArray } from '@/utility/helper'
+import { feacebook_page, instagram, whatsapp } from '@/utility/const'
 
 const Footer = () => {
   const router = useRouter()
@@ -94,18 +95,21 @@ const Footer = () => {
               width='35'
               height='35'
               alt=''
+              onClick={() => router.push(feacebook_page)}
             />
             <Image
               src={'https://cdn-icons-png.flaticon.com/128/3955/3955024.png'}
               width='35'
               height='35'
               alt=''
+              onClick={() => router.push(instagram)}
             />
             <Image
               src={'https://cdn-icons-png.flaticon.com/128/733/733585.png'}
               width='35'
               height='35'
               alt=''
+              onClick={() => router.push(whatsapp)}
             />
           </div>
         </div>
