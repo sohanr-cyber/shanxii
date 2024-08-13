@@ -12,6 +12,7 @@ import {
   BarChart,
   Bar
 } from 'recharts'
+import { sortByMonth } from '@/utility/helper'
 
 const data = [
   {
@@ -174,7 +175,7 @@ const ChartArea = ({ title, number, percent, profit }) => {
         <BarChart
           width={650}
           height={300}
-          data={profit}
+          data={sortByMonth(profit)}
           //   margin={{
           //     top: 5,
           //     right: 5,

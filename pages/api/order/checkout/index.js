@@ -110,7 +110,7 @@ handler.post(async (req, res) => {
       paymentMethod,
       paymentReference,
       shippingCost: getDeliveryCharge(address.position),
-      trackingNumber: generateTrackingNumber()
+      // trackingNumber: generateTrackingNumber()
     })
 
     res.status(200).json(newOrder)

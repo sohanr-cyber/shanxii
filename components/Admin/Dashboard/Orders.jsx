@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
 import MailBox from '@/components/Utility/MailBox'
 import validator from 'email-validator'
+import { orderStatusColors } from '@/utility/const'
+import { extractRGBA } from '@/utility/helper'
 
 const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
@@ -107,21 +109,53 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                 <th>Total Amount</th>
                 <th>Order Status</th>
                 <th>Payment Status</th>
+                <th>Date Of Creation</th>
                 <th style={{ minWidth: '180px' }}>Action</th>
                 {/* Add more table headers as needed */}
               </tr>
             </thead>
             <tbody>
               {[...filteredOrders]?.map((order, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  style={{
+                    borderLeft: `3px solid ${
+                      orderStatusColors[order.status.toLowerCase()]
+                    }`
+                  }}
+                >
                   <td onClick={() => router.push(`/order/${order._id}`)}>
-                    {order._id.split('').slice(0, 9)}...
+                    {order.trackingNumber.split('').slice(0, 9)}...
                   </td>
                   <td>{order.shippingAddress.fullName}</td>
                   <td>{order.shippingAddress.phone}</td>
                   <td>৳{order.total}</td>
-                  <td>{order.status}</td>
-                  <td>{order.paymentStatus}</td>
+                  <td>
+                    <span
+                      style={{
+                        background: `${extractRGBA(
+                          orderStatusColors[order.status.toLowerCase()],
+                          0.2
+                        )}`,
+                        padding: '3px 3px',
+                        borderRadius: '5px'
+                      }}
+                    >
+                      {order.status}
+                    </span>
+                  </td>
+                  <td>
+                    <span>{order.paymentStatus}</span>
+                  </td>
+                  <td>
+                    {new Date(order.createdAt).toLocaleString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </td>
                   <td className={styles.action}>
                     <span onDoubleClick={() => remove(order._id)}>Delete</span>
                     <span onClick={() => router.push(`/order/${order._id}`)}>
@@ -129,7 +163,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       View
                     </span>
 
-                    <span
+                    {/* <span
                       onClick={() => setRecipent(order.shippingAddress)}
                       style={
                         validator.validate(order.shippingAddress.email)
@@ -138,7 +172,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       }
                     >
                       Mail
-                    </span>
+                    </span> */}
                   </td>
                   {/* Add more table cells as needed */}
                 </tr>

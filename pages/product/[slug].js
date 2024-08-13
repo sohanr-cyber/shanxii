@@ -113,7 +113,7 @@ const Product = ({ product, error, relatedProducts }) => {
     setIsClient(true)
     setThumbnail(product.thumbnail)
   }, [product.slug])
-  
+
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
       setQuantity(prevQuantity => prevQuantity + 1)
@@ -192,7 +192,7 @@ const Product = ({ product, error, relatedProducts }) => {
               />
             </div>
             <div className={styles.flex}>
-              {product.images?.map((item, index) => (
+              {[product.thumbnail, ...product.images]?.map((item, index) => (
                 <Image
                   src={item}
                   width='50'

@@ -58,12 +58,13 @@ const Order = ({ order: orderDetail }) => {
       console.log(error)
     }
   }
+
   return (
     <>
       <NextSeo {...orderDetailSeoData} />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <h2>OrderId: #{order._id}</h2>
+          <h2>OrderId: #{order.trackingNumber}</h2>
           <div className={styles.update}></div>
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
@@ -87,7 +88,6 @@ const Order = ({ order: orderDetail }) => {
               ]}
             </div>
           )}
-
           <div className={styles.statusTimeline}>
             {order?.statusTimeline?.map((_, index) => (
               <div
@@ -110,7 +110,13 @@ const Order = ({ order: orderDetail }) => {
           </div>
           <button onClick={() => router.push('/shop')}>
             Go Back To Shopping
-          </button>
+          </button>{' '}
+          {/* <button
+            onClick={() => router.push('/shop')}
+            style={{ color: 'white', marginLeft: '10px', background: 'red' }}
+          >
+            Cancel Order{' '}
+          </button> */}
         </div>
         <div className={styles.right}>
           {isClient && (

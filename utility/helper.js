@@ -155,6 +155,24 @@ function orderToGraph (inputData) {
   return result
 }
 
+const sortByMonth = data => {
+  return data.sort((a, b) => new Date(a.month) - new Date(b.month))
+}
+
+function extractRGBA (rgbString, opacity = 1) {
+  // Match the numbers inside the parentheses
+  const result = rgbString.match(/\d+/g)
+
+  if (result && result.length === 3) {
+    // Parse the strings to integers
+    const [r, g, b] = result.map(Number)
+    // Return the values in rgba() format as a string
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`
+  } else {
+    // Return null if the format is incorrect
+    return null
+  }
+}
 
 const getTotalProfit = arr => {
   let total = 0
@@ -178,5 +196,7 @@ export {
   generateVerificationCode,
   chunkArray,
   orderToGraph,
-  getTotalProfit
+  getTotalProfit,
+  sortByMonth,
+  extractRGBA
 }

@@ -136,6 +136,7 @@
         padding: 25px var(--percent);
     }
 }
+
 @media (max-width:720px) {
     .container {
         flex-direction: column;

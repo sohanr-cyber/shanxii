@@ -133,5 +133,14 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
+// Pre-save hook to generate a unique 6-digit tracking number
+orderSchema.pre('save', function(next) {
+  if (!this.trackingNumber) {
+    this.trackingNumber = Math.floor(100000 + Math.random() * 900000).toString();
+  }
+  next();
+});
+
+
 const Order = mongoose.models.Order || mongoose.model('Order', orderSchema)
 export default Order

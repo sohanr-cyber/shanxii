@@ -162,6 +162,7 @@ const orderCancelMessage = data => {
     </button>
   </p>`
 }
+
 const orderCanceled = data => {
   return `
  <div style = "padding:10px"> ${orderCancelMessage(data)}
@@ -177,6 +178,7 @@ const orderDeliveredMessage = data => {
   <p>We are delighted to inform you that your order has been successfully delivered!</p>
 `
 }
+
 const orderDelivered = data => {
   return `
  <div style = "padding:10px"> ${orderDeliveredMessage(data)}

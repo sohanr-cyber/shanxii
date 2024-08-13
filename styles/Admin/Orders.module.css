@@ -103,7 +103,7 @@
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 150px;
+    /* max-width: 150px; */
     white-space: nowrap;
 
 }
@@ -114,6 +114,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px; */
+
 }
 
 .wrapper table .action span {
@@ -124,6 +125,10 @@
     margin: 0 10px;
     margin-left: 0;
     cursor: pointer;
+}
+
+.wrapper table .action span:nth-child(1) {
+    background: red;
 }
 
 .wrapper table img {

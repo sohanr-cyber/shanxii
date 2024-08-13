@@ -68,6 +68,7 @@ const Create = ({ product: data }) => {
         stockQuantity: '',
         sold: ''
       })
+      setDescription('')
       dispatch(finishLoading())
       dispatch(
         showSnackBar({
@@ -196,7 +197,7 @@ const Create = ({ product: data }) => {
           </div>
           <div className={styles.flex}>
             <div className={styles.field}>
-              <label>Stock Quantity {product.stockQuantity}</label>
+              <label>Stock Quantity </label>
               <input
                 type='Number'
                 placeholder=''
