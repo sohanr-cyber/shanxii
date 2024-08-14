@@ -8,12 +8,14 @@ import axios from 'axios'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { buttonBg, buttonC } from '@/utility/const'
 
 const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredContents, setFilteredContents] = useState(contents)
   const dispatch = useDispatch()
+
   useEffect(() => {
     setFilteredContents(contents)
   }, [contents])
@@ -26,9 +28,10 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
     // Filter products based on the search query
     const filtered = contents.filter(
       c =>
-        c.name.toLowerCase().includes(query.toLowerCase()) ||
-        c._id.toLowerCase().includes(query.toLowerCase())
+        c.title.toLowerCase().includes(query.toLowerCase()) ||
+        c.buttonText?.toLowerCase().includes(query.toLowerCase())
     )
+    
     setFilteredContents(filtered)
   }
 
@@ -135,13 +138,19 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
                 >
                   <td className={styles.action}>
                     {c.buttonText && (
-                      <span onClick={() => router.push(`/${c.buttonHref}`)}>
+                      <span
+                        onClick={() => router.push(`/${c.buttonHref}`)}
+                        style={{
+                          background: `${buttonBg}`,
+                          color: `${buttonC}`
+                        }}
+                      >
                         {c.buttonText}
                       </span>
                     )}
                   </td>
 
-                  <td>{c.name}</td>
+                  <td>{c.title}</td>
                   <td>
                     {c.image && (
                       <Image src={c.image} width='100' height='50' alt='' />

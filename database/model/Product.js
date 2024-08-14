@@ -79,11 +79,13 @@ const productSchema = new mongoose.Schema(
 
     stockQuantity: {
       type: Number,
-      default: 0
+      default: 0,
+      required: true
     },
     sold: {
       type: Number,
-      default: 0
+      default: 0,
+      required: true
     }
   },
   { timestamps: true }

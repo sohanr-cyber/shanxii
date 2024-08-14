@@ -103,7 +103,7 @@
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* max-width: 150px; */
+    max-width: 150px;
     white-space: nowrap;
 
 }

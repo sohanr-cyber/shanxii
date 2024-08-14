@@ -4,7 +4,7 @@
     overflow: hidden;
     max-width: 250px;
     cursor: pointer;
-    min-width: 180px;
+    /* min-width: 170px; */
 }
 
 .wrapper .pic {

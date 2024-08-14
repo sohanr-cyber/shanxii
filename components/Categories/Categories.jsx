@@ -100,8 +100,10 @@ const Categories = () => {
                   className={styles.item}
                   key={index}
                   style={{
-                    minWidth: `${item.name.length * 8}px`
-                    // background: 'red'
+                    minWidth: `${item.name.length * 9.4}px`,
+                    textAlign: 'center',
+                    display: 'flex',
+                    justifyContent: 'center'
                   }}
                   onClick={() => router.push(`/shop?categories=${item._id}`)}
                 >

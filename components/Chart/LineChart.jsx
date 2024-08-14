@@ -76,9 +76,11 @@ const ChartArea = ({ title, number, percent, orderGraph }) => {
           <Line
             type='monotone'
             dataKey='delivered'
-            stroke='#05e308'
+            stroke='green'
             strokeWidth={2}
           />
+          <Line type='monotone' dataKey='red' stroke='red' strokeWidth={2} />
+
           {/* <Line type='monotone' dataKey='canceled' stroke='#eb2121' />
           <Line type='monotone' dataKey='failed' stroke='#eb2121' /> */}
         </LineChart>

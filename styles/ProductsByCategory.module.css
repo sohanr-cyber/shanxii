@@ -1,5 +1,6 @@
 .wrapper {
     padding: 25px;
+
 }
 
 .top {
@@ -41,6 +42,7 @@
     grid-row-gap: 15px;
     /* border: 1px solid red; */
     margin-top: 15px;
+    overflow-x: scroll
 }
 
 @media (min-width:1024px) {

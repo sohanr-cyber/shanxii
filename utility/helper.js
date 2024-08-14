@@ -148,7 +148,8 @@ function orderToGraph (inputData) {
       canceled: canceled,
       failed: failed,
       delivered: delivered,
-      packing: packing
+      packing: packing,
+      red: failed + canceled
     })
   }
 
@@ -181,8 +182,6 @@ const getTotalProfit = arr => {
   })
   return total.toFixed(0)
 }
-
-
 
 export {
   generateTrackingNumber,
