@@ -52,16 +52,27 @@ export async function getStaticProps (context) {
 
   try {
     const start = new Date()
-    const response = await axios.get(
+    const { data } = await axios.get(
       `${BASE_URL}/api/product/slug/${slug}?blur=true&related=true`
     )
     const end = new Date()
 
+    const categories = data.categories.map(i => i._id).join(',')
+    console.log(categories)
+
+    let relatedProducts = []
+    if (categories) {
+      const resp = await axios.get(
+        `${BASE_URL}/api/product/filter?categories=${categories}`
+      )
+      relatedProducts = resp.data.products.filter(i => i._id != data._id)
+    }
     console.log(`Data fetching time: ${end - start}ms`)
 
     return {
       props: {
-        product: response.data
+        product: data,
+        relatedProducts
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }
@@ -70,13 +81,14 @@ export async function getStaticProps (context) {
     return {
       props: {
         product: {},
+        relatedProducts: [],
         error: error
       }
     }
   }
 }
 
-const Product = ({ product, error }) => {
+const Product = ({ product, error, relatedProducts }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product?.thumbnail)
@@ -286,10 +298,10 @@ const Product = ({ product, error }) => {
           </div>
         </div>
       </div>
-      {product.relatedProducts?.length > 0 && (
+      {relatedProducts?.length > 0 && (
         <ProductsByCategory
           category={'Related Products'}
-          products={product.relatedProducts}
+          products={relatedProducts}
         />
       )}
     </>

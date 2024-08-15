@@ -4,48 +4,57 @@ import Category from '@/database/model/Category'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
 import { getPlaceholderImage } from '@/utility/image'
+
 const handler = nextConnect()
 handler.get(async (req, res) => {
   try {
     await db.connect()
-    const { slug, blur } = req.query // Use slug instead of id
-    let product = await Product.findOne({ slug }).populate({
+    const { slug, blur, related } = req.query
+
+    // Fetch the product and ensure it's a plain JavaScript object
+    let product = await Product.findOne({ slug }).lean().populate({
       path: 'categories',
       select: 'name _id'
     })
-    await db.disconnect()
-    console.log(product)
-    let relatedProducts = []
-    if (product) {
-      if (blur) {
-        const placeholder = await getPlaceholderImage(product.thumbnail)
-        // Ensure the product is a plain object
-        product = product.toObject()
-        product.placeholder = placeholder.placeholder
-      }
 
-      if (req.query.related) {
-        const categories = product.categories.map(i => i._id)
-        relatedProducts = await Product.find(
-          {
-            categories: { $in: categories },
-            _id: { $ne: product._id }
-          },
-          { metaTitle: 0, images: 0, description: 0 }
-        ).populate({
-          path: 'categories',
-          select: 'name'
-        })
-      }
-
-      product.relatedProducts = relatedProducts
-      return res.status(200).json(product)
-    } else {
-      res.status(404).json({ message: 'Product not found' })
+    if (!product) {
+      await db.disconnect()
+      return res.status(404).json({ message: 'Product not found' })
     }
+
+    // If blur is requested, generate and add the placeholder image
+    if (blur) {
+      const placeholder = await getPlaceholderImage(product.thumbnail)
+      product.placeholder = placeholder.placeholder
+    }
+
+    // If related products are requested, fetch them
+    // let relatedProducts = [];
+    // if (related) {
+    //   const categories = product.categories.map(i => i._id);
+    //   relatedProducts = await Product.find(
+    //     {
+    //       categories: { $in: categories },
+    //       _id: { $ne: product._id },
+    //     },
+    //     { metaTitle: 0, images: 0, description: 0 }
+    //   )
+    //     .lean()
+    //     .populate({
+    //       path: 'categories',
+    //       select: 'name',
+    //     });
+    // product.relatedProducts = relatedProducts;
+    // }
+
+    await db.disconnect()
+    return res.status(200).json(product)
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ message: 'Server Error' })
+    console.error('Error occurred:', error)
+    await db.disconnect() // Ensure disconnection in case of an error
+    return res
+      .status(500)
+      .json({ message: 'Server Error', error: error.message })
   }
 })
 

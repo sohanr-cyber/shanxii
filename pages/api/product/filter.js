@@ -87,6 +87,7 @@ handler.get(async (req, res) => {
       images: 0,
       description: 0
     })
+      .lean()
       .populate({
         path: 'categories',
         select: 'name'
