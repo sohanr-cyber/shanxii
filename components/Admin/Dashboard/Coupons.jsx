@@ -90,7 +90,8 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
                 <tr
                   key={index}
                   style={
-                    new Date(c.expiryDate) < new Date()
+                    new Date(c.expiryDate) < new Date() ||
+                    new Date(c.startDate) > new Date()
                       ? {
                           borderLeft: `3px solid ${
                             orderStatusColors['canceled'.toLowerCase()]

@@ -36,9 +36,9 @@ handler.get(async (req, res) => {
           path: 'categories',
           select: 'name'
         })
-        product.relatedProducts = relatedProducts
       }
 
+      product.relatedProducts = relatedProducts
       return res.status(200).json(product)
     } else {
       res.status(404).json({ message: 'Product not found' })

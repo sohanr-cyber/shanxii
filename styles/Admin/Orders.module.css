@@ -73,6 +73,12 @@
 
 }
 
+.wrapper .table__wrapper thead tr {
+    background: var(--buttonBg);
+    color: var(--buttonC);
+    border-left: 3px solid black
+}
+
 .wrapper .table__wrapperC {
     background: var(--cardBg);
 

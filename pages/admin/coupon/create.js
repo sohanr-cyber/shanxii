@@ -234,7 +234,7 @@ export async function getServerSideProps (context) {
   const headers = { Authorization: `Bearer ${userInfo.token}` }
 
   const fetchcoupon = async () => {
-    const { data } = await axios.get(`${BASE_URL}/api/coupon/${id}`, {
+    const { data } = await axios.get(`${BASE_URL}/api/coupon/view?id=${id}`, {
       headers
     })
     return data
@@ -242,7 +242,7 @@ export async function getServerSideProps (context) {
 
   if (id) {
     const coupon = await fetchcoupon()
-
+    console.log({ coupon })
     return {
       props: {
         coupon
