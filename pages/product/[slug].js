@@ -18,6 +18,7 @@ import {
   handleInitiateCheckout,
   handleViewProduct
 } from '@/redux/pixelSlice'
+import Loading from '@/components/Utility/Loading'
 
 export async function getStaticPaths () {
   try {
@@ -52,36 +53,15 @@ export async function getStaticProps (context) {
   try {
     const start = new Date()
     const response = await axios.get(
-      `${BASE_URL}/api/product/slug/${slug}?blur=true`
+      `${BASE_URL}/api/product/slug/${slug}?blur=true&related=true`
     )
     const end = new Date()
-    const categories = response.data.categories.map(i => i._id).join(',')
-    console.log(categories)
-
-    const fetchRelatedProducts = async () => {
-      try {
-        const { data } = await axios.get(
-          `${BASE_URL}/api/product/filter?categories=${categories}`
-        )
-        return data
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    let relatedProducts = []
-
-    if (categories) {
-      const resp = await fetchRelatedProducts()
-      relatedProducts = resp.products.filter(i => i._id != response.data._id)
-    }
 
     console.log(`Data fetching time: ${end - start}ms`)
 
     return {
       props: {
-        product: response.data,
-        relatedProducts
+        product: response.data
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }
@@ -90,14 +70,13 @@ export async function getStaticProps (context) {
     return {
       props: {
         product: {},
-        error: error,
-        relatedProducts: []
+        error: error
       }
     }
   }
 }
 
-const Product = ({ product, error, relatedProducts }) => {
+const Product = ({ product, error }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product?.thumbnail)
@@ -108,6 +87,7 @@ const Product = ({ product, error, relatedProducts }) => {
   const [blurDataURL, setBlurDataURL] = useState(null)
   const ReactPixel = useSelector(state => state.pixel.pixel)
   const buyNowItems = useSelector(state => state.cart.buyNow)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
@@ -177,6 +157,7 @@ const Product = ({ product, error, relatedProducts }) => {
 
   return (
     <>
+      {loading && <Loading />}
       <NextSeo {...generateProductSeoData(product)} />{' '}
       <div className={styles.wrapper}>
         <div className={styles.container}>
@@ -305,10 +286,10 @@ const Product = ({ product, error, relatedProducts }) => {
           </div>
         </div>
       </div>
-      {relatedProducts.length > 0 && (
+      {product.relatedProducts.length > 0 && (
         <ProductsByCategory
           category={'Related Product'}
-          products={relatedProducts}
+          products={product.relatedProducts}
         />
       )}
     </>

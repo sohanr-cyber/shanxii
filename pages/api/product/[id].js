@@ -1,7 +1,7 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utility'
+import { isAuth, isAdmin } from '@/utility'
 import { getPrice } from '@/utility/helper'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
@@ -24,6 +24,7 @@ handler.get(async (req, res) => {
   }
 })
 
+handler.use(isAuth, isAdmin)
 handler.put(async (req, res) => {
   try {
     await db.connect()

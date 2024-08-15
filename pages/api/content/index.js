@@ -1,26 +1,11 @@
 // Import necessary modules and models
 import db from '@/database/connection'
 import Content from '@/database/model/Content'
+import { isAdmin, isAuth } from '@/utility'
 import nc from 'next-connect'
 import slugify from 'slugify'
 const PAGE_SIZE = 20
 const handler = nc()
-
-// Create a new content
-handler.post(async (req, res) => {
-  try {
-    await db.connect()
-
-    const content = await Content.create({
-      ...req.body
-    })
-    await db.disconnect()
-    res.status(201).json(content)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Server Error' })
-  }
-})
 
 // get all the content
 handler.get(async (req, res) => {
@@ -50,6 +35,23 @@ handler.get(async (req, res) => {
     res.json({ page, contents, totalPages })
   } catch (error) {
     console.log({ error })
+    res.status(500).json({ message: 'Server Error' })
+  }
+})
+
+handler.use(isAuth, isAdmin)
+// Create a new content
+handler.post(async (req, res) => {
+  try {
+    await db.connect()
+
+    const content = await Content.create({
+      ...req.body
+    })
+    await db.disconnect()
+    res.status(201).json(content)
+  } catch (error) {
+    console.error(error)
     res.status(500).json({ message: 'Server Error' })
   }
 })

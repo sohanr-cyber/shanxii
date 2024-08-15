@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../styles/ProductsByCategory.module.css'
 import Product from './Product'
 import ProgressBar from './Utility/PBar'
@@ -10,6 +10,10 @@ const ProductsByCategory = ({
   rowDirection
 }) => {
   const [products, setProducts] = useState(data)
+
+  useEffect(() => {
+    setProducts(data)
+  }, [data])
 
   return (
     <div className={styles.wrapper}>

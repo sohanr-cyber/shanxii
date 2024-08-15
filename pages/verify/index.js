@@ -82,7 +82,8 @@ const Login = () => {
             }
           })
         )
-        // router.push(`/profile/${data.profileId}`)
+        DataTransfer.role == 'admin' ? router.push(`/admin`) : router.push(`/`)
+
         dispatch(login(data))
       }
       dispatch(finishLoading())

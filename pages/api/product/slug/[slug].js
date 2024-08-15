@@ -15,16 +15,31 @@ handler.get(async (req, res) => {
     })
     await db.disconnect()
     console.log(product)
+    let relatedProducts = []
     if (product) {
       if (blur) {
         const placeholder = await getPlaceholderImage(product.thumbnail)
-
         // Ensure the product is a plain object
         product = product.toObject()
         product.placeholder = placeholder.placeholder
       }
 
-      res.status(200).send(product)
+      if (req.query.related) {
+        const categories = product.categories.map(i => i._id)
+        relatedProducts = await Product.find(
+          {
+            categories: { $in: categories },
+            _id: { $ne: product._id }
+          },
+          { metaTitle: 0, images: 0, description: 0 }
+        ).populate({
+          path: 'categories',
+          select: 'name'
+        })
+        product.relatedProducts = relatedProducts
+      }
+
+      return res.status(200).json(product)
     } else {
       res.status(404).json({ message: 'Product not found' })
     }

@@ -7,6 +7,8 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
+import { orderStatusColors } from '@/utility/const'
+import { extractRGBA } from '@/utility/helper'
 
 const Products = ({
   title,
@@ -105,13 +107,31 @@ const Products = ({
               {filteredProducts?.products?.map((product, index) => (
                 <tr
                   key={index}
-                  style={
-                    product.stockQuantity < 5
-                      ? { background: 'yellow' }
-                      : product.stockQuantity == 0
-                      ? { bakcground: 'red' }
-                      : {}
-                  }
+                  style={{
+                    borderLeft: `3px solid ${
+                      orderStatusColors[
+                        `${
+                          product.stockQuantity < 5
+                            ? 'pending'
+                            : product.stockQuantity <= 1
+                            ? 'failed'
+                            : 'none'
+                        }`.toLowerCase()
+                      ]
+                    }`,
+                    background: `${extractRGBA(
+                      orderStatusColors[
+                        `${
+                          product.stockQuantity < 5
+                            ? 'pending'
+                            : product.stockQuantity <= 1
+                            ? 'failed'
+                            : 'none'
+                        }`.toLowerCase()
+                      ],
+                      0.1
+                    )}`
+                  }}
                 >
                   <td>{product.name}</td>
                   <td>{product.price}</td>

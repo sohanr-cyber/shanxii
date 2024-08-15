@@ -249,7 +249,8 @@ const orderStatusColors = {
   delivering: 'rgb(30, 144, 255)', // Dodger Blue
   delivered: 'rgb(50, 205, 50)', // Lime Green
   canceled: 'rgb(255, 0, 0)', // Red
-  failed: 'rgb(139, 0, 0)' // Dark Red
+  failed: 'rgb(139, 0, 0)', // Dark Red
+  none: 'rgb(255,255,255)'
 }
 
 export {

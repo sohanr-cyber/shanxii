@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import TextEditor from '@/components/Utility/TextEditor'
 import { showSnackBar } from '@/redux/notistackSlice'
 import Colors from '@/components/Shop/Colors'
-import ControlPointDuplicateOutlinedIcon from '@mui/icons-material/ControlPointDuplicateOutlined';
+import ControlPointDuplicateOutlinedIcon from '@mui/icons-material/ControlPointDuplicateOutlined'
 
 const Create = ({ product: data }) => {
   const [images, setImages] = useState([])
@@ -23,6 +23,8 @@ const Create = ({ product: data }) => {
   const handleImages = files => {
     setProduct(prev => ({ ...prev, images: files }))
   }
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: 'Bearer ' + userInfo?.token }
 
   const refreshPage = () => {
     // Get the current route's pathname and query parameters
@@ -49,15 +51,19 @@ const Create = ({ product: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.post('/api/product', {
-        ...product,
-        description
-      })
+      const { data } = await axios.post(
+        '/api/product',
+        {
+          ...product,
+          description
+        },
+        { headers }
+      )
       setProduct({
         name: '',
         sizes: '',
         description: '',
-        price: '',
+        price: 0,
         discount: '',
         categories: [],
         color: '',
@@ -66,8 +72,8 @@ const Create = ({ product: data }) => {
         metaTitle: '',
         metaDescription: '',
         attributes: {},
-        stockQuantity: '',
-        sold: ''
+        stockQuantity: 0,
+        sold: 0
       })
       setDescription('')
       dispatch(finishLoading())
@@ -120,12 +126,16 @@ const Create = ({ product: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.put(`/api/product/${router.query.id}`, {
-        ...product,
-        categories: product.categories.map(item => item._id),
+      const { data } = await axios.put(
+        `/api/product/${router.query.id}`,
+        {
+          ...product,
+          categories: product.categories.map(item => item._id),
 
-        description
-      })
+          description
+        },
+        { headers }
+      )
       setProduct(data)
       dispatch(finishLoading())
       dispatch(
@@ -193,6 +203,7 @@ const Create = ({ product: data }) => {
                   setProduct(prev => ({ ...prev, discount: e.target.value }))
                 }
                 min='0'
+                max='100'
               />
             </div>
           </div>
@@ -443,7 +454,7 @@ export async function getServerSideProps ({ query }) {
       product: {
         name: '',
         description: '',
-        price: '',
+        price: 0,
         discount: '',
         categories: [],
         color: '',
@@ -452,8 +463,8 @@ export async function getServerSideProps ({ query }) {
         metaTitle: '',
         metaDescription: '',
         attributes: {},
-        stockQuantity: '',
-        sold: '',
+        stockQuantity: 0,
+        sold: 0,
         color: ''
       },
       categories

@@ -102,8 +102,7 @@
 }
 
 .wrapper button {
-    padding: 10px;
-
+    padding: var(--buttonPadding);
 }
 
 

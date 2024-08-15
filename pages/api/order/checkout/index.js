@@ -13,6 +13,7 @@ import {
 import Address from '@/database/model/Address'
 import Coupon from '@/database/model/Coupon'
 import Mail from '@/services/mail-service'
+import { isAdmin } from '@/utility'
 const handler = nc()
 const Delivery = 50
 const mail = new Mail()
@@ -109,7 +110,7 @@ handler.post(async (req, res) => {
       total,
       paymentMethod,
       paymentReference,
-      shippingCost: getDeliveryCharge(address.position),
+      shippingCost: getDeliveryCharge(address.position)
       // trackingNumber: generateTrackingNumber()
     })
 
@@ -142,6 +143,7 @@ handler.post(async (req, res) => {
   }
 })
 
+handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
   try {
     const orders = await Order.find()

@@ -1,6 +1,7 @@
 // Import necessary modules and models
 import db from '@/database/connection'
 import Category from '@/database/model/Category'
+import { isAdmin, isAuth } from '@/utility'
 import nc from 'next-connect'
 import slugify from 'slugify'
 
@@ -24,6 +25,7 @@ handler.get(async (req, res) => {
   }
 })
 
+handler.use(isAuth, isAdmin)
 // Update category by ID
 handler.put(async (req, res) => {
   console.log(req.body)

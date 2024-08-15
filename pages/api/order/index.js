@@ -6,6 +6,7 @@ import Product from '@/database/model/Product'
 import Address from '@/database/model/Address'
 import nc from 'next-connect'
 import { generateTrackingNumber } from '@/utility/helper'
+import { isAdmin, isAuth } from '@/utility'
 const handler = nc()
 const PAGE_SIZE = 10
 
@@ -76,6 +77,8 @@ handler.post(async (req, res) => {
   }
 })
 
+
+handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
   try {
     await db.connect()

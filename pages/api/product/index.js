@@ -2,7 +2,7 @@ import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import Category from '@/database/model/Category'
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utility'
+import { isAdmin, isAuth } from '@/utility'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
 import { getPrice } from '@/utility/helper'
@@ -40,21 +40,28 @@ handler.get(async (req, res) => {
   }
 })
 
+handler.use(isAuth, isAdmin);
 handler.post(async (req, res) => {
   try {
-    await db.connect()
+    await db.connect();
+    
     const product = new Product({
       ...req.body,
       slug: slugify(req.body.name),
-      priceWithDiscount: getPrice(req.body.price, req.body.discount)
-    })
-    await product.save()
-    await db.disconnect()
-    res.status(201).json(product)
+      priceWithDiscount: getPrice(req.body.price, req.body.discount),
+      // Ensure 'sold' is handled correctly, either in schema or here
+    });
+
+    await product.save();
+    await db.disconnect();
+
+    res.status(201).json(product);
   } catch (error) {
-    console.log({ error })
-    res.status(500).json({ message: 'Server Error' })
+    console.error('Error creating product:', error);
+    await db.disconnect(); // Ensure disconnection on error as well
+    res.status(500).json({ message: 'Server Error', error: error.message });
   }
-})
+});
+
 
 export default handler

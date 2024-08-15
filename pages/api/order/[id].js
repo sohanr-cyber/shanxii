@@ -5,6 +5,7 @@ import Product from '@/database/model/Product'
 import nc from 'next-connect'
 import Address from '@/database/model/Address'
 import Mail from '@/services/mail-service'
+import { isAdmin, isAuth } from '@/utility'
 const handler = nc()
 
 db.connect()
@@ -192,6 +193,7 @@ handler.put(async (req, res) => {
   }
 })
 
+handler.use(isAuth, isAdmin)
 // Delete Order by Id
 handler.delete(async (req, res) => {
   try {

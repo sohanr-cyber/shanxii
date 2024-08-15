@@ -33,35 +33,50 @@ const index = ({ orders, products, orderGraph, total, profit }) => {
         <LineChart title={'Orders By Month'} orderGraph={orderGraph} />
         <BarChart title={'Revenue'} profit={profit} />
       </div>{' '}
-      {/* <div className={styles.flex} style={{ margin: '15px 0;' }}>
-        <BarChart title={'Revinue'} />
-        <Graph title={'Recent Orders'} orderGraph={orderGraph} />
-      </div> */}
-      {/* <Reviews /> */}
     </div>
   )
 }
 
 export default index
+import { parse } from 'cookie' // Import the `parse` function to handle cookies
 
-export async function getStaticProps () {
+export async function getServerSideProps (context) {
   try {
-    const page = 1
+    const { id } = context.query
+    const { locale, req } = context
+    const cookies = parse(req.headers.cookie || '')
+    
+    const userInfo = cookies['userInfo']
+      ? JSON.parse(cookies['userInfo'])
+      : null
+
+    if (!userInfo || !userInfo.token) {
+      throw new Error('User is not authenticated')
+    }
+
+    const headers = { Authorization: `Bearer ${userInfo.token}` }
 
     const {
       data: { products }
-    } = await axios.get(`${BASE_URL}/api/product`)
+    } = await axios.get(`${BASE_URL}/api/product`, { headers })
+
     const {
       data: { orders }
-    } = await axios.get(`${BASE_URL}/api/order`)
+    } = await axios.get(`${BASE_URL}/api/order`, { headers })
+
     const { data: orderGraph } = await axios.get(
-      `${BASE_URL}/api/summary/order-graph`
+      `${BASE_URL}/api/summary/order-graph`,
+      { headers }
     )
+
     const { data: total } = await axios.get(
-      `${BASE_URL}/api/summary/order-total`
+      `${BASE_URL}/api/summary/order-total`,
+      { headers }
     )
+
     const { data: profit } = await axios.get(
-      `${BASE_URL}/api/summary/profit-graph`
+      `${BASE_URL}/api/summary/profit-graph`,
+      { headers }
     )
 
     return {
@@ -71,8 +86,7 @@ export async function getStaticProps () {
         total,
         orderGraph,
         profit
-      },
-      revalidate: 10
+      }
     }
   } catch (error) {
     console.error('Error fetching data:', error)

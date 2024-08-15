@@ -7,6 +7,8 @@ import Image from 'next/image'
 import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import axios from 'axios'
+import { orderStatusColors } from '@/utility/const'
+import { extractRGBA } from '@/utility/helper'
 
 const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
   const router = useRouter()
@@ -89,8 +91,20 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
                   key={index}
                   style={
                     new Date(c.expiryDate) < new Date()
-                      ? { backgroundColor: '#D3D3D3', color: '#000000' }
-                      : {}
+                      ? {
+                          borderLeft: `3px solid ${
+                            orderStatusColors['canceled'.toLowerCase()]
+                          }`,
+                          background: `${extractRGBA(
+                            orderStatusColors['canceled'.toLowerCase()],
+                            0.1
+                          )}`
+                        }
+                      : {
+                          borderLeft: `3px solid ${
+                            orderStatusColors['delivered'.toLowerCase()]
+                          }`
+                        }
                   }
                 >
                   <td>{c.code}</td>

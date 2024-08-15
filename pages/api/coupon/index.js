@@ -2,13 +2,14 @@ import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import Category from '@/database/model/Category'
 import UserService from '@/services/user-service'
-import { isAuth } from '@/utility'
+import { isAdmin, isAuth } from '@/utility'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
 import Coupon from '@/database/model/Coupon'
 const handler = nextConnect()
 const PAGE_SIZE = 20
 
+handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
   try {
     await db.connect()

@@ -1,32 +1,12 @@
 // Import necessary modules and models
 import db from '@/database/connection'
 import Category from '@/database/model/Category'
+import { isAdmin, isAuth } from '@/utility'
 import nc from 'next-connect'
 import slugify from 'slugify'
 const PAGE_SIZE = 20
 const handler = nc()
 
-// Create a new category
-handler.post(async (req, res) => {
-  try {
-    await db.connect()
-    const exist = await Category.findOne({ name: req.body.name })
-    if (exist) {
-      return res.status(200).send({
-        error: 'Already A Cateory Exist With This Name'
-      })
-    }
-    const category = await Category.create({
-      ...req.body,
-      slug: slugify(req.body.name)
-    })
-    await db.disconnect()
-    res.status(201).json(category)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Server Error' })
-  }
-})
 
 // get all the category
 handler.get(async (req, res) => {
@@ -56,5 +36,29 @@ handler.get(async (req, res) => {
     res.status(500).json({ message: 'Server Error' })
   }
 })
+
+handler.use(isAuth, isAdmin)
+// Create a new category
+handler.post(async (req, res) => {
+  try {
+    await db.connect()
+    const exist = await Category.findOne({ name: req.body.name })
+    if (exist) {
+      return res.status(200).send({
+        error: 'Already A Cateory Exist With This Name'
+      })
+    }
+    const category = await Category.create({
+      ...req.body,
+      slug: slugify(req.body.name)
+    })
+    await db.disconnect()
+    res.status(201).json(category)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Server Error' })
+  }
+})
+
 
 export default handler

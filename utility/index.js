@@ -69,5 +69,5 @@ export {
   GenerateSignature,
   ValidateSignature,
   FormateData,
-  isAuth
+  isAuth,isAdmin
 }

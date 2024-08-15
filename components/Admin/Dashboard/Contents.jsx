@@ -8,7 +8,8 @@ import axios from 'axios'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
-import { buttonBg, buttonC } from '@/utility/const'
+import { buttonBg, buttonC, orderStatusColors } from '@/utility/const'
+import { extractRGBA } from '@/utility/helper'
 
 const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
   const router = useRouter()
@@ -31,7 +32,7 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
         c.title.toLowerCase().includes(query.toLowerCase()) ||
         c.buttonText?.toLowerCase().includes(query.toLowerCase())
     )
-    
+
     setFilteredContents(filtered)
   }
 
@@ -132,8 +133,24 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
                   key={index}
                   style={
                     c.isShown
-                      ? {}
-                      : { background: 'lightgrey', color: 'lightgrey' }
+                      ? {
+                          borderLeft: `3px solid ${
+                            orderStatusColors['delivered'.toLowerCase()]
+                          }`,
+                          background: `${extractRGBA(
+                            orderStatusColors['delivered'.toLowerCase()],
+                            0.1
+                          )}`
+                        }
+                      : {
+                          borderLeft: `3px solid ${
+                            orderStatusColors['canceled'.toLowerCase()]
+                          }`,
+                          background: `${extractRGBA(
+                            orderStatusColors['canceled'.toLowerCase()],
+                            0.1
+                          )}`
+                        }
                   }
                 >
                   <td className={styles.action}>

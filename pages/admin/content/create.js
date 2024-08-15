@@ -19,6 +19,9 @@ const Create = ({ content: data }) => {
   const router = useRouter()
   const [newContent, setNewContent] = useState(false)
   const categories = useSelector(state => state.product.categories)
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: 'Bearer ' + userInfo?.token }
+
   useEffect(() => {
     setContent(data)
   }, [router.query])
@@ -37,9 +40,15 @@ const Create = ({ content: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.post('/api/content', {
-        ...content
-      })
+      const { data } = await axios.post(
+        '/api/content',
+        {
+          ...content
+        },
+        {
+          headers
+        }
+      )
       if (data.error) {
         dispatch(
           showSnackBar({
@@ -97,9 +106,15 @@ const Create = ({ content: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.put(`/api/content/${router.query.id}`, {
-        ...content
-      })
+      const { data } = await axios.put(
+        `/api/content/${router.query.id}`,
+        {
+          ...content
+        },
+        {
+          headers
+        }
+      )
       setContent(data)
       dispatch(finishLoading())
       dispatch(

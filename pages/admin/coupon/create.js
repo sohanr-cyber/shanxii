@@ -4,10 +4,11 @@ import Upload from '@/components/Utility/Upload'
 import axios from 'axios'
 import BASE_URL from '@/config'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
+import { parse } from 'cookie'
 
 // Order Craetion Form
 const Create = ({ coupon: data }) => {
@@ -15,6 +16,9 @@ const Create = ({ coupon: data }) => {
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   const router = useRouter()
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: 'Bearer ' + userInfo?.token }
+
   const savecoupon = async () => {
     setError('')
     if (
@@ -35,7 +39,7 @@ const Create = ({ coupon: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.post('/api/coupon', coupon)
+      const { data } = await axios.post('/api/coupon', coupon, { headers })
       if (data.error) {
         dispatch(
           showSnackBar({
@@ -100,9 +104,13 @@ const Create = ({ coupon: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.put(`/api/coupon/${router.query.id}`, {
-        ...coupon
-      })
+      const { data } = await axios.put(
+        `/api/coupon/${router.query.id}`,
+        {
+          ...coupon
+        },
+        { headers }
+      )
       setCoupon(data)
       dispatch(
         showSnackBar({
@@ -169,23 +177,19 @@ const Create = ({ coupon: data }) => {
             <div className={styles.field}>
               <label>Discount Type</label>
               <div className={styles.options}>
-                {['percentage', 'free_shipping'].map(
-                  (item, index) => (
-                    <span
-                      key={index}
-                      onClick={() =>
-                        setCoupon({ ...coupon, discountType: item })
-                      }
-                      style={
-                        item == coupon.discountType
-                          ? { background: 'black', color: 'white' }
-                          : {}
-                      }
-                    >
-                      {item}
-                    </span>
-                  )
-                )}
+                {['percentage', 'free_shipping'].map((item, index) => (
+                  <span
+                    key={index}
+                    onClick={() => setCoupon({ ...coupon, discountType: item })}
+                    style={
+                      item == coupon.discountType
+                        ? { background: 'black', color: 'white' }
+                        : {}
+                    }
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
             </div>
             {coupon.discountType == 'percentage' && (
@@ -216,11 +220,23 @@ const Create = ({ coupon: data }) => {
 
 export default Create
 
-export async function getServerSideProps ({ query }) {
-  const { id } = query
+export async function getServerSideProps (context) {
+  const { id } = context.query
+  const { locale, req } = context
+  const cookies = parse(req.headers.cookie || '')
+
+  const userInfo = cookies['userInfo'] ? JSON.parse(cookies['userInfo']) : null
+
+  if (!userInfo || !userInfo.token) {
+    throw new Error('User is not authenticated')
+  }
+
+  const headers = { Authorization: `Bearer ${userInfo.token}` }
 
   const fetchcoupon = async () => {
-    const { data } = await axios.get(`${BASE_URL}/api/coupon/${id}`)
+    const { data } = await axios.get(`${BASE_URL}/api/coupon/${id}`, {
+      headers
+    })
     return data
   }
 
