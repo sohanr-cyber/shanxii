@@ -286,7 +286,7 @@ const Product = ({ product, error }) => {
           </div>
         </div>
       </div>
-      {product.relatedProducts.length > 0 && (
+      {product.relatedProducts?.length > 0 && (
         <ProductsByCategory
           category={'Related Product'}
           products={product.relatedProducts}
