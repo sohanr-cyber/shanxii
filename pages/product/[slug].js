@@ -53,7 +53,7 @@ export async function getStaticProps (context) {
   try {
     const start = new Date()
     const { data } = await axios.get(
-      `${BASE_URL}/api/product/slug/${slug}?blur=true&related=true`
+      `${BASE_URL}/api/product/slug/${slug}?blur=true`
     )
     const end = new Date()
 
@@ -65,6 +65,7 @@ export async function getStaticProps (context) {
       const resp = await axios.get(
         `${BASE_URL}/api/product/filter?categories=${categories}`
       )
+
       relatedProducts = resp.data.products.filter(i => i._id != data._id)
     }
     console.log(`Data fetching time: ${end - start}ms`)
