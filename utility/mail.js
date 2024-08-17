@@ -209,7 +209,7 @@ const orderConfirmed = data => {
 
 const orderProcessingMessage = data => {
   return `
-  <p>Hi  ${data.name}</p>
+  <p>Dear ${data.name}</p>
   <p>Thank you for your recent order with <b>${companyName} </b></p>
   <p>We are pleased to inform you that we have received your order and it is currently being processed. Our team is working diligently to ensure that everything is prepared and delivered to you as quickly as possible.</p>
   <p>

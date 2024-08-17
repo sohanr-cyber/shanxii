@@ -13,10 +13,12 @@ import {
 import Address from '@/database/model/Address'
 import Coupon from '@/database/model/Coupon'
 import Mail from '@/services/mail-service'
-import { isAdmin } from '@/utility'
+import { isAdmin, isAuth } from '@/utility'
 const handler = nc()
 const Delivery = 50
 const mail = new Mail()
+
+
 
 handler.post(async (req, res) => {
   try {
@@ -143,6 +145,7 @@ handler.post(async (req, res) => {
   }
 })
 
+
 handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
   try {
@@ -153,5 +156,8 @@ handler.get(async (req, res) => {
     res.status(500).json({ message: 'Server Error' })
   }
 })
+
+
+
 
 export default handler

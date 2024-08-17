@@ -69,6 +69,7 @@ const Order = ({ order: orderDetail }) => {
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
           </div>
+          
           {isClient && userInfo?.role == 'admin' && (
             <div className={styles.update__status}>
               {[
