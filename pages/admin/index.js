@@ -88,6 +88,7 @@ export async function getServerSideProps (context) {
         profit
       }
     }
+    
   } catch (error) {
     console.error('Error fetching data:', error)
     return {

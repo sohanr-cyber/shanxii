@@ -23,6 +23,8 @@ const Create = ({ category: data }) => {
   useEffect(() => {
     setCategory(data)
   }, [router.query])
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: `Bearer ${userInfo.token}` }
 
   const saveCategory = async () => {
     if (!category.name) {
@@ -38,9 +40,15 @@ const Create = ({ category: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.post('/api/category', {
-        ...category
-      })
+      const { data } = await axios.post(
+        '/api/category',
+        {
+          ...category
+        },
+        {
+          headers
+        }
+      )
       if (data.error) {
         dispatch(
           showSnackBar({
