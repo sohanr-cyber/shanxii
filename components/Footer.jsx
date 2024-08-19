@@ -17,10 +17,11 @@ const Footer = () => {
         <div className={styles.left}>
           <Logo />
           <div className={styles.about}>
-            At EShop, we are dedicated to providing you with the best shopping
-            experience possible. From trendy fashion to cutting-edge
-            electronics, we offer a wide range of products to suit every need
-            and lifestyle.
+            At SET Organic Shop, we are committed to providing you with the
+            freshest and healthiest organic foods. Every product in our store is
+            carefully sourced from farms that prioritize sustainability and
+            natural farming methods, ensuring that what you eat is not only good
+            for you but also good for the planet.
           </div>
         </div>
         <div className={styles.mid}>
@@ -81,7 +82,7 @@ const Footer = () => {
           <h2 className={styles.heading}>Contact</h2>
           <div className={styles.mail}>
             Address: House 41(meena bazar, lift 4), Gareeb-e-Newaz Avenue Road,
-            Sector 11, Uttara, Dhaka
+          Rangpur
           </div>
           <div className={styles.mail}>
             Mail: <span>mail@gmail.com</span>

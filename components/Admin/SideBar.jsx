@@ -22,12 +22,16 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import CameraIcon from '@mui/icons-material/Camera'
-// import { logout } from '@/redux/userSlice'
-// import { useDispatch } from 'react-redux'
+import Logout from '../Utility/Logout'
+
 const SideBar = ({ setOpen }) => {
   const router = useRouter()
   const [visible, setVisible] = useState('')
-  // const dispatch = useDispatch()
+  const logout = () => {
+    // Cookies.remove('userInfo')
+    router.reload()
+    router.push('/login')
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -301,13 +305,7 @@ const SideBar = ({ setOpen }) => {
           </div>
         </div>
         <div className={styles.item}>
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <LogoutIcon />
-            </div>
-            <div className={styles.title}>Logout</div>
-          </div>
+          <Logout />
         </div>
       </div>
     </div>

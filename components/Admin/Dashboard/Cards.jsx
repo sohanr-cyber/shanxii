@@ -34,9 +34,9 @@ const Cards = ({ total, profit }) => {
         index={0}
       />
 
-      <Card item={{ ...data[1], number: total.totalOrders }} index={1} />
-      <Card item={{ ...data[2], number: total.totalCompleted }} index={2} />
-      <Card item={{ ...data[3], number: total.totalPending }} index={3} />
+      <Card item={{ ...data[1], number: total?.totalOrders }} index={1} />
+      <Card item={{ ...data[2], number: total?.totalCompleted }} index={2} />
+      <Card item={{ ...data[3], number: total?.totalPending }} index={3} />
       {/* <Card item={{ ...data[3], number: total.totalOrders }} index={3} /> */}
     </div>
   )

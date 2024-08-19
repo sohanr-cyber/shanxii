@@ -21,6 +21,7 @@ export const userSlice = createSlice({
       Cookies.remove("userInfo");
       state.userInfo = null;
     },
+    
   },
 });
 
