@@ -37,6 +37,7 @@ handler.get(async (req, res) => {
 })
 
 // change order status by admin
+handler.use(isAuth, isAdmin)
 handler.put(async (req, res) => {
   const { id: orderId } = req.query
   const { newStatus } = req.body
@@ -193,7 +194,6 @@ handler.put(async (req, res) => {
   }
 })
 
-handler.use(isAuth, isAdmin)
 // Delete Order by Id
 handler.delete(async (req, res) => {
   try {

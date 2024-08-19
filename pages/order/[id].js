@@ -27,8 +27,9 @@ const Order = ({ order: orderDetail }) => {
   const router = useRouter()
   const [order, setOrder] = useState(orderDetail)
   const userInfo = useSelector(state => state.user.userInfo)
-
   const dispatch = useDispatch()
+  const headers = { Authorization: `Bearer ${userInfo.token}` }
+
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -46,9 +47,15 @@ const Order = ({ order: orderDetail }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.put(`/api/order/${router.query.id}`, {
-        newStatus: status
-      })
+      const { data } = await axios.put(
+        `/api/order/${router.query.id}`,
+        {
+          newStatus: status
+        },
+        {
+          headers
+        }
+      )
       const { data: order } = await axios.get(`/api/order/${router.query.id}`)
       setOrder(order)
       dispatch(finishLoading())
@@ -69,7 +76,6 @@ const Order = ({ order: orderDetail }) => {
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
           </div>
-          
           {isClient && userInfo?.role == 'admin' && (
             <div className={styles.update__status}>
               {[
