@@ -2,10 +2,12 @@
 
 import db from '@/database/connection'
 import Order from '@/database/model/Order'
+import { isAdmin, isAuth } from '@/utility'
 import nc from 'next-connect'
 
 const handler = nc()
 
+handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
   try {
     await db.connect()
@@ -30,7 +32,7 @@ handler.get(async (req, res) => {
       revenue
     }))
 
-    console.log({graphicalData})
+    console.log({ graphicalData })
 
     await db.disconnect()
 

@@ -19,7 +19,7 @@ const index = ({ orders, products, orderGraph, total, profit }) => {
   return (
     <div className={styles.wrapper}>
       <Cards total={total} profit={profit} />
-      <Orders
+      {/* <Orders
         title={'Recently Created Orders'}
         dashboard={true}
         orders={orders}
@@ -28,7 +28,7 @@ const index = ({ orders, products, orderGraph, total, profit }) => {
         title={'Top Selling Product'}
         dashboard={true}
         products={products}
-      />
+      /> */}
       <div className={styles.flex}>
         <LineChart title={'Orders By Month'} orderGraph={orderGraph} />
         <BarChart title={'Revenue'} profit={profit} />
@@ -56,13 +56,13 @@ export async function getServerSideProps (context) {
 
     const headers = { Authorization: `Bearer ${userInfo.token}` }
 
-    const {
-      data: { products }
-    } = await axios.get(`${BASE_URL}/api/product`, { headers })
+    // const {
+    //   data: { products }
+    // } = await axios.get(`${BASE_URL}/api/product`, { headers })
 
-    const {
-      data: { orders }
-    } = await axios.get(`${BASE_URL}/api/order`, { headers })
+    // const {
+    //   data: { orders }
+    // } = await axios.get(`${BASE_URL}/api/order`, { headers })
 
     const { data: orderGraph } = await axios.get(
       `${BASE_URL}/api/summary/order-graph`,
@@ -81,14 +81,13 @@ export async function getServerSideProps (context) {
 
     return {
       props: {
-        products,
-        orders,
+        // products,
+        // orders,
         total,
         orderGraph,
         profit
       }
     }
-    
   } catch (error) {
     console.error('Error fetching data:', error)
     return {

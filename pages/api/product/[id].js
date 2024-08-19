@@ -1,6 +1,5 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
-import UserService from '@/services/user-service'
 import { isAuth, isAdmin } from '@/utility'
 import { getPrice } from '@/utility/helper'
 import nextConnect from 'next-connect'
@@ -11,12 +10,11 @@ const handler = nextConnect()
 handler.get(async (req, res) => {
   try {
     await db.connect()
-    const { id } = req.query
     const product = await Product.findOne({ _id: req.query.id }).populate({
       path: 'categories',
       select: 'name _id'
     })
-    await db.connect()
+    await db.disconnect()
     res.json(product)
   } catch (error) {
     console.log(error)
@@ -42,7 +40,7 @@ handler.put(async (req, res) => {
       path: 'categories',
       select: 'name _id'
     })
-    await db.connect()
+    await db.disconnect()
     res.json(upadated)
   } catch (error) {
     console.log(error)
@@ -56,7 +54,7 @@ handler.delete(async (req, res) => {
 
     const { id } = req.query
     await Product.findByIdAndDelete(id)
-    await db.connect()
+    await db.disconnect()
 
     res.status(204).end()
   } catch (error) {

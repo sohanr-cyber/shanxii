@@ -2,12 +2,14 @@
 
 import db from '@/database/connection'
 import Order from '@/database/model/Order'
+import { isAdmin, isAuth } from '@/utility'
 import nc from 'next-connect'
 
 const handler = nc()
 
 db.connect()
 
+handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
   const { orderStatus, paymentStatus } = req.body
   try {
