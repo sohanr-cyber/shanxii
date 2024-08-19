@@ -18,7 +18,7 @@ style="
 
 "
 >
-<div style ="font-weight: bold;font-size: 200%;color:${themeC};">Quince</div>
+<div style ="font-weight: bold;font-size: 200%;color:${themeC};">${companyName}</div>
 </div>`
 
 const footer = data => {

@@ -62,19 +62,17 @@ const colors = [
 ]
 
 const seoData = {
-  title: 'SET Organic Food - Your Ultimate Fashion Destination',
-  description:
-    'Discover the elegance of SET Organic Food, your ultimate fashion destination. Shop for chic dresses, cozy loungewear, and more.',
+  title: 'SET Organic Food',
+  description: 'Discover the elegance of SET Organic Food, ',
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: 'SET Organic Food - Your Ultimate Fashion Destination',
-    description:
-      'Discover the elegance of SET Organic Food, your ultimate fashion destination. Shop for chic dresses, cozy loungewear, and more.',
+    title: 'SET Organic Food',
+    description: '',
     images: [
       {
-        url: '/images/ecomerce.png',
-        alt: 'SET Organic Food - Your Ultimate Fashion Destination',
+        url: 'https://images.pexels.com/photos/237635/pexels-photo-237635.jpeg?auto=compress&cs=tinysrgb&w=600',
+        alt: 'SET Organic Food',
         width: 1200,
         height: 630
       }
