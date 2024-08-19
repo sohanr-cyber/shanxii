@@ -103,9 +103,13 @@ const Create = ({ category: data }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.put(`/api/category/${router.query.id}`, {
-        ...category
-      })
+      const { data } = await axios.put(
+        `/api/category/${router.query.id}`,
+        {
+          ...category
+        },
+        { headers }
+      )
       setCategory(data)
       dispatch(finishLoading())
       dispatch(
