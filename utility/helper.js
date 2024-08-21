@@ -1,5 +1,5 @@
 import BASE_URL from '@/config'
-import { delivery_charge, seoData } from './const'
+import { companyName, delivery_charge, seoData } from './const'
 import mongoose from 'mongoose'
 
 function generateTrackingNumber (length = 10) {
@@ -66,7 +66,7 @@ const generateProductSeoData = productData => {
   } = productData
 
   const productSeoData = {
-    title: `Quince Cloth - ${name}`,
+    title: `${companyName} - ${name}`,
     description: description,
     canonical: `${BASE_URL}/products/${slug}`,
     openGraph: {
@@ -152,7 +152,6 @@ function orderToGraph (inputData) {
       red: failed + canceled
     })
   }
-
   return result
 }
 

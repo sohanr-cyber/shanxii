@@ -38,12 +38,12 @@
   --scrollbar: rgb(62, 86, 84);
   --theme: #647c7a;
   --icon: rgb(62, 86, 84);
-    --buttonPadding: 7px 10px;
+  --buttonPadding: 7px 10px;
 
   --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%); */
 
 
-  --background: rgb(0, 136, 0,0.1);
+  /* --background: rgb(0, 136, 0,0.1);
   --nav: rgb(255, 255, 255);
   --cardBg: rgb(255, 255, 255);
   --buttonBg: linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5));
@@ -56,7 +56,24 @@
   --theme: rgb(29, 102, 12);
   --icon: rgb(29, 102, 12);
   --logo: linear-gradient(45deg, rgb(29, 102, 12) 50%, rgb(29, 102, 12));
+  --buttonPadding: 7px 10px; */
+
+
+  --background: rgb(232, 241, 247);
+  --nav: white;
+  --cardBg: rgba(255, 255, 255, 255);
+  --buttonBg: linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255));
+  --buttonC: white;
+  --borderColor: rgba(197, 223, 244, 255);
+  --inputField: linear-gradient(245deg, rgba(7, 121, 214, 0.1), rgba(7, 121, 214, 0.1));
+  --hoverBgColor: rgba(7, 121, 214, 255);
+  --hoverColor: rgba(7, 121, 214, 255);
+  --scrollbar: rgba(7, 121, 214, 255);
+  --theme: rgba(7, 121, 214, 255);
+  --icon: rgba(7, 121, 214, 255);
   --buttonPadding: 7px 10px;
+  --logo: linear-gradient(45deg, rgba(7, 121, 214, 255) 50%, rgba(7, 121, 214, 255) 50%);
+
 
 }
 
