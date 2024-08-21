@@ -102,6 +102,7 @@ handler.put(async (req, res) => {
           const { product: productId, quantity } = item
           const product = await Product.findOne({ _id: productId })
           product.stockQuantity -= quantity
+          product.sold += quantity
           await product.save()
           return {
             product: productId
@@ -117,6 +118,7 @@ handler.put(async (req, res) => {
           const { product: productId, quantity } = item
           const product = await Product.findOne({ _id: productId })
           product.stockQuantity += quantity
+          product.sold -= quantity
           await product.save()
           return {
             product: productId
