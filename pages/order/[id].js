@@ -28,7 +28,7 @@ const Order = ({ order: orderDetail }) => {
   const [order, setOrder] = useState(orderDetail)
   const userInfo = useSelector(state => state.user.userInfo)
   const dispatch = useDispatch()
-  const headers = { Authorization: `Bearer ${userInfo.token}` }
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
 
   useEffect(() => {
     setIsClient(true)
