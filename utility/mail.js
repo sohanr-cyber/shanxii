@@ -197,6 +197,7 @@ const orderConfirmationMessage = data => {
     </button>
   </p>`
 }
+
 const orderConfirmed = data => {
   return `
  <div style = "padding:10px"> ${orderProcessingMessage(data)}
@@ -210,7 +211,7 @@ const orderConfirmed = data => {
 const orderProcessingMessage = data => {
   return `
   <p>Dear ${data.name}</p>
-  <p>Thank you for your recent order with <b>${companyName} </b></p>
+  <p>Thank you for your recent order with Us</b></p>
   <p>We are pleased to inform you that we have received your order and it is currently being processed. Our team is working diligently to ensure that everything is prepared and delivered to you as quickly as possible.</p>
   <p>
     <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 5px;">

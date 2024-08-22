@@ -121,7 +121,7 @@ handler.post(async (req, res) => {
     newOrder &&
       address.email &&
       (await mail.sendMail({
-        subject: 'Your Order Is Being Processed',
+        subject: 'We have recieved your order !',
         for: 'orderProcessing',
         to: address.email,
         name: address.fullName,
@@ -131,7 +131,6 @@ handler.post(async (req, res) => {
         shippingCost: newOrder.shippingCost,
         paymentMethod: newOrder.paymentMethod,
         paymentStatus: newOrder.paymentStatus,
-
         trackingNumber: newOrder.trackingNumber,
         total: newOrder.total,
         subtotal: newOrder.subtotal,

@@ -33,7 +33,7 @@ const OrderSummary = ({ cartItems, shipping, total, address, discount }) => {
       </div>
       <div className={styles.cart__items}>
         <div className={styles.title}>Items In Your Cart</div>
-        {[...cartItems].map((item, index) => (
+        {cartItems?.map((item, index) => (
           <div
             className={styles.item}
             key={index}
