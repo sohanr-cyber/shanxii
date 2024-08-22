@@ -8,8 +8,6 @@ import Mail from '@/services/mail-service'
 import { isAdmin, isAuth } from '@/utility'
 const handler = nc()
 
-db.connect()
-
 handler.get(async (req, res) => {
   try {
     const { id } = req.query // Get order ID from the request URL
@@ -28,7 +26,7 @@ handler.get(async (req, res) => {
     if (!order) {
       return res.status(404).json({ message: 'Order not found' })
     }
-
+    await db.disconnect()
     res.status(200).json(order)
   } catch (error) {
     console.error(error)
@@ -46,6 +44,7 @@ handler.put(async (req, res) => {
   const mail = new Mail()
 
   try {
+    await db.connect()
     const order = await Order.findById(orderId)
       .populate({
         path: 'items.product',
@@ -133,7 +132,7 @@ handler.put(async (req, res) => {
     }
 
     await order.save()
-
+    await db.disconnect()
     // send mail based on status
     if (order.shippingAddress.email) {
       let leanOrder = order.toObject()
@@ -201,6 +200,7 @@ handler.delete(async (req, res) => {
   try {
     await db.connect()
     const deleted = await Order.deleteOne({ _id: req.query.id })
+    await db.disconnect()
     return res.status(200).send({ message: 'Order Deleted' })
   } catch (error) {
     return res.status(400).send(error)
