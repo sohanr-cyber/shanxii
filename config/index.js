@@ -9,8 +9,8 @@ if (process.env.NODE_ENV !== 'production') {
 
   PIXEL_ID = '1040750500772753'
 } else {
-  // BASE_URL = 'https://oraganic-food-mu.vercel.app'
-  BASE_URL = 'https://ecomerce-phi-gold.vercel.app'
+  BASE_URL = 'https://oraganic-food-mu.vercel.app'
+  // BASE_URL = 'https://ecomerce-phi-gold.vercel.app'
   MONGODB_URI = process.env.MONGODB_URI
   MONGODB_URI = process.env.MONGODB_URI
 

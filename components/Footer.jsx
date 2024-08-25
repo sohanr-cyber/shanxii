@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Logo from './Utility/Logo'
 import { useSelector } from 'react-redux'
 import { chunkArray } from '@/utility/helper'
-import { feacebook_page, instagram, whatsapp } from '@/utility/const'
+import { feacebook_page, instagram, whatsapp, footerP } from '@/utility/const'
 
 const Footer = () => {
   const router = useRouter()
@@ -16,13 +16,7 @@ const Footer = () => {
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <Logo />
-          <div className={styles.about}>
-            At SET Organic Shop, we are committed to providing you with the
-            freshest and healthiest organic foods. Every product in our store is
-            carefully sourced from farms that prioritize sustainability and
-            natural farming methods, ensuring that what you eat is not only good
-            for you but also good for the planet.
-          </div>
+          <div className={styles.about}>{footerP}</div>
         </div>
         <div className={styles.mid}>
           <h2 className={styles.heading}>Links</h2>
@@ -82,7 +76,7 @@ const Footer = () => {
           <h2 className={styles.heading}>Contact</h2>
           <div className={styles.mail}>
             Address: House 41(meena bazar, lift 4), Gareeb-e-Newaz Avenue Road,
-          Rangpur
+            Rangpur
           </div>
           <div className={styles.mail}>
             Mail: <span>mail@gmail.com</span>

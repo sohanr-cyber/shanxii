@@ -12,6 +12,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import AddCategory from '@/components/Admin/AddCategory'
+import { setFetchAgain } from '@/redux/productSlice'
 // Order Craetion Form
 const Create = ({ category: data }) => {
   const [category, setCategory] = useState(data)
@@ -24,7 +25,7 @@ const Create = ({ category: data }) => {
     setCategory(data)
   }, [router.query])
   const userInfo = useSelector(state => state.user.userInfo)
-  const headers = { Authorization: `Bearer ${userInfo.token}` }
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
 
   const saveCategory = async () => {
     if (!category.name) {
@@ -61,6 +62,7 @@ const Create = ({ category: data }) => {
         dispatch(finishLoading())
         return
       }
+      dispatch(setFetchAgain())
       setCategory({
         name: '',
         image: ''
@@ -110,7 +112,8 @@ const Create = ({ category: data }) => {
         },
         { headers }
       )
-      setCategory(data)
+      // setCategory(data)
+      dispatch(setFetchAgain())
       dispatch(finishLoading())
       dispatch(
         showSnackBar({

@@ -6,8 +6,9 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import axios from 'axios'
 import { showSnackBar } from '@/redux/notistackSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { setFetchAgain } from '@/redux/productSlice'
 
 const Categories = ({
   title,
@@ -20,6 +21,8 @@ const Categories = ({
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredCategories, setFilteredCategories] = useState(categories)
   const dispatch = useDispatch()
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: 'Bearer ' + userInfo?.token }
   useEffect(() => {
     setFilteredCategories(categories)
   }, [categories])
@@ -41,10 +44,11 @@ const Categories = ({
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/category/${id}`)
+      const { data } = await axios.delete(`/api/category/${id}`, { headers })
       setFilteredCategories(filteredCategories.filter(i => i._id != id))
       dispatch(finishLoading())
       dispatch(showSnackBar({ message: 'Category Removed !' }))
+      dispatch(setFetchAgain())
     } catch (error) {
       console.log({ error })
       dispatch(finishLoading())

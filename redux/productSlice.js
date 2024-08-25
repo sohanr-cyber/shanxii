@@ -3,15 +3,19 @@ import { createSlice } from '@reduxjs/toolkit'
 export const productSlice = createSlice({
   name: 'product',
   initialState: {
-    categories: null
+    categories: null,
+    fetchAgain: false
   },
   reducers: {
     setCategories: (state, action) => {
       state.categories = action.payload
+    },
+    setFetchAgain: (state, action) => {
+      state.fetchAgain = !state.fetchAgain
     }
   }
 })
 
-export const { setCategories } = productSlice.actions
+export const { setCategories, setFetchAgain } = productSlice.actions
 
 export default productSlice.reducer

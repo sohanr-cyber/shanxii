@@ -18,6 +18,8 @@ const Layout = ({ children }) => {
   const router = useRouter()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const notistack = useSelector(state => state.notistack.notistack)
+  const fetchAgain = useSelector(state => state.product.fetchAgain)
+  
   const dispatch = useDispatch()
   const fetchCategory = async () => {
     try {
@@ -30,7 +32,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     fetchCategory()
-  }, [])
+  }, [fetchAgain])
 
   React.useEffect(() => {
     import('react-facebook-pixel')
