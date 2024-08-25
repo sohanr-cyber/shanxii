@@ -62,23 +62,25 @@ const colors = [
   { name: 'Gold', code: '#FFD700' }
 ]
 
+const title = 'Lorem ipsum dolor si'
 const seoData = {
-  title: 'SET Organic Food',
-  description: 'Discover the elegance of SET Organic Food, ',
+  title,
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis ',
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: 'SET Organic Food',
+    title,
     description: '',
     images: [
       {
         url: 'https://images.pexels.com/photos/237635/pexels-photo-237635.jpeg?auto=compress&cs=tinysrgb&w=600',
-        alt: 'SET Organic Food',
+        alt: '',
         width: 1200,
         height: 630
       }
     ],
-    site_name: 'SET Organic Food'
+    site_name: companyName
   },
   twitter: {
     handle: '@quincecloth',
