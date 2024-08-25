@@ -6,13 +6,12 @@ if (process.env.NODE_ENV !== 'production') {
   MONGODB_URI = process.env.MONGODB_URI
   GMAIL = process.env.GMAIL_USER_DEV
   PASSWORD = process.env.GMAIL_PASS_DEV
-
   PIXEL_ID = '1040750500772753'
 } else {
-  BASE_URL = 'https://oraganic-food-mu.vercel.app'
+  BASE_URL = 'https://organic-food-mu.vercel.app'
   // BASE_URL = 'https://ecomerce-phi-gold.vercel.app'
   MONGODB_URI = process.env.MONGODB_URI
-  MONGODB_URI = process.env.MONGODB_URI
+  
 
   GMAIL = process.env.GMAIL_USER
   PASSWORD = process.env.GMAIL_PASS
