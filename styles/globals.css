@@ -5,7 +5,7 @@
 
   --font: 'Ubuntu', sans-serif;
   --percent: 10%;
-
+/* 
   --background: #fbfbfb;
   --nav: rgb(255, 255, 255);
   --cardBg: rgba(229, 229, 229, 0.7);
@@ -20,10 +20,10 @@
   --icon: rgb(0, 0, 0);
   --buttonPadding: 7px 10px;
   --logo: linear-gradient(45deg, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 50%);
-  --shadow: rgb(255, 255, 255, 0.1);
+  --shadow: rgb(255, 255, 255, 0.1); */
 
   
-    /* --background: aliceblue;
+    --background: aliceblue;
   --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
@@ -39,7 +39,7 @@
   --icon: rgb(9, 82, 71);
   --logo: linear-gradient(45deg, rgb(8, 78, 67) 50%, rgb(0, 183, 255) 50%);
   --buttonPadding: 7px 10px;
-  --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1)); */
+  --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1));
 
     /* --background: #fbfbfb;
   --nav: rgb(213, 227, 228);
