@@ -15,6 +15,7 @@ import axios from 'axios'
 import fetchAndBlurImage from '@/utility/pika'
 import Header2 from '@/components/Header/Header2'
 import Header3 from '@/components/Header/Header3'
+import List from '@/components/Categories/List'
 const inter = Inter({ subsets: ['latin'] })
 const contents = [
   {
@@ -40,7 +41,8 @@ export default function Home ({ data, contents }) {
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
         <div className={styles.categories}>
-          <Categories />
+          {/* <Categories /> */}
+          <List />
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         {/* <Header2 contents={contents} /> */}
@@ -51,7 +53,8 @@ export default function Home ({ data, contents }) {
             products={i.products}
             subCategory={i.subCategory}
             key={index}
-            rowDirection={(index + 1) % 2 == 0 ? true : false}
+            // rowDirection={(index + 1) % 2 == 0 ? true : false}
+            structure={'grid'}
           />
         ))}
       </div>

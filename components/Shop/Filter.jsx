@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import SkeletonDiv from '../Utility/SkeletonDiv'
 import Colors from './Colors'
+import Categories from './Categories'
 
 const Filter = ({ setOpen }) => {
   const router = useRouter()
@@ -44,153 +45,43 @@ const Filter = ({ setOpen }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.flex}>
-        <h3>FILTER</h3>
-        <h3 onClick={() => setOpen(false)}>X</h3>
-      </div>
-      {/* price filter */}
-      <div className={styles.heading}>Price</div>
-      <div className={styles.filterOptions}>
-        <div className={styles.fields}>
-          <input
-            type='number'
-            placeholder='Min'
-            value={price.minPrice}
-            onChange={e => setPrice({ ...price, minPrice: e.target.value })}
-          />
-          <input
-            type='number'
-            placeholder='Max'
-            value={price.maxPrice}
-            onChange={e => setPrice({ ...price, maxPrice: e.target.value })}
-          />
+      <div className={styles.left}>
+        <div className={styles.flex}>
+          <h3>FILTER</h3>
+          <h3 onClick={() => setOpen(false)}>X</h3>
         </div>
-        <button onClick={() => updateRoute(price)}>Apply</button>
-      </div>
-      {/* Category Filter */}
-      <div className={styles.heading}>Category</div>
-      <div className={styles.filterOptions}>
-        {categories
-          ? categories.map((item, index) => (
-              <>
-                <div className={styles.option} key={index}>
-                  {router.query.categories
-                    ?.split(',')
-                    .find(each => each == item._id) ? (
-                    <div
-                      className={styles.option}
-                      onClick={() =>
-                        updateRoute({
-                          categories: null
-                        })
-                      }
-                    >
-                      <CheckBoxIcon />
-                      <span
-                        style={
-                          item.children.length > 0 ? { fontWeight: 'bold' } : {}
-                        }
-                      >
-                        {item.name}
-                      </span>
-                    </div>
-                  ) : (
-                    <div
-                      className={styles.option}
-                      onClick={() =>
-                        updateRoute({
-                          categories: item._id
-                        })
-                      }
-                    >
-                      {' '}
-                      <CheckBoxOutlineBlankIcon />
-                      <span
-                        style={
-                          item.children.length > 0 ? { fontWeight: 'bold' } : {}
-                        }
-                      >
-                        {item.name}
-                      </span>
-                    </div>
-                  )}{' '}
-                </div>
-                {item.children.length > 0 &&
-                  item.children.map((item, index) => (
-                    <div
-                      className={styles.option}
-                      key={index}
-                      style={{ marginLeft: '25px' }}
-                    >
-                      {router.query.categories
-                        ?.split(',')
-                        .find(each => each == item._id) ? (
-                        <div
-                          style={{
-                            display: 'flex',
-                            gap: '10px',
-                            alignItems: 'center'
-                          }}
-                          onClick={() =>
-                            updateRoute({
-                              categories: null
-                            })
-                          }
-                        >
-                          {' '}
-                          <CheckBoxIcon />
-                          <span
-                            style={
-                              item.children.length > 0
-                                ? { fontWeight: 'bold' }
-                                : {}
-                            }
-                          >
-                            {item.name}
-                          </span>
-                        </div>
-                      ) : (
-                        <div
-                          style={{
-                            display: 'flex',
-                            gap: '10px',
-                            alignItems: 'center'
-                          }}
-                          onClick={() =>
-                            updateRoute({
-                              categories: item._id
-                            })
-                          }
-                        >
-                          {' '}
-                          <CheckBoxOutlineBlankIcon />{' '}
-                          <span
-                            style={
-                              item.children.length > 0
-                                ? { fontWeight: 'bold' }
-                                : {}
-                            }
-                          >
-                            {item.name}
-                          </span>
-                        </div>
-                      )}{' '}
-                    </div>
-                  ))}
-              </>
-            ))
-          : [1, 2, 3, 4].map((item, index) => (
-              <div className={styles.option} key={index}>
-                <SkeletonDiv />
-              </div>
-            ))}
-      </div>
+        {/* price filter */}
+        <div className={styles.heading}>Price</div>
+        <div className={styles.filterOptions}>
+          <div className={styles.fields}>
+            <input
+              type='number'
+              placeholder='Min'
+              value={price.minPrice}
+              onChange={e => setPrice({ ...price, minPrice: e.target.value })}
+            />
+            <input
+              type='number'
+              placeholder='Max'
+              value={price.maxPrice}
+              onChange={e => setPrice({ ...price, maxPrice: e.target.value })}
+            />
+          </div>
+          <button onClick={() => updateRoute(price)}>Apply</button>
+        </div>
+        {/* Category Filter */}
+        <div className={styles.heading}>Category</div>
+        <div className={styles.filterOptions}>
+          <Categories categories={categories} updateRoute={updateRoute} />
+        </div>
 
-      {/* Color Family */}
-      <div className={styles.heading}>Color Family</div>
-      <div className={styles.filterOptions}>
-        <Colors selectedColors={router.query.colors} handleClick={setColor} />
+        {/* Color Family */}
+        <div className={styles.heading}>Color Family</div>
+        <div className={styles.filterOptions}>
+          <Colors selectedColors={router.query.colors} handleClick={setColor} />
+        </div>
       </div>
+      <div className={styles.right} onClick={() => setOpen(false)}></div>
     </div>
   )
 }

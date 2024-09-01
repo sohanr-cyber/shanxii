@@ -78,6 +78,10 @@
     gap: 10px;
     background: linear-gradient(aliceblue, white);
     flex-wrap: wrap;
+    width: 100%;
+    overflow: scroll;
+    max-height: 200px;
+    padding: 5px;
 }
 
 .left .options span {
@@ -232,5 +236,5 @@
         padding: 10px;
     }
 
-    
+
 }

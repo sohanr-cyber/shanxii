@@ -12,6 +12,7 @@ import TextEditor from '@/components/Utility/TextEditor'
 import { showSnackBar } from '@/redux/notistackSlice'
 import Colors from '@/components/Shop/Colors'
 import ControlPointDuplicateOutlinedIcon from '@mui/icons-material/ControlPointDuplicateOutlined'
+import SelectCategory from '@/components/Categories/SelectCategory'
 
 const Create = ({ product: data }) => {
   const [images, setImages] = useState([])
@@ -25,6 +26,7 @@ const Create = ({ product: data }) => {
   }
   const userInfo = useSelector(state => state.user.userInfo)
   const headers = { Authorization: 'Bearer ' + userInfo?.token }
+  const [selected, setSelected] = useState(product.categories.map(i => i._id))
 
   const refreshPage = () => {
     // Get the current route's pathname and query parameters
@@ -55,7 +57,8 @@ const Create = ({ product: data }) => {
         '/api/product',
         {
           ...product,
-          description
+          description,
+          categories: selected
         },
         { headers }
       )
@@ -75,6 +78,8 @@ const Create = ({ product: data }) => {
         stockQuantity: 0,
         sold: 0
       })
+
+      setSelected([])
       setDescription('')
       dispatch(finishLoading())
       dispatch(
@@ -130,8 +135,7 @@ const Create = ({ product: data }) => {
         `/api/product/${router.query.id}`,
         {
           ...product,
-          categories: product.categories.map(item => item._id),
-
+          categories: selected,
           description
         },
         { headers }
@@ -226,6 +230,13 @@ const Create = ({ product: data }) => {
             <div className={styles.field}>
               <label>Category</label>
               <div className={styles.options}>
+                <SelectCategory
+                  currentCategories={product.categories}
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+              </div>
+              {/* <div className={styles.options}>
                 {categories?.map((item, index) => (
                   <div
                     key={index}
@@ -284,7 +295,7 @@ const Create = ({ product: data }) => {
                     ||
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
           <div className={styles.field}>

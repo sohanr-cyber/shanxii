@@ -2,18 +2,43 @@
     position: fixed;
     top: 0;
     left: 0;
-    max-width: 300px;
-    min-width: 150px;
-    background: var(--nav);
+    width: 100%;
+    background: rgb(0, 0, 0, 0.3);
     height: 100vh;
-    z-index: 2;
+    z-index: 3;
     animation: slideIn 0.5s ease-in-out forwards;
+    display: flex;
+}
+
+.wrapper .left {
+    background: var(--nav);
+    min-width: 200px;
+    max-width: 200px;
+    height: 100%;
+
+}
+
+.wrapper .right {
+    width: 100%;
+    /* background-color: red; */
+    min-width: 100%;
+    height: 100%;
+
+}
+
+.wrapper .left::-webkit-scrollbar {
+    width: 0;
 }
 
 .category {
     display: flex;
     justify-content: space-between;
 
+}
+
+.categories {
+    max-height: 100%;
+    overflow-y: scroll;;
 }
 
 
@@ -41,7 +66,7 @@
 
 
 
-.wrapper .top {
+.top {
     display: flex;
     align-items: center;
     max-height: 40px;
@@ -53,7 +78,7 @@
     gap: 10px 15px;
 }
 
-.wrapper .top .close__btn {
+.top .close__btn {
     border: 1px solid white;
     padding: 2px 5px;
     color: white;

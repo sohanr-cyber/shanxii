@@ -1,55 +1,29 @@
 .wrapper {
+    color: black;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    background: rgb(0, 0, 0, 0.3);
-    height: 100vh;
+    min-height: 100vh;
     z-index: 3;
-    animation: slideIn 0.5s ease-in-out forwards;
     display: flex;
-
+    background: rgb(0, 0, 0, 0.1);
+    width: 100%;
 }
-
-
-@keyframes slideIn {
-    0% {
-        transform: translateX(-100%) translateY(0%);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0%) translateY(0);
-        opacity: 1;
-    }
-}
-
 
 
 .wrapper .left {
-    max-width: 220px;
+    max-width: 200px;
     background: var(--nav);
-    min-width: 220px;
-    ;
-    width: 100%;
-    height: 100%;
     padding: 15px;
-    overflow-x: hidden;
-
 }
 
 .wrapper .right {
     width: 100%;
-    height: 100%;
-
-
-
 }
 
 .flex {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
 }
 
 .flex h3 {
@@ -94,6 +68,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
+
 }
 
 .filterOptions .option span {
@@ -106,33 +81,7 @@
     color: green
 }
 
-.category_right {
-    font-weight: bold;
-    font-size: 150%;
-}
 
-.selected {
-    font-size: 80%;
-    border: 1px solid var(--borderColor);
-    border-radius: 5px;
-    display: inline-block;
-    padding: 2px 5px;
-    position: relative;
-    background: var(--inputBg);
-}
-
-.selected span {
-    position: absolute;
-    color: red;
-    font-size: 90%;
-    top: -5px;
-    right: -5px;
-    background-color: rgb(255, 0, 0, 0.1);
-    border-radius: 50%;
-    padding: 0 3px;
-    font-weight: bold;
-
-}
 
 /* Serach Box */
 .serach {

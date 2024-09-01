@@ -35,279 +35,285 @@ const SideBar = ({ setOpen }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.top}>
-        <div className={styles.logo}>
-          <Logo color={'aliceblue'} />
+      {' '}
+      <div className={styles.left}>
+        <div className={styles.top}>
+          <div className={styles.logo}>
+            <Logo color={'aliceblue'} />
+          </div>
+          <div className={styles.exit} onClick={() => setOpen(setOpen(false))}>
+            <ExitToAppIcon />
+          </div>
         </div>
-        <div className={styles.exit} onClick={() => setOpen(setOpen(false))}>
-          <ExitToAppIcon />
+        <div className={styles.navigators}>
+          {' '}
+          <div className={styles.item} onClick={() => router.push('/admin')}>
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <DashboardIcon />
+              </div>
+              <div className={styles.title}>Dashboard</div>
+            </div>
+          </div>
+          <div
+            className={styles.item}
+            onClick={() =>
+              setVisible(prev => (prev == 'content' ? '' : 'content'))
+            }
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <CameraIcon />
+              </div>
+              <div className={styles.title}>Content</div>{' '}
+            </div>
+            <div className={styles.icon}>
+              {visible == 'content' ? (
+                <KeyboardArrowUpIcon />
+              ) : (
+                <KeyboardArrowDownIcon />
+              )}{' '}
+            </div>
+          </div>{' '}
+          {visible == 'content' && (
+            <div className={styles.inner__items}>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/content')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <FormatListBulletedIcon />
+                  </div>
+                  <div className={styles.title}>Content List</div>
+                </div>
+              </div>{' '}
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/content/create')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <AddCircleIcon />
+                  </div>
+                  <div className={styles.title}>Add Content</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+            className={styles.item}
+            onClick={() =>
+              setVisible(prev => (prev == 'product' ? '' : 'product'))
+            }
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <ShoppingCartIcon />
+              </div>
+              <div className={styles.title}>Product</div>
+            </div>
+            <div className={styles.icon}>
+              {visible == 'product' ? (
+                <KeyboardArrowUpIcon />
+              ) : (
+                <KeyboardArrowDownIcon />
+              )}
+            </div>
+          </div>
+          {visible == 'product' && (
+            <div className={styles.inner__items}>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/product')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <FormatListBulletedIcon />
+                  </div>
+                  <div className={styles.title}>Product List</div>
+                </div>
+              </div>{' '}
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/product/create')}
+              >
+                <div className={styles.flex}>
+                  <div className={styles.icon}>
+                    <AddCircleIcon />
+                  </div>
+                  <div className={styles.title}>Add Product</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+            className={styles.item}
+            onClick={() =>
+              setVisible(prev => (prev == 'category' ? '' : 'category'))
+            }
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <CategoryIcon />
+              </div>
+              <div className={styles.title}>Category</div>{' '}
+            </div>
+            <div className={styles.icon}>
+              {visible == 'category' ? (
+                <KeyboardArrowUpIcon />
+              ) : (
+                <KeyboardArrowDownIcon />
+              )}{' '}
+            </div>
+          </div>{' '}
+          {visible == 'category' && (
+            <div className={styles.inner__items}>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/category')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <FormatListBulletedIcon />
+                  </div>
+                  <div className={styles.title}>Category List</div>
+                </div>
+              </div>{' '}
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/category/create')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <AddCircleIcon />
+                  </div>
+                  <div className={styles.title}>Add Category</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+            className={styles.item}
+            onClick={() => setVisible(prev => (prev == 'order' ? '' : 'order'))}
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <AssignmentTurnedInIcon />
+              </div>
+              <div className={styles.title}>Orders</div>
+            </div>
+            <div className={styles.icon}>
+              {visible == 'order' ? (
+                <KeyboardArrowUpIcon />
+              ) : (
+                <KeyboardArrowDownIcon />
+              )}{' '}
+            </div>
+          </div>
+          {visible == 'order' && (
+            <div className={styles.inner__items}>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/order')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <FormatListBulletedIcon />
+                  </div>
+                  <div className={styles.title}>Order List</div>
+                </div>
+              </div>
+              <div className={styles.item} style={{ display: 'none' }}>
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <AddCircleIcon />
+                  </div>
+                  <div className={styles.title}>Add Order</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+            className={styles.item}
+            onClick={() =>
+              setVisible(prev => (prev == 'coupon' ? '' : 'coupon'))
+            }
+            // style={{ display: 'none' }}
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <AssignmentTurnedInIcon />
+              </div>
+              <div className={styles.title}>Coupon</div>
+            </div>
+            <div className={styles.icon}>
+              {visible == 'coupon' ? (
+                <KeyboardArrowUpIcon />
+              ) : (
+                <KeyboardArrowDownIcon />
+              )}{' '}
+            </div>
+          </div>
+          {visible == 'coupon' && (
+            <div className={styles.inner__items}>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/coupon')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <FormatListBulletedIcon />
+                  </div>
+                  <div className={styles.title}>Coupon List</div>
+                </div>
+              </div>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/coupon/create')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <AddCircleIcon />
+                  </div>
+                  <div className={styles.title}>Add Coupon</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+            className={styles.item}
+            onClick={() => router.push('/admin/address')}
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <MapIcon />
+              </div>
+              <div className={styles.title}>Address</div>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <Logout />
+          </div>
         </div>
       </div>
-      <div className={styles.navigators}>
-        {' '}
-        <div className={styles.item} onClick={() => router.push('/admin')}>
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <DashboardIcon />
-            </div>
-            <div className={styles.title}>Dashboard</div>
-          </div>
-        </div>
-        <div
-          className={styles.item}
-          onClick={() =>
-            setVisible(prev => (prev == 'content' ? '' : 'content'))
-          }
-        >
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <CameraIcon />
-            </div>
-            <div className={styles.title}>Content</div>{' '}
-          </div>
-          <div className={styles.icon}>
-            {visible == 'content' ? (
-              <KeyboardArrowUpIcon />
-            ) : (
-              <KeyboardArrowDownIcon />
-            )}{' '}
-          </div>
-        </div>{' '}
-        {visible == 'content' && (
-          <div className={styles.inner__items}>
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/content')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <FormatListBulletedIcon />
-                </div>
-                <div className={styles.title}>Content List</div>
-              </div>
-            </div>{' '}
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/content/create')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <AddCircleIcon />
-                </div>
-                <div className={styles.title}>Add Content</div>
-              </div>
-            </div>
-          </div>
-        )}
-        <div
-          className={styles.item}
-          onClick={() =>
-            setVisible(prev => (prev == 'product' ? '' : 'product'))
-          }
-        >
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <ShoppingCartIcon />
-            </div>
-            <div className={styles.title}>Product</div>
-          </div>
-          <div className={styles.icon}>
-            {visible == 'product' ? (
-              <KeyboardArrowUpIcon />
-            ) : (
-              <KeyboardArrowDownIcon />
-            )}
-          </div>
-        </div>
-        {visible == 'product' && (
-          <div className={styles.inner__items}>
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/product')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <FormatListBulletedIcon />
-                </div>
-                <div className={styles.title}>Product List</div>
-              </div>
-            </div>{' '}
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/product/create')}
-            >
-              <div className={styles.flex}>
-                <div className={styles.icon}>
-                  <AddCircleIcon />
-                </div>
-                <div className={styles.title}>Add Product</div>
-              </div>
-            </div>
-          </div>
-        )}
-        <div
-          className={styles.item}
-          onClick={() =>
-            setVisible(prev => (prev == 'category' ? '' : 'category'))
-          }
-        >
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <CategoryIcon />
-            </div>
-            <div className={styles.title}>Category</div>{' '}
-          </div>
-          <div className={styles.icon}>
-            {visible == 'category' ? (
-              <KeyboardArrowUpIcon />
-            ) : (
-              <KeyboardArrowDownIcon />
-            )}{' '}
-          </div>
-        </div>{' '}
-        {visible == 'category' && (
-          <div className={styles.inner__items}>
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/category')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <FormatListBulletedIcon />
-                </div>
-                <div className={styles.title}>Category List</div>
-              </div>
-            </div>{' '}
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/category/create')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <AddCircleIcon />
-                </div>
-                <div className={styles.title}>Add Category</div>
-              </div>
-            </div>
-          </div>
-        )}
-        <div
-          className={styles.item}
-          onClick={() => setVisible(prev => (prev == 'order' ? '' : 'order'))}
-        >
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <AssignmentTurnedInIcon />
-            </div>
-            <div className={styles.title}>Orders</div>
-          </div>
-          <div className={styles.icon}>
-            {visible == 'order' ? (
-              <KeyboardArrowUpIcon />
-            ) : (
-              <KeyboardArrowDownIcon />
-            )}{' '}
-          </div>
-        </div>
-        {visible == 'order' && (
-          <div className={styles.inner__items}>
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/order')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <FormatListBulletedIcon />
-                </div>
-                <div className={styles.title}>Order List</div>
-              </div>
-            </div>
-            <div className={styles.item} style={{ display: 'none' }}>
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <AddCircleIcon />
-                </div>
-                <div className={styles.title}>Add Order</div>
-              </div>
-            </div>
-          </div>
-        )}
-        <div
-          className={styles.item}
-          onClick={() => setVisible(prev => (prev == 'coupon' ? '' : 'coupon'))}
-          // style={{ display: 'none' }}
-        >
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <AssignmentTurnedInIcon />
-            </div>
-            <div className={styles.title}>Coupon</div>
-          </div>
-          <div className={styles.icon}>
-            {visible == 'coupon' ? (
-              <KeyboardArrowUpIcon />
-            ) : (
-              <KeyboardArrowDownIcon />
-            )}{' '}
-          </div>
-        </div>
-        {visible == 'coupon' && (
-          <div className={styles.inner__items}>
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/coupon')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <FormatListBulletedIcon />
-                </div>
-                <div className={styles.title}>Coupon List</div>
-              </div>
-            </div>
-            <div
-              className={styles.item}
-              onClick={() => router.push('/admin/coupon/create')}
-            >
-              <div className={styles.flex}>
-                {' '}
-                <div className={styles.icon}>
-                  <AddCircleIcon />
-                </div>
-                <div className={styles.title}>Add Coupon</div>
-              </div>
-            </div>
-          </div>
-        )}
-        <div
-          className={styles.item}
-          onClick={() => router.push('/admin/address')}
-        >
-          <div className={styles.flex}>
-            {' '}
-            <div className={styles.icon}>
-              <MapIcon />
-            </div>
-            <div className={styles.title}>Address</div>
-          </div>
-        </div>
-        <div className={styles.item}>
-          <Logout />
-        </div>
-      </div>
+      <div className={styles.right} onClick={() => setOpen(false)}></div>
     </div>
   )
 }

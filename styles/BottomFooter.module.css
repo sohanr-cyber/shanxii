@@ -3,6 +3,7 @@
     text-align: center;
     background: var(--buttonBg);
     margin: 0 0;
+    color: var(--buttonC);
 }
 
 .wrapper .c {

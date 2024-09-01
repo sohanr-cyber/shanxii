@@ -1,0 +1,40 @@
+.wrapper {
+    padding: 25px 0;
+    background: var(--background);
+    min-height: 50vh;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    box-shadow: 1px 1px 1px var(--shadow);
+}
+
+.wrapper .flex {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 25px;
+
+}
+
+.wrapper .flex .subcategory {
+    margin: 7px 0;
+    cursor: pointer;
+    padding-bottom: 3px;
+    ;
+}
+
+.wrapper .flex .subcategory:hover {
+    font-weight: bolder;
+}
+
+@media (max-width:760px) {
+    .wrapper .flex {
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+}

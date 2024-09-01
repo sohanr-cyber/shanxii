@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from './Navbar'
 import Footer from './Footer'
 import BottomFooter from './BottomFooter'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,13 +12,16 @@ import axios from 'axios'
 import { setPixel } from '@/redux/pixelSlice'
 import { PIXEL_ID } from '@/config'
 import ChatButton from './Chat/ChatButton'
+import Navbar from './Navbar'
+import Navbar2 from './Navs/Navbar2'
+
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
   const router = useRouter()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const notistack = useSelector(state => state.notistack.notistack)
   const fetchAgain = useSelector(state => state.product.fetchAgain)
-  
+
   const dispatch = useDispatch()
   const fetchCategory = async () => {
     try {

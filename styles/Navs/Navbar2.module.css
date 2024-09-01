@@ -1,0 +1,44 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 25px;
+}
+
+
+
+.wrapper .left,
+.wrapper .right {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.icon {
+    cursor: pointer;
+    color: var(--icon);
+
+}
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 10px 15px
+    }
+
+    .wrapper .left,
+    .wrapper .right {
+        gap: 10px
+    }
+}
+
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 10px
+    }
+
+    .wrapper .left,
+    .wrapper .right {
+        gap: 10px
+    }
+}

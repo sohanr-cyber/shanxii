@@ -7,7 +7,8 @@ const ProductsByCategory = ({
   category,
   subCategory,
   products: data,
-  rowDirection
+  rowDirection,
+  structure
 }) => {
   const [products, setProducts] = useState(data)
 

@@ -13,6 +13,7 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import AddCategory from '@/components/Admin/AddCategory'
 import { setFetchAgain } from '@/redux/productSlice'
+import SelectParentCategory from '@/components/Categories/SelectParentCategory'
 // Order Craetion Form
 const Create = ({ category: data }) => {
   const [category, setCategory] = useState(data)
@@ -180,62 +181,12 @@ const Create = ({ category: data }) => {
           <div className={styles.field}>
             <label>Chose Parent Category</label>
             <div className={styles.options}>
-              {categories &&
-                categories
-                  .filter(e => e._id != category?._id)
-                  .map((item, index) => (
-                    <>
-                      {' '}
-                      <span
-                        key={index}
-                        style={
-                          category.parent == item._id
-                            ? { background: 'black', color: 'white' }
-                            : {}
-                        }
-                        onClick={() =>
-                          category.parent == item._id
-                            ? setCategory({
-                                ...category,
-                                parent: ''
-                              })
-                            : setCategory({
-                                ...category,
-                                parent: item._id
-                              })
-                        }
-                      >
-                        {item.name}
-                      </span>
-                      {/* {item.children.length > 0 && '-->'}
-                      {item.children.length > 0 &&
-                        item.children.map((item, index) => (
-                          <span
-                            key={index}
-                            style={
-                              category.parent == item._id
-                                ? { background: 'black', color: 'white' }
-                                : {}
-                            }
-                            onClick={() =>
-                              category.parent == item._id
-                                ? setCategory({
-                                    ...category,
-                                    parent: ''
-                                  })
-                                : setCategory({
-                                    ...category,
-                                    parent: item._id
-                                  })
-                            }
-                          >
-                            {item.name}
-                          </span>
-                        ))} */}
-                      ||{' '}
-                    </>
-                  ))}
-              <span
+              <SelectParentCategory
+                category={category}
+                setCategory={setCategory}
+              />
+
+              {/* <span
                 style={{
                   background: `${themeBg}`,
                   color: `${buttonC}`,
@@ -244,7 +195,7 @@ const Create = ({ category: data }) => {
                 onClick={() => setNewCategory(prev => !prev)}
               >
                 {newCategory ? '-' : '+'}
-              </span>
+              </span> */}
             </div>
           </div>
           {newCategory && (

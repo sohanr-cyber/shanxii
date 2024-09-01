@@ -1,6 +1,6 @@
 .card__wrapper {
     /* border: 1px solid lightgrey; */
-    max-width: 220px;
+    max-width: 190px;
     padding: 15px;
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@
     box-shadow: 2px 2px 2px 2px rgb(234, 234, 234);
     /* aspect-ratio: 6/3; */
     background: white;
-    min-width: 220px;
+    min-width: 190px;
   }
   
   .card__container {

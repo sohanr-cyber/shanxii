@@ -182,6 +182,21 @@ const getTotalProfit = arr => {
   return total.toFixed(0)
 }
 
+function findCategoryById (categories, id) {
+  for (const category of categories) {
+    if (category._id === id) {
+      return category
+    }
+    if (category.children.length > 0) {
+      const found = findCategoryById(category.children, id)
+      if (found) {
+        return found
+      }
+    }
+  }
+  return null // Return null if no category is found with the given ID
+}
+
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -196,5 +211,6 @@ export {
   orderToGraph,
   getTotalProfit,
   sortByMonth,
-  extractRGBA
+  extractRGBA,
+  findCategoryById
 }

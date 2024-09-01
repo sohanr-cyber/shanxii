@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux'
 const AddCategory = ({ categories }) => {
   const [category, setCategory] = useState({})
   const dispatch = useDispatch()
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: 'Bearer ' + userInfo?.token }
 
   const saveCategory = async () => {
     if (!category.name) {
@@ -26,11 +28,16 @@ const AddCategory = ({ categories }) => {
     }
     try {
       dispatch(startLoading())
-      const { data } = await axios.post('/api/category', category)
+
+      const { data } = await axios.post('/api/category', category, {
+        headers
+      })
+
       setCategory({
         name: '',
         image: ''
       })
+      
       dispatch(setCategories([...categories, data]))
       dispatch(finishLoading())
       dispatch(
