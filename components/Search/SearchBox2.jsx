@@ -103,7 +103,7 @@ const SearchBox2 = ({ setOpen }) => {
                       <div
                         className={styles.option}
                         key={index}
-                        style={{ marginLeft: '25px' }}
+                        style={{ marginLeft: '25px', display: 'none' }}
                       >
                         {router.query.categories
                           ?.split(',')

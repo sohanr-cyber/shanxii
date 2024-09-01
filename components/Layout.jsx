@@ -14,6 +14,7 @@ import { PIXEL_ID } from '@/config'
 import ChatButton from './Chat/ChatButton'
 import Navbar from './Navbar'
 import Navbar2 from './Navs/Navbar2'
+import styles from '@/styles/Layout.module.css'
 
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
@@ -63,7 +64,19 @@ const Layout = ({ children }) => {
   return (
     <div>
       {loading && <Loading />}
-      {!containsAdmin(router.asPath) ? <Navbar /> : <AdminNavbar />}
+      {!containsAdmin(router.asPath) ? (
+        <>
+          {' '}
+          <div className={styles.nav1}>
+            <Navbar />
+          </div>
+          <div className={styles.nav2}>
+            <Navbar2 />
+          </div>
+        </>
+      ) : (
+        <AdminNavbar />
+      )}
       {children}
       <Footer />
       <BottomFooter />
