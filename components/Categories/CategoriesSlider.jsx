@@ -22,7 +22,7 @@ const CategoriesSlider = ({ setOpen }) => {
             categories={history[history.length - 1].children}
             setHistory={setHistory}
             history={history}
-            // setOpen={setOpen}
+            setOpen={setOpen}
           />
         ) : (
           <>

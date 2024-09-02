@@ -5,7 +5,7 @@
 
   --font: 'Ubuntu', sans-serif;
   --percent: 10%;
-/* 
+  /* 
   --background: #fbfbfb;
   --nav: rgb(255, 255, 255);
   --cardBg: rgba(229, 229, 229, 0.7);
@@ -22,8 +22,8 @@
   --logo: linear-gradient(45deg, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 50%);
   --shadow: rgb(255, 255, 255, 0.1); */
 
-  
-    --background: aliceblue;
+
+  --background: aliceblue;
   --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
@@ -41,7 +41,7 @@
   --buttonPadding: 7px 10px;
   --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1));
 
-    /* --background: #fbfbfb;
+  /* --background: #fbfbfb;
   --nav: rgb(213, 227, 228);
   --cardBg: rgb(231, 238, 238, 0.7);
   --buttonBg: linear-gradient(45deg, #647c7a, #647c7a);
@@ -58,7 +58,7 @@
   --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%); */
 
 
-    /* --background: rgb(0, 136, 0, 0.1);
+  /* --background: rgb(0, 136, 0, 0.1);
   --nav: rgb(255, 255, 255);
   --cardBg: rgb(255, 255, 255);
   --buttonBg: linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5));
@@ -74,7 +74,7 @@
   --buttonPadding: 7px 10px; */
 
 
-    /* --background: rgb(232, 241, 247);
+  /* --background: rgb(232, 241, 247);
   --nav: white;
   --cardBg: rgba(255, 255, 255, 255);
   --buttonBg: linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255));
@@ -104,7 +104,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  ;
+  font-size: 93%;
 }
 
 h2 {
@@ -175,13 +175,13 @@ button {
 
 @media (max-width:480px) {
   body {
-    font-size: 85%;
+    font-size: 88%;
   }
 }
 
 
 @media (max-width:380px) {
   body {
-    font-size: 80%;
+    font-size: 84%;
   }
 }

@@ -1,14 +1,14 @@
 .wrapper {
     padding: 25px 0;
-    background: var(--background);
-    min-height: 50vh;
+    background: var(--nav);
+    min-height: 40vh;
     width: 100%;
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    box-shadow: 1px 1px 1px var(--shadow);
+    box-shadow: 2px 2px 2px 2px var(--shadow);
 }
 
 .wrapper .flex {

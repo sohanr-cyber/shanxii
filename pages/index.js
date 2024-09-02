@@ -16,6 +16,7 @@ import fetchAndBlurImage from '@/utility/pika'
 import Header2 from '@/components/Header/Header2'
 import Header3 from '@/components/Header/Header3'
 import List from '@/components/Categories/List'
+import List2 from '@/components/Categories/List2'
 const inter = Inter({ subsets: ['latin'] })
 const contents = [
   {
@@ -42,7 +43,8 @@ export default function Home ({ data, contents }) {
         {/* <TopNav /> */}
         <div className={styles.categories}>
           {/* <Categories /> */}
-          <List />
+          {/* <List /> */}
+          <List2 />
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         {/* <Header2 contents={contents} /> */}

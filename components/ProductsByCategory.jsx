@@ -11,6 +11,7 @@ const ProductsByCategory = ({
   structure
 }) => {
   const [products, setProducts] = useState(data)
+  const style = `styles.${structure}`
 
   useEffect(() => {
     setProducts(data)
@@ -42,14 +43,13 @@ const ProductsByCategory = ({
         </div>
       </div>
       <ProgressBar pixel={category.length * 11.2} />
-      <div
-        className={`${styles.products} ${rowDirection && styles.productsRow}`}
-      >
+      <div className={`${styles.products} ${style}`}>
         {[...products].map((item, index) => (
           <Product
             key={index}
             item={item}
             redirect={true}
+            structure={structure}
             rowDirection={rowDirection}
           />
         ))}

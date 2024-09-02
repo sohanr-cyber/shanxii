@@ -26,16 +26,16 @@ const Navbar = () => {
         >
           <Image
             src='https://cdn-icons-png.flaticon.com/128/15414/15414285.png'
-            width='35'
-            height='35'
+            width='25'
+            height='25'
             alt=''
           />
         </div>
         <div className={styles.item} onClick={() => router.push(`/admin`)}>
           <Image
             src='https://cdn-icons-png.flaticon.com/128/3665/3665909.png'
-            width='35'
-            height='35'
+            width='25'
+            height='25'
             alt=''
           />
         </div>

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import SubCategories from './SubCategories'
 import { useRouter } from 'next/router'
 import SkeletonDiv from '../Utility/SkeletonDiv'
+import SubCategories2 from './SubCategories2'
 
 const List = () => {
   const categories = useSelector(state => state.product.categories)
@@ -33,6 +34,7 @@ const List = () => {
                   style={{ minWidth: `${i.name.length * 9.4}px` }}
                 >
                   {i.name}
+                  
                 </div>
               </>
             ))
