@@ -225,12 +225,14 @@ const loginSeoData = {
   twitter: seoData.twitter
 }
 
-// const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-// const themeTransparent = 'rgb(8, 78, 67,0.1)'
-// const themeC = 'rgb(8, 78, 67)'
-// const buttonC = 'white'
-// const bg = 'aliceblue'
-// const outerBg = 'lightgrey'
+const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+const themeTransparent = 'rgb(8, 78, 67,0.1)'
+const themeC = 'rgb(8, 78, 67)'
+const buttonC = 'white'
+const bg = 'aliceblue'
+const outerBg = 'lightgrey'
+const buttonBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+const borderColor = 'rgb(8, 78, 67,0.1)'
 
 // const themeBg =
 //   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
@@ -243,14 +245,14 @@ const loginSeoData = {
 // const outerBg = 'rgb(232, 241, 247)'
 // const borderColor = 'rgba(197, 223, 244, 255)'
 
-const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
-const themeTransparent = 'rgba(7, 121, 214,0.1)'
-const themeC = 'rgb(29, 102, 12)'
-const buttonC = 'white'
-const buttonBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
-const bg = 'white'
-const outerBg = 'rgb(232, 241, 247)'
-const borderColor = 'rgba(52, 134, 11, 0.5)'
+// const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+// const themeTransparent = 'rgba(7, 121, 214,0.1)'
+// const themeC = 'rgb(29, 102, 12)'
+// const buttonC = 'white'
+// const buttonBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+// const bg = 'white'
+// const outerBg = 'rgb(232, 241, 247)'
+// const borderColor = 'rgba(52, 134, 11, 0.5)'
 
 const orderStatusColors = {
   pending: 'rgb(255, 165, 0)', // Orange

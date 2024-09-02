@@ -115,7 +115,13 @@ const Addresses = ({
                 <tr key={index}>
                   <td>{address._id.split('').slice(0, 9)}...</td>
                   <td>{address.fullName}</td>
-                  <td>{address.phone}</td>
+                  <td
+                    onClick={() =>
+                      router.push(`/admin/order?query=${address.phone}`)
+                    }
+                  >
+                    {address.phone}
+                  </td>
                   <td>{address.position}</td>
                   <td>{address.address}</td>
                   <td>{address.paymentStatus}</td>

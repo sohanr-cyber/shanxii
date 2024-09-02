@@ -65,7 +65,7 @@ const Create = ({ content: data }) => {
         title: '',
         image: '',
         isShown: false,
-        buttonTitle: '',
+        buttonText: '',
         buttonHref: ''
       })
       dispatch(finishLoading())
