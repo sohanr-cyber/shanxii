@@ -18,6 +18,7 @@
     max-height: 100vh;
     overflow-y: scroll;
     min-width: 200px;
+    overflow-x: hidden;
 
 
 

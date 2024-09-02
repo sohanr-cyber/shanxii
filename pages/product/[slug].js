@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 import { generateProductSeoData, getPrice } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
-import ProductsByCategory from '@/components/ProductsByCategory'
+import ProductsByCategory from '@/components/Products/ProductsByCategory'
 import {
   handleAddItemToCart,
   handleInitiateCheckout,

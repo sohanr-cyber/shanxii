@@ -56,6 +56,7 @@ const Navbar2 = () => {
         <SearchIcon
           className={styles.icon}
           onClick={() => setOpenSearch(prev => !prev)}
+          style={{ fontSize: '200%', marginTop: '5px' }}
         />
       </div>
       <div className={styles.mid}>

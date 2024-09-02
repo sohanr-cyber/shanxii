@@ -8,7 +8,7 @@ import Navbar from '@/components/Navbar'
 import Header from '@/components/Header'
 import Catergory from './shop/[category]'
 import Categories from '@/components/Categories/Categories'
-import ProductsByCategory from '@/components/ProductsByCategory'
+import ProductsByCategory from '@/components/Products/ProductsByCategory'
 import Footer from '@/components/Footer'
 import BASE_URL from '@/config'
 import axios from 'axios'
@@ -17,6 +17,7 @@ import Header2 from '@/components/Header/Header2'
 import Header3 from '@/components/Header/Header3'
 import List from '@/components/Categories/List'
 import List2 from '@/components/Categories/List2'
+import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
 const inter = Inter({ subsets: ['latin'] })
 const contents = [
   {
@@ -50,7 +51,7 @@ export default function Home ({ data, contents }) {
         {/* <Header2 contents={contents} /> */}
         <Header3 contents={contents} />
         {data.map((i, index) => (
-          <ProductsByCategory
+          <ProductsByCategory2
             category={i.category}
             products={i.products}
             subCategory={i.subCategory}

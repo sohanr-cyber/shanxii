@@ -87,11 +87,11 @@ const SearchBox2 = ({ setOpen }) => {
                         {' '}
                         <CheckBoxOutlineBlankIcon />
                         <span
-                          style={
-                            item.children.length > 0
-                              ? { fontWeight: 'bold' }
-                              : {}
-                          }
+                          // style={
+                          //   item.children.length > 0
+                          //     ? { fontWeight: 'bold' }
+                          //     : {}
+                          // }
                         >
                           {item.name}
                         </span>
