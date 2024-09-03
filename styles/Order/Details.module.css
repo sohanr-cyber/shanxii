@@ -13,6 +13,11 @@
 
 }
 
+.left .payment span {
+    border-radius: 5px;
+    padding: 3px;
+    background: skyblue;
+}
 
 
 .left .status__steps {
@@ -65,11 +70,13 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
 @media (min-width:1024px) {
     .wrapper {
         padding: 25px var(--percent);
     }
 }
+
 @media (max-width:720px) {
     .wrapper {
         flex-direction: column;

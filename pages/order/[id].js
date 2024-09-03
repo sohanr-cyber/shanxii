@@ -72,7 +72,9 @@ const Order = ({ order: orderDetail }) => {
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <h2>OrderId: #{order.trackingNumber}</h2>
-          <div className={styles.update}></div>
+          <div className={styles.payment}>
+            Payement Status :<span>{order.paymentStatus}</span>
+          </div>
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
           </div>

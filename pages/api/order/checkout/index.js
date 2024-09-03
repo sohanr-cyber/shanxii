@@ -18,8 +18,6 @@ const handler = nc()
 const Delivery = 50
 const mail = new Mail()
 
-
-
 handler.post(async (req, res) => {
   try {
     const {
@@ -118,32 +116,31 @@ handler.post(async (req, res) => {
 
     res.status(200).json(newOrder)
 
-    newOrder &&
-      address.email &&
-      (await mail.sendMail({
-        subject: 'We have recieved your order !',
-        for: 'orderProcessing',
-        to: address.email,
-        name: address.fullName,
-        phone: address.phone,
-        email: address.email,
-        address: address.address,
-        shippingCost: newOrder.shippingCost,
-        paymentMethod: newOrder.paymentMethod,
-        paymentStatus: newOrder.paymentStatus,
-        trackingNumber: newOrder.trackingNumber,
-        total: newOrder.total,
-        subtotal: newOrder.subtotal,
-        discount: newOrder.discount,
-        items: populatedItems.map(i => i.item),
-        orderId: newOrder._id
-      }))
+    // newOrder &&
+    //   address.email &&
+    //   (await mail.sendMail({
+    //     subject: 'We have recieved your order !',
+    //     for: 'orderProcessing',
+    //     to: address.email,
+    //     name: address.fullName,
+    //     phone: address.phone,
+    //     email: address.email,
+    //     address: address.address,
+    //     shippingCost: newOrder.shippingCost,
+    //     paymentMethod: newOrder.paymentMethod,
+    //     paymentStatus: newOrder.paymentStatus,
+    //     trackingNumber: newOrder.trackingNumber,
+    //     total: newOrder.total,
+    //     subtotal: newOrder.subtotal,
+    //     discount: newOrder.discount,
+    //     items: populatedItems.map(i => i.item),
+    //     orderId: newOrder._id
+    //   }))
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: 'Server Error' })
   }
 })
-
 
 handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
@@ -155,8 +152,5 @@ handler.get(async (req, res) => {
     res.status(500).json({ message: 'Server Error' })
   }
 })
-
-
-
 
 export default handler

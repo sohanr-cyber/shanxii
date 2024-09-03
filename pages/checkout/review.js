@@ -27,7 +27,7 @@ const Address = () => {
   const addressInfo = useSelector(state => state.address.addressInfo)
   const [address, setAddress] = useState({})
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     setIsClient(true)
     setAddress(addressInfo)
@@ -114,6 +114,68 @@ const Address = () => {
       console.log(error)
     }
   }
+  const payNow = async cartItems => {
+    if (cartItems.length == 0) {
+      return
+    }
+    try {
+      dispatch(startLoading())
+      const { data } = await axios.post('/api/payment', {
+        items: cartItems.map(i => ({
+          product: i.product._id,
+          quantity: i.quantity,
+          size: i.size,
+          color: i.color
+        })),
+        shippingAddress: {
+          ...addressInfo,
+          type: 'Home'
+        },
+        code: coupon?.code,
+        paymentMethod: 'sslcommerz'
+      })
+
+      if (data.error) {
+        dispatch(
+          showSnackBar({
+            message: data.error,
+            option: {
+              variant: 'error'
+            }
+          })
+        )
+        dispatch(finishLoading())
+        return
+      }
+
+      dispatch(finishLoading())
+
+      // console.log(data)
+      dispatch(
+        showSnackBar({
+          message: 'Redirecting To Payment',
+          option: {
+            variant: 'success'
+          }
+        })
+      )
+      // dispatch(handlePurchase(data))
+      router.push(data.GatewayPageURL)
+      dispatch(clearCart())
+      dispatch(clearCoupon())
+    } catch (error) {
+      dispatch(finishLoading())
+      dispatch(
+        showSnackBar({
+          message: 'Error While Placing Order !',
+          option: {
+            variant: 'error'
+          }
+        })
+      )
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -153,12 +215,23 @@ const Address = () => {
               </div>{' '}
               <div style={{ color: 'blue' }}>Cash On Delivery</div>
             </div>
-            {/* <div className={styles.bkash}>
+            <div
+              className={styles.bkash}
+              onClick={() =>
+                payNow(router.query.buyNow ? buyNowItems : cartItems)
+              }
+            >
               <div>
                 {' '}
-                <Image src='/images/bkash.png' width='80' height='50' alt='' />
+                <Image
+                  src='https://cdn-icons-png.flaticon.com/128/8984/8984290.png'
+                  width='70'
+                  height='50'
+                  alt=''
+                />
               </div>{' '}
-            </div> */}
+              <div style={{ color: 'blue' }}> Pay Now</div>
+            </div>
           </div>
           <button
             onClick={() =>
