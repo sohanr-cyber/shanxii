@@ -6,6 +6,12 @@ export default function middleware (req) {
   let verify = req.cookies.get('userInfo')
   let uri = req.url
 
+  // if (uri.includes('/api/payment/callback')) {
+  //   const lst = uri.split('/')
+  //   const orderId = lst[lst.length - 1]
+  //   return NextResponse.redirect(`${BASE_URL}/api/payment/${orderId}`)
+  // }
+
   // not logged in
   if (!verify && uri.includes('/admin')) {
     return NextResponse.redirect(`${BASE_URL}/login`)

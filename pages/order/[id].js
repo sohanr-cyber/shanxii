@@ -135,6 +135,7 @@ const Order = ({ order: orderDetail }) => {
               total={order.total}
               discount={order.discount}
               address={order.shippingAddress}
+              paymentMethod={order.paymentMethod}
             />
           )}
         </div>

@@ -26,9 +26,9 @@ handler.post(async (req, res) => {
       total_amount: order.total,
       currency: 'BDT',
       tran_id: order.trackingNumber, // use unique tran_id for each api call
-      success_url: `${BASE_URL}/api/payment/${order._id}`,
-      fail_url: 'http://localhost:3030/fail',
-      cancel_url: `${BASE_URL}/api/payment/canceled?id=${order._id}`,
+      success_url: `${BASE_URL}/api/payment/callback/${order._id}`,
+      fail_url: `${BASE_URL}/api/payment/callback/canceled?id=${order._id}`,
+      cancel_url: `${BASE_URL}/api/payment/callback/canceled?id=${order._id}`,
       ipn_url: 'http://localhost:3030/ipn',
       shipping_method: 'Courier',
       product_name: 'Computer.',

@@ -3,7 +3,14 @@ import React from 'react'
 import styles from '../../styles/Cart/OrderSummary.module.css'
 import { calculateSubtotal, getPrice } from '@/utility/helper'
 import { useRouter } from 'next/router'
-const OrderSummary = ({ cartItems, shipping, total, address, discount }) => {
+const OrderSummary = ({
+  cartItems,
+  shipping,
+  total,
+  address,
+  discount,
+  paymentMethod
+}) => {
   const router = useRouter()
 
   return (
@@ -73,8 +80,15 @@ const OrderSummary = ({ cartItems, shipping, total, address, discount }) => {
       <div className={styles.shipping}>
         <div className={styles.title}>Shipping Address</div>
         <div className={styles.address}>{address.address}</div>
-        <div className={styles.title}>Payment Method</div>
-        <div className={styles.address}>Cash on delivery (COD) </div>
+        {paymentMethod && (
+          <>
+            {' '}
+            <div className={styles.title}>Payment Method</div>
+            <div className={styles.address}>
+              {paymentMethod == 'COD' ? 'Cash On Delivery(COD)' : paymentMethod}
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

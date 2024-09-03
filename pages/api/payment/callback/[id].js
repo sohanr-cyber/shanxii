@@ -12,7 +12,7 @@ const store_id = 'quinc66d679e90b3db'
 const store_passwd = 'quinc66d679e90b3db@ssl'
 const is_live = false // true for live, false for sandbox
 
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
   try {
     const orderId = req.query.id
 
@@ -26,9 +26,6 @@ handler.get(async (req, res) => {
       { new: true } // Return the updated document
     )
 
-    // console.log('Incoming request to update order:', orderId)
-
-    // NextResponse.redirect(`${BASE_URL}/order/${orderId}`) // Just for testing
     res.status(200).redirect(`/order/${orderId}`)
   } catch (error) {
     console.log(error)

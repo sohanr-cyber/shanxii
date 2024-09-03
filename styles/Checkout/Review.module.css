@@ -29,6 +29,10 @@
     margin: 10px 0;
 }
 
+.left .flex_btn {
+    display: flex;
+    justify-content: space-between;
+}
 .left button {
     padding: 7px;
     margin-top: 2px;

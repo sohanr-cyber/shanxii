@@ -13,7 +13,7 @@ import {
   getDeliveryCharge,
   getPrice
 } from '@/utility/helper'
-import { reviewSeoData, support_number } from '@/utility/const'
+import { reviewSeoData, support_number, themeBg } from '@/utility/const'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
@@ -27,6 +27,7 @@ const Address = () => {
   const addressInfo = useSelector(state => state.address.addressInfo)
   const [address, setAddress] = useState({})
   const dispatch = useDispatch()
+  const [paymentMethod, setPaymentMethod] = useState('')
 
   useEffect(() => {
     setIsClient(true)
@@ -70,7 +71,8 @@ const Address = () => {
           ...addressInfo,
           type: 'Home'
         },
-        code: coupon?.code
+        code: coupon?.code,
+        paymentMethod: 'COD'
       })
 
       if (data.error) {
@@ -204,7 +206,18 @@ const Address = () => {
           </div>
           <div className={styles.title}>Pay With</div>
           <div className={styles.flex}>
-            <div className={styles.cash__on}>
+            <div
+              className={styles.cash__on}
+              onClick={() => setPaymentMethod('COD')}
+              style={
+                paymentMethod == 'COD'
+                  ? {
+                      background: `${themeBg}`,
+                      color: 'white'
+                    }
+                  : {}
+              }
+            >
               <div>
                 <Image
                   src='https://cdn-icons-png.flaticon.com/128/3812/3812106.png'
@@ -213,12 +226,21 @@ const Address = () => {
                   alt=''
                 />
               </div>{' '}
-              <div style={{ color: 'blue' }}>Cash On Delivery</div>
+              <div>Cash On Delivery</div>
             </div>
             <div
               className={styles.bkash}
               onClick={() =>
-                payNow(router.query.buyNow ? buyNowItems : cartItems)
+                // payNow(router.query.buyNow ? buyNowItems : cartItems)
+                setPaymentMethod('sslcommerz')
+              }
+              style={
+                paymentMethod == 'sslcommerz'
+                  ? {
+                      background: `${themeBg}`,
+                      color: 'white'
+                    }
+                  : {}
               }
             >
               <div>
@@ -230,16 +252,38 @@ const Address = () => {
                   alt=''
                 />
               </div>{' '}
-              <div style={{ color: 'blue' }}> Pay Now</div>
+              <div> Pay Now</div>
             </div>
           </div>
-          <button
-            onClick={() =>
-              makeOrder(router.query.buyNow ? buyNowItems : cartItems)
-            }
-          >
-            Place Order
-          </button>
+          <div className={styles.flex_btn}>
+            {' '}
+            <button
+              onClick={() =>
+                // makeOrder(router.query.buyNow ? buyNowItems : cartItems)
+                router.back()
+              }
+            >
+              Go Back
+            </button>
+            <button
+              onClick={() =>
+                paymentMethod == 'COD'
+                  ? makeOrder(router.query.buyNow ? buyNowItems : cartItems)
+                  : paymentMethod == 'sslcommerz'
+                  ? payNow(router.query.buyNow ? buyNowItems : cartItems)
+                  : dispatch(
+                      showSnackBar({
+                        message: 'Select Payment Method',
+                        option: {
+                          variant: 'info'
+                        }
+                      })
+                    )
+              }
+            >
+              Place Order
+            </button>
+          </div>
           <p>
             After placing your order, we will be contacting you shortly to
             confirm it. Please anticipate a call from{' '}
@@ -263,6 +307,7 @@ const Address = () => {
               )}
               discount={discount}
               address={addressInfo}
+              paymentMethod={paymentMethod}
             />
           )}{' '}
         </div>
