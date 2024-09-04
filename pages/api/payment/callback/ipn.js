@@ -4,8 +4,7 @@ import Order from '@/database/model/Order'
 import nc from 'next-connect'
 import { isAuth } from '@/utility'
 import BASE_URL from '@/config'
-import { NextResponse } from 'next/server'
-import { track } from 'react-facebook-pixel'
+
 
 const handler = nc()
 
