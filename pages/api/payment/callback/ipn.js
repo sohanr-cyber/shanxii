@@ -23,7 +23,7 @@ handler.post(async (req, res) => {
       await order.save()
     }
     await db.disconnect()
-    return res.status(200).send('Payment Recieved For Tran Id ', tran_id)
+    return res.status(200).send(`Payment Received For Tran Id: ${tran_id}`)
   } catch (error) {
     console.log(error)
     res.status(500).send({ error: error })
