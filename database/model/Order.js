@@ -1,3 +1,4 @@
+import { generateTransactionId } from '@/utility/helper'
 import mongoose from 'mongoose'
 
 const orderSchema = new mongoose.Schema(
@@ -92,10 +93,13 @@ const orderSchema = new mongoose.Schema(
         }
       }
     ],
+
     trackingNumber: {
       type: String
     },
-
+    transactionId: {
+      type: String
+    },
     // Order total and details
     subtotal: {
       type: Number,
@@ -134,13 +138,15 @@ const orderSchema = new mongoose.Schema(
 )
 
 // Pre-save hook to generate a unique 6-digit tracking number
-orderSchema.pre('save', function(next) {
+orderSchema.pre('save', function (next) {
   if (!this.trackingNumber) {
-    this.trackingNumber = Math.floor(100000 + Math.random() * 900000).toString();
+    this.trackingNumber = Math.floor(100000 + Math.random() * 900000).toString()
   }
-  next();
-});
-
+  if (!this.transactionId) {
+    this.transactionId = generateTransactionId(this.trackingNumber)
+  }
+  next()
+})
 
 const Order = mongoose.models.Order || mongoose.model('Order', orderSchema)
 export default Order

@@ -1,6 +1,7 @@
 import BASE_URL from '@/config'
 import { companyName, delivery_charge, seoData } from './const'
 import mongoose from 'mongoose'
+import crypto from 'crypto'
 
 function generateTrackingNumber (length = 10) {
   const characters =
@@ -197,6 +198,17 @@ function findCategoryById (categories, id) {
   return null // Return null if no category is found with the given ID
 }
 
+function generateTransactionId (orderId) {
+  const timestamp = Date.now().toString() // Current timestamp
+  const randomString = crypto.randomBytes(4).toString('hex') // Random string of 8 characters
+  const orderIdString = orderId.toString() // Convert order ID to string
+
+  // Combine the order ID, timestamp, and random string to create a unique transaction ID
+  const transactionId = `${orderIdString}-${timestamp}-${randomString}`
+
+  return transactionId
+}
+
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -212,5 +224,6 @@ export {
   getTotalProfit,
   sortByMonth,
   extractRGBA,
-  findCategoryById
+  findCategoryById,
+  generateTransactionId
 }

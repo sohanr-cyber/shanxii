@@ -4,6 +4,7 @@ import Order from '@/database/model/Order'
 import nc from 'next-connect'
 import { isAuth } from '@/utility'
 import BASE_URL from '@/config'
+import Payment from '@/database/model/Payment'
 
 const handler = nc()
 
@@ -23,13 +24,34 @@ handler.post(async (req, res) => {
     })
     console.log('Validation Response:', response)
 
-    // await db.connect()
-    // const order = await Order.findOne({ trackingNumber: tran_id })
-    // if (order) {
-    //   order.paymentStatus = 'completed'
-    //   await order.save()
-    // }
-    // await db.disconnect()
+    await db.connect()
+    const order = await Order.findOne({ trackingNumber: tran_id })
+    if (status == 'VALID' && order.total == response.amount) {
+      order.paymentStatus = 'completed'
+      await order.save()
+    }
+
+    const payment = new Payment({
+      transactionId: response.tran_id,
+      orderId: order._id,
+      val_id: response.val_id,
+      amount: response.amount,
+      currency: response.currency,
+      paymentMethod: response.card_type,
+      paymentStatus: response.status === 'VALID' ? 'completed' : 'failed',
+      paymentDate: new Date(response.tran_date),
+      bankTransactionId: response.bank_tran_id,
+      cardType: response.card_type,
+      cardIssuer: response.card_issuer,
+      cardBrand: response.card_brand,
+      cardIssuerCountry: response.card_issuer_country,
+      riskLevel: response.risk_level,
+      riskTitle: response.risk_title
+    })
+
+    await payment.save()
+    await db.disconnect()
+
     return res.status(200).send(`Payment Received For Tran Id: ${tran_id}`)
   } catch (error) {
     console.log(error)
