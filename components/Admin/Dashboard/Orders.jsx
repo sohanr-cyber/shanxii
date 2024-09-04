@@ -50,6 +50,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
       console.log(error)
     }
   }
+  
   return (
     <>
       {recipent && validator.validate(recipent.email) && (
@@ -104,13 +105,13 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
             <thead>
               <tr>
                 <th>Order ID</th>
-                <th style={{ minWidth: '200px' }}>Customer Name</th>
+                <th>Customer Name</th>
                 <th>Customer Phone</th>
                 <th>Total Amount</th>
                 <th>Order Status</th>
                 <th>Payment Status</th>
                 <th>Date Of Creation</th>
-                <th style={{ minWidth: '180px' }}>Action</th>
+                <th>Action</th>
                 {/* Add more table headers as needed */}
               </tr>
             </thead>
@@ -128,7 +129,15 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                     {order.trackingNumber.split('').slice(0, 9)}...
                   </td>
                   <td>{order.shippingAddress.fullName}</td>
-                  <td>{order.shippingAddress.phone}</td>
+                  <td
+                    onDoubleClick={() =>
+                      router.push(
+                        `/admin/order?query=${order.shippingAddress.phone}`
+                      )
+                    }
+                  >
+                    {order.shippingAddress.phone}
+                  </td>
                   <td>৳{order.total}</td>
                   <td>
                     <span

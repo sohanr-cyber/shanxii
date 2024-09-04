@@ -11,25 +11,26 @@ import BASE_URL from '@/config'
 
 const handler = nc()
 
-const store_id = 'quinc66d679e90b3db'
-const store_passwd = 'quinc66d679e90b3db@ssl'
-const is_live = false //true for live, false for sandbox
+const store_id = process.env.store_id
+const store_passwd = process.env.store_passwd
+const is_live = process.env.is_live == 'false' ? false : true //true for live, false for sandbox
 
+console.log({ store_id, store_passwd, is_live })
 handler.post(async (req, res) => {
   try {
     const { data: order } = await axios.post(
       `${BASE_URL}/api/order/checkout`,
       req.body
     )
-    console.log({ order })
+    // console.log({ order })
     const data = {
       total_amount: order.total,
       currency: 'BDT',
       tran_id: order.trackingNumber, // use unique tran_id for each api call
-      success_url: `${BASE_URL}/api/payment/callback/${order._id}`,
+      success_url: `${BASE_URL}/order${order._id}`,
       fail_url: `${BASE_URL}/api/payment/callback/canceled?id=${order._id}`,
       cancel_url: `${BASE_URL}/api/payment/callback/canceled?id=${order._id}`,
-      ipn_url: 'http://localhost:3030/ipn',
+      ipn_url: `${BASE_URL}/api/payment/callback/ipn`,
       shipping_method: 'Courier',
       product_name: 'Computer.',
       product_category: 'Electronic',
@@ -64,9 +65,21 @@ handler.post(async (req, res) => {
   }
 })
 
-handler.put(async (req, res) => {
+handler.get(async (req, res) => {
   try {
-  } catch (error) {}
+    const data = {
+      refund_ref_id: req.query.refId
+    }
+    const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live)
+    sslcz.refundQuery(data).then(data => {
+      //process the response that got from sslcommerz
+      //https://developer.sslcommerz.com/doc/v4/#initiate-the-refund
+      console.log(data)
+    })
+    return
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 export default handler

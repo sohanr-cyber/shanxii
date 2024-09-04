@@ -13,22 +13,20 @@ const store_passwd = process.env.store_passwd
 const is_live = process.env.is_live == 'false' ? false : true //true for live, false for sandbox
 
 handler.post(async (req, res) => {
+  console.log('incomming')
+  const { tran_id, val_id, amount, currency, status } = req.body
   try {
-    const orderId = req.query.id
-
-    if (!orderId) {
-      return res.status(400).json({ error: 'Order ID is required' })
+    const order = await Order.findOne({ trackingNumber: tran_id })
+    if (status === 'VALID' && order.total === amount) {
+      order.paymentStatus = 'completed'
+      await order.save()
+      res.status(200).send('Payment status updated')
+    } else {
+      res.status(400).send('Invalid payment data')
     }
-
-    const updatedOrder = await Order.findByIdAndUpdate(
-      orderId, // The ID of the order to update
-      { $set: { paymentStatus: 'completed' } }, // Update the payment status to 'completed'
-      { new: true } // Return the updated document
-    )
-
-    res.status(200).redirect(`/order/${orderId}`)
   } catch (error) {
-    console.log(error)
+    console.error(error)
+    res.status(500).send('Server error')
   }
 })
 

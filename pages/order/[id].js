@@ -66,6 +66,24 @@ const Order = ({ order: orderDetail }) => {
     }
   }
 
+  const refund = async () => {
+    try {
+      dispatch(startLoading())
+      const { data } = await axios.get(
+        `/api/payment/${router.query.id}`,
+
+        {
+          headers
+        }
+      )
+      dispatch(finishLoading())
+    } catch (error) {
+      dispatch(finishLoading())
+
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <NextSeo {...orderDetailSeoData} />
@@ -73,7 +91,14 @@ const Order = ({ order: orderDetail }) => {
         <div className={styles.left}>
           <h2>OrderId: #{order.trackingNumber}</h2>
           <div className={styles.payment}>
-            Payement Status :<span>{order.paymentStatus}</span>
+            Payement Status :<span>{order.paymentStatus}</span>{' '}
+            {isClient &&
+              userInfo?.role == 'admin' &&
+              order.paymentStatus == 'completed' && (
+                <div className={styles.payment}>
+                  <button onClick={() => refund()}>Refund</button>
+                </div>
+              )}
           </div>
           <div className={styles.status__steps}>
             <OrderStatus order={order} />

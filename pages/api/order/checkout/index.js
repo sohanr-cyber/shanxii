@@ -63,7 +63,7 @@ handler.post(async (req, res) => {
       })
     )
 
-    console.log(populatedItems.map(i => i.item))
+    // console.log(populatedItems.map(i => i.item))
     const subtotal = populatedItems
       .map(i => i.order)
       .reduce((acc, item) => {

@@ -12,24 +12,22 @@ const store_id = 'quinc66d679e90b3db'
 const store_passwd = 'quinc66d679e90b3db@ssl'
 const is_live = false // true for live, false for sandbox
 
+//SSLCommerz initiateRefund
+
 handler.get(async (req, res) => {
+  const order = await Order.findOne({ _id: req.query.id })
+  console.log(order)
   try {
-    const orderId = req.query.id
-
-    if (!orderId) {
-      return res.status(400).json({ error: 'Order ID is required' })
+    const data = {
+      refund_amount: order.total,
+      refund_remarks: '',
+      bank_tran_id: order.trackingNumber,
+      refe_id: order.trackingNumber
     }
-
-    const updatedOrder = await Order.findByIdAndUpdate(
-      orderId, // The ID of the order to update
-      { $set: { paymentStatus: 'completed' } }, // Update the payment status to 'completed'
-      { new: true } // Return the updated document
-    )
-
-    // console.log('Incoming request to update order:', orderId)
-
-    // NextResponse.redirect(`${BASE_URL}/order/${orderId}`) // Just for testing
-    res.status(200).redirect(`/order/${orderId}`)
+    const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live)
+    sslcz.initiateRefund(data).then(data => {
+      console.log(data)
+    })
   } catch (error) {
     console.log(error)
   }
