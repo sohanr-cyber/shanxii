@@ -15,7 +15,8 @@ handler.post(async (req, res) => {
   try {
     console.log('--incomming req')
     // console.log(req.body)
-    const { tran_id } = req.body
+    const { tran_id, val_id, amount, currency_type, status } = req.body
+    console.log({ tran_id, val_id, amount, currency_type, status })
     await db.connect()
     const order = await Order.findOne({ trackingNumber: tran_id })
     if (order) {
