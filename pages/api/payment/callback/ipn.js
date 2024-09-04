@@ -17,7 +17,7 @@ handler.post(async (req, res) => {
     // console.log(req.body)
     const { tran_id } = req.body
     await db.connect()
-    const order = Order.findOne({ trackingNumber: tran_id })
+    const order = await Order.findOne({ trackingNumber: tran_id })
     if (order) {
       order.paymentStatus = 'completed'
       await order.save()
