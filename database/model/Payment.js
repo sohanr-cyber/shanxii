@@ -30,7 +30,7 @@ const paymentSchema = new mongoose.Schema(
     paymentMethod: {
       type: String,
       required: true,
-      enum: ['SSLCommerz', 'Stripe', 'PayPal', 'BankTransfer']
+      // enum: ['SSLCommerz', 'Stripe', 'PayPal', 'BankTransfer']
     },
     paymentStatus: {
       type: String,
