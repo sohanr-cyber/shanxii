@@ -16,14 +16,20 @@ handler.post(async (req, res) => {
     console.log('--incomming req')
     // console.log(req.body)
     const { tran_id, val_id, amount, currency_type, status } = req.body
-    console.log({ tran_id, val_id, amount, currency_type, status })
-    await db.connect()
-    const order = await Order.findOne({ trackingNumber: tran_id })
-    if (order) {
-      order.paymentStatus = 'completed'
-      await order.save()
-    }
-    await db.disconnect()
+    // console.log({ tran_id, val_id, amount, currency_type, status })
+    const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live)
+    const response = await sslcz.validate({
+      val_id
+    })
+    console.log('Validation Response:', response)
+
+    // await db.connect()
+    // const order = await Order.findOne({ trackingNumber: tran_id })
+    // if (order) {
+    //   order.paymentStatus = 'completed'
+    //   await order.save()
+    // }
+    // await db.disconnect()
     return res.status(200).send(`Payment Received For Tran Id: ${tran_id}`)
   } catch (error) {
     console.log(error)
