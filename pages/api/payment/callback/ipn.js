@@ -5,6 +5,7 @@ import nc from 'next-connect'
 import { isAuth } from '@/utility'
 import BASE_URL from '@/config'
 import { NextResponse } from 'next/server'
+import { track } from 'react-facebook-pixel'
 
 const handler = nc()
 
@@ -15,7 +16,16 @@ const is_live = process.env.is_live == 'false' ? false : true //true for live, f
 handler.post(async (req, res) => {
   try {
     console.log('--incomming req')
-    console.log(req.body)
+    // console.log(req.body)
+    const { tran_id } = req.body
+    await db.connect()
+    const order = order.findOne({ trackingNumber: tran_id })
+    if (order) {
+      order.paymentStatus = 'completed'
+      await order.save()
+    }
+    await db.disconnect()
+    return res.status(200).send('Payment Recieved For Tran Id ', tran_id)
   } catch (error) {
     console.log(error)
     res.status(500).send({ error: error })
