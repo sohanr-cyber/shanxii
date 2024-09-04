@@ -5,7 +5,6 @@ import nc from 'next-connect'
 import { isAuth } from '@/utility'
 import BASE_URL from '@/config'
 
-
 const handler = nc()
 
 const store_id = process.env.store_id
@@ -18,7 +17,7 @@ handler.post(async (req, res) => {
     // console.log(req.body)
     const { tran_id } = req.body
     await db.connect()
-    const order = order.findOne({ trackingNumber: tran_id })
+    const order = Order.findOne({ trackingNumber: tran_id })
     if (order) {
       order.paymentStatus = 'completed'
       await order.save()
