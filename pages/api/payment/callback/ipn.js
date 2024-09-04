@@ -25,8 +25,8 @@ handler.post(async (req, res) => {
     console.log('Validation Response:', response)
 
     await db.connect()
-    console.log({ t: order.total, r: response.amount })
     const order = await Order.findOne({ transactionId: tran_id })
+    console.log(order.amount)
     if (status == 'VALID' && order.total == response.amount) {
       order.paymentStatus = 'completed'
       await order.save()
