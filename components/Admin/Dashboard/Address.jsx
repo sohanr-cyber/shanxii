@@ -103,7 +103,7 @@ const Addresses = ({
             <thead>
               <tr>
                 <th>Address ID</th>
-                <th style={{ minWidth: '200px' }}>Customer Name</th>
+                <th>Customer Name</th>
                 <th>Customer Phone</th>
                 <th>Area</th>
                 <th>Address</th>

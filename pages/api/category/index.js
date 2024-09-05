@@ -42,12 +42,12 @@ handler.use(isAuth, isAdmin)
 handler.post(async (req, res) => {
   try {
     await db.connect()
-    const exist = await Category.findOne({ name: req.body.name })
-    if (exist) {
-      return res.status(200).send({
-        error: 'Already A Cateory Exist With This Name'
-      })
-    }
+    // const exist = await Category.findOne({ name: req.body.name })
+    // if (exist) {
+    //   return res.status(200).send({
+    //     error: 'Already A Cateory Exist With This Name'
+    //   })
+    // }
     const category = await Category.create({
       ...req.body,
       slug: slugify(req.body.name)

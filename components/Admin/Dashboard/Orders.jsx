@@ -23,6 +23,10 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
     setFilteredOrders(orders)
   }, [orders])
 
+  useEffect(() => {
+    router.query.query ? setSearchQuery(router.query.query) : setSearchQuery('')
+  }, [router])
+
   const updateRoute = data => {
     const queryParams = { ...router.query, ...data, page: 1 }
     router.push({
@@ -50,7 +54,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
       console.log(error)
     }
   }
-  
+
   return (
     <>
       {recipent && validator.validate(recipent.email) && (

@@ -64,11 +64,16 @@ const Navbar2 = () => {
       </div>
       <div className={styles.right}>
         <div
-          className={styles.ShoppingCartIcon}
+          className={styles.shoppingCartIcon}
           onClick={() => redirectToCart()}
         >
           <ShoppingCartIcon className={styles.icon} />
-          <span>{cartItems.length > 0 && cartItems.legngth}</span>
+          {isClient && cartItems.length > 0 && <span>{cartItems.length}</span>}
+          {isClient && cartItems.length > 0 && (
+            <div className={styles.cartItems}>
+              <CartItems cartItems={cartItems} />
+            </div>
+          )}{' '}
         </div>
         {isClient && userInfo?.role == 'admin' && (
           <AccountCircleIcon
