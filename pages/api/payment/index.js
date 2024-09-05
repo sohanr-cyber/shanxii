@@ -15,7 +15,7 @@ const store_id = process.env.store_id
 const store_passwd = process.env.store_passwd
 const is_live = process.env.is_live == 'false' ? false : true //true for live, false for sandbox
 
-console.log({ store_id, store_passwd, is_live })
+// initial payment checkout
 handler.post(async (req, res) => {
   try {
     const { data: order } = await axios.post(
@@ -60,23 +60,6 @@ handler.post(async (req, res) => {
       res.status(200).send({ GatewayPageURL })
       console.log('Redirecting to: ', GatewayPageURL)
     })
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-handler.get(async (req, res) => {
-  try {
-    const data = {
-      refund_ref_id: req.query.refId
-    }
-    const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live)
-    sslcz.refundQuery(data).then(data => {
-      //process the response that got from sslcommerz
-      //https://developer.sslcommerz.com/doc/v4/#initiate-the-refund
-      console.log(data)
-    })
-    return
   } catch (error) {
     console.log(error)
   }

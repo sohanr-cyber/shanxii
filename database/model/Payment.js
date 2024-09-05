@@ -29,7 +29,7 @@ const paymentSchema = new mongoose.Schema(
     },
     paymentMethod: {
       type: String,
-      required: true,
+      required: true
       // enum: ['SSLCommerz', 'Stripe', 'PayPal', 'BankTransfer']
     },
     paymentStatus: {
@@ -66,7 +66,7 @@ const paymentSchema = new mongoose.Schema(
     refund: {
       status: {
         type: String,
-        enum: ['pending', 'processed', 'failed', 'none'],
+        // enum: ['pending', 'processed', 'failed', 'none'],
         default: 'none'
       },
       amount: {
@@ -78,12 +78,17 @@ const paymentSchema = new mongoose.Schema(
       },
       reason: {
         type: String
+      },
+      refundRefId: {
+        type: String
       }
     }
   },
   { timestamps: true }
 )
 
-const Payment = mongoose.model('Payment', paymentSchema)
+const Payment =
+  mongoose.models.Payment || mongoose.model('Payment', paymentSchema)
 
+  
 export default Payment
