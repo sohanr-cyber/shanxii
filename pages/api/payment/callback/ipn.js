@@ -38,6 +38,7 @@ handler.post(async (req, res) => {
         status: 'Confirmed',
         timestamp: Date.now()
       })
+      order.status = 'Confirmed'
       await order.save()
     }
 
