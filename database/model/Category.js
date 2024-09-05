@@ -14,7 +14,7 @@ const categorySchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      unique: true // Ensures unique category URLs
+      // unique: true // Ensures unique category URLs
     },
 
     image: {
