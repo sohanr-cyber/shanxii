@@ -29,6 +29,19 @@ handler.post(async (req, res) => {
     console.log(order.total)
     if (status == 'VALID' && order.total == response.amount) {
       order.paymentStatus = 'completed'
+      order.statusTimeline.push({
+        status: 'Pending',
+        timestamp: Date.now()
+      })
+
+      order.statusTimeline.push({
+        status: 'Processing',
+        timestamp: Date.now()
+      })
+      order.statusTimeline.push({
+        status: 'Confirmed',
+        timestamp: Date.now()
+      })
       await order.save()
     }
 
