@@ -62,3 +62,10 @@
 .shipping .address {
     margin: 10px 0
 }
+
+.shipping .paymentStatus {
+    border: 1px solid var(--borderColor);
+    padding: 2px 5px;
+    border-radius: 5px;
+
+}

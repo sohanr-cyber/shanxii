@@ -94,7 +94,12 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                   'Confirmed',
                   'Delivered'
                 ].map((item, index) => (
-                  <option key={index}>{item}</option>
+                  <option
+                    key={index}
+                    selected={item.toLocaleLowerCase() == router.query.status ? true : false}
+                  >
+                    {item}
+                  </option>
                 ))}
               </select>
               {/* <button onClick={() => router.push('/admin/product/create')}>
@@ -158,7 +163,18 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                     </span>
                   </td>
                   <td>
-                    <span>{order.paymentStatus}</span>
+                    <span
+                      style={{
+                        background: `${extractRGBA(
+                          orderStatusColors[order.status.toLowerCase()],
+                          0.2
+                        )}`,
+                        padding: '3px 3px',
+                        borderRadius: '5px'
+                      }}
+                    >
+                      {order.paymentStatus}
+                    </span>
                   </td>
                   <td>
                     {new Date(order.createdAt).toLocaleString('en-US', {

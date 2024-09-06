@@ -89,16 +89,8 @@ const Order = ({ order: orderDetail }) => {
       <NextSeo {...orderDetailSeoData} />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <h2>OrderId: #{order.trackingNumber}</h2>
-          <div className={styles.payment}>
-            Payement Status :<span>{order.paymentStatus}</span>{' '}
-            {isClient &&
-              userInfo?.role == 'admin' &&
-              order.paymentStatus == 'completed' && (
-                <div className={styles.payment}>
-                  <button onClick={() => refund()}>Refund</button>
-                </div>
-              )}
+          <div className={styles.flex}>
+            <h2>Order No: #{order.trackingNumber}</h2>
           </div>
           <div className={styles.status__steps}>
             <OrderStatus order={order} />
@@ -161,6 +153,7 @@ const Order = ({ order: orderDetail }) => {
               discount={order.discount}
               address={order.shippingAddress}
               paymentMethod={order.paymentMethod}
+              paymentStatus={order.paymentStatus}
             />
           )}
         </div>

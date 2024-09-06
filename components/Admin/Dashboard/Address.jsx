@@ -88,7 +88,16 @@ const Addresses = ({
                   'Outside Dhaka	',
                   'Dhaka Subburb'
                 ].map((item, index) => (
-                  <option key={index}>{item}</option>
+                  <option
+                    key={index}
+                    selected={
+                      item.toLocaleLowerCase() == router.query.position
+                        ? true
+                        : false
+                    }
+                  >
+                    {item}
+                  </option>
                 ))}
               </select>
               {/* <button onClick={() => router.push('/admin/product/create')}>

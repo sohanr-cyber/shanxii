@@ -1,15 +1,17 @@
 import Image from 'next/image'
 import React from 'react'
 import styles from '../../styles/Cart/OrderSummary.module.css'
-import { calculateSubtotal, getPrice } from '@/utility/helper'
+import { calculateSubtotal, extractRGBA, getPrice } from '@/utility/helper'
 import { useRouter } from 'next/router'
+import { orderStatusColors } from '@/utility/const'
 const OrderSummary = ({
   cartItems,
   shipping,
   total,
   address,
   discount,
-  paymentMethod
+  paymentMethod,
+  paymentStatus
 }) => {
   const router = useRouter()
 
@@ -86,6 +88,27 @@ const OrderSummary = ({
             <div className={styles.title}>Payment Method</div>
             <div className={styles.address}>
               {paymentMethod == 'COD' ? 'Cash On Delivery(COD)' : paymentMethod}
+            </div>
+          </>
+        )}
+        {paymentMethod && (
+          <>
+            {' '}
+            <div className={styles.title}>Payment Status</div>
+            <div className={styles.address}>
+              <span
+                className={styles.paymentStatus}
+                style={{
+                  background: `${extractRGBA(
+                    orderStatusColors[paymentStatus.toLowerCase()],
+                    0.2
+                  )}`,
+                  padding: '3px 3px',
+                  borderRadius: '5px'
+                }}
+              >
+                {paymentStatus}
+              </span>
             </div>
           </>
         )}

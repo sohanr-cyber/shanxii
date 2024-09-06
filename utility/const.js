@@ -303,6 +303,7 @@ const orderStatusColors = {
   pending: 'rgb(255, 165, 0)', // Orange
   processing: 'rgb(0, 0, 255)', // Blue
   confirmed: 'rgb(0, 128, 0)', // Green
+  completed: 'rgb(0, 128, 0)', // Green
   packing: 'rgb(255, 215, 0)', // Gold
   packed: 'rgb(255, 140, 0)', // Dark Orange
   delivering: 'rgb(30, 144, 255)', // Dodger Blue
