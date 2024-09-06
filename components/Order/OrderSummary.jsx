@@ -91,7 +91,7 @@ const OrderSummary = ({
             </div>
           </>
         )}
-        {paymentMethod && (
+        {paymentStatus && (
           <>
             {' '}
             <div className={styles.title}>Payment Status</div>
