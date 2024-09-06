@@ -26,6 +26,15 @@ handler.post(async (req, res) => {
 
     await db.connect()
     const order = await Order.findOne({ transactionId: tran_id })
+      .populate({
+        path: 'items.product',
+        select: 'name slug  price priceWithDiscount discount color thumbnail '
+      })
+      .populate({
+        path: 'shippingAddress',
+        select: 'address email fullName phone'
+      })
+
     console.log(order.total)
     if (status == 'VALID' && order.total == response.amount) {
       order.paymentStatus = 'completed'
@@ -62,8 +71,22 @@ handler.post(async (req, res) => {
 
     await payment.save()
     await db.disconnect()
-
-    return res.status(200).send(`Payment Received For Tran Id: ${tran_id}`)
+    res.status(200).send(`Payment Received For Tran Id: ${tran_id}`)
+    if (order.shippingAddress.email) {
+      let leanOrder = order.toObject()
+      if (order.status == 'Confirmed') {
+        await mail.sendMail({
+          subject: 'Your Order Have Been Confirmed',
+          for: 'orderConfirmed',
+          ...leanOrder.shippingAddress,
+          name: order.shippingAddress.fullName,
+          to: order.shippingAddress.email,
+          orderId: order._id,
+          ...leanOrder
+        })
+      }
+    }
+    return
   } catch (error) {
     console.log(error)
     res.status(500).send({ error: error })

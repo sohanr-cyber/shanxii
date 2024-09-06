@@ -1,5 +1,6 @@
 import BASE_URL from '@/config'
-const companyName = 'SET'
+const companyName = 'Quince'
+
 const footerP =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
 const Inside_Dhaka = 70
@@ -105,6 +106,50 @@ const orderCartSeoData = {
         width: 1200,
         height: 630,
         alt: 'Order Cart - SET Organic Food'
+      }
+    ],
+    type: 'website'
+  },
+  twitter: seoData.twitter
+}
+
+const TermsAndConditionSeoData = {
+  title: `Our Terms And Conditions - ${companyName}`,
+  description: `Welcome to ${companyName}! These terms and conditions outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
+  canonical: `${BASE_URL}/cart`,
+  openGraph: {
+    title: `Our Terms And Conditions - ${companyName}`,
+    description: `Welcome to ${companyName}! These terms and conditions outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
+
+    url: `${BASE_URL}/terms-and-conditions`,
+    images: [
+      {
+        url: `${BASE_URL}/images/terms-and-conditions.png`,
+        width: 1200,
+        height: 630,
+        alt: `Our Terms And Conditions - ${companyName}`
+      }
+    ],
+    type: 'website'
+  },
+  twitter: seoData.twitter
+}
+
+const privacyPolicySeoData = {
+  title: `Privacy Policy - ${companyName}`,
+  description: `Welcome to ${companyName}! These privacy policy outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
+  canonical: `${BASE_URL}/cart`,
+  openGraph: {
+    title: `Privacy Policy - ${companyName}`,
+    description: `Welcome to ${companyName}! These privacy policy outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
+
+    url: `${BASE_URL}/privacy-policy`,
+    images: [
+      {
+        url: `${BASE_URL}/images/privacy-policy.png`,
+        width: 1200,
+        height: 630,
+        alt: `Privacy Policy - ${companyName}`
       }
     ],
     type: 'website'
@@ -284,6 +329,8 @@ export {
   orderCartSeoData,
   orderDetailSeoData,
   reviewSeoData,
+  TermsAndConditionSeoData,
+  privacyPolicySeoData,
   addressSeoData,
   registerSeoData,
   loginSeoData,
