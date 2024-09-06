@@ -18,6 +18,7 @@ const is_live = process.env.is_live == 'false' ? false : true //true for live, f
 
 handler.get(async (req, res) => {
   try {
+    await db.connect()
     const payment = await Payment.findOne({ _id: req.query.id })
     const data = {
       refund_ref_id: payment.refund.refundRefId
@@ -27,6 +28,7 @@ handler.get(async (req, res) => {
       console.log(data)
       return res.status(200).json(data)
     })
+    await db.disconnect()
     // res.status(200).send('ok')
   } catch (error) {
     console.log(error)

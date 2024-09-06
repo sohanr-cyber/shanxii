@@ -16,12 +16,13 @@ const is_live = false // true for live, false for sandbox
 //SSLCommerz initiateRefund
 
 handler.get(async (req, res) => {
+  await db.connect()
   const payment = await Payment.findOne({ _id: req.query.id })
 
   if (!payment) {
     return res.status(404).json({ error: 'Payment not found' })
   }
-  
+
   try {
     const data = {
       refund_amount: payment.amount,
@@ -40,6 +41,7 @@ handler.get(async (req, res) => {
       await payment.save()
       return res.status(200).send('Refund Process Initiated !')
     }
+    await db.disconnect()
     return res.status(200).send('Something Went Wrong')
   } catch (error) {
     console.log(error)

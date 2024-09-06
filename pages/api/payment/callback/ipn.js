@@ -71,7 +71,6 @@ handler.post(async (req, res) => {
 
     await payment.save()
     await db.disconnect()
-    res.status(200).send(`Payment Received For Tran Id: ${tran_id}`)
     if (order.shippingAddress.email) {
       let leanOrder = order.toObject()
       if (order.status == 'Confirmed') {
@@ -86,7 +85,7 @@ handler.post(async (req, res) => {
         })
       }
     }
-    return
+    return res.status(200).send(`Payment Received For Tran Id: ${tran_id}`)
   } catch (error) {
     console.log(error)
     res.status(500).send({ error: error })
