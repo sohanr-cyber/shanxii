@@ -17,7 +17,7 @@ const SearchBox2 = ({ setOpen }) => {
   const updateRoute = data => {
     const queryParams = { ...router.query, ...data }
     router.push({
-      pathname: router.pathname,
+      pathname: '/shop',
       query: queryParams,
       shallow: false
     })
@@ -87,11 +87,11 @@ const SearchBox2 = ({ setOpen }) => {
                         {' '}
                         <CheckBoxOutlineBlankIcon />
                         <span
-                          // style={
-                          //   item.children.length > 0
-                          //     ? { fontWeight: 'bold' }
-                          //     : {}
-                          // }
+                        // style={
+                        //   item.children.length > 0
+                        //     ? { fontWeight: 'bold' }
+                        //     : {}
+                        // }
                         >
                           {item.name}
                         </span>

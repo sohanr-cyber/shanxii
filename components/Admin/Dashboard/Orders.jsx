@@ -10,7 +10,7 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import MailBox from '@/components/Utility/MailBox'
 import validator from 'email-validator'
 import { orderStatusColors } from '@/utility/const'
-import { extractRGBA } from '@/utility/helper'
+import { extractRGBA, getTime } from '@/utility/helper'
 
 const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const [filteredOrders, setFilteredOrders] = useState(orders)
@@ -91,12 +91,20 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                   // 'Select Order Status',
                   'All',
                   'Pending',
+                  'Processing',
                   'Confirmed',
+                  'Packing',
+                  'Packed',
+                  'Delivering',
                   'Delivered'
                 ].map((item, index) => (
                   <option
                     key={index}
-                    selected={item.toLocaleLowerCase() == router.query.status ? true : false}
+                    selected={
+                      item.toLocaleLowerCase() == router.query.status
+                        ? true
+                        : false
+                    }
                   >
                     {item}
                   </option>
@@ -176,15 +184,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                       {order.paymentStatus}
                     </span>
                   </td>
-                  <td>
-                    {new Date(order.createdAt).toLocaleString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
-                  </td>
+                  <td>{getTime(order.createdAt)}</td>
                   <td className={styles.action}>
                     <span onDoubleClick={() => remove(order._id)}>Delete</span>
                     <span onClick={() => router.push(`/order/${order._id}`)}>

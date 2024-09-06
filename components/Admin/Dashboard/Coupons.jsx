@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import axios from 'axios'
 import { orderStatusColors } from '@/utility/const'
-import { extractRGBA } from '@/utility/helper'
+import { extractRGBA, getTime } from '@/utility/helper'
 
 const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
   const router = useRouter()
@@ -26,9 +26,8 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
 
     // Filter products based on the search query
     const filtered = coupons.filter(
-      c =>
-        c.code.toLowerCase().includes(query.toLowerCase()) ||
-        c._id.toLowerCase().includes(query.toLowerCase())
+      c => c.code.toLowerCase().includes(query.toLowerCase())
+      // || c._id.toLowerCase().includes(query.toLowerCase())
     )
     setFilteredCoupons(filtered)
   }
@@ -111,8 +110,8 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
                   <td>{c.code}</td>
                   <td>{c.discountType}</td>
                   <td>{c.discountValue && <> -{c.discountValue} %</>}</td>
-                  <td>{c.startDate}</td>
-                  <td>{c.expiryDate}</td>
+                  <td>{getTime(c.startDate)}</td>
+                  <td>{getTime(c.expiryDate)}</td>
 
                   <td className={styles.action}>
                     <span onClick={() => remove(c._id)}>Delete</span>
