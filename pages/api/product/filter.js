@@ -2,6 +2,7 @@
 
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
+import Category from '@/database/model/Category'
 import { getPlaceholderImage } from '@/utility/image'
 import nc from 'next-connect'
 
