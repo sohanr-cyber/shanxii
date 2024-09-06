@@ -5,6 +5,7 @@ import nc from 'next-connect'
 import { isAuth } from '@/utility'
 import BASE_URL from '@/config'
 import Payment from '@/database/model/Payment'
+import Mail from '@/services/mail-service'
 
 const handler = nc()
 
@@ -72,6 +73,7 @@ handler.post(async (req, res) => {
     await payment.save()
     await db.disconnect()
     if (order.shippingAddress.email) {
+      const mail = Mail()
       let leanOrder = order.toObject()
       if (order.status == 'Confirmed') {
         await mail.sendMail({
