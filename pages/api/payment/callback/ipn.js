@@ -74,7 +74,7 @@ handler.post(async (req, res) => {
     await payment.save()
     await db.disconnect()
     if (order.shippingAddress.email) {
-      const mail = Mail()
+      const mail = new Mail()
       let leanOrder = order.toObject()
       if (order.status == 'Confirmed') {
         await mail.sendMail({
