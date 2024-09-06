@@ -82,6 +82,7 @@ const OrderSummary = ({
       <div className={styles.shipping}>
         <div className={styles.title}>Shipping Address</div>
         <div className={styles.address}>{address.address}</div>
+       
         {paymentMethod && (
           <>
             {' '}
@@ -91,6 +92,7 @@ const OrderSummary = ({
             </div>
           </>
         )}
+
         {paymentStatus && (
           <>
             {' '}
@@ -112,6 +114,7 @@ const OrderSummary = ({
             </div>
           </>
         )}
+        
       </div>
     </div>
   )

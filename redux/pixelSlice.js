@@ -41,11 +41,13 @@ export const pixelSlice = createSlice({
       const pixel = state.pixel
       pixel.track('InitiateCheckout', {
         content_ids: cartItems.map(item => item.product._id),
+        num_items: cartItems.map(item => item.product._id).length,
         content_type: 'product',
         value: calculateSubtotal(cartItems),
         currency: 'BDT'
       })
     },
+
     handlePurchase: (state, action) => {
       const order = action.payload
       const pixel = state.pixel
@@ -58,6 +60,17 @@ export const pixelSlice = createSlice({
       })
     },
 
+    handleContact: (state, action) => {
+      const order = action.payload
+      const pixel = state.pixel
+      pixel.track('Contact', {
+        // content_type: 'product',
+        // value: order.total,
+        // currency: 'BDT',
+        // num_items: order.items.length,
+        // order_id: order._id
+      })
+    },
     handleAddPaymentInfo: (state, action) => {
       const { address, cartItems } = action.payload
       const pixel = state.pixel
@@ -89,7 +102,8 @@ export const {
   handleAddItemToCart,
   handlePurchase,
   handleAddPaymentInfo,
-  handleSearch
+  handleSearch,
+  handleContact
 } = pixelSlice.actions
 
 export default pixelSlice.reducer

@@ -17,7 +17,7 @@ import { reviewSeoData, support_number, themeBg } from '@/utility/const'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
-import { handlePurchase } from '@/redux/pixelSlice'
+import { handleInitiateCheckout, handlePurchase } from '@/redux/pixelSlice'
 
 const Address = () => {
   const cartItems = useSelector(state => state.cart.items)
@@ -60,6 +60,8 @@ const Address = () => {
     }
     try {
       dispatch(startLoading())
+      dispatch(handleInitiateCheckout(cartItems))
+
       const { data } = await axios.post('/api/order/checkout', {
         items: cartItems.map(i => ({
           product: i.product._id,
@@ -99,7 +101,7 @@ const Address = () => {
           }
         })
       )
-      dispatch(handlePurchase(data))
+      // dispatch(handlePurchase(data))
       router.push(`/order/${data._id}`)
       dispatch(clearCart())
       dispatch(clearCoupon())
@@ -122,6 +124,7 @@ const Address = () => {
     }
     try {
       dispatch(startLoading())
+
       const { data } = await axios.post('/api/payment', {
         items: cartItems.map(i => ({
           product: i.product._id,

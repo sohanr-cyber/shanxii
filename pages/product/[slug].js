@@ -164,7 +164,7 @@ const Product = ({ product, error, relatedProducts }) => {
         available: product.stockQuantity
       })
     )
-    dispatch(handleInitiateCheckout(buyNowItems))
+    dispatch(handleAddItemToCart(buyNowItems))
     router.push('/checkout/address?buyNow=true')
   }
 

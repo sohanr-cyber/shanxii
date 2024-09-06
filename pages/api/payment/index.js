@@ -57,7 +57,7 @@ handler.post(async (req, res) => {
     sslcz.init(data).then(apiResponse => {
       // Redirect the user to payment gateway
       let GatewayPageURL = apiResponse.GatewayPageURL
-      res.status(200).send({ GatewayPageURL })
+      res.status(200).send({ GatewayPageURL, ...order })
       console.log('Redirecting to: ', GatewayPageURL)
     })
   } catch (error) {

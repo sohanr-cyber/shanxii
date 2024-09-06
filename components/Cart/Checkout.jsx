@@ -39,7 +39,7 @@ const Checkout = ({ cartItems }) => {
       )
       return
     }
-    dispatch(handleInitiateCheckout(cartItems))
+    // dispatch(handleInitiateCheckout(cartItems))
     router.push('/checkout/address')
   }
 
