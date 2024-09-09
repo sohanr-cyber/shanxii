@@ -53,20 +53,20 @@ const data = [
   }
 ]
 
-const ChartArea = ({ title, number, percent, orderGraph }) => {
+const ChartArea = ({ title, number, percent, summary }) => {
   return (
     <div className={styles.graph__wrapper} style={{ width: '100%' }}>
-      <h3 style={{ marginLeft: '10px' }}>{title}</h3>
+      <h3 className={styles.title}>{title}</h3>
       <ResponsiveContainer width='100%' aspect={7 / 3}>
         <LineChart
           width={500}
           height={300}
-          data={orderToGraph(orderGraph)}
-          margin={{ left: 0, bottom: 0 }}
+          data={summary}
+          margin={{ left: 0, bottom: 10 }}
         >
-          <XAxis dataKey='date' />
+          <XAxis dataKey='date' hide={true} />
           <YAxis hide={true} />
-          <CartesianGrid stroke='#eee' strokeDasharray='5 5' />
+          {/* <CartesianGrid stroke='#eee' strokeDasharray='5 5' /> */}
           <Line
             type='monotone'
             dataKey='total'
@@ -79,10 +79,12 @@ const ChartArea = ({ title, number, percent, orderGraph }) => {
             stroke='green'
             strokeWidth={2}
           />
-          <Line type='monotone' dataKey='red' stroke='red' strokeWidth={2} />
-
-          {/* <Line type='monotone' dataKey='canceled' stroke='#eb2121' />
-          <Line type='monotone' dataKey='failed' stroke='#eb2121' /> */}
+          <Line
+            type='monotone'
+            dataKey='failedAndCanceled'
+            stroke='red'
+            strokeWidth={2}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

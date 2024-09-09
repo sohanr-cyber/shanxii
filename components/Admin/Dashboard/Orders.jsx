@@ -174,7 +174,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
                     <span
                       style={{
                         background: `${extractRGBA(
-                          orderStatusColors[order.status.toLowerCase()],
+                          orderStatusColors[order.paymentStatus.toLowerCase()],
                           0.2
                         )}`,
                         padding: '3px 3px',

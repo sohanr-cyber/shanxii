@@ -1,7 +1,7 @@
 import Card from '@/components/Chart/Card'
 import React from 'react'
 import styles from '../../../styles/Admin/Cards.module.css'
-import { getTotalProfit } from '@/utility/helper'
+import { getTotalProfit, summarizeOrders } from '@/utility/helper'
 
 const data = [
   {
@@ -26,72 +26,71 @@ const data = [
   }
 ]
 4
-const Cards = ({ total, profit }) => {
+const Cards = ({ summary }) => {
+  const result = summary
   return (
     <div className={styles.wrapper}>
       <Card
-        item={{ ...data[0], number: `${getTotalProfit(profit)} TK.` }}
         index={0}
-        totalAmount={total.totalOrderAmount}
+        totalAmount={result.totalAmount}
         status={'None'}
         title={'Total Order'}
-        total={total.totalOrders}
-        orderTotal={total.totalOrders}
+        total={result.total}
+        orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/17385/17385190.png'}
       />
 
       <Card
-        item={{ ...data[1], number: total?.totalOrders }}
+        // item={{ ...data[1], number: total?.totalOrders }}
         index={1}
         status={'Delivered'}
         title='Delivered'
-        totalAmount={total.totalDeliveredAmount}
-        total={total.totalDelivered}
-        orderTotal={total.totalOrders}
+        totalAmount={result.deliveredAmount}
+        total={result.delivered}
+        orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/6815/6815043.png'}
       />
 
       <Card
-        item={{ ...data[1], number: total?.totalOrders }}
+        // item={{ ...data[1], number: total?.totalOrders }}
         index={1}
         status={'Delivering'}
         title='Delivering'
-        totalAmount={total.totalDeliveringAmount}
-        total={total.totalDelivering}
-        orderTotal={total.totalOrders}
+        totalAmount={result.deliveringAmount}
+        total={result.delivering}
+        orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/4847/4847433.png'}
       />
       <Card
-        item={{ ...data[3], number: total?.totalPending }}
+        // item={{ ...data[3], number: total?.totalPending }}
         index={3}
         status={'Pending'}
-        totalPending={total.totalPending}
-        totalAmount={total.totalPendingAmount}
+        totalAmount={result.pendingAmount}
         title={'Pending'}
-        total={total.totalPending}
-        orderTotal={total.totalOrders}
+        total={result.pending}
+        orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/9796/9796480.png'}
       />
 
       <Card
-        item={{ ...data[2], number: total?.totalDelivered }}
+        // item={{ ...data[2], number: total?.totalDelivered }}
         index={2}
         status={'Confirmed'}
-        total={total.totalConfirmed}
+        total={result.confirmed}
         title={'Confirmed'}
-        totalAmount={total.totalConfirmedAmount}
-        orderTotal={total.totalOrders}
+        totalAmount={result.confirmedAmount}
+        orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/8888/8888205.png'}
       />
 
       <Card
-        item={{ ...data[3], number: total.totalCanceled + total.totalFailed }}
+        // item={{ ...data[3], number: total.totalCanceled + total.totalFailed }}
         index={3}
-        totalAmount={total.totalCanceledAmount + total.totalFailedAmount}
+        totalAmount={result.canceledAmount + result.failedAmount}
         title={'Failed'}
         status={'Failed'}
-        total={total.totalCanceled + total.totalFailed}
-        orderTotal={total.totalOrders}
+        total={result.canceled + result.failed}
+        orderTotal={result.total}
         icon={'https://cdn-icons-png.flaticon.com/128/1828/1828843.png'}
       />
     </div>

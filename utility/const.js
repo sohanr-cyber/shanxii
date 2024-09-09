@@ -310,7 +310,7 @@ const orderStatusColors = {
   delivered: 'rgb(50, 205, 50)', // Lime Green
   canceled: 'rgb(255, 0, 0)', // Red
   failed: 'rgb(139, 0, 0)', // Dark Red
-  none: 'rgb(255,255,255)'
+  none: `${themeC}`
 }
 
 export {

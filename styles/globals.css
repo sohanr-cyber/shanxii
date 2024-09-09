@@ -27,19 +27,20 @@
   --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
-  --hoverBgColor: skyblue;
+  --hoverBgColor: rgb(9, 82, 71, 0.1);
   --cardBg: white;
   --buttonBg: linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71));
   --buttonC: white;
   --lightF: rgb(82, 80, 80);
   --theme: rgb(9, 82, 71);
   --inputField: linear-gradient(245deg, rgb(0, 129, 0, 0.1), rgb(0, 0, 249, 0.1));
-  --hoverColor: rgb(0, 183, 255);
   --scrollbar: rgb(9, 82, 71);
   --icon: rgb(9, 82, 71);
   --logo: linear-gradient(45deg, rgb(8, 78, 67) 50%, rgb(0, 183, 255) 50%);
   --buttonPadding: 7px 10px;
   --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1));
+  --hoverColor: var(--theme);
+
 
   /* --background: #fbfbfb;
   --nav: rgb(213, 227, 228);
@@ -152,6 +153,7 @@ textarea {
   background: var(--inputField);
   border-radius: 5px;
   border: none;
+  padding: var(--buttonPadding)
 }
 
 
@@ -162,6 +164,7 @@ button {
   background: var(--buttonBg);
   color: var(--buttonC);
   cursor: pointer;
+  padding: var(--buttonPadding)
 }
 
 

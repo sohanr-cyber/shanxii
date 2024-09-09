@@ -104,4 +104,5 @@
 
 .wrapper .navigators .item:hover {
     background-color: var(--hoverBgColor);
+    color: var(--hoverColor)
 }

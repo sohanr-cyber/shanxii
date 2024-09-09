@@ -4,6 +4,7 @@ import styles from '../../styles/Admin/Card.module.css'
 import PeopleIcon from '@mui/icons-material/People'
 import { extractRGBA } from '@/utility/helper'
 import { orderStatusColors, themeTransparent } from '@/utility/const'
+import PBar from '../Utility/PBar'
 
 const colors = [
   'rgb(255, 0, 0, 0.1)',
@@ -30,7 +31,8 @@ const Card = ({
           status != 'None'
             ? extractRGBA(orderStatusColors[status.toLowerCase()], 0.1)
             : themeTransparent
-        }`
+        }`,
+        borderLeft: `2px solid ${orderStatusColors[status.toLowerCase()]}`
       }}
     >
       {' '}
@@ -38,6 +40,7 @@ const Card = ({
         <Image src={icon} width='20' height='20' alt='icon' />{' '}
         <div className={styles.title}>{title}</div>
       </div>
+      <PBar height={'5px'} />
       <div className={styles.bottom_flex}>
         <div className={styles.total}>
           {total}{' '}

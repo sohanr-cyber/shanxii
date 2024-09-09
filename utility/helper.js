@@ -102,6 +102,48 @@ function chunkArray (array, chunkSize) {
   return result
 }
 
+function summarizeOrders (orders) {
+  const summary = {
+    total: 0,
+    totalAmount: 0,
+    pending: 0,
+    pendingAmount: 0,
+    failed: 0,
+    failedAmount: 0,
+    canceled: 0,
+    canceledAmount: 0,
+    delivering: 0,
+    deliveringAmount: 0,
+    delivered: 0,
+    deliveredAmount: 0,
+    confirmed: 0,
+    confirmedAmount: 0,
+    failedAndCanceled: 0,
+    failedAndCanceledAmount: 0
+  }
+
+  // Iterate through each order and sum up all the fields
+  orders.forEach(order => {
+    summary.total += order.total
+    summary.totalAmount += order.totalAmount
+    summary.pending += order.pending
+    summary.pendingAmount += order.pendingAmount
+    summary.failed += order.failed
+    summary.failedAmount += order.failedAmount
+    summary.canceled += order.canceled
+    summary.canceledAmount += order.canceledAmount
+    summary.delivering += order.delivering
+    summary.deliveringAmount += order.deliveringAmount
+    summary.delivered += order.delivered
+    summary.deliveredAmount += order.deliveredAmount
+    summary.confirmed += order.confirmed
+    summary.confirmedAmount += order.confirmedAmount
+    summary.failedAndCanceled += order.failedAndCanceled
+    summary.failedAndCanceledAmount += order.failedAndCanceledAmount
+  })
+
+  return summary
+}
 function generateVerificationCode (length) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -209,6 +251,14 @@ function generateTransactionId (orderId) {
   return transactionId
 }
 
+function convertToCamelCase (str) {
+  return str
+    .toLowerCase() // Convert the entire string to lowercase
+    .split(' ') // Split the string into an array of words
+    .join('') // Join the words back together without spaces
+    .replace(/[^\w]/g, '') // Remove any non-word characters (e.g., numbers, punctuation)
+}
+
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -225,5 +275,7 @@ export {
   sortByMonth,
   extractRGBA,
   findCategoryById,
-  generateTransactionId
+  generateTransactionId,
+  convertToCamelCase,
+  summarizeOrders
 }

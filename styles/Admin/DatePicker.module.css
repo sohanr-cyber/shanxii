@@ -1,0 +1,47 @@
+.container {
+    background: rgb(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0
+}
+
+
+.wrapper {
+    background: var(--cardBg);
+    padding: 15px;
+}
+
+.wrapper .field {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    gap: 10px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.wrapper .field input {
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.wrapper .field button {
+    width: 100%;
+}
+
+.wrapper .field button:nth-of-type(2) {
+    background: red;
+
+}
+
+@media (max-width:410px) {
+    .wrapper {
+        padding: 10px;
+    }
+}

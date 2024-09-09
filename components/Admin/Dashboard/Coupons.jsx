@@ -110,8 +110,8 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
                   <td>{c.code}</td>
                   <td>{c.discountType}</td>
                   <td>{c.discountValue && <> -{c.discountValue} %</>}</td>
-                  <td>{getTime(c.startDate)}</td>
-                  <td>{getTime(c.expiryDate)}</td>
+                  <td>{new Date(c.startDate).toISOString().split('T')[0]}</td>
+                  <td>{new Date(c.expiryDate).toISOString().split('T')[0]}</td>
 
                   <td className={styles.action}>
                     <span onClick={() => remove(c._id)}>Delete</span>
