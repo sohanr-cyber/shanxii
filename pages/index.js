@@ -12,31 +12,13 @@ import ProductsByCategory from '@/components/Products/ProductsByCategory'
 import Footer from '@/components/Footer'
 import BASE_URL from '@/config'
 import axios from 'axios'
-import fetchAndBlurImage from '@/utility/pika'
 import Header2 from '@/components/Header/Header2'
 import Header3 from '@/components/Header/Header3'
 import List from '@/components/Categories/List'
 import List2 from '@/components/Categories/List2'
 import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
 const inter = Inter({ subsets: ['latin'] })
-const contents = [
-  {
-    image:
-      'https://images.pexels.com/photos/581087/pexels-photo-581087.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-  },
-  {
-    image:
-      'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=400'
-  },
-  {
-    image:
-      'https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=400'
-  },
-  {
-    image:
-      'https://images.pexels.com/photos/46212/men-s-shirt-shirt-attire-clothing-46212.jpeg?auto=compress&cs=tinysrgb&w=600'
-  }
-]
+
 export default function Home ({ data, contents }) {
   return (
     <>

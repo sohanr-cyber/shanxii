@@ -24,7 +24,7 @@
 .wrapper .identities .identity {
     display: flex;
     gap: 10px;
-    margin: 7px 0;
+    margin: 8px 0;
     align-items: flex-start;
 }
 
@@ -66,5 +66,10 @@
 
     .wrapper .identities {
         display: block;
+
+    }
+
+    .wrapper .identities .identity {
+        margin: 10px 0;
     }
 }

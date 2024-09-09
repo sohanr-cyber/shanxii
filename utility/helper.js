@@ -255,7 +255,7 @@ function convertToCamelCase (str) {
   return str
     .toLowerCase() // Convert the entire string to lowercase
     .split(' ') // Split the string into an array of words
-    .join('-') // Join the words back together without spaces
+    .join('_') // Join the words back together without spaces
     .replace(/[^\w]/g, '') // Remove any non-word characters (e.g., numbers, punctuation)
 }
 
