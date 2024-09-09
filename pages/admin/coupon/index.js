@@ -16,7 +16,7 @@ const index = ({ coupons, totalPages, currentPage }) => {
         coupons={coupons}
         totalPages={totalPages}
         currentPage={currentPage}
-        title={'Category List'}
+        title={'Coupon List'}
       />
     </div>
   )
