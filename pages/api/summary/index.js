@@ -2,6 +2,7 @@ import db from '@/database/connection'
 import Order from '@/database/model/Order'
 import nc from 'next-connect'
 import { convertToCamelCase, dateDevider, getTime } from '@/utility/helper'
+import { isAdmin, isAuth } from '@/utility'
 
 const handler = nc()
 
@@ -77,6 +78,7 @@ function getSummary (data, date) {
   }
 }
 
+handler.use(isAuth, isAdmin)
 handler.get(async (req, res) => {
   let { period, startDate, endDate } = req.query
   period = period && convertToCamelCase(period)
@@ -116,7 +118,14 @@ handler.get(async (req, res) => {
         shippingAddress: 0,
         billingAddress: 0,
         statusTimeline: 0,
-        trackingNumber: 0
+        trackingNumber: 0,
+        paymentReference: 0,
+        paymentMethod: 0,
+        tax: 0,
+        shippingCost: 0,
+        discount: 0,
+        subtotal: 0,
+        transactionId: 0
       }
     )
 
