@@ -73,7 +73,7 @@ const DatePicker = ({ setOpen }) => {
         <div className={styles.field}>
           <button
             onClick={() =>
-              updateRoute({ filterType: 'Custom', startDate, endDate })
+              updateRoute({ period: 'Custom', startDate, endDate })
             }
           >
             Apply

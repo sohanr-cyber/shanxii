@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/Admin/Graph.module.css'
+import styles from '../../styles/Admin/Chart/Graph.module.css'
 import {
   AreaChart,
   Area,

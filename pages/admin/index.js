@@ -19,11 +19,11 @@ import Pie from '../../components/Chart/Pie'
 
 const data = result => {
   return [
-    {
-      name: 'Total',
-      value: result.total,
-      color: orderStatusColors['none']
-    },
+    // {
+    //   name: 'Total',
+    //   value: result.total,
+    //   color: orderStatusColors['none']
+    // },
     {
       name: 'Delivered',
       value: result.delivered,
@@ -45,12 +45,13 @@ const data = result => {
       color: orderStatusColors['pending']
     },
     {
-      name: 'delivering',
+      name: 'Delivering',
       value: result.delivering,
       color: orderStatusColors['delivering']
     }
   ]
 }
+
 const index = ({ summary }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
@@ -133,8 +134,8 @@ const index = ({ summary }) => {
       </div>
 
       <div className={styles.flex}>
-        <Graph title={'Orders'} summary={summary} />
-        <BarChart title={'Revenue'} summary={summary} />
+        <Graph title={'Order Statistics'} summary={summary} />
+        <BarChart title={'Revenue Statistics'} summary={summary} />
       </div>
     </div>
   )
@@ -155,7 +156,7 @@ import PieWithTag from '@/components/Chart/PieWithTag'
 
 export async function getServerSideProps (context) {
   try {
-    const { filterType, startDate, endDate } = context.query
+    const { period, startDate, endDate } = context.query
     const { locale, req } = context
     const cookies = parse(req.headers.cookie || '')
 
@@ -169,17 +170,14 @@ export async function getServerSideProps (context) {
 
     const headers = { Authorization: `Bearer ${userInfo.token}` }
 
-    // const {
-    //   data: { products }
-    // } = await axios.get(`${BASE_URL}/api/product`, { headers })
-
-    // const {
-    //   data: { orders }
-    // } = await axios.get(`${BASE_URL}/api/order`, { headers })
-
-    const { data: summary } = await axios.get(`${BASE_URL}/api/summary`, {
-      headers
-    })
+    const { data: summary } = await axios.get(
+      `${BASE_URL}/api/summary?period=${period || ''}&startDate=${
+        startDate || ''
+      }&endDate=${endDate || ''}`,
+      {
+        headers
+      }
+    )
 
     return {
       props: {

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/Admin/Graph.module.css'
+import styles from '../../styles/Admin/Chart/Graph.module.css'
 import {
   AreaChart,
   Area,
@@ -14,44 +14,7 @@ import {
 } from 'recharts'
 import { orderToGraph } from '@/utility/helper'
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 0,
-    pv: 0,
-    amt: 0
-  },
-  {
-    name: 'Page A',
-    uv: 400,
-    pv: 240,
-    amt: 240
-  },
-  {
-    name: 'Page B',
-    uv: 300,
-    pv: 139,
-    amt: 221
-  },
-  {
-    name: 'Page C',
-    uv: 200,
-    pv: 980,
-    amt: 229
-  },
-  {
-    name: 'Page D',
-    uv: 278,
-    pv: 390,
-    amt: 200
-  },
-  {
-    name: 'Page E',
-    uv: 189,
-    pv: 480,
-    amt: 218
-  }
-]
+
 
 const ChartArea = ({ title, number, percent, summary }) => {
   return (

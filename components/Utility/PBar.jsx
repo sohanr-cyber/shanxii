@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from '../../styles/Utility/ProgressBar.module.css'
+import { buttonBg } from '@/utility/const'
 
-const PBar = ({ height, percentage, pixel }) => {
+const PBar = ({ height, percentage, pixel, color }) => {
   return (
     <div
       className={styles.progressBar}
@@ -9,13 +10,10 @@ const PBar = ({ height, percentage, pixel }) => {
     >
       <div
         className={styles.progress}
-        style={
-          percentage
-            ? { width: `${percentage}$` }
-            : {
-                width: `${pixel}px`
-              }
-        }
+        style={{
+          width: `${percentage ? `${percentage}%` : `${pixel}`}`,
+          background: `${color ? `${color}` : `${buttonBg}`}`
+        }}
       ></div>
     </div>
   )

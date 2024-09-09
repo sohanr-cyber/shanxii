@@ -1,7 +1,7 @@
 import db from '@/database/connection'
 import Order from '@/database/model/Order'
 import nc from 'next-connect'
-import { getTime } from '@/utility/helper'
+import { convertToCamelCase, getTime } from '@/utility/helper'
 
 const handler = nc()
 
@@ -78,7 +78,8 @@ function getSummary (data, date) {
 }
 
 handler.get(async (req, res) => {
-  const { period, startDate, endDate } = req.query
+  let { period, startDate, endDate } = req.query
+  period = period && convertToCamelCase(period)
   let dateFilter = {}
 
   const now = new Date()
@@ -128,6 +129,14 @@ handler.get(async (req, res) => {
 
     let endDate = new Date(orders[orders.length - 1].createdAt)
     endDate.setUTCHours(0, 0, 0, 0)
+
+    // Calculate the difference in time (milliseconds)
+    let timeDiff = endDate - startDate
+
+    // Convert the time difference to days
+    let daysDiff = timeDiff / (1000 * 60 * 60 * 24)
+
+    console.log(`Number of days between startDate and endDate: ${daysDiff}`)
 
     let dateList = []
     let currentDay = new Date(startDate)

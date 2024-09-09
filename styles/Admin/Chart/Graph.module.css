@@ -1,7 +1,8 @@
 .graph__wrapper {
   border-radius: 5px;
   box-shadow: var(--shadow);
-  background: var(--cardBg);
+  background: var(--inputField);
+
   /* padding: 10px; */
   /* margin: 5px 0; */
 }

@@ -12,7 +12,7 @@ const PieWithTag = ({ data }) => {
 
   return (
     <div className={styles.container}>
-      <b>Order Statistics</b>
+      {/* <b>Order Statistics</b> */}
       {client && (
         <div className={styles.wrapper}>
           <Pie data={data} />
