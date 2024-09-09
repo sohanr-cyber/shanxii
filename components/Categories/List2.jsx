@@ -31,6 +31,7 @@ const List2 = () => {
                       setSelected(i)
                       setExapanded()
                     }}
+                    onClick={() => router.push(`/shop?categories=${i._id}`)}
                   >
                     {i.name}
                   </span>
@@ -45,7 +46,13 @@ const List2 = () => {
                           // onMouseLeave={() => setExapanded({})}
                           style={expanded == i ? { position: 'relative' } : {}}
                         >
-                          <span>{i.name}</span>
+                          <span
+                            onClick={() =>
+                              router.push(`/shop?categories=${i._id}`)
+                            }
+                          >
+                            {i.name}
+                          </span>
                           {i.children.length > 0 && (
                             <span className={styles.plus}>
                               +
@@ -63,7 +70,12 @@ const List2 = () => {
                                   }
                                 >
                                   {expanded?.children?.map((i, index) => (
-                                    <div className={styles.expanded_category}>
+                                    <div
+                                      className={styles.expanded_category}
+                                      onClick={() =>
+                                        router.push(`/shop?categories=${i._id}`)
+                                      }
+                                    >
                                       {i.name}
                                     </div>
                                   ))}
