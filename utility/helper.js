@@ -259,6 +259,19 @@ function convertToCamelCase (str) {
     .replace(/[^\w]/g, '') // Remove any non-word characters (e.g., numbers, punctuation)
 }
 
+const dateDevider = days => {
+  if (days >= 200) {
+    return 30
+  } else if (days >= 90) {
+    return 7
+  } else if (days >= 45) {
+    return 3
+  } else if (days >= 30) {
+    return 2
+  } else {
+    return 1
+  }
+}
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -277,5 +290,6 @@ export {
   findCategoryById,
   generateTransactionId,
   convertToCamelCase,
-  summarizeOrders
+  summarizeOrders,
+  dateDevider
 }

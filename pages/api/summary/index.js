@@ -1,7 +1,7 @@
 import db from '@/database/connection'
 import Order from '@/database/model/Order'
 import nc from 'next-connect'
-import { convertToCamelCase, getTime } from '@/utility/helper'
+import { convertToCamelCase, dateDevider, getTime } from '@/utility/helper'
 
 const handler = nc()
 
@@ -135,6 +135,7 @@ handler.get(async (req, res) => {
 
     // Convert the time difference to days
     let daysDiff = timeDiff / (1000 * 60 * 60 * 24)
+    let diff = dateDevider(daysDiff)
 
     console.log(`Number of days between startDate and endDate: ${daysDiff}`)
 
@@ -143,7 +144,7 @@ handler.get(async (req, res) => {
 
     while (currentDay <= endDate) {
       dateList.push(new Date(currentDay)) // Push a copy of currentDay
-      currentDay.setUTCDate(currentDay.getUTCDate() + 1) // Move to next day
+      currentDay.setUTCDate(currentDay.getUTCDate() + diff) // Move to next day
     }
 
     let newOrders = []
