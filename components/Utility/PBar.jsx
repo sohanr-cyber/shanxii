@@ -11,7 +11,7 @@ const PBar = ({ height, percentage, pixel, color }) => {
       <div
         className={styles.progress}
         style={{
-          width: `${percentage ? `${percentage}%` : `${pixel}`}`,
+          width: `${percentage ? `${percentage}%` : `${pixel}px`}`,
           background: `${color ? `${color}` : `${buttonBg}`}`
         }}
       ></div>
