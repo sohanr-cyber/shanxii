@@ -103,6 +103,6 @@
 
 
 .wrapper .navigators .item:hover {
-    background-color: var(--hoverBgColor);
+    background: var(--hoverBgColor);
     color: var(--hoverColor)
 }

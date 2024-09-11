@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { getPrice } from '@/utility/helper'
 import { useDispatch } from 'react-redux'
 import { handleViewProduct } from '@/redux/pixelSlice'
+import { motion } from 'framer-motion'
 
 const Product = ({ item, redirect, rowDirection }) => {
   const dispatch = useDispatch()
@@ -17,7 +18,10 @@ const Product = ({ item, redirect, rowDirection }) => {
   }
 
   return (
-    <div
+    <motion.div
+      // initial={{ opacity: 0.4, scale: 0.9 }}
+      // whileInView={{ opacity: 1 }}
+      // transition={{ duration: 0.9 }}
       className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
       onClick={() => handleClick()}
     >
@@ -65,7 +69,7 @@ const Product = ({ item, redirect, rowDirection }) => {
           <div className={styles.price}>৳{getPrice(item.price)}</div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

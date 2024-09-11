@@ -49,7 +49,7 @@
   --buttonC: white;
   --borderColor: #99a09e;
   --inputField: linear-gradient(245deg, rgba(255, 255, 255), rgba(255, 255, 255));
-  --hoverBgColor: rgb(100, 124, 122);
+  --hoverBgColor: rgb(100, 124, 122 , 0.1);
   --hoverColor: rgb(0, 183, 255);
   --scrollbar: rgb(62, 86, 84);
   --theme: #647c7a;
@@ -66,7 +66,7 @@
   --buttonC: white;
   --borderColor: rgba(52, 134, 11, 0.5);
   --inputField: linear-gradient(45deg, rgb(29, 102, 12, 0.1), rgb(137, 208, 5, 0.1));
-  --hoverBgColor: rgb(29, 102, 12);
+  --hoverBgColor: rgb(29, 102, 12, 0.1);
   --hoverColor: rgb(29, 102, 12);
   --scrollbar: rgb(29, 102, 12);
   --theme: rgb(29, 102, 12);
@@ -82,7 +82,7 @@
   --buttonC: white;
   --borderColor: rgba(197, 223, 244, 255);
   --inputField: linear-gradient(245deg, rgba(7, 121, 214, 0.1), rgba(7, 121, 214, 0.1));
-  --hoverBgColor: rgba(7, 121, 214, 255);
+  --hoverBgColor: rgba(7, 121, 214, 0.1);
   --hoverColor: rgba(7, 121, 214, 255);
   --scrollbar: rgba(7, 121, 214, 255);
   --theme: rgba(7, 121, 214, 255);
