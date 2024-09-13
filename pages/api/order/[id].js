@@ -96,7 +96,7 @@ handler.put(async (req, res) => {
 
     // confirming order deduce product quantity
     if (newStatus == 'Confirmed') {
-      await Promise.all(
+       Promise.all(
         order.items.map(async item => {
           const { product: productId, quantity } = item
           const product = await Product.findOne({ _id: productId })
@@ -112,7 +112,7 @@ handler.put(async (req, res) => {
 
     // failed or canceled order + product stock quantity
     if (newStatus == 'Failed' || newStatus == 'Canceled') {
-      await Promise.all(
+       Promise.all(
         order.items.map(async item => {
           const { product: productId, quantity } = item
           const product = await Product.findOne({ _id: productId })
@@ -132,13 +132,13 @@ handler.put(async (req, res) => {
     }
 
     await order.save()
-    await db.disconnect()
+    // await db.disconnect()
     // send mail based on status
     if (order.shippingAddress.email) {
       let leanOrder = order.toObject()
 
       if (newStatus == 'Confirmed') {
-        await mail.sendMail({
+         mail.sendMail({
           subject: 'Your Order Have Been Confirmed',
           for: 'orderConfirmed',
           ...leanOrder.shippingAddress,
@@ -150,7 +150,7 @@ handler.put(async (req, res) => {
       }
 
       if (newStatus == 'Canceled') {
-        await mail.sendMail({
+         mail.sendMail({
           subject: 'Your Order Have Been Cancelled',
           for: `order${newStatus}`,
           ...leanOrder.shippingAddress,
@@ -162,7 +162,7 @@ handler.put(async (req, res) => {
       }
 
       if (newStatus == 'Failed') {
-        await mail.sendMail({
+         mail.sendMail({
           subject: 'Your Order Have Been Failed',
           for: `order${newStatus}`,
           ...leanOrder.shippingAddress,
@@ -174,7 +174,7 @@ handler.put(async (req, res) => {
       }
 
       if (newStatus == 'Delivered') {
-        await mail.sendMail({
+         mail.sendMail({
           subject: 'Your Order Have Been Delivered',
           for: 'orderDelivered',
           ...leanOrder.shippingAddress,
