@@ -18,6 +18,9 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const [searchQuery, setSearchQuery] = useState(router.query.query)
   const dispatch = useDispatch()
   const [recipent, setRecipent] = useState()
+  const userInfo = useSelector(state => state.user.userInfo)
+
+  const headers = { Authorizations: 'Bearer ' + userInfo?.token }
 
   useEffect(() => {
     setFilteredOrders(orders)
@@ -39,7 +42,9 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/order/${id}`)
+      const { data } = await axios.delete(`/api/order/${id}`, {
+        headers
+      })
       setFilteredOrders(filteredOrders.filter(i => i._id != id))
       if (data.message) {
         dispatch(
