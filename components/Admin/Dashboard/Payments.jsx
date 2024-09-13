@@ -14,7 +14,7 @@ const Payments = ({ title, dashboard, payments, totalPages, currentPage }) => {
   const [searchQuery, setSearchQuery] = useState(router.query.query)
   const dispatch = useDispatch()
   const userInfo = useSelector(state => state.user.userInfo)
-  const headers = { Authorizations: 'Bearer ' + userInfo?.token }
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
 
   useEffect(() => {
     setFilteredPayments(payments)

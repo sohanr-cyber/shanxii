@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { showSnackBar } from '@/redux/notistackSlice'
 import MailBox from '@/components/Utility/MailBox'
 import validator from 'email-validator'
@@ -19,9 +19,7 @@ const Orders = ({ title, dashboard, orders, totalPages, currentPage }) => {
   const dispatch = useDispatch()
   const [recipent, setRecipent] = useState()
   const userInfo = useSelector(state => state.user.userInfo)
-
-  const headers = { Authorizations: 'Bearer ' + userInfo?.token }
-
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
   useEffect(() => {
     setFilteredOrders(orders)
   }, [orders])

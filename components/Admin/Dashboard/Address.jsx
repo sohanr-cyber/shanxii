@@ -19,6 +19,8 @@ const Addresses = ({
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState(router.query.query)
   const dispatch = useDispatch()
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
 
   useEffect(() => {
     setFilteredAddresses(addresses)
@@ -36,7 +38,7 @@ const Addresses = ({
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/address/${id}`)
+      const { data } = await axios.delete(`/api/address/${id}`, { headers })
       setFilteredAddresses(filteredAddresses.filter(i => i._id != id))
       if (data.message) {
         dispatch(

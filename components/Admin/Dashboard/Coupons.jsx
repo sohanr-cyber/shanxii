@@ -4,7 +4,7 @@ import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import axios from 'axios'
 import { orderStatusColors } from '@/utility/const'
@@ -15,6 +15,9 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
   const dispatch = useDispatch()
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredCoupons, setFilteredCoupons] = useState(coupons)
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
+
   useEffect(() => {
     setFilteredCoupons(coupons)
   }, [coupons])
@@ -35,7 +38,9 @@ const Coupons = ({ title, dashboard, currentPage, totalPages, coupons }) => {
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/coupon/${id}`)
+      const { data } = await axios.delete(`/api/coupon/${id}`, {
+        headers
+      })
       setFilteredCoupons(filteredCoupons.filter(i => i._id != id))
       dispatch(finishLoading())
     } catch (error) {

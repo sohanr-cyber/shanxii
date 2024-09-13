@@ -4,7 +4,7 @@ import Pages from '@/components/Utility/Pagination'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { orderStatusColors } from '@/utility/const'
@@ -27,7 +27,8 @@ const Products = ({
     count,
     page: currentPage
   })
-
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
   useEffect(() => {
     setFilteredProducts({ products, totalPages, count, page: currentPage })
   }, [products])
@@ -44,7 +45,9 @@ const Products = ({
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/product/${id}`)
+      const { data } = await axios.delete(`/api/product/${id}`, {
+        headers
+      })
       setFilteredProducts({
         ...filteredProducts,
         products: filteredProducts.products.filter(i => i._id != id)

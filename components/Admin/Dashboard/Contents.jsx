@@ -16,7 +16,8 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredContents, setFilteredContents] = useState(contents)
   const dispatch = useDispatch()
-
+  const userInfo = useSelector(state => state.user.userInfo)
+  const headers = { Authorization: `Bearer ${userInfo?.token}` }
   useEffect(() => {
     setFilteredContents(contents)
   }, [contents])
@@ -39,7 +40,9 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
   const remove = async id => {
     try {
       dispatch(startLoading())
-      const { data } = await axios.delete(`/api/content/${id}`)
+      const { data } = await axios.delete(`/api/content/${id}`, {
+        headers
+      })
       setFilteredContents(filteredContents.filter(i => i._id != id))
       dispatch(finishLoading())
       dispatch(showSnackBar({ message: 'Content Removed !' }))
