@@ -3,7 +3,7 @@ import { companyName, delivery_charge, seoData } from './const'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 
-function generateTrackingNumber (length = 10) {
+function generateTrackingNumber(length = 10) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   const charactersLength = characters.length
@@ -18,7 +18,7 @@ function generateTrackingNumber (length = 10) {
   return trackingNumber
 }
 
-function containsAdmin (url) {
+function containsAdmin(url) {
   // Regular expression to check if the URL contains "/admin" anywhere in it
   var regex = /\/admin/i // The 'i' flag makes the regex case-insensitive
 
@@ -45,6 +45,8 @@ const getPrice = (price, discount = 0) => {
 const getDeliveryCharge = position => {
   return delivery_charge[position] ? delivery_charge[position] : 100
 }
+
+
 
 const getTime = timestamp => {
   const date = new Date(timestamp)
@@ -89,7 +91,12 @@ const generateProductSeoData = productData => {
 
   return productSeoData
 }
-function chunkArray (array, chunkSize) {
+
+const generateSeoData = (data) => {
+  return { ...data, ...seoData }
+
+}
+function chunkArray(array, chunkSize) {
   // Initialize an empty array to hold the chunks
   let result = []
 
@@ -102,7 +109,7 @@ function chunkArray (array, chunkSize) {
   return result
 }
 
-function summarizeOrders (orders) {
+function summarizeOrders(orders) {
   const summary = {
     total: 0,
     totalAmount: 0,
@@ -144,7 +151,7 @@ function summarizeOrders (orders) {
 
   return summary
 }
-function generateVerificationCode (length) {
+function generateVerificationCode(length) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   let code = ''
@@ -154,11 +161,11 @@ function generateVerificationCode (length) {
   return code
 }
 
-function verifyCode (enteredCode, generatedCode) {
+function verifyCode(enteredCode, generatedCode) {
   return enteredCode === generatedCode
 }
 
-function generateUniqueID (existingIDs) {
+function generateUniqueID(existingIDs) {
   let number
   do {
     // Generate a random 6-digit number
@@ -171,7 +178,7 @@ function generateUniqueID (existingIDs) {
   return number
 }
 
-function orderToGraph (inputData) {
+function orderToGraph(inputData) {
   const result = []
 
   for (const [date, values] of Object.entries(inputData)) {
@@ -202,7 +209,7 @@ const sortByMonth = data => {
   return data.sort((a, b) => new Date(a.month) - new Date(b.month))
 }
 
-function extractRGBA (rgbString, opacity = 1) {
+function extractRGBA(rgbString, opacity = 1) {
   // Match the numbers inside the parentheses
   const result = rgbString.match(/\d+/g)
 
@@ -225,7 +232,7 @@ const getTotalProfit = arr => {
   return total.toFixed(0)
 }
 
-function findCategoryById (categories, id) {
+function findCategoryById(categories, id) {
   for (const category of categories) {
     if (category._id === id) {
       return category
@@ -240,7 +247,7 @@ function findCategoryById (categories, id) {
   return null // Return null if no category is found with the given ID
 }
 
-function generateTransactionId (orderId) {
+function generateTransactionId(orderId) {
   const timestamp = Date.now().toString() // Current timestamp
   const randomString = crypto.randomBytes(4).toString('hex') // Random string of 8 characters
   const orderIdString = orderId.toString() // Convert order ID to string
@@ -251,7 +258,7 @@ function generateTransactionId (orderId) {
   return transactionId
 }
 
-function convertToCamelCase (str) {
+function convertToCamelCase(str) {
   return str
     .toLowerCase() // Convert the entire string to lowercase
     .split(' ') // Split the string into an array of words
@@ -291,5 +298,6 @@ export {
   generateTransactionId,
   convertToCamelCase,
   summarizeOrders,
-  dateDevider
+  dateDevider,
+  generateSeoData,
 }

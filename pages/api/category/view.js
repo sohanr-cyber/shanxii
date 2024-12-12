@@ -25,16 +25,17 @@ handler.get(async (req, res) => {
     const categories = await Category.find({ parent: null })
     const tree = await Promise.all(
       categories.map(async item => {
-        const { _id, name } = item
+        const { _id, name, image } = item
         const c = await Category.find({ parent: _id })
 
         const subtree = await Promise.all(
           c.map(async item => {
-            const { _id, name } = item
+            const { _id, name, image } = item
             const sc = await Category.find({ parent: _id })
             return {
               name: name,
               _id: _id,
+              image: image,
               children: sc
             }
           })
@@ -43,6 +44,7 @@ handler.get(async (req, res) => {
         return {
           name: name,
           _id: _id,
+          image: image,
           children: subtree
         }
       })

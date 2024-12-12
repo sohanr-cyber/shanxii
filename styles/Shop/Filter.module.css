@@ -103,7 +103,7 @@
 }
 
 .filterOptions .option:hover {
-    color: green
+    color: var(--hoverColor)
 }
 
 .category_right {

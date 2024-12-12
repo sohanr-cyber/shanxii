@@ -8,6 +8,7 @@ const contentSchema = new mongoose.Schema(
     title: {
       type: String
     },
+    description: { type: String },
     buttonText: {
       type: String
     },
@@ -18,6 +19,11 @@ const contentSchema = new mongoose.Schema(
     isShown: {
       type: Boolean,
       default: true
+    },
+    position: {
+      type: String,
+      default: "header",
+      enum: ["header", "cta", "deal", "subscription"]
     }
   },
   { timestamps: true }

@@ -17,7 +17,6 @@ const Create = ({ content: data }) => {
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   const router = useRouter()
-  const [newContent, setNewContent] = useState(false)
   const categories = useSelector(state => state.product.categories)
   const userInfo = useSelector(state => state.user.userInfo)
   const headers = { Authorization: 'Bearer ' + userInfo?.token }
@@ -25,7 +24,7 @@ const Create = ({ content: data }) => {
   useEffect(() => {
     setContent(data)
   }, [router.query])
-
+  console.log({ content })
   const saveContent = async () => {
     if (!content.image) {
       dispatch(
@@ -66,7 +65,8 @@ const Create = ({ content: data }) => {
         image: '',
         isShown: false,
         buttonText: '',
-        buttonHref: ''
+        buttonHref: '',
+        position: "header",
       })
       dispatch(finishLoading())
       dispatch(
@@ -144,13 +144,22 @@ const Create = ({ content: data }) => {
       <form className={styles.forms}>
         <div className={styles.left}>
           <div className={styles.field}>
-            <label>Content Name</label>
+            <label>Primary Text</label>
             <input
               type='text'
               placeholder='Enter Content Title'
               value={content.title}
               onChange={e => setContent({ ...content, title: e.target.value })}
             />
+          </div>
+          <div className={styles.field}>
+            <label>Description</label>
+            <textarea type='text'
+              placeholder='Enter Content Title'
+              value={content.description}
+              onChange={e => setContent({ ...content, description: e.target.value })}
+            ></textarea>
+
           </div>
           <div className={styles.flex}>
             <div className={styles.field}>
@@ -178,7 +187,7 @@ const Create = ({ content: data }) => {
           </div>
 
           <div className={styles.field}>
-            <label>Content Icon</label>
+            <label>Content Image</label>
             <Upload
               handle={files => {
                 setContent(prev => ({ ...prev, image: files.url }))
@@ -189,7 +198,7 @@ const Create = ({ content: data }) => {
           <div className={styles.images}>
             {content.image ? (
               <div className={styles.image__container}>
-                <Image src={content.image} alt='' width='180' height={180} />
+                <Image src={content.image} alt='' width={290} height={180} style={{ aspectRatio: "4/2" }} />
               </div>
             ) : (
               <div
@@ -198,12 +207,26 @@ const Create = ({ content: data }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  width: "290px",
+
                 }}
               >
                 No Photo Uploaded
               </div>
             )}
+          </div>
+          <div className={styles.field}>
+            <label>Set Position </label>
+            <div className={styles.flex} style={{ margin: "7px 0", display: "flex", gap: "10px", flexWrap: "wrap", flexDirection: "row" }}>
+              {["header", "cta", "deal", "subscription"].map((i, index) => (
+                <div className={styles.position} style={content.position == i ? { background: "black", color: "white" } : {}}
+                  onClick={(e) => {
+                    setContent({ ...content, position: i })
+                  }}>{i}</div>
+              ))}
+
+            </div>
           </div>
 
           <div
@@ -233,6 +256,7 @@ const Create = ({ content: data }) => {
               alignItems: 'flex-start'
             }}
           ></div>
+
         </div>
         {/* <div className={styles.right}></div> */}
       </form>
@@ -248,7 +272,7 @@ const Create = ({ content: data }) => {
 
 export default Create
 
-export async function getServerSideProps ({ query }) {
+export async function getServerSideProps({ query }) {
   const { id } = query
 
   const fetchContent = async () => {

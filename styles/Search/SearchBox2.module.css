@@ -8,21 +8,38 @@
     display: flex;
     background: rgb(0, 0, 0, 0.1);
     width: 100%;
+    animation: slideIn 0.5s ease-in-out forwards;
+
 }
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%) translateY(0%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0%) translateY(0);
+        opacity: 1;
+    }
+}
+
 
 
 .wrapper .left {
     max-width: 200px;
     background: var(--nav);
-    padding: 15px;
+    /* padding: 15px; */
     max-height: 100vh;
-    overflow-y: scroll;
     min-width: 200px;
     overflow-x: hidden;
 
 
 
 }
+
+
 
 
 
@@ -33,6 +50,13 @@
 .flex {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background: var(--buttonBg);
+    padding: 10px 15px;
+    color: white;
+    max-height: 40px;
+    min-height: 40px;
+
 }
 
 .flex h3 {
@@ -40,17 +64,20 @@
 }
 
 .flex h3:nth-child(2) {
-    background-color: black;
     padding: 1px 5px;
-    color: white;
+    border: 1px solid white;
     cursor: pointer;
 }
 
 .heading {
     padding-bottom: 10px;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--borderColor);
     /* font-size: 110%; */
     font-weight: bold;
+    /* margin: 0 15px; */
+    padding: 0 15px;
+    padding-bottom: 10px;
+
 }
 
 .filterOptions button,
@@ -68,7 +95,11 @@
 }
 
 .filterOptions {
-    margin: 10px 0;
+    /* margin: 10px 0; */
+    padding: 0 15px;
+    overflow-y: scroll;
+
+
 }
 
 .filterOptions .option {
@@ -87,7 +118,7 @@
 }
 
 .filterOptions .option:hover {
-    color: green
+    color: var(--hoverColor)
 }
 
 
@@ -98,12 +129,16 @@
     border-bottom: 1px solid var(--borderColor);
     background: var(--cardBg);
     margin-bottom: 15px;
-    ;
+    margin-right: 15px;
+    color: var(--icon)
+
 }
 
 .serach input {
-    padding: 10px;
+    padding: 10px 15px;
     background: var(--cardBg);
+    width: 90%;
+    /* border: 1px solid red; */
 
 }
 

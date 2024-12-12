@@ -11,8 +11,9 @@ import { useRouter } from 'next/router'
 import TextEditor from '@/components/Utility/TextEditor'
 import { showSnackBar } from '@/redux/notistackSlice'
 import Colors from '@/components/Shop/Colors'
-import ControlPointDuplicateOutlinedIcon from '@mui/icons-material/ControlPointDuplicateOutlined'
 import SelectCategory from '@/components/Categories/SelectCategory'
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
+import CheckBoxIcon from '@mui/icons-material/CheckBox'
 
 const Create = ({ product: data }) => {
   const [images, setImages] = useState([])
@@ -236,66 +237,7 @@ const Create = ({ product: data }) => {
                   setSelected={setSelected}
                 />
               </div>
-              {/* <div className={styles.options}>
-                {categories?.map((item, index) => (
-                  <div
-                    key={index}
-                    style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}
-                  >
-                    <span
-                      key={index}
-                      style={
-                        product.categories?.find(i => i._id == item._id)
-                          ? { background: 'black', color: 'white' }
-                          : {}
-                      }
-                      onClick={() =>
-                        product.categories?.find(i => i._id == item._id)
-                          ? setProduct({
-                              ...product,
-                              categories: product.categories.filter(
-                                i => i._id != item._id
-                              )
-                            })
-                          : setProduct({
-                              ...product,
-                              categories: [...product.categories, item]
-                            })
-                      }
-                    >
-                      {item.name}
-                    </span>
-                    {item.children.length > 0 && <>{'-->'}</>}
-                    {item.children.length > 0 &&
-                      item.children.map((item, index) => (
-                        <span
-                          key={index}
-                          style={
-                            product.categories?.find(i => i._id == item._id)
-                              ? { background: 'black', color: 'white' }
-                              : {}
-                          }
-                          onClick={() =>
-                            product.categories?.find(i => i._id == item._id)
-                              ? setProduct({
-                                  ...product,
-                                  categories: product.categories.filter(
-                                    i => i._id != item._id
-                                  )
-                                })
-                              : setProduct({
-                                  ...product,
-                                  categories: [...product.categories, item]
-                                })
-                          }
-                        >
-                          {item.name}
-                        </span>
-                      ))}{' '}
-                    ||
-                  </div>
-                ))}
-              </div> */}
+
             </div>
           </div>
           <div className={styles.field}>
@@ -339,6 +281,27 @@ const Create = ({ product: data }) => {
                 }))
               }
             ></textarea>
+          </div>
+
+          <div
+            className={styles.field}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}
+          >
+            <span
+              onClick={() =>
+                setProduct({ ...product, featured: !product.featured })
+              }
+            >
+              {product.featured ? (
+                <CheckBoxIcon />
+              ) : (
+                <CheckBoxOutlineBlankIcon />
+              )}
+            </span>
+            <span> This Prdouct will be Recommended</span>{' '}
           </div>
         </div>
         <div className={`${styles.left} ${styles.right}`}>
@@ -400,24 +363,24 @@ const Create = ({ product: data }) => {
             <div className={styles.images}>
               {product.images.length > 0
                 ? product.images.map((image, index) => (
-                    <div className={styles.image__container} key={index}>
-                      <Image src={image} alt='' width='180' height={180} />
-                    </div>
-                  ))
+                  <div className={styles.image__container} key={index}>
+                    <Image src={image} alt='' width='180' height={180} />
+                  </div>
+                ))
                 : [1, 2, 3].map((_, index) => (
-                    <div
-                      className={styles.image__container}
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        textAlign: 'center'
-                      }}
-                    >
-                      No Photo Uploaded{' '}
-                    </div>
-                  ))}
+                  <div
+                    className={styles.image__container}
+                    key={index}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      textAlign: 'center'
+                    }}
+                  >
+                    No Photo Uploaded{' '}
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -434,7 +397,7 @@ const Create = ({ product: data }) => {
 
 export default Create
 
-export async function getServerSideProps ({ query }) {
+export async function getServerSideProps({ query }) {
   const { id } = query
 
   const fetchProduct = async () => {

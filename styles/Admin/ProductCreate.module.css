@@ -109,7 +109,10 @@
     padding: var(--buttonPadding);
 }
 
-
+.images .image__container img {
+    object-fit: cover;
+    position: center;
+}
 
 /* Order Crate */
 
@@ -189,6 +192,17 @@
     z-index: 3;
     border: 2px solid red;
     border-radius: 50%;
+}
+
+
+
+.wrapper .position {
+    border: 1px solid black;
+    padding: 7px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    cursor: pointer;
+
 }
 
 @media (max-width:720px) {

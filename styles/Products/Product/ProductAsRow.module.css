@@ -2,13 +2,18 @@
     background-color: var(--cardBg);
     border-radius: 5px;
     overflow: hidden;
-    max-width: 250px;
+    width: 100%;
     cursor: pointer;
+    max-height: 120px;
+    display: flex;
+    margin: 15px 0;
     /* min-width: 170px; */
 }
 
 .wrapper .pic {
+    max-width: 50%;
     overflow: hidden;
+
 }
 
 .wrapper .pic img {
@@ -58,36 +63,18 @@
     color: grey;
 }
 
-
-@media (max-width:410px) {
-    .wrapper {
-        max-width: none;
-        width: 100%;
-        display: flex;
-
-        /* gap: 10px; */
-        max-height: 100px;
+@media (max-width:720px) {
+    .wrapper .pic {
+        max-width: 35%;
+        overflow: hidden;
+    
     }
+}
 
-    .category {
-        display: none;
+@media (max-width:570px) {
+    .wrapper .pic {
+        max-width: 50%;
+        overflow: hidden;
+    
     }
-
-    .pic,
-    .details {
-        flex: 1;
-    }
-
-    .wrapperC {
-        min-height: 250px;
-        flex-direction: column;
-        /* min-width: 170px; */
-    }
-
-    .wrapperC .pic {
-        flex: 1.55
-    }
-
-
-
 }

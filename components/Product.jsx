@@ -5,11 +5,13 @@ import Stack from '@mui/material/Stack'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { getPrice } from '@/utility/helper'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { handleViewProduct } from '@/redux/pixelSlice'
 import { motion } from 'framer-motion'
 
 const Product = ({ item, redirect, rowDirection }) => {
+  const userInfo = useSelector(state => state.user.userInfo)
+  
   const dispatch = useDispatch()
   const router = useRouter()
   const handleClick = () => {
@@ -24,6 +26,8 @@ const Product = ({ item, redirect, rowDirection }) => {
       // transition={{ duration: 0.9 }}
       className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
       onClick={() => handleClick()}
+      onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/product/create?id=${item._id}`) }}
+
     >
       <div className={styles.pic}>
         {item.blurData ? (

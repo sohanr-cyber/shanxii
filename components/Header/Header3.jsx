@@ -3,7 +3,8 @@ import styles from '../../styles/Header/Header3.module.css'
 import Image from 'next/image'
 import { themeBg } from '@/utility/const'
 import { useRouter } from 'next/router'
-
+import { useSelector } from 'react-redux'
+import { SlideshowRounded } from '@mui/icons-material'
 // const contents = [
 //   {
 //     image:
@@ -26,6 +27,8 @@ import { useRouter } from 'next/router'
 const Header3 = ({ contents }) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const router = useRouter()
+  const userInfo = useSelector(state => state.user.userInfo)
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,8 +57,10 @@ const Header3 = ({ contents }) => {
                 transform: `translateX(-${currentSlide * 100}%)`
               }}
             >
-              <div className={styles.surface}>
+              <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create?id=${slide._id}`) }}
+              >
                 {slide.title && <h2>{slide.title}</h2>}
+                {slide.description && <p> {slide.description} </p>}
                 {slide.buttonText && slide.buttonHref && (
                   <button onClick={() => router.push(slide.buttonHref)}>
                     {slide.buttonText}

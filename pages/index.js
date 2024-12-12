@@ -17,11 +17,35 @@ import Header3 from '@/components/Header/Header3'
 import List from '@/components/Categories/List'
 import List2 from '@/components/Categories/List2'
 import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
+import ProductsInColumn from '@/components/Products/ProductsInColumn'
+import Off from '@/components/Offer/Off'
+import Features from '@/components/Offer/Features'
+import Row from '@/components/Categories/Explore/Row'
+import ShopNow from '@/components/Offer/ShopNow'
+import Subscribe from '@/components/Offer/Subscribe'
+import { NextSeo } from 'next-seo'
+import { generateSeoData } from '@/utility/helper'
+import { seoData } from '@/utility/const'
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home ({ data, contents }) {
+export default function Home({ data, contents }) {
   return (
     <>
+      <NextSeo {...generateSeoData(
+        {
+          ...seoData, openGraph: {
+            ...seoData.openGraph,
+            images: [
+              {
+                url: `${contents.filter(i => i.position == "header")[0].image}`,
+                alt: '',
+                width: 1200,
+                height: 630
+              }
+            ],
+          }
+        }
+      )} />{' '}
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
         <div className={styles.categories}>
@@ -31,8 +55,9 @@ export default function Home ({ data, contents }) {
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         {/* <Header2 contents={contents} /> */}
-        <Header3 contents={contents} />
-        {data.map((i, index) => (
+        <Header3 contents={contents.filter(i => i.position == "header")} />
+        <div className={styles.categoriesInRow}> <Row /></div>
+        {data.slice(0, -3).map((i, index) => (
           <ProductsByCategory2
             category={i.category}
             products={i.products}
@@ -42,12 +67,38 @@ export default function Home ({ data, contents }) {
             structure={'grid'}
           />
         ))}
+        <div className={styles.off}>
+          <Off content={contents.filter(i => i.position == "deal")[0]} />
+        </div>
+        <div className={styles.off}>
+          <ShopNow content={contents.filter(i => i.position == "cta")[0]} />
+        </div>
+        <div className={styles.productsInColumn}>
+          {data.slice(-3).map((i, index) => (
+            <div className={styles.products} key={index}
+            >
+              <ProductsInColumn
+                category={i.category}
+                products={i.products?.slice(0, 4)}
+                subCategory={i.subCategory}
+                // rowDirection={(index + 1) % 2 == 0 ? true : false}
+                structure={'grid'}
+              />
+            </div>
+          ))}
+        </div>
+        <div className={styles.features}>
+          <Features />
+        </div>
+        <div className={styles.off}>
+          <Subscribe content={contents.filter(i => i.position == "subscription")[0]} />
+        </div>
       </div>
     </>
   )
 }
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   try {
     const start = new Date()
     const { data: contents } = await axios.get(
