@@ -31,7 +31,7 @@ const SearchBox2 = ({ setOpen }) => {
         <div className={styles.flex}>
           <h2>
             Search
-          </h>
+          </h2>
           <h3 onClick={() => setOpen(false)}>X</h3>
         </div>
 
