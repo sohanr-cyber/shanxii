@@ -10,7 +10,7 @@ const ShopNow = ({ content }) => {
     return (
         <div className={styles.wrapper}
             style={{
-                backgroundImage: `url('${content.image}')`,
+                backgroundImage: `url('${content?.image}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -18,12 +18,12 @@ const ShopNow = ({ content }) => {
             <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create?id=${content._id}`) }}
             >
                 <b>
-                    {content.title}
+                    {content?.title}
                 </b>
                 <p>
-                    {content.description}
+                    {content?.description}
                 </p>
-                {content.buttonText && content.buttonHref && (<div className={styles.btn}>Shop Now</div>
+                {content?.buttonText && content?.buttonHref && (<div className={styles.btn}>Shop Now</div>
                 )}
             </div>
         </div>

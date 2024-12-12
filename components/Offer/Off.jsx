@@ -9,7 +9,7 @@ const Off = ({ content }) => {
 
     return (
         <div className={styles.wrapper} style={{
-            backgroundImage: `url('${content.image}')`,
+            backgroundImage: `url('${content?.image}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -18,7 +18,7 @@ const Off = ({ content }) => {
             <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create?id=${content._id}`) }}
             >
                 <b>
-                    {content.title}
+                    {content?.title}
                 </b>
                 <div className={styles.code}>
                     Use Coupon Code : 285032

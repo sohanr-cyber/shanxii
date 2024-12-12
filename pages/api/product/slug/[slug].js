@@ -2,7 +2,7 @@ import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import Category from '@/database/model/Category'
 import nextConnect from 'next-connect'
-import slugify from 'slugify'
+import urlSlug from 'url-slug'
 import { getPlaceholderImage } from '@/utility/image'
 
 const handler = nextConnect()
@@ -64,7 +64,7 @@ handler.put(async (req, res) => {
     const { id } = req.query
     const product = await Product.findByIdAndUpdate(
       id,
-      { ...req.body, slug: slugify(req.body.name) },
+      { ...req.body, urlSlug: slugify(req.body.name) },
       { new: true }
     )
     const upadated = await Product.findOne({ _id: req.query.id }).populate({

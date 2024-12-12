@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from '@/styles/Offer/Features.module.css'
-import { m } from 'framer-motion';
 import Image from 'next/image';
 const features = [
   {

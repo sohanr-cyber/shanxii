@@ -16,7 +16,7 @@ const Row = () => {
             {categories?.map((c, index) => (
                 <div className={styles.category} onClick={() => router.push(`/shop?categories=${c._id}`)} onDoubleClick={() => userInfo?.role == "admin" && router.push(`/admin/category/create?id=${c._id}`)}>
                     <div className={styles.icon}>
-                        <Image src={c.image} width={50} height={50} alt="" />
+                        <Image src={c?.image} width={50} height={50} alt="" />
                     </div>
                     <div className={styles.name}>
                         {c.name}

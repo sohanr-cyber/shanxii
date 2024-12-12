@@ -29,15 +29,15 @@ import { seoData } from '@/utility/const'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ data, contents }) {
-  return (
+    return (
     <>
-      <NextSeo {...generateSeoData(
+      {/* <NextSeo {...generateSeoData(
         {
           ...seoData, openGraph: {
             ...seoData.openGraph,
             images: [
               {
-                url: `${contents.filter(i => i.position == "header")[0].image}`,
+                url: `${contents.filter(i => i.position == "header")[0]?.image}`,
                 alt: '',
                 width: 1200,
                 height: 630
@@ -45,7 +45,7 @@ export default function Home({ data, contents }) {
             ],
           }
         }
-      )} />{' '}
+      )} />{' '} */}
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
         <div className={styles.categories}>

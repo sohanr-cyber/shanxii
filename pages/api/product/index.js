@@ -4,10 +4,10 @@ import Category from '@/database/model/Category'
 import UserService from '@/services/user-service'
 import { isAdmin, isAuth } from '@/utility'
 import nextConnect from 'next-connect'
-import slugify from 'slugify'
 import { getPrice } from '@/utility/helper'
 const handler = nextConnect()
 const PAGE_SIZE = 20
+import urlSlug from 'url-slug'
 
 handler.get(async (req, res) => {
   try {
@@ -47,7 +47,7 @@ handler.post(async (req, res) => {
     
     const product = new Product({
       ...req.body,
-      slug: slugify(req.body.name),
+      slug: urlSlug(req.body.name),
       priceWithDiscount: getPrice(req.body.price, req.body.discount),
       // Ensure 'sold' is handled correctly, either in schema or here
     });
