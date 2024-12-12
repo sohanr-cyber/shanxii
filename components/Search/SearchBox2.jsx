@@ -29,7 +29,9 @@ const SearchBox2 = ({ setOpen }) => {
     <div className={styles.wrapper}>
       <div className={styles.left}>
         <div className={styles.flex}>
-          <h3>Serach</h3>
+          <h2>
+            Search
+          </h>
           <h3 onClick={() => setOpen(false)}>X</h3>
         </div>
 
@@ -51,122 +53,122 @@ const SearchBox2 = ({ setOpen }) => {
         <div className={styles.filterOptions}>
           {categories
             ? categories.map((item, index) => (
-                <>
-                  <div className={styles.option} key={index}>
-                    {router.query.categories
-                      ?.split(',')
-                      .find(each => each == item._id) ? (
-                      <div
-                        className={styles.option}
-                        onClick={() =>
-                          updateRoute({
-                            categories: null
-                          })
+              <>
+                <div className={styles.option} key={index}>
+                  {router.query.categories
+                    ?.split(',')
+                    .find(each => each == item._id) ? (
+                    <div
+                      className={styles.option}
+                      onClick={() =>
+                        updateRoute({
+                          categories: null
+                        })
+                      }
+                    >
+                      <CheckBoxIcon />
+                      <span
+                        style={
+                          item.children.length > 0
+                            ? { fontWeight: 'bold' }
+                            : {}
                         }
                       >
-                        <CheckBoxIcon />
-                        <span
-                          style={
-                            item.children.length > 0
-                              ? { fontWeight: 'bold' }
-                              : {}
+                        {item.name}
+                      </span>
+                    </div>
+                  ) : (
+                    <div
+                      className={styles.option}
+                      onClick={() =>
+                        updateRoute({
+                          categories: item._id
+                        })
+                      }
+                    >
+                      {' '}
+                      <CheckBoxOutlineBlankIcon />
+                      <span
+                      // style={
+                      //   item.children.length > 0
+                      //     ? { fontWeight: 'bold' }
+                      //     : {}
+                      // }
+                      >
+                        {item.name}
+                      </span>
+                    </div>
+                  )}{' '}
+                </div>
+                {item.children.length > 0 &&
+                  item.children.map((item, index) => (
+                    <div
+                      className={styles.option}
+                      key={index}
+                      style={{ marginLeft: '25px', display: 'none' }}
+                    >
+                      {router.query.categories
+                        ?.split(',')
+                        .find(each => each == item._id) ? (
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '10px',
+                            alignItems: 'center'
+                          }}
+                          onClick={() =>
+                            updateRoute({
+                              categories: null
+                            })
                           }
                         >
-                          {item.name}
-                        </span>
-                      </div>
-                    ) : (
-                      <div
-                        className={styles.option}
-                        onClick={() =>
-                          updateRoute({
-                            categories: item._id
-                          })
-                        }
-                      >
-                        {' '}
-                        <CheckBoxOutlineBlankIcon />
-                        <span
-                        // style={
-                        //   item.children.length > 0
-                        //     ? { fontWeight: 'bold' }
-                        //     : {}
-                        // }
+                          {' '}
+                          <CheckBoxIcon />
+                          <span
+                            style={
+                              item.children.length > 0
+                                ? { fontWeight: 'bold' }
+                                : {}
+                            }
+                          >
+                            {item.name}
+                          </span>
+                        </div>
+                      ) : (
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '10px',
+                            alignItems: 'center'
+                          }}
+                          onClick={() =>
+                            updateRoute({
+                              categories: item._id
+                            })
+                          }
                         >
-                          {item.name}
-                        </span>
-                      </div>
-                    )}{' '}
-                  </div>
-                  {item.children.length > 0 &&
-                    item.children.map((item, index) => (
-                      <div
-                        className={styles.option}
-                        key={index}
-                        style={{ marginLeft: '25px', display: 'none' }}
-                      >
-                        {router.query.categories
-                          ?.split(',')
-                          .find(each => each == item._id) ? (
-                          <div
-                            style={{
-                              display: 'flex',
-                              gap: '10px',
-                              alignItems: 'center'
-                            }}
-                            onClick={() =>
-                              updateRoute({
-                                categories: null
-                              })
+                          {' '}
+                          <CheckBoxOutlineBlankIcon />{' '}
+                          <span
+                            style={
+                              item.children.length > 0
+                                ? { fontWeight: 'bold' }
+                                : {}
                             }
                           >
-                            {' '}
-                            <CheckBoxIcon />
-                            <span
-                              style={
-                                item.children.length > 0
-                                  ? { fontWeight: 'bold' }
-                                  : {}
-                              }
-                            >
-                              {item.name}
-                            </span>
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              display: 'flex',
-                              gap: '10px',
-                              alignItems: 'center'
-                            }}
-                            onClick={() =>
-                              updateRoute({
-                                categories: item._id
-                              })
-                            }
-                          >
-                            {' '}
-                            <CheckBoxOutlineBlankIcon />{' '}
-                            <span
-                              style={
-                                item.children.length > 0
-                                  ? { fontWeight: 'bold' }
-                                  : {}
-                              }
-                            >
-                              {item.name}
-                            </span>
-                          </div>
-                        )}{' '}
-                      </div>
-                    ))}
-                </>
-              ))
+                            {item.name}
+                          </span>
+                        </div>
+                      )}{' '}
+                    </div>
+                  ))}
+              </>
+            ))
             : [1, 2, 3, 4].map((item, index) => (
-                <div className={styles.option} key={index}>
-                  <SkeletonDiv />
-                </div>
-              ))}
+              <div className={styles.option} key={index}>
+                <SkeletonDiv />
+              </div>
+            ))}
         </div>
       </div>
       <div className={styles.right} onClick={() => setOpen(false)}></div>
