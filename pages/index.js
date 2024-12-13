@@ -29,9 +29,9 @@ import { seoData } from '@/utility/const'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ data, contents }) {
-    return (
+  return (
     <>
-      {/* <NextSeo {...generateSeoData(
+      <NextSeo {...generateSeoData(
         {
           ...seoData, openGraph: {
             ...seoData.openGraph,
@@ -45,7 +45,7 @@ export default function Home({ data, contents }) {
             ],
           }
         }
-      )} />{' '} */}
+      )} />{' '}
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
         <div className={styles.categories}>

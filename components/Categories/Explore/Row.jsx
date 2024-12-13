@@ -24,8 +24,8 @@ const Row = () => {
                         {c.name}
                     </div>
                 </div>
-            )) : [1, 2, 3, 4, 5, 6]?.map((c, index) => (
-                <SkeletonDiv style={{ width: '50px', height: '80px', AspectRatio: "1/1" }} />
+            )) : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]?.map((c, index) => (
+                <SkeletonDiv style={{ width: '60px', height: '90px', AspectRatio: "1/1" }} />
             ))}
         </div>
     )
