@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import styles from '@/styles/Category/Explore/Row.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import SkeletonDiv from '@/components/Utility/SkeletonDiv'
+import { AspectRatio } from '@mui/icons-material'
 const Row = () => {
     const categories = useSelector(state => state.product.categories)?.slice(
         0,
@@ -13,7 +15,7 @@ const Row = () => {
 
     return (
         <div className={styles.wrapper}>
-            {categories?.map((c, index) => (
+            {categories ? categories?.map((c, index) => (
                 <div className={styles.category} onClick={() => router.push(`/shop?categories=${c._id}`)} onDoubleClick={() => userInfo?.role == "admin" && router.push(`/admin/category/create?id=${c._id}`)}>
                     <div className={styles.icon}>
                         <Image src={c?.image} width={50} height={50} alt="" />
@@ -22,6 +24,8 @@ const Row = () => {
                         {c.name}
                     </div>
                 </div>
+            )) : [1, 2, 3, 4, 5, 6]?.map((c, index) => (
+                <SkeletonDiv style={{ width: '50px', height: '80px', AspectRatio: "1/1" }} />
             ))}
         </div>
     )

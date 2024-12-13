@@ -42,7 +42,7 @@ const fetchFeaturedCategories = async lang => {
       })
         .sort({ publishedAt: -1 })
         .populate('categories', 'name')
-        .limit(5)
+        .limit(6)
 
       const subCategories = await Category.find({
         parent: category._id

@@ -11,9 +11,9 @@ import { motion } from 'framer-motion'
 
 const Product = ({ item, redirect, rowDirection }) => {
   const userInfo = useSelector(state => state.user.userInfo)
-  
-  const dispatch = useDispatch()
   const router = useRouter()
+  const dispatch = useDispatch()
+
   const handleClick = () => {
     redirect && router.push(`/product/${item.slug}`)
     dispatch(handleViewProduct(item))
