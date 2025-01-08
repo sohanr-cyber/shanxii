@@ -31,7 +31,16 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home({ data, contents }) {
   return (
     <>
-      <NextSeo {...seoData} />
+      <NextSeo {...seoData, openGraph = {
+        ...openGraph, images: [
+          {
+            url: `${contents.filter(i => i.position == "header")[0].image}`,
+            alt: 'ElectroHub Electronics',
+            width: 1200,
+            height: 630
+          }
+        ]
+      }} />
 
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
