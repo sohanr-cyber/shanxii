@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Agu+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 :root {
 
@@ -100,9 +99,8 @@
 }
 
 ::selection {
-  background-color: rgb(221, 255, 0, 0.2);
-  color: black;
-}
+  background-color: rgb(0, 0, 0);
+  color: rgb(0, 183, 255)}
 
 html,
 body {
@@ -111,7 +109,10 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-size: 96%;
+  font-size: 98%;
+  font-family: "Lato", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 h2 {

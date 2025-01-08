@@ -6,7 +6,7 @@ import { colors } from '@/utility/const'
 
 const Logo = ({ color }) => {
   const router = useRouter()
-  const name = 'Quince'
+  const name = 'ElectroHub'
 
   return (
     <div className={styles.wrapper} onClick={() => router.push('/')}>

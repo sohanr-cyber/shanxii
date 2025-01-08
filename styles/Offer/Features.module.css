@@ -14,6 +14,8 @@
     border-radius: 5px;
     padding: 10px;
     background: var(--cardBg);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.1);
+
 }
 
 

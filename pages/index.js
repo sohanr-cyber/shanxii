@@ -31,21 +31,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home({ data, contents }) {
   return (
     <>
-      <NextSeo {...generateSeoData(
-        {
-          ...seoData, openGraph: {
-            ...seoData.openGraph,
-            images: [
-              {
-                url: `${contents.filter(i => i.position == "header")[0]?.image}`,
-                alt: '',
-                width: 1200,
-                height: 630
-              }
-            ],
-          }
-        }
-      )} />{' '}
+      <NextSeo {...seoData} />
+
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
         <div className={styles.categories}>

@@ -5,6 +5,8 @@
     max-width: 250px;
     cursor: pointer;
     /* min-width: 170px; */
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.1);
+
 }
 
 .wrapper .pic {

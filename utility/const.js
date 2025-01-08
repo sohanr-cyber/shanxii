@@ -1,5 +1,5 @@
 import BASE_URL from '@/config'
-const companyName = 'Quince'
+const companyName = 'ElectroHub'
 
 const footerP =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
@@ -35,6 +35,7 @@ const messenger = 'https://www.facebook.com/'
 const whatsapp = 'https://web.whatsapp.com/'
 const instagram = 'https://www.instagram.com/'
 
+
 const colors = [
   { name: 'Black', code: '#000000' },
   { name: 'White', code: '#FFFFFF' },
@@ -63,20 +64,21 @@ const colors = [
   { name: 'Gold', code: '#FFD700' }
 ]
 
-const title = 'Lorem ipsum dolor si'
+
 const seoData = {
-  title,
+  title: 'ElectroHub - Your One-Stop Electronics Store',
   description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis ',
+    'Discover the latest electronics, gadgets, and accessories at unbeatable prices. Shop smartphones, cameras, laptops, and more at ElectroHub.',
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title,
-    description: '',
+    title: 'ElectroHub - Your One-Stop Electronics Store',
+    description:
+      'Discover the latest electronics, gadgets, and accessories at unbeatable prices.',
     images: [
       {
-        url: 'https://images.pexels.com/photos/237635/pexels-photo-237635.jpeg?auto=compress&cs=tinysrgb&w=600',
-        alt: '',
+        url: `${BASE_URL}/images/og-image.jpg`,
+        alt: 'ElectroHub Electronics',
         width: 1200,
         height: 630
       }
@@ -84,65 +86,61 @@ const seoData = {
     site_name: companyName
   },
   twitter: {
-    handle: '@quincecloth',
-    site: '@quincecloth',
+    handle: '@ElectroHub',
+    site: '@ElectroHub',
     cardType: 'summary_large_image'
   }
-}
+};
 
 const orderCartSeoData = {
-  title: 'Your Order Cart - SET Organic Food',
-  description:
-    'Review and manage items in your order cart at SET Organic Food.',
+  title: 'Your Cart - ElectroHub',
+  description: 'Review and manage the items in your cart at ElectroHub.',
   canonical: `${BASE_URL}/cart`,
   openGraph: {
-    title: 'Your Order Cart - SET Organic Food',
-    description:
-      'Review and manage items in your order cart at SET Organic Food.',
+    title: 'Your Cart - ElectroHub',
+    description: 'Review and manage the items in your cart at ElectroHub.',
     url: `${BASE_URL}/cart`,
     images: [
       {
-        url: `${BASE_URL}/images/order-cart.png`,
+        url: `${BASE_URL}/images/cart.png`,
         width: 1200,
         height: 630,
-        alt: 'Order Cart - SET Organic Food'
+        alt: 'Your Cart - ElectroHub'
       }
     ],
     type: 'website'
   },
   twitter: seoData.twitter
-}
+};
 
 const TermsAndConditionSeoData = {
-  title: `Our Terms And Conditions - ${companyName}`,
-  description: `Welcome to ${companyName}! These terms and conditions outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
-  canonical: `${BASE_URL}/cart`,
+  title: `Terms and Conditions - ${companyName}`,
+  description: `Review the terms and conditions for using ${companyName}.`,
+  canonical: `${BASE_URL}/terms-and-conditions`,
   openGraph: {
-    title: `Our Terms And Conditions - ${companyName}`,
-    description: `Welcome to ${companyName}! These terms and conditions outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
-
+    title: `Terms and Conditions - ${companyName}`,
+    description: `Review the terms and conditions for using ${companyName}.`,
     url: `${BASE_URL}/terms-and-conditions`,
     images: [
       {
         url: `${BASE_URL}/images/terms-and-conditions.png`,
         width: 1200,
         height: 630,
-        alt: `Our Terms And Conditions - ${companyName}`
+        alt: `Terms and Conditions - ${companyName}`
       }
     ],
     type: 'website'
   },
   twitter: seoData.twitter
-}
+};
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Welcome to ${companyName}! These privacy policy outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
-  canonical: `${BASE_URL}/cart`,
+  description: `Understand how ${companyName} protects your data and privacy.`,
+  canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Welcome to ${companyName}! These privacy policy outline the rules and regulations for the use of ${companyName}'s Website, located at ${BASE_URL}`,
-
+    description: `Understand how ${companyName} protects your data and privacy.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -155,19 +153,19 @@ const privacyPolicySeoData = {
     type: 'website'
   },
   twitter: seoData.twitter
-}
+};
 
 const orderDetailSeoData = {
   title: `Order Details - ${companyName}`,
-  description: `View the details of your order on ${companyName}. Check the products, quantities, and shipping information.`,
-  canonical: `${BASE_URL}/order-detail`,
+  description: `Check the details of your order at ${companyName}.`,
+  canonical: `${BASE_URL}/order-details`,
   openGraph: {
     title: `Order Details - ${companyName}`,
-    description: `View the details of your order on ${companyName}. Check the products, quantities, and shipping information.`,
-    url: `${BASE_URL}/order-detail`,
+    description: `Check the details of your order at ${companyName}.`,
+    url: `${BASE_URL}/order-details`,
     images: [
       {
-        url: `${BASE_URL}/images/order-detail.png`,
+        url: `${BASE_URL}/images/order-details.png`,
         width: 1200,
         height: 630,
         alt: `Order Details - ${companyName}`
@@ -176,65 +174,78 @@ const orderDetailSeoData = {
     type: 'website'
   },
   twitter: seoData.twitter
-}
+};
 
 const reviewSeoData = {
-  title: `Review Order - ${companyName}`,
-  description: `Review your order on ${companyName} before placing it. Confirm the products, quantities, and shipping details.`,
+  title: `Review Your Order - ${companyName}`,
+  description: `Confirm your items and details before placing your order at ${companyName}.`,
   canonical: `${BASE_URL}/review`,
   openGraph: {
-    title: `Review Order - ${companyName}`,
-    description: `Review your order on ${companyName} before placing it. Confirm the products, quantities, and shipping details.`,
+    title: `Review Your Order - ${companyName}`,
+    description: `Confirm your items and details before placing your order at ${companyName}.`,
     url: `${BASE_URL}/review`,
     images: [
       {
-        url: `${BASE_URL}/images/review.png`,
-        width: 800,
-        height: 600,
-        alt: `Review Order - ${companyName}`
+        url: `${BASE_URL}/images/review-order.png`,
+        width: 1200,
+        height: 630,
+        alt: `Review Your Order - ${companyName}`
       }
     ],
     type: 'website'
   },
-  twitter: {
-    handle: '@yourtwitterhandle',
-    site: '@yourtwitterhandle',
-    cardType: 'summary_large_image'
-  }
-}
+  twitter: seoData.twitter
+};
 
 const addressSeoData = {
-  title: `Address - ${companyName}`,
-  description: `Enter your shipping address on ${companyName} to complete your order and receive your products.`,
+  title: `Shipping Address - ${companyName}`,
+  description: `Enter your shipping address to complete your purchase on ${companyName}.`,
   canonical: `${BASE_URL}/address`,
   openGraph: {
-    title: `Address - ${companyName}`,
-    description: `Enter your shipping address on ${companyName} to complete your order and receive your products.`,
+    title: `Shipping Address - ${companyName}`,
+    description: `Enter your shipping address to complete your purchase on ${companyName}.`,
     url: `${BASE_URL}/address`,
     images: [
       {
-        url: `${BASE_URL}/images/address.png`,
+        url: `${BASE_URL}/images/shipping-address.png`,
         width: 1200,
         height: 630,
-        alt: `Address - ${companyName}`
+        alt: `Shipping Address - ${companyName}`
       }
     ],
     type: 'website'
   },
-  twitter: {
-    handle: '@yourtwitterhandle',
-    site: '@yourtwitterhandle',
-    cardType: 'summary_large_image'
-  }
-}
+  twitter: seoData.twitter
+};
+
+const loginSeoData = {
+  title: `Login - ${companyName}`,
+  description: `Log in to your account at ${companyName} to access your profile and orders.`,
+  canonical: `${BASE_URL}/login`,
+  openGraph: {
+    title: `Login - ${companyName}`,
+    description: `Log in to your account at ${companyName} to access your profile and orders.`,
+    url: `${BASE_URL}/login`,
+    images: [
+      {
+        url: `${BASE_URL}/images/login.png`,
+        width: 1200,
+        height: 630,
+        alt: `Login - ${companyName}`
+      }
+    ],
+    type: 'website'
+  },
+  twitter: seoData.twitter
+};
 
 const registerSeoData = {
   title: `Register - ${companyName}`,
-  description: `Create an account on ${companyName} to start shopping for your favorite products.`,
+  description: `Create an account at ${companyName} to start shopping for electronics and gadgets.`,
   canonical: `${BASE_URL}/register`,
   openGraph: {
     title: `Register - ${companyName}`,
-    description: `Create an account on ${companyName} to start shopping for your favorite products.`,
+    description: `Create an account at ${companyName} to start shopping for electronics and gadgets.`,
     url: `${BASE_URL}/register`,
     images: [
       {
@@ -247,28 +258,8 @@ const registerSeoData = {
     type: 'website'
   },
   twitter: seoData.twitter
-}
+};
 
-const loginSeoData = {
-  title: `Login - ${companyName}`,
-  description: `Sign in to your ${companyName} account to access your profile and manage your orders.`,
-  canonical: `${BASE_URL}/login`,
-  openGraph: {
-    title: `Login - ${companyName}`,
-    description: `Sign in to your ${companyName} account to access your profile and manage your orders.`,
-    url: `${BASE_URL}/login`,
-    images: [
-      {
-        url: `${BASE_URL}/images/login.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Login - SET Organic Food'
-      }
-    ],
-    type: 'website'
-  },
-  twitter: seoData.twitter
-}
 
 const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
 const themeTransparent = 'rgb(8, 78, 67,0.1)'
