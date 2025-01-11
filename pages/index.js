@@ -32,9 +32,9 @@ export default function Home({ data, contents }) {
   return (
     <>
       <NextSeo {...seoData, openGraph = {
-        ...openGraph, images: [
+        ...seoData.openGraph, images: [
           {
-            url: `${contents.filter(i => i.position == "header")[0].image}`,
+            url: `${contents.filter(i => i.position == "header")[0]?.image}`,
             alt: 'ElectroHub Electronics',
             width: 1200,
             height: 630
