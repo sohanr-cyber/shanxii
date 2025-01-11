@@ -26,21 +26,25 @@ import Subscribe from '@/components/Offer/Subscribe'
 import { NextSeo } from 'next-seo'
 import { generateSeoData } from '@/utility/helper'
 import { seoData } from '@/utility/const'
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ data, contents }) {
   return (
     <>
-      <NextSeo {...seoData, openGraph = {
-        ...seoData.openGraph, images: [
-          {
-            url: `${contents.filter(i => i.position == "header")[0]?.image}`,
-            alt: 'ElectroHub Electronics',
-            width: 1200,
-            height: 630
-          }
-        ]
-      }} />
+      <NextSeo
+        {...seoData}
+        openGraph={{
+          ...seoData.openGraph,
+          images: [
+            {
+              url: contents.find(i => i.position === "header")?.image || '',
+              alt: 'ElectroHub Electronics',
+              width: 1200,
+              height: 630,
+            },
+          ],
+        }}
+      />
+
 
       <div className={styles.wrapper}>
         {/* <TopNav /> */}
