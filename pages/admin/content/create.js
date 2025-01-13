@@ -11,6 +11,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
+import Colors from '@/components/Shop/Colors'
 // Content Craetion Form
 const Create = ({ content: data }) => {
   const [content, setContent] = useState(data)
@@ -138,6 +139,9 @@ const Create = ({ content: data }) => {
       setError('Error While Updating Content !')
     }
   }
+
+  const setTextColor = (c) => setContent({ ...content, textColor: c })
+
   return (
     <div className={styles.wrapper}>
       <h2>{router.query.id ? 'Update' : 'Add'} Content</h2>
@@ -215,6 +219,13 @@ const Create = ({ content: data }) => {
                 No Photo Uploaded
               </div>
             )}
+          </div>
+
+          <div className={styles.field}>
+            <label>Chose Text Color</label>
+            <div className={styles.flex} style={{ margin: "10px 0" }}>
+              <Colors handleClick={setTextColor} selectedColors={content.textColor} />
+            </div>
           </div>
           <div className={styles.field}>
             <label>Set Position </label>

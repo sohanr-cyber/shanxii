@@ -1,10 +1,10 @@
 .wrapper {
     background: var(--nav);
     width: 100%;
-    box-shadow: 1px 1px 4px 5px rgb(229, 234, 235);
+    box-shadow: var(--box-shadow);
     /* padding: 10px; */
     min-width: 210px;
-    color: initial
+    color: initial;
 }
 
 .wrapper .items .item {

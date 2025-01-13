@@ -1,6 +1,6 @@
-
 .wrapper {
     padding: 25px;
+
 }
 
 .wrapper .slider {
@@ -38,6 +38,8 @@
     height: 100%;
     background: var(--themeTransparent);
     padding: 0 25px;
+    font-weight: bold;
+
 
 }
 
@@ -46,20 +48,14 @@
 
 }
 
-.slide h2 {
-    max-width: 350px;
-    font-family: "Agu Display", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:
-        "MORF" 0;
-}
+
 
 
 
 .slide p {
     max-width: 70%;
+    font-size: 95%;
+
 }
 
 .slide p {
@@ -113,22 +109,34 @@
         padding: 15px
     }
 
+    .slide .surface {
+        padding: 15px
+    }
+
+
+
 
     .slide h2 {
         max-width: 250px;
-
         font-size: 150%;
 
     }
 }
 
 @media (max-width:410px) {
+
     .wrapper {
         padding: 10px
     }
 
+
+    .slide .surface {
+        padding: 10px;
+    }
+
     .slide p {
         max-width: 90%;
+        /* display: none; */
     }
 
     .wrapper .dots {

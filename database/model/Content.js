@@ -9,6 +9,7 @@ const contentSchema = new mongoose.Schema(
       type: String
     },
     description: { type: String },
+    textColor: { type: String },
     buttonText: {
       type: String
     },

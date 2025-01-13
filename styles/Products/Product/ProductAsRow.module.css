@@ -8,8 +8,7 @@
     display: flex;
     margin: 15px 0;
     /* min-width: 170px; */
-    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.1);
-
+    box-shadow: var(--box-shadow);
 }
 
 

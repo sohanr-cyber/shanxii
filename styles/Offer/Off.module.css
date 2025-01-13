@@ -13,8 +13,6 @@
     border: 2px dotted rgb(255, 255, 255);
     padding: var(--buttonPadding);
     margin: 10px 0;
-    
-    color: rgb(255, 255, 255);
     text-shadow:var(--textShadow);
     /* background: var(--buttonBg); */
     /* max-width: 100px; */
@@ -34,12 +32,13 @@
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
 
 }
 
 .wrapper b,
 .wrapper p {
-    color: rgb(255, 255, 255);
     text-shadow: 1px 1px black;
     width: 90%;
     
@@ -47,6 +46,9 @@
 
 .wrapper b {
     font-size: 150%;
+}
+.wrapper p {
+    font-size: 95%;
 }
 
 

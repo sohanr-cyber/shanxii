@@ -37,6 +37,20 @@
     margin: 15px 0;
 }
 
+.left .field .minus,
+.left .field .plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    height: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin: 10px 0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .left .field {
     display: flex;
     flex-direction: column;

@@ -1,3 +1,4 @@
+import { generateUniqueID } from '@/utility/helper'
 import mongoose from 'mongoose'
 
 // Define Schema
@@ -73,6 +74,9 @@ const productSchema = new mongoose.Schema(
         },
         value: {
           type: String
+        },
+        uid: {
+          type: String,
         }
       }
     ],

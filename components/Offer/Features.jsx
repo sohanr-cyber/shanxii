@@ -32,7 +32,7 @@ const features = [
 
 const Features = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} >
       {features.map((f, index) => (
         <div className={styles.feature}>
           <div className={styles.icon}>

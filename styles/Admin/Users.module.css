@@ -1,7 +1,7 @@
 .wrapper {
     min-width: 200px;
     padding: 5px;
-    box-shadow: 2px 2px 2px 2px rgb(234, 234, 234);
+    box-shadow: var(--box-shadow);
     border-radius: 5px;
     background: white;
     width: 25%;

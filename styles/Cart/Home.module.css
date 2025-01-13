@@ -7,6 +7,8 @@
     overflow-x: scroll;
     background: var(--cardBg);
     padding: 15px;
+    box-shadow: var(--box-shadow);
+
 
 }
 
@@ -14,6 +16,11 @@
     border-collapse: collapse;
     width: 100%;
     overflow-x: scroll;
+}
+
+.table__wrapper table th {
+    background: var(--buttonBg);
+    color: white;
 }
 
 .table__wrapper table th,
@@ -24,7 +31,7 @@
 }
 
 .table__wrapper table td {
-    height: 50px;
+    /* height: 50px; */
 }
 
 .table__wrapper table .product {
@@ -77,10 +84,39 @@
     cursor: pointer;
 
 }
+
 @media (min-width:1024px) {
     .wrapper {
         padding: 25px var(--percent);
     }
+}
+
+@media (max-width:720px) {
+    .table__wrapper table .product {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .quantity {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        /* background-color: red; */
+
+    }
+
+    .table__wrapper table th,
+    .table__wrapper table td {
+        border: 1px solid var(--borderColor);
+        padding: 5px;
+        min-width: 0px;
+        padding: 5px;
+    }
+
 }
 
 @media (max-width:570px) {
@@ -94,7 +130,8 @@
 
 
 
-    
+
+
 }
 
 @media (max-width:410px) {

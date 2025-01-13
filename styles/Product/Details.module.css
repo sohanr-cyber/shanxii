@@ -18,6 +18,8 @@
     padding: 10px;
     border-radius: 5px;
     flex: 1;
+    box-shadow: var(--box-shadow);
+
 
 
 }
@@ -48,7 +50,7 @@
 .right .flex {
     display: flex;
     gap: 10px;
-    margin: 10px 0;
+    margin: 12px 0;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -110,6 +112,8 @@
     justify-content: center;
     background-color: var(--cardBg);
     margin: 15px 0;
+    box-shadow: var(--box-shadow);
+
 }
 
 
@@ -123,6 +127,8 @@
     background-color: var(--cardBg);
     border-radius: 5px;
     padding: 10px;
+    box-shadow: var(--box-shadow);
+
 }
 
 .description img {

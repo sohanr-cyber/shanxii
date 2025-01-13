@@ -18,7 +18,7 @@
     gap: 15px;
     padding: 5px 10px;
     min-width: 100px;
-    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
 
 }
 

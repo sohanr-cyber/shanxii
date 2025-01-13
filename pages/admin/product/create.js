@@ -14,6 +14,8 @@ import Colors from '@/components/Shop/Colors'
 import SelectCategory from '@/components/Categories/SelectCategory'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
+import { SubtitlesOutlined } from '@mui/icons-material'
+import { generateUniqueID } from '@/utility/helper'
 
 const Create = ({ product: data }) => {
   const [images, setImages] = useState([])
@@ -59,7 +61,8 @@ const Create = ({ product: data }) => {
         {
           ...product,
           description,
-          categories: selected
+          categories: selected,
+        
         },
         { headers }
       )
@@ -70,12 +73,12 @@ const Create = ({ product: data }) => {
         price: 0,
         discount: '',
         categories: [],
+        attributes: [],
         color: '',
         images: [],
         thumbnail: '',
         metaTitle: '',
         metaDescription: '',
-        attributes: {},
         stockQuantity: 0,
         sold: 0
       })
@@ -137,7 +140,7 @@ const Create = ({ product: data }) => {
         {
           ...product,
           categories: selected,
-          description
+          description,
         },
         { headers }
       )
@@ -205,7 +208,7 @@ const Create = ({ product: data }) => {
                 placeholder='Enter Product Discount'
                 value={product.discount}
                 onChange={e =>
-                  setProduct(prev => ({ ...prev, discount: e.target.value }))
+                  e.target.value >= 0 && e.target.value < 100 && setProduct(prev => ({ ...prev, discount: e.target.value }))
                 }
                 min='0'
                 max='100'
@@ -239,6 +242,43 @@ const Create = ({ product: data }) => {
               </div>
 
             </div>
+          </div>
+          <div className={styles.field}>
+            <label>Charecteristics</label>
+            {product.attributes?.map((i, indx) => (
+              <div className={styles.flex} style={{ display: "flex", alignItems: "center" }}>
+                <div className={styles.field}>
+                  <label>name ({i.uid})</label>
+                  <input type="text" value={i.name}
+                    onChange={e => {
+                      const updatedAttributes = product.attributes.map(attr =>
+                        attr.uid === i.uid ? { ...attr, name: e.target.value } : attr
+                      );
+                      setProduct({ ...product, attributes: updatedAttributes });
+                    }} />
+                </div>
+                <div className={styles.field}>
+                  <label>Value</label>
+                  <input type="text" value={i.value}
+                    onChange={e => {
+                      const updatedAttributes = product.attributes.map(attr =>
+                        attr.uid === i.uid ? { ...attr, value: e.target.value } : attr
+                      );
+                      setProduct({ ...product, attributes: updatedAttributes });
+                    }} />
+                </div>
+              </div>
+            ))}
+            <div className={styles.flex}>
+              {product.attributes.map((e, indx) => <div className={styles.minus}
+                onClick={() => setProduct({ ...product, attributes: product.attributes.filter(i => i.uid != e.uid) })}>-</div>)}
+              <div className={styles.plus} onClick={() => setProduct({
+                ...product, attributes: [...product.attributes, {
+                  name: "", value: "", uid: generateUniqueID(product.attributes.map(e => e.uid))
+                }]
+              })}>+</div>
+            </div>
+
           </div>
           <div className={styles.field}>
             <label>Description</label>
@@ -363,14 +403,14 @@ const Create = ({ product: data }) => {
             <div className={styles.images}>
               {product.images.length > 0
                 ? product.images.map((image, index) => (
-                  <div className={styles.image__container} key={index}>
+                  <div className={styles.image__container} name={index}>
                     <Image src={image} alt='' width='180' height={180} />
                   </div>
                 ))
                 : [1, 2, 3].map((_, index) => (
                   <div
                     className={styles.image__container}
-                    key={index}
+                    name={index}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -384,14 +424,14 @@ const Create = ({ product: data }) => {
             </div>
           </div>
         </div>
-      </form>
+      </form >
       {error && <p style={{ color: 'red', margin: '10px' }}>{error}</p>}
       <button
         onClick={() => (router.query.id ? updateProduct() : saveProduct())}
       >
         Save Prdouct
       </button>
-    </div>
+    </div >
   )
 }
 
@@ -431,12 +471,13 @@ export async function getServerSideProps({ query }) {
         price: 0,
         discount: '',
         categories: [],
+        attributes: [],
         color: '',
         images: [],
         thumbnail: '',
         metaTitle: '',
         metaDescription: '',
-        attributes: {},
+
         stockQuantity: 0,
         sold: 0,
         color: ''

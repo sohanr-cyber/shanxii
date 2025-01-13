@@ -10,6 +10,7 @@ const Colors = ({ selectedColors, handleClick }) => {
     colors.slice(0, colors.length / 2)
   )
 
+  console.log({ selectedColors })
   useEffect(() => {
     loaded
       ? setProductColors(colors)
@@ -27,16 +28,14 @@ const Colors = ({ selectedColors, handleClick }) => {
             borderRadius: '5px',
             padding: '3px',
             cursor: 'pointer',
-            background: `${
-              selectedColors?.split(',').find(i => i == c.name)
+            background: `${selectedColors?.split(',').find(i => i == c.name)
                 ? `${themeTransparent}`
                 : ''
-            }`,
-            border: `${
-              selectedColors?.split(',').find(i => i == c.name)
+              }`,
+            border: `${selectedColors?.split(',').find(i => i == c.name)
                 ? `1.5px solid ${themeC}`
                 : '1px solid lightgrey'
-            }`
+              }`
           }}
           key={index}
           onClick={() => handleClick(c.name)}

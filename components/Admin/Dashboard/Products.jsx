@@ -9,6 +9,7 @@ import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { orderStatusColors } from '@/utility/const'
 import { extractRGBA } from '@/utility/helper'
+import Image from 'next/image'
 
 const Products = ({
   title,
@@ -97,7 +98,7 @@ const Products = ({
           <table>
             <thead>
               <tr>
-                <th>Product Name</th>
+                <th>Product </th>
                 <th>Price</th>
                 <th>Discount</th> <th>Categories</th>
                 <th>Stock Quantity</th>
@@ -111,34 +112,36 @@ const Products = ({
                 <tr
                   key={index}
                   style={{
-                    borderLeft: `3px solid ${
-                      orderStatusColors[
-                        `${
-                          product.stockQuantity < 5
-                            ? 'pending'
-                            : product.stockQuantity <= 1
-                            ? 'failed'
-                            : 'none'
+                    borderLeft: `3px solid ${orderStatusColors[
+                      `${product.stockQuantity < 5
+                        ? 'pending'
+                        : product.stockQuantity <= 1
+                          ? 'failed'
+                          : 'none'
                         }`.toLowerCase()
-                      ]
-                    }`,
+                    ]
+                      }`,
                     background: `${extractRGBA(
                       orderStatusColors[
-                        `${
-                          product.stockQuantity < 5
-                            ? 'pending'
-                            : product.stockQuantity <= 1
-                            ? 'failed'
-                            : 'none'
+                      `${product.stockQuantity < 5
+                        ? 'pending'
+                        : product.stockQuantity <= 1
+                          ? 'failed'
+                          : 'none'
                         }`.toLowerCase()
                       ],
                       0.1
                     )}`
                   }}
                 >
-                  <td>{product.name}</td>
+                  <td onClick={() => router.push(`/product/${product.slug}`)} style = {{minWidth:"240px"}}>
+                    <div className={styles.flex} style={{ justifyContent: "flex-start", gap: "15px", alignItems: "center" }}>
+                      <Image src={product.thumbnail} width={35} height={35} />
+                      {product.name.length > 20 ? <>{product.name.slice(0, 20)}...</> : product.name}
+                    </div>
+                  </td>
                   <td>{product.price}</td>
-                  <td>{product.discount}%</td>
+                  <td>{product.discount || 0}%</td>
                   <td>
                     {product.categories?.map((item, index) => (
                       <span key={index}>

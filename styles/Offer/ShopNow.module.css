@@ -31,17 +31,24 @@
     height: 100%;
     min-height: 100%;
     background: var(--themeTransparent);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+
 
 }
 
 .wrapper b,
 .wrapper p {
-    color: rgb(255, 255, 255);
-    text-shadow:var(--textShadow);
-
+    text-shadow: var(--textShadow);
     width: 90%;
+
 }
 
+
+.wrapper p {
+    font-size: 95%;
+    font-weight: bold;
+}
 
 
 

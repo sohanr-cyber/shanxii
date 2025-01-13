@@ -20,7 +20,7 @@ import {
 } from '@/redux/pixelSlice'
 import Loading from '@/components/Utility/Loading'
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
   try {
     // Fetch the list of possible values for slug
     const response = await axios.get(`${BASE_URL}/api/product/slugs`)
@@ -47,7 +47,7 @@ export async function getStaticPaths () {
   }
 }
 
-export async function getStaticProps (context) {
+export async function getStaticProps(context) {
   const { slug } = context.params
 
   try {
@@ -229,6 +229,9 @@ const Product = ({ product, error, relatedProducts }) => {
             <h1 className={styles.price}>
               ৳ {getPrice(product.price, product.discount)}
             </h1>
+            {product.metaDescription && <p>
+              {product.metaDescription}
+            </p>}
 
             {product?.sizes && (
               <div className={styles.sizes}>
@@ -262,7 +265,8 @@ const Product = ({ product, error, relatedProducts }) => {
                   <RemoveIcon />
                 </span>
               </div>
-              <button onClick={() => handleAddToCart()}>Add To Cart</button>
+            </div>
+            <div className={styles.flex}> <button onClick={() => handleAddToCart()}>Add To Cart</button>
               <button onClick={() => handleBuyNow()}>Buy Now</button>
               {isClient && userInfo?.role == 'admin' && (
                 <button
@@ -272,14 +276,28 @@ const Product = ({ product, error, relatedProducts }) => {
                 >
                   Update Product
                 </button>
-              )}
-            </div>
+              )}</div>
 
             {product.categories?.length > 0 && (
               <div className={styles.categories}>
                 Categories:{' '}
                 {product.categories?.map((item, index) => (
                   <span key={index}>{item.name}</span>
+                ))}
+              </div>
+            )}
+            {product.attributes.length > 0 && (
+              <div className={styles.attributes}>
+                <b>Charecteristics</b>
+                {product.attributes.map((i, index) => (
+                  <div className={styles.flex} style ={{justifyContent:"space-between"}}>
+                    <div className={styles.key}>
+                      {i.name}
+                    </div>
+                    <div className={styles.key}>
+                      {i.value}
+                    </div>
+                  </div>
                 ))}
               </div>
             )}

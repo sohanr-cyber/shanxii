@@ -54,11 +54,14 @@ const Header3 = ({ contents }) => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                transform: `translateX(-${currentSlide * 100}%)`
+                transform: `translateX(-${currentSlide * 100}%)`,
               }}
             >
               <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create?id=${slide._id}`) }}
-              >
+                style={{
+                  color: `${slide.textColor}`
+
+                }}  >
                 {slide.title && <h2>{slide.title}</h2>}
                 {slide.description && <p> {slide.description} </p>}
                 {slide.buttonText && slide.buttonHref && (
