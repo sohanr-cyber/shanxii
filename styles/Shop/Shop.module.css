@@ -87,18 +87,12 @@
 
 
 @media (max-width:410px) {
-    .products {
-        display: flex;
-        flex-direction: column;
+    .products {   
         gap:10px;
+        
     }
 
-    .productsRow {
-        display: flex;
-        flex-direction: row;
-        overflow-x: scroll;
-    }
-
+  
     .wrapper {
         padding: 10px;
     }
