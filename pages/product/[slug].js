@@ -177,7 +177,7 @@ const Product = ({ product, error, relatedProducts }) => {
         <div className={styles.container}>
           <div className={styles.left}>
             <div className={styles.image__container}
-              style={{ background: `${hexToRgba(product.colors[0], 0.5)}` }}>
+              style={{ background: `${hexToRgba(product.imageColors[0], 0.5)}` }}>
               <Image
                 src={thumbnail}
                 width='400'
