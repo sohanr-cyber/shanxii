@@ -15,7 +15,7 @@ const Subscribe = ({ content }) => {
         }}>
             <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create?id=${content._id}`) }}
                 style={{
-                    color: `${content.textColor}`
+                    color: `${content?.textColor}`
 
                 }}  >
                 <b>

@@ -2,29 +2,35 @@ import db from '@/database/connection'
 import Category from '@/database/model/Category'
 import Product from '@/database/model/Product'
 import nc from 'next-connect'
-import { getPlaceholderImage } from '@/utility/image'
+import { ExtractColors, getPlaceholderImage } from '@/utility/image'
 
 const handler = nc()
 
 const fetchLatestProducts = async () => {
-  const latestProducts = await Product.find({})
+  let latestProducts = await Product.find({})
     .sort({ createdAt: -1 }).populate('categories', 'name')
-    .limit(4)
+    .limit(4).lean()
+
+  
+
   return latestProducts
 }
 
 
 
 const fetchFeaturedProducts = async () => {
-  const featuredProducts = await Product.find({ featured: true })
+  let featuredProducts = await Product.find({ featured: true })
     .sort({ createdAt: -1 }).populate('categories', 'name')
-    .limit(4)
+    .limit(4).lean()
+ 
+
   return featuredProducts
 }
 const fetchTopSellingProducts = async () => {
-  const topSellingProducts = await Product.find({})
+  let topSellingProducts = await Product.find({})
     .sort({ sold: -1 }).populate('categories', 'name')
-    .limit(4)
+    .limit(4).lean()
+
 
   return topSellingProducts
 }
@@ -36,17 +42,17 @@ const fetchFeaturedCategories = async lang => {
   })
   return Promise.all(
     categories.map(async category => {
-      const products = await Product.find({
+      let products = await Product.find({
         categories: { $in: category._id },
 
       })
         .sort({ publishedAt: -1 })
         .populate('categories', 'name')
-        .limit(10)
+        .limit(10).lean()
 
       const subCategories = await Category.find({
         parent: category._id
-      }).select('_id name')
+      }).select('_id name').lean()
 
       return {
         category: category.name,

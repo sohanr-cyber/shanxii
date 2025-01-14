@@ -3,7 +3,7 @@ import Product from '@/database/model/Product'
 import Category from '@/database/model/Category'
 import nextConnect from 'next-connect'
 import urlSlug from 'url-slug'
-import { getPlaceholderImage } from '@/utility/image'
+import { ExtractColors, getPlaceholderImage } from '@/utility/image'
 
 const handler = nextConnect()
 handler.get(async (req, res) => {
@@ -16,6 +16,7 @@ handler.get(async (req, res) => {
       path: 'categories',
       select: 'name _id'
     })
+
 
     if (!product) {
       await db.disconnect()
@@ -46,6 +47,8 @@ handler.get(async (req, res) => {
     //     });
     // product.relatedProducts = relatedProducts;
     // }
+
+    product.colors = await ExtractColors(product.thumbnail)
 
     await db.disconnect()
     return res.status(200).json(product)

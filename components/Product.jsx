@@ -4,15 +4,18 @@ import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { getPrice } from '@/utility/helper'
+import { getPrice, hexToRgba } from '@/utility/helper'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleViewProduct } from '@/redux/pixelSlice'
 import { motion } from 'framer-motion'
+import axios from 'axios'
 
 const Product = ({ item, redirect, rowDirection }) => {
   const userInfo = useSelector(state => state.user.userInfo)
   const router = useRouter()
   const dispatch = useDispatch()
+  const [myColor, setMyColor] = useState("")
+
 
   const handleClick = () => {
     redirect && router.push(`/product/${item.slug}`)
@@ -27,9 +30,10 @@ const Product = ({ item, redirect, rowDirection }) => {
       className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
       onClick={() => handleClick()}
       onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/product/create?id=${item._id}`) }}
-
+      // style={{ background: `${hexToRgba(item.imageColors[0], 0.5)}` }}
     >
-      <div className={styles.pic}>
+      <div className={styles.pic} >
+
         {item.blurData ? (
           <Image
             src={item.thumbnail}

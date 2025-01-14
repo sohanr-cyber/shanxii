@@ -4,7 +4,7 @@ import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { getPrice } from '@/utility/helper'
+import { getPrice, hexToRgba } from '@/utility/helper'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleViewProduct } from '@/redux/pixelSlice'
 import { motion } from 'framer-motion'
@@ -27,7 +27,7 @@ const ProductAsRow = ({ item, redirect, rowDirection }) => {
             className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
             onClick={() => handleClick()}
             onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/product/create?id=${item._id}`) }}
-
+            // style={{ background: `${hexToRgba(item.imageColors[0], 0.5)}` }}
         >
             <div className={styles.pic}>
                 {item.blurData ? (

@@ -9,7 +9,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
-import { generateProductSeoData, getPrice } from '@/utility/helper'
+import { generateProductSeoData, getPrice, hexToRgba } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import ProductsByCategory from '@/components/Products/ProductsByCategory'
@@ -19,6 +19,7 @@ import {
   handleViewProduct
 } from '@/redux/pixelSlice'
 import Loading from '@/components/Utility/Loading'
+import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
 
 export async function getStaticPaths() {
   try {
@@ -175,7 +176,8 @@ const Product = ({ product, error, relatedProducts }) => {
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <div className={styles.left}>
-            <div className={styles.image__container}>
+            <div className={styles.image__container}
+              style={{ background: `${hexToRgba(product.colors[0], 0.5)}` }}>
               <Image
                 src={thumbnail}
                 width='400'
@@ -290,7 +292,7 @@ const Product = ({ product, error, relatedProducts }) => {
               <div className={styles.attributes}>
                 <b>Charecteristics</b>
                 {product.attributes.map((i, index) => (
-                  <div className={styles.flex} style ={{justifyContent:"space-between"}}>
+                  <div className={styles.flex} style={{ justifyContent: "space-between" }}>
                     <div className={styles.key}>
                       {i.name}
                     </div>
@@ -318,7 +320,7 @@ const Product = ({ product, error, relatedProducts }) => {
         </div>
       </div>
       {relatedProducts?.length > 0 && (
-        <ProductsByCategory
+        <ProductsByCategory2
           category={'Related Products'}
           products={relatedProducts}
         />

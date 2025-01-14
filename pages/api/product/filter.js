@@ -3,12 +3,12 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import Category from '@/database/model/Category'
-import { getPlaceholderImage } from '@/utility/image'
+import { ExtractColors, getPlaceholderImage } from '@/utility/image'
 import nc from 'next-connect'
 
 const handler = nc()
 
-function sortArrayByKey (arr, key, order = 'asc') {
+function sortArrayByKey(arr, key, order = 'asc') {
   if (!Array.isArray(arr) || arr.length === 0) {
     return []
   }
@@ -108,6 +108,10 @@ handler.get(async (req, res) => {
     //     })
     //   )
     // }
+
+
+   
+
 
     // Sorting
     if (sortBy && sortOrder) {

@@ -90,6 +90,10 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
       required: true
+    },
+    imageColors: {
+      type: Array,
+      default: ["#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00"]
     }
   },
   { timestamps: true }
