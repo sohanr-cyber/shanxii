@@ -3,4 +3,5 @@
     font-weight: bold;
     font-size: 150%;
     color: var(--theme);
+    cursor: pointer;
 }
