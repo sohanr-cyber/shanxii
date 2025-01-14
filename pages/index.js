@@ -26,6 +26,7 @@ import Subscribe from '@/components/Offer/Subscribe'
 import { NextSeo } from 'next-seo'
 import { generateSeoData } from '@/utility/helper'
 import { seoData } from '@/utility/const'
+import Grid from '@/components/Categories/Explore/Grid'
 
 export default function Home({ data, contents }) {
   return (
@@ -56,7 +57,10 @@ export default function Home({ data, contents }) {
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
         {/* <Header2 contents={contents} /> */}
         <Header3 contents={contents.filter(i => i.position == "header")} />
-        <div className={styles.categoriesInRow}> <Row /></div>
+        <div className={styles.categoriesInRow}>
+          <Row />
+          {/* <Grid /> */}
+        </div>
         {data.slice(0, -3).map((i, index) => (
           <ProductsByCategory2
             category={i.category}
