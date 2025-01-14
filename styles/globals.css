@@ -97,7 +97,6 @@
 
 
 
-
 }
 
 ::selection {
@@ -177,6 +176,7 @@ button {
   cursor: pointer;
   padding: var(--buttonPadding);
   text-transform: uppercase;
+  box-shadow: var(--box-shadow);
 }
 
 

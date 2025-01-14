@@ -62,7 +62,7 @@ const Create = ({ product: data }) => {
           ...product,
           description,
           categories: selected,
-        
+
         },
         { headers }
       )
@@ -248,7 +248,7 @@ const Create = ({ product: data }) => {
             {product.attributes?.map((i, indx) => (
               <div className={styles.flex} style={{ display: "flex", alignItems: "center" }}>
                 <div className={styles.field}>
-                  <label>name ({i.uid})</label>
+                  <label>name </label>
                   <input type="text" value={i.name}
                     onChange={e => {
                       const updatedAttributes = product.attributes.map(attr =>
@@ -269,7 +269,7 @@ const Create = ({ product: data }) => {
                 </div>
               </div>
             ))}
-            <div className={styles.flex}>
+            <div className={styles.flex} style={{ display: "flex", alignItems: "center", justifyContent: "flext-start", flexDirection: "row", gap: "10px" }}>
               {product.attributes.map((e, indx) => <div className={styles.minus}
                 onClick={() => setProduct({ ...product, attributes: product.attributes.filter(i => i.uid != e.uid) })}>-</div>)}
               <div className={styles.plus} onClick={() => setProduct({

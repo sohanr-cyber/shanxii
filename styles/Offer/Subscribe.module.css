@@ -25,12 +25,14 @@
 
 .wrapper b,
 .wrapper p {
-    text-shadow:var(--textShadow);
+    text-shadow: var(--textShadow);
     width: 90%;
 }
+
 .wrapper p {
     font-size: 95%;
 }
+
 .wrapper b {
     font-size: 150%;
 }
@@ -54,6 +56,7 @@
     color: var(--buttonC);
     cursor: pointer;
     display: inline-block;
+
 }
 
 @media (max-width:570px) {
@@ -70,4 +73,15 @@
 
     }
 
+    .wrapper .inputField {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 5px;
+    }
+
+    .wrapper .inputField input {
+        width: 80%;
+    }
 }

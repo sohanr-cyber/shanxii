@@ -54,7 +54,7 @@
     padding: 8px;
     background: var(--buttonBg);
     color: var(--buttonC);
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     cursor: pointer;
 }
 

@@ -122,9 +122,9 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
           <table>
             <thead>
               <tr>
-                <th> Button</th>
+              <th> Photo</th> 
                 <th> Title</th>
-                <th> Photo</th>
+                 <th> Button</th>
                 {/* <th>CreatedAt</th> */}
                 <th>Action</th>
                 {/* Add more table headers as needed */}
@@ -156,6 +156,13 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
                         }
                   }
                 >
+                <td>
+                    {c.image && (
+                      <Image src={c.image} width='100' height='50' alt='' />
+                    )}
+                  </td>
+
+                  <td>{c.title}</td>
                   <td className={styles.action}>
                     {c.buttonText && (
                       <span
@@ -169,13 +176,7 @@ const Contents = ({ title, dashboard, currentPage, totalPages, contents }) => {
                       </span>
                     )}
                   </td>
-
-                  <td>{c.title}</td>
-                  <td>
-                    {c.image && (
-                      <Image src={c.image} width='100' height='50' alt='' />
-                    )}
-                  </td>
+                 
 
                   <td className={styles.action}>
                     <span onDoubleClick={() => remove(c._id)}>Delete</span>
