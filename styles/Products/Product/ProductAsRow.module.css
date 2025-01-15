@@ -84,3 +84,9 @@
 
     }
 }
+
+@media (max-width:410px) {
+    .wrapper {
+        margin:10px 0;
+    }
+}
