@@ -20,6 +20,7 @@ import {
 } from '@/redux/pixelSlice'
 import Loading from '@/components/Utility/Loading'
 import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
+import { themeBg, themeC } from '@/utility/const'
 
 export async function getStaticPaths() {
   try {
@@ -102,10 +103,14 @@ const Product = ({ product, error, relatedProducts }) => {
   const ReactPixel = useSelector(state => state.pixel.pixel)
   const buyNowItems = useSelector(state => state.cart.buyNow)
   const [loading, setLoading] = useState(false)
+  const [currentImage, setCurrentImage] = useState({
+    ...product.images[0]
+  })
 
   useEffect(() => {
     setIsClient(true)
-    setThumbnail(product.thumbnail)
+    // setThumbnail(product.thumbnail)
+    setCurrentImage(product.images[0] || { image: product.thumbnail, colors: product.thumbnailColors, })
   }, [product.slug])
 
   const incrementQuantity = () => {
@@ -138,6 +143,7 @@ const Product = ({ product, error, relatedProducts }) => {
       addItem({
         product,
         size,
+        image: currentImage,
         quantity,
         available: product.stockQuantity
       })
@@ -161,6 +167,7 @@ const Product = ({ product, error, relatedProducts }) => {
       addToBuyNow({
         product,
         size,
+        image: currentImage,
         quantity,
         available: product.stockQuantity
       })
@@ -175,11 +182,12 @@ const Product = ({ product, error, relatedProducts }) => {
       <NextSeo {...generateProductSeoData(product)} />{' '}
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <div className={styles.left}>
+          <div className={styles.left} style={{ background: `${currentImage?.colors && hexToRgba(currentImage?.colors[0], 0.5)}` }}
+          >
             <div className={styles.image__container}
-              style={{ background: `${hexToRgba(product.imageColors[0], 0.5)}` }}>
+            >
               <Image
-                src={thumbnail}
+                src={currentImage.image}
                 width='400'
                 height='400'
                 alt=''
@@ -188,14 +196,14 @@ const Product = ({ product, error, relatedProducts }) => {
               />
             </div>
             <div className={styles.flex}>
-              {[product.thumbnail, ...product.images]?.map((item, index) => (
+              {product.images.map((item, index) => (
                 <Image
-                  src={item}
+                  src={item.image}
                   width='50'
                   height='50'
                   alt=''
                   key={index}
-                  onClick={() => setThumbnail(item)}
+                  onClick={() => setCurrentImage(item)}
                 />
               ))}
             </div>
@@ -234,6 +242,27 @@ const Product = ({ product, error, relatedProducts }) => {
             {product.metaDescription && <p>
               {product.metaDescription}
             </p>}
+            {product?.images.map(e => e.color).length > 0 && (
+              <div className={`${styles.colors} ${styles.sizes}`}>
+                <div>Colors</div>
+                <div className={styles.options}>
+                  {product?.images.map((item, index) => (
+                    <div
+                      className={styles.option}
+                      key={index}
+                      style={
+                        item.uid == currentImage.uid
+                          ? { background: `${item.color}`, color: "white", border: `2px solid ${themeC}` }
+                          : { background: `${item.color}`, color: 'white' }
+                      }
+                      onClick={() => setCurrentImage(item)}
+                    >
+
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {product?.sizes && (
               <div className={styles.sizes}>

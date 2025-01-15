@@ -25,8 +25,16 @@ const Create = ({ product: data }) => {
   const dispatch = useDispatch()
   const router = useRouter()
   const handleImages = files => {
-    setProduct(prev => ({ ...prev, images: files }))
+    setProduct(prev => ({
+      ...prev, images: files.map(i => ({
+        image: i,
+        color: i.color,
+        uid: generateUniqueID(product.images.map(e => e.uid)),
+        colors: ["#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00"],
+      }))
+    }))
   }
+  console.log(product.images)
   const userInfo = useSelector(state => state.user.userInfo)
   const headers = { Authorization: 'Bearer ' + userInfo?.token }
   const [selected, setSelected] = useState(product.categories.map(i => i._id))
@@ -397,14 +405,30 @@ const Create = ({ product: data }) => {
             </div>
           </div>
           <div className={styles.field}>
-            <label>Product Images</label>
+            <label>Product Images </label>
             <UploadMany handle={files => handleImages(files)} />
 
             <div className={styles.images}>
               {product.images.length > 0
                 ? product.images.map((image, index) => (
                   <div className={styles.image__container} name={index}>
-                    <Image src={image} alt='' width='180' height={180} />
+                    <Image src={image.image} alt='' width='180' height={180} />
+                    <div className={styles.color__selector}></div>
+                    <div className={styles.colors}>
+                      {image.uid}
+                      <Colors
+                        selectedColors={image.color}
+                        handleClick={(c) => {
+                          console.log({ c })
+                          setProduct({
+                            ...product, images: product.images.map(i => (
+                              i.uid == image.uid ? {
+                                ...i, color: c
+                              } : { ...i }
+                            ))
+                          })
+                        }} />
+                    </div>
                   </div>
                 ))
                 : [1, 2, 3].map((_, index) => (
@@ -422,6 +446,7 @@ const Create = ({ product: data }) => {
                   </div>
                 ))}
             </div>
+
           </div>
         </div>
       </form >

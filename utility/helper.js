@@ -2,6 +2,8 @@ import BASE_URL from '@/config'
 import { companyName, delivery_charge, seoData } from './const'
 import mongoose from 'mongoose'
 import crypto from 'crypto'
+import { storage } from '@/database/firebase'
+import { deleteObject, ref } from '@firebase/storage'
 
 function generateTrackingNumber(length = 10) {
   const characters =
@@ -109,6 +111,44 @@ function chunkArray(array, chunkSize) {
   return result
 }
 
+
+function getBaseUrl (firebaseUrl) {
+  // Use URL constructor to easily manipulate the URL
+  const url = new URL(firebaseUrl)
+  // Extract and construct the base URL (scheme + host + bucket)
+  const baseUrl = `${url.origin}${url.pathname.split('/o')[0]}/o/`
+  return baseUrl
+}
+
+
+function getFilePathFromUrl (mediaUrl) {
+  // const baseUrl = `https://firebasestorage.googleapis.com/v0/b/lms-926e5.appspot.com/o/`
+  const baseUrl = getBaseUrl(mediaUrl)
+
+  // Extract file path from URL by splitting it
+  const decodedUrl = decodeURIComponent(
+    mediaUrl.split(baseUrl)[1].split('?')[0]
+  )
+  console.log({ decodedUrl })
+
+  return decodedUrl
+}
+
+
+async function deleteFileFromUrl(mediaUrl) {
+  if (!mediaUrl) {
+    return
+  }
+  try {
+    // Create a storage reference from the URL
+    const fileRef = ref(storage, getFilePathFromUrl(mediaUrl))
+    await deleteObject(fileRef)
+    console.log('File deleted successfully')
+  } catch (error) {
+    console.error('Error deleting file:', error)
+  }
+}
+
 function summarizeOrders(orders) {
   const summary = {
     total: 0,
@@ -170,7 +210,7 @@ function generateUniqueID(existingIDs) {
   do {
     // Generate a random 6-digit number
     number = Math.floor(100000 + Math.random() * 900000)
-  } while (existingIDs.includes(number)) // Check if the number is already in use
+  } while (existingIDs.includes(number) ) // Check if the number is already in use
 
   // Add the new ID to the existing list
   existingIDs.push(number)
@@ -298,7 +338,7 @@ export {
   calculateSubtotal,
   getPrice,
   getDeliveryCharge,
-  getTime,
+  getTime, deleteFileFromUrl,
   generateProductSeoData,
   generateUniqueID,
   generateVerificationCode,

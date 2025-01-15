@@ -93,6 +93,15 @@
     border: 1px solid grey;
     padding: 2px 7px;
     border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+.right .colors .option {
+    min-height: 16px !important;
+    min-width: 10px;
+    border-radius: 50% !important;
 }
 
 .right button {
@@ -150,10 +159,11 @@
     }
 
     .container .left {
-        border-radius: 5px 5px 0px 0px  !important;
+        border-radius: 5px 5px 0px 0px !important;
     }
+
     .container .right {
-        border-radius: 0px 0px 5px 5px  !important;
+        border-radius: 0px 0px 5px 5px !important;
         margin-top: -2px;
     }
 

@@ -18,7 +18,8 @@ handler.get(async (req, res) => {
             products.map(async (product) => {
                 try {
                     // Extract colors and update the product
-                    product.imageColors = await ExtractColors(product.thumbnail);
+                    product.thumbnailColors = await ExtractColors(product.thumbnail);
+
                     await product.save(); // Save the updated product
                     return product; // Return the updated product
                 } catch (error) {

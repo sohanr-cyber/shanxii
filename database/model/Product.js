@@ -1,4 +1,5 @@
 import { generateUniqueID } from '@/utility/helper'
+import { ExtractColors } from '@/utility/image';
 import mongoose from 'mongoose'
 
 // Define Schema
@@ -49,13 +50,29 @@ const productSchema = new mongoose.Schema(
     // Media and content
     images: [
       {
-        type: String,
-        required: true
+        image: {
+          type: String
+        },
+        colors: {
+          type: Array,
+          default: ["#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00"]
+        },
+        uid: {
+          type: String,
+        },
+        color: {
+          type: String
+        }
       }
     ],
     thumbnail: {
       type: String,
       required: true
+    },
+
+    thumbnailColors: {
+      type: Array,
+      default: ["#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00"]
     },
 
     // SEO and visibility
@@ -91,13 +108,18 @@ const productSchema = new mongoose.Schema(
       default: 0,
       required: true
     },
-    imageColors: {
-      type: Array,
-      default: ["#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00"]
+    video: {
+      type: String,
+
     }
   },
   { timestamps: true }
 )
+
+
+
+
+
 
 // Create Model
 const Product =

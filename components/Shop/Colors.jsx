@@ -10,7 +10,7 @@ const Colors = ({ selectedColors, handleClick }) => {
     colors.slice(0, colors.length / 2)
   )
 
-  console.log({ selectedColors })
+  // console.log({ selectedColors })
   useEffect(() => {
     loaded
       ? setProductColors(colors)

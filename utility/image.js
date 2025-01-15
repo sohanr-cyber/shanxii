@@ -30,6 +30,7 @@ export async function getPlaceholderImage(filepath, size = 20, quality = 50) {
     }
   }
 }
+
 const isSupportedFileType = (url) => {
   if (typeof url !== 'string') return false; // Ensure the input is a string
 
@@ -40,8 +41,12 @@ const isSupportedFileType = (url) => {
   const supportedExtensions = ['.jpg', '.jpeg', '.png'];
 
   // Check if the path ends with any of the supported extensions
-  return supportedExtensions.some((ext) => path.toLowerCase().endsWith(ext));
+  const isValid = supportedExtensions.some((ext) => path.toLowerCase().endsWith(ext));
+  
+  console.log({ isValid });
+  return isValid;
 };
+
 
 export const ExtractColors = async (imageUrl) => {
   let colors = [];

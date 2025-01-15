@@ -2,7 +2,7 @@ import db from '@/database/connection'
 import Category from '@/database/model/Category'
 import Product from '@/database/model/Product'
 import nc from 'next-connect'
-import { ExtractColors, getPlaceholderImage } from '@/utility/image'
+// import { ExtractColors, getPlaceholderImage } from '@/utility/image'
 
 const handler = nc()
 

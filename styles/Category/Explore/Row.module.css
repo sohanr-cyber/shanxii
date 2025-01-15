@@ -3,7 +3,7 @@
     justify-content: flex-start;
     gap: 15px;
     overflow-x: scroll;
-    
+
 
 }
 
@@ -23,12 +23,16 @@
 }
 
 @media (max-width:410px) {
-    .wrapper  {
+    .wrapper {
         gap: 10px
     }
 
     .wrapper .category {
         gap: 3px;
-        padding: 5px;
+        padding: 0px;
+    }
+
+    .wrapper .category img {
+        transform: scale(0.8);
     }
 }

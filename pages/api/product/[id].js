@@ -1,7 +1,8 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import { isAuth, isAdmin } from '@/utility'
-import { getPrice } from '@/utility/helper'
+import { deleteFileFromUrl, getPrice } from '@/utility/helper'
+import { ExtractColors } from '@/utility/image'
 import nextConnect from 'next-connect'
 import slugify from 'slugify'
 
@@ -32,7 +33,11 @@ handler.put(async (req, res) => {
       {
         ...req.body,
         slug: slugify(req.body.name),
-        priceWithDiscount: getPrice(req.body.price, req.body.discount)
+        priceWithDiscount: getPrice(req.body.price, req.body.discount),
+        thumbnailColors: await ExtractColors(req.body.thumbnail),
+        images: await Promise.all(req.body.images.map(async i => (
+          { ...i, colors: await ExtractColors(i.image) }
+        )))
       },
       { new: true }
     )
@@ -53,7 +58,24 @@ handler.delete(async (req, res) => {
     await db.connect()
 
     const { id } = req.query
-    await Product.findByIdAndDelete(id)
+    const product = await Product.findByIdAndDelete(id)
+
+
+    const deleteThumbnail = async url => {
+      if (url) {
+        try {
+          await deleteFileFromUrl(url)
+        } catch (error) {
+          console.error(`Error deleting file at ${url}:`, error)
+        }
+      }
+    }
+
+    await Promise.all([
+      deleteThumbnail(product.thumbnail),
+      product.images.map(i => deleteThumbnail(i))
+    ])
+
     await db.disconnect()
 
     res.status(204).end()

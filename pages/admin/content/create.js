@@ -12,6 +12,8 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import Colors from '@/components/Shop/Colors'
+import PaletteIcon from '@mui/icons-material/Palette';
+
 // Content Craetion Form
 const Create = ({ content: data }) => {
   const [content, setContent] = useState(data)

@@ -5,7 +5,7 @@ import { storage } from '@/database/firebase'
 import styles from '../../styles/Utility/Upload.module.css'
 import Loading from './Loading'
 
-const Upload = ({ handle }) => {
+const Upload = ({ handle, type }) => {
   const [file, setFile] = useState('')
   const [uploading, setUploading] = useState(null)
   const [image, setImage] = useState('')
@@ -52,13 +52,14 @@ const Upload = ({ handle }) => {
   return (
     <div
       className={styles.container}
-      // style={{ width: '100%', background: 'lightgrey', borderRadius: '5px' }}
+    // style={{ width: '100%', background: 'lightgrey', borderRadius: '5px' }}
     >
       {uploading && <Loading />}
 
       <input
         type='file'
-        accept='image/*'
+        // accept='image/*'
+        accept={type || ".png, .jpg, .jpeg"}
         className={styles.inputfile}
         onChange={e => {
           setFile(e.target.files[0])

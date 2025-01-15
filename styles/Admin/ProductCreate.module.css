@@ -118,6 +118,19 @@
     max-height: 180px;
     min-width: 180px;
     aspect-ratio: 1/1;
+    position: relative;
+}
+
+
+.image__container .colors {
+    position: absolute;
+    right: 0;
+    /* height: 100%; */
+    width: 100%;
+    max-height: 50%;
+    bottom: 0;
+    overflow-y: scroll;
+    background-color: white;
 }
 
 .wrapper button {

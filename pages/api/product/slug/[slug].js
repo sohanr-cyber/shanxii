@@ -48,7 +48,6 @@ handler.get(async (req, res) => {
     // product.relatedProducts = relatedProducts;
     // }
 
-    product.colors = await ExtractColors(product.thumbnail)
 
     await db.disconnect()
     return res.status(200).json(product)
