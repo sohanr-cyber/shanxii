@@ -45,8 +45,7 @@ const productSchema = new mongoose.Schema(
         ref: 'Category'
       }
     ],
-
-    color: { type: String },
+    colors: { type: Array },
     // Media and content
     images: [
       {

@@ -72,8 +72,10 @@ handler.get(async (req, res) => {
     }
 
     if (colors && colors != 'all') {
-      filter.color = { $in: colors.split(',') } // Filter products by color
+      filter.colors = { $in: colors.split(',') } // Filter products by colors
     }
+
+  
 
     page = page || 1
     const skip = (page - 1) * limit
@@ -110,7 +112,7 @@ handler.get(async (req, res) => {
     // }
 
 
-   
+
 
 
     // Sorting

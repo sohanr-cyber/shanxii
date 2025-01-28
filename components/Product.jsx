@@ -30,7 +30,7 @@ const Product = ({ item, redirect, rowDirection }) => {
       className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
       onClick={() => handleClick()}
       onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/product/create?id=${item._id}`) }}
-      // style={{ background: `${hexToRgba(item.imageColors[0], 0.5)}` }}
+      // style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
     >
       <div className={styles.pic} >
 

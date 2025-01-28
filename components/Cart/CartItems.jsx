@@ -27,7 +27,7 @@ const CartItems = ({ cartItems }) => {
           <div className={styles.item} key={index}>
             <div className={styles.left}>
               <Image
-                src={item.product.thumbnail}
+                src={item.image.image}
                 width='40'
                 height='40'
                 alt=''
@@ -35,16 +35,19 @@ const CartItems = ({ cartItems }) => {
             </div>
             <div className={styles.right}>
               <div>{item.product.name}</div>
-              {item.size && (
-                <div style={{ fontSize: '80%', marginTop: '2px' }}>
-                  {item.size}
-                </div>
-              )}
+              <div style={{ fontSize: '80%', marginTop: '2px' }}>
+                {item.size && (
+                  item.size
+                )}
+                {item.image.color && (
+                  item.image.color
+                )}
+              </div>
               <div style={{ fontSize: '80%', marginTop: '2px' }}>
                 ৳{' '}
                 {parseInt(
                   item.product.price -
-                    item.product.price * (item.product.discount / 100)
+                  item.product.price * (item.product.discount / 100)
                 )}{' '}
                 * {item.quantity}
               </div>

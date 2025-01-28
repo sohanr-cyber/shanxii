@@ -19,6 +19,7 @@
     padding: 5px 10px;
     min-width: 100px;
     box-shadow: var(--box-shadow);
+    cursor: pointer;
 
 }
 

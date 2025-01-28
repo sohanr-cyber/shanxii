@@ -9,7 +9,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
-import { generateProductSeoData, getPrice, hexToRgba } from '@/utility/helper'
+import { generateProductSeoData, generateUniqueID, getPrice, hexToRgba } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import ProductsByCategory from '@/components/Products/ProductsByCategory'
@@ -21,6 +21,7 @@ import {
 import Loading from '@/components/Utility/Loading'
 import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
 import { themeBg, themeC } from '@/utility/const'
+import CartItems from '@/components/Cart/CartItems'
 
 export async function getStaticPaths() {
   try {
@@ -102,6 +103,8 @@ const Product = ({ product, error, relatedProducts }) => {
   const [blurDataURL, setBlurDataURL] = useState(null)
   const ReactPixel = useSelector(state => state.pixel.pixel)
   const buyNowItems = useSelector(state => state.cart.buyNow)
+  const cartItems = useSelector(state => state.cart.items)
+
   const [loading, setLoading] = useState(false)
   const [currentImage, setCurrentImage] = useState({
     ...product.images[0]
@@ -110,7 +113,7 @@ const Product = ({ product, error, relatedProducts }) => {
   useEffect(() => {
     setIsClient(true)
     // setThumbnail(product.thumbnail)
-    setCurrentImage(product.images[0] || { image: product.thumbnail, colors: product.thumbnailColors, })
+    setCurrentImage(product.images[0] || { image: product.thumbnail, colors: product.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
   }, [product.slug])
 
   const incrementQuantity = () => {

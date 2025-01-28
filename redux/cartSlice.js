@@ -6,40 +6,51 @@ import Cookies from 'js-cookie'
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [], // Array to store cart items
+    items: Cookies.get('cartItems') ? JSON.parse(Cookies.get('cartItems')) : [], // Array to store cart items
     buyNow: Cookies.get('buyNow') ? JSON.parse(Cookies.get('buyNow')) : [], // Array to store cart items
     coupon: Cookies.get('coupon') ? JSON.parse(Cookies.get('coupon')) : null // Array to store cart items
   },
 
   reducers: {
     addItem: (state, action) => {
-      const { product, quantity, size } = action.payload
+      let { product, quantity, size, image } = action.payload;
+
       const existingItemIndex = state.items.findIndex(
-        item => item.product._id === product._id
-      )
+        item => item.image.uid === image.uid
+      );
+
       if (existingItemIndex !== -1) {
-        // Item already exists in cart, update its quantity
-        if (state.items[existingItemIndex].available < quantity) {
-          return
-        }
-        state.items[existingItemIndex].quantity = quantity
-        state.items[existingItemIndex].size = size
+        // Update the existing item
+        const existingItem = state.items[existingItemIndex];
+        state.items[existingItemIndex] = {
+          ...existingItem,
+          quantity: quantity,
+          size: size,
+        };
       } else {
-        // Item not found in cart, add it
-        state.items.push(action.payload)
+        // Add the new item
+        const { metaTitle, description, metaDescription, images, thumbnail, categories, thumbnailColors, attributes, placeholder, featured, sizes, color, colors, updatedAt, createdAt, sold, ...productWithoutDetails } = product;
+        state.items.push({ product: productWithoutDetails, size, image, quantity });
       }
-      Cookies.set('cart', JSON.stringify(state.items), { expires: 7 })
+
+      try {
+        Cookies.set('cartItems', JSON.stringify(state.items), { expires: 7 });
+        console.log('Cart saved successfully.');
+      } catch (error) {
+        console.error('Error saving cart to cookies:', error);
+      }
     },
+
     removeItem: (state, action) => {
-      const { product, quantity, size } = action.payload
-      state.items = state.items.filter(item => item.product._id != product._id)
+      const { product, quantity, size, image } = action.payload
+      state.items = state.items.filter(item => item.image.uid != image.uid)
       // Update cart data in cookies
-      Cookies.set('cart', JSON.stringify(state.items), { expires: 7 })
+      Cookies.set('cartItems', JSON.stringify(state.items), { expires: 7 })
     },
     clearCart: state => {
       state.items = [] // Clear cart items array
       // Clear cart data in cookies
-      Cookies.remove('cart')
+      Cookies.remove('cartItems')
     },
     addToBuyNow: (state, action) => {
       state.buyNow = [action.payload]

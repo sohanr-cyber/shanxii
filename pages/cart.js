@@ -63,10 +63,10 @@ const Cart = () => {
               {isClient &&
                 cartItems?.map((item, index) => (
                   <tr key={index}>
-                    <td className={styles.product}>
+                    <td className={styles.product} onClick={() => router.push(`/product/${item.product.slug}`)}>
                       <div className={styles.left}>
                         <Image
-                          src={item.product.thumbnail}
+                          src={item.image.image}
                           width='40'
                           height='40'
                           alt=''
@@ -74,18 +74,21 @@ const Cart = () => {
                       </div>
                       <div className={styles.right}>
                         <div>{item.product.name}</div>
-                        {item.size && (
-                          <div style={{ fontSize: '80%', marginTop: '5px' }}>
-                            {item.size}
-                          </div>
-                        )}
+                        <div style={{ fontSize: '80%', marginTop: '5px' }}>
+                          {item.size && (
+                            <>Size : {" "} {item.size}</>
+                          )}
+                          {item.image.color && (
+                            <>Color : {" "} {item.image.color}</>
+                          )}
+                        </div>
                       </div>
                     </td>
                     <td>
                       ৳{' '}
                       {parseInt(
                         item.product.price -
-                          item.product.price * (item.product.discount / 100)
+                        item.product.price * (item.product.discount / 100)
                       ).toFixed(2)}
                     </td>
                     <td>

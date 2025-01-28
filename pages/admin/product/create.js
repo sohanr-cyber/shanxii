@@ -82,7 +82,7 @@ const Create = ({ product: data }) => {
         discount: '',
         categories: [],
         attributes: [],
-        color: '',
+        colors: [],
         images: [],
         thumbnail: '',
         metaTitle: '',
@@ -149,6 +149,7 @@ const Create = ({ product: data }) => {
           ...product,
           categories: selected,
           description,
+
         },
         { headers }
       )
@@ -177,7 +178,8 @@ const Create = ({ product: data }) => {
   }
 
   const setColor = c => {
-    setProduct({ ...product, color: product.color == c ? '' : c })
+    console.log({ colors: product.colors, c })
+    setProduct({ ...product, colors: product?.colors?.find(i => i == c) ? product.colors.filter(i => i != c) : [...product.colors, c] })
   }
 
   return (
@@ -370,7 +372,7 @@ const Create = ({ product: data }) => {
           </div>
           <div className={styles.field}>
             <label>Chose Product Color</label>
-            <Colors selectedColors={product.color} handleClick={setColor} />
+            <Colors selectedColors={product.colors?.join(",")} handleClick={setColor} />
           </div>
           <div className={styles.field}>
             <label>Product Thumbnail</label>
@@ -497,15 +499,13 @@ export async function getServerSideProps({ query }) {
         discount: '',
         categories: [],
         attributes: [],
-        color: '',
+        colors: [],
         images: [],
         thumbnail: '',
         metaTitle: '',
         metaDescription: '',
-
         stockQuantity: 0,
         sold: 0,
-        color: ''
       },
       categories
     }
