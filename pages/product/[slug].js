@@ -185,7 +185,8 @@ const Product = ({ product, error, relatedProducts }) => {
       <NextSeo {...generateProductSeoData(product)} />{' '}
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <div className={styles.left} style={{ background: `${currentImage?.colors && hexToRgba(currentImage?.colors[0], 0.5)}` }}
+          <div className={styles.left} 
+          // style={{ background: `${currentImage?.colors && hexToRgba(currentImage?.colors[0], 0.5)}` }}
           >
             <div className={styles.image__container}
             >
