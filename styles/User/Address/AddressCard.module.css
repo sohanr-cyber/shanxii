@@ -1,6 +1,6 @@
 .wrapper {
     background: var(--cardBg);
-    border-radius: 5px;
+    border-radius: 0;
     color: var(--lightF);
 }
 

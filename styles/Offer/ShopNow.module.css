@@ -1,7 +1,7 @@
 .wrapper {
     /* background: var(--buttonBg); */
     /* color: var(--buttonC); */
-    border-radius: 5px;
+    border-radius: 0;
     overflow: hidden;
     position: relative;
     /* min-height: 150px; */
@@ -10,7 +10,7 @@
 .wrapper .btn {
     margin: 10px 0;
     padding: var(--buttonPadding);
-    border-radius: 5px;
+    border-radius: 0;
     background: var(--buttonBg);
     color: var(--buttonC);
     cursor: pointer;

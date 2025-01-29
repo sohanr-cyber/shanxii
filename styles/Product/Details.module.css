@@ -16,7 +16,7 @@
 .wrapper .container .right {
     background-color: var(--cardBg);
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 0;
     flex: 1;
     box-shadow: var(--box-shadow);
 
@@ -103,7 +103,7 @@
 .categories span {
     border: 1px solid grey;
     padding: 2px 7px;
-    border-radius: 5px;
+    border-radius: 0;
     cursor: pointer;
 
 }
@@ -145,7 +145,7 @@
 .description {
     /* border: 1px solid red; */
     background-color: var(--cardBg);
-    border-radius: 5px;
+    border-radius: 0;
     padding: 10px;
     box-shadow: var(--box-shadow);
 
@@ -174,7 +174,7 @@
     }
 
     .container .left {
-        border-radius: 5px 5px 0px 0px !important;
+        border-radius: 0 5px 0px 0px !important;
     }
 
     .container .right {

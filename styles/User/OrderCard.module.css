@@ -1,5 +1,5 @@
 .wrapper {
-    border-radius: 5px;
+    border-radius: 0;
     background: var(--cardBg);
     padding: 15px;
 }
@@ -16,7 +16,7 @@
 .wrapper .top .right {
     color: blue;
     background-color: rgb(221, 216, 255);
-    border-radius: 5px;
+    border-radius: 0;
     padding: 3px;
 }
 
@@ -67,7 +67,7 @@
 
 .wrapper .bottom .right .btn,
 .wrapper .bottom .left {
-    border-radius: 5px;
+    border-radius: 0;
     padding: 5px;
     background: var(--buttonBg);
     color: white;

@@ -1,5 +1,5 @@
 .graph__wrapper {
-  border-radius: 5px;
+  border-radius: 0;
   background: var(--inputField);
   box-shadow: var(--box-shadow);
 

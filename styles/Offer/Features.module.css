@@ -11,7 +11,7 @@
 
     gap: 10px;
     /* border: 1px solid var(--borderColor); */
-    border-radius: 5px;
+    border-radius: 0;
     padding: 10px;
     background: var(--cardBg);
     box-shadow: var(--box-shadow);

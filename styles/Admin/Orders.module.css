@@ -20,7 +20,7 @@
     position: relative;
     /* border: 1px solid red; */
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 0;
 }
 
 .flex .left span {
@@ -70,7 +70,7 @@
     justify-content: flex-start;
     overflow-x: scroll;
     /* background: var(--cardBg); */
-    border-radius: 5px;
+    border-radius: 0;
     flex-direction: column;
 
 }
@@ -126,7 +126,7 @@
 }
 
 .wrapper table .action span {
-    border-radius: 5px;
+    border-radius: 0;
     padding: 3px;
     background: var(--buttonBg);
     color: var(--buttonC);

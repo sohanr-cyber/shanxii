@@ -12,7 +12,7 @@
     background: var(--nav);
     ;
     padding: 10px 25px;
-    border-radius: 5px;
+    border-radius: 0;
 
     position: sticky;
     top: 0;

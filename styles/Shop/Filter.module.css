@@ -114,7 +114,7 @@
 .selected {
     font-size: 80%;
     border: 1px solid var(--borderColor);
-    border-radius: 5px;
+    border-radius: 0;
     display: inline-block;
     padding: 2px 5px;
     position: relative;
