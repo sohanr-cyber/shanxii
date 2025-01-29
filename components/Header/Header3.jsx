@@ -57,7 +57,7 @@ const Header3 = ({ contents }) => {
                 transform: `translateX(-${currentSlide * 100}%)`,
               }}
             >
-              <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create?id=${slide._id}`) }}
+              <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create${slide?._id ? `?id=${slide?._id}` : ""}`) }}
                 style={{
                   color: `${slide.textColor}`
 

@@ -15,11 +15,11 @@ const ShopNow = ({ content }) => {
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
             }} >
-            <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create?id=${content._id}`) }}
-              style={{
-                color: `${content?.textColor}`
+            <div className={styles.surface} onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/content/create${content?._id ? `?id=${content?._id}` : ""}`) }}
+                style={{
+                    color: `${content?.textColor}`
 
-            }}  >
+                }}  >
                 <b>
                     {content?.title}
                 </b>

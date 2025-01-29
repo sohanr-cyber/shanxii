@@ -43,7 +43,7 @@ const ProductsInColumn = ({
                     ))}
                 </div>
             </div>
-            <ProgressBar pixel={category.length * 11.2} />
+            <ProgressBar pixel={category?.length * 11.2} />
             <div className={`${styles.products} ${style}`}>
                 {products?.map((item, index) => (
                     <ProductAsRow
