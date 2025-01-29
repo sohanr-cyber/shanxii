@@ -65,21 +65,20 @@ const colors = [
 ]
 
 
-
 const seoData = {
-  title: `${companyName} - Elevate Your Living Space with Elegant Home Decor`,
+  title: `${companyName} - Fresh, Organic, and Healthy Food for You`,
   description:
-    'Explore a stunning collection of home decor items to transform your space. Shop stylish furniture, wall art, lighting, and more at DecoNest.',
+    'Discover the best selection of organic and farm-fresh food. Shop fresh fruits, vegetables, dairy, and more at AgroFresh.',
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Elevate Your Living Space with Elegant Home Decor`,
+    title: `${companyName} - Fresh, Organic, and Healthy Food for You`,
     description:
-      'Discover premium home decor pieces to enhance your interiors. Shop furniture, lighting, and accessories at DecoNest.',
+      'Enjoy premium quality organic food, fresh from the farm. Shop healthy groceries and essentials at AgroFresh.',
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} Home Decor`,
+        alt: `${companyName} Organic Food`,
         width: 1200,
         height: 630
       }

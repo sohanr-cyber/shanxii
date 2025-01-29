@@ -10,7 +10,7 @@ import { DefaultSeo, NextSeo } from 'next-seo'
 import { seoData } from '@/utility/const'
 import Script from 'next/script'
 
-export default function App ({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
     <>
       <DefaultSeo {...seoData} />
@@ -40,7 +40,7 @@ export default function App ({ Component, pageProps }) {
         <SnackbarProvider>
           <Layout>
             <>
-              <NextNProgress />
+              <NextNProgress color='green' />
               <Component {...pageProps} />
             </>
           </Layout>{' '}
