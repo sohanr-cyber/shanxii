@@ -66,19 +66,19 @@ const colors = [
 
 
 const seoData = {
-  title: `${companyName} - Fresh, Organic, and Healthy Food for You`,
+  title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
   description:
-    'Discover the best selection of organic and farm-fresh food. Shop fresh fruits, vegetables, dairy, and more at AgroFresh.',
+    'Discover the latest fashion trends with high-quality clothing and accessories. Shop stylish outfits at great prices only at FashionNest.',
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Fresh, Organic, and Healthy Food for You`,
+    title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
     description:
-      'Enjoy premium quality organic food, fresh from the farm. Shop healthy groceries and essentials at AgroFresh.',
+      'Explore the newest fashion trends and timeless styles. Shop clothing, footwear, and accessories for men, women, and kids at FashionNest.',
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} Organic Food`,
+        alt: `${companyName} Fashion Store`,
         width: 1200,
         height: 630
       }
@@ -93,19 +93,19 @@ const seoData = {
 };
 
 const orderCartSeoData = {
-  title: `Your Cart - ${companyName}`,
-  description: `Review and manage the items in your cart at ${companyName}.`,
+  title: `Your Shopping Cart - ${companyName}`,
+  description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
-    title: `Your Cart - ${companyName}`,
-    description: `Review and manage the items in your cart at ${companyName}.`,
+    title: `Your Shopping Cart - ${companyName}`,
+    description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
         url: `${BASE_URL}/images/cart.png`,
         width: 1200,
         height: 630,
-        alt: `Your Cart - ${companyName}`
+        alt: `Your Shopping Cart - ${companyName}`
       }
     ],
     type: 'website'
@@ -115,11 +115,11 @@ const orderCartSeoData = {
 
 const TermsAndConditionSeoData = {
   title: `Terms and Conditions - ${companyName}`,
-  description: `Review the terms and conditions for using ${companyName}.`,
+  description: `Review the terms and conditions for shopping at ${companyName}.`,
   canonical: `${BASE_URL}/terms-and-conditions`,
   openGraph: {
     title: `Terms and Conditions - ${companyName}`,
-    description: `Review the terms and conditions for using ${companyName}.`,
+    description: `Review the terms and conditions for shopping at ${companyName}.`,
     url: `${BASE_URL}/terms-and-conditions`,
     images: [
       {
@@ -136,11 +136,11 @@ const TermsAndConditionSeoData = {
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Understand how ${companyName} protects your data and privacy.`,
+  description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
   canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Understand how ${companyName} protects your data and privacy.`,
+    description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -154,6 +154,7 @@ const privacyPolicySeoData = {
   },
   twitter: seoData.twitter
 };
+
 
 
 const orderDetailSeoData = {
