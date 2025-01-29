@@ -20,6 +20,7 @@
     min-width: 100px;
     box-shadow: var(--box-shadow);
     cursor: pointer;
+    text-align: center;
 
 }
 

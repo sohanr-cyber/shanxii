@@ -1,5 +1,5 @@
 import BASE_URL from '@/config'
-const companyName = 'AgroFresh'
+const companyName = 'StyleHive '
 
 const footerP =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
@@ -282,14 +282,25 @@ const registerSeoData = {
 // const outerBg = 'rgb(232, 241, 247)'
 // const borderColor = 'rgba(197, 223, 244, 255)'
 
-const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
-const themeTransparent = 'rgba(7, 121, 214,0.1)'
-const themeC = 'rgb(29, 102, 12)'
+// const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+// const themeTransparent = 'rgba(7, 121, 214,0.1)'
+// const themeC = 'rgb(29, 102, 12)'
+// const buttonC = 'white'
+// const buttonBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+// const bg = 'white'
+// const outerBg = 'rgb(232, 241, 247)'
+// const borderColor = 'rgba(52, 134, 11, 0.5)'
+
+
+const themeBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(14, 14, 14))'
+const themeTransparent = 'rgba(41, 43, 44, 0.1)'
+const themeC = 'rgb(0, 0, 0)'
 const buttonC = 'white'
-const buttonBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
+const buttonBg = 'linear-gradient(45deg, rgb(0, 0, 0), rgb(0, 0, 0))'
 const bg = 'white'
 const outerBg = 'rgb(232, 241, 247)'
-const borderColor = 'rgba(52, 134, 11, 0.5)'
+const borderColor = 'rgba(69, 69, 68, 0.5)'
+
 
 const orderStatusColors = {
   pending: 'rgb(255, 165, 0)', // Orange

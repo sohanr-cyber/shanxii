@@ -31,16 +31,16 @@ const Filter = ({ setOpen }) => {
   const setColor = color => [
     router.query.colors?.split(',').find(i => i == color)
       ? updateRoute({
-          colors: router.query.colors
-            .split(',')
-            .filter(i => i != color)
-            .join(',')
-        })
+        colors: router.query.colors
+          .split(',')
+          .filter(i => i != color)
+          .join(',')
+      })
       : updateRoute({
-          colors: router.query.colors
-            ? [...router.query.colors.split(','), color].join(',')
-            : [color].join(',')
-        })
+        colors: router.query.colors
+          ? [...router.query.colors.split(','), color].join(',')
+          : [color].join(',')
+      })
   ]
 
   return (
@@ -77,7 +77,7 @@ const Filter = ({ setOpen }) => {
 
         {/* Color Family */}
         <div className={styles.heading}>Color Family</div>
-        <div className={styles.filterOptions}>
+        <div className={styles.filterOptions} style={{ marginBottom: "35px" }}>
           <Colors selectedColors={router.query.colors} handleClick={setColor} />
         </div>
       </div>

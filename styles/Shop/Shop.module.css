@@ -14,7 +14,8 @@
 .wrapper .top .left {
     display: flex;
     align-items: center;
-    gap: 10px
+    gap: 10px;
+  
 }
 
 .wrapper .top .filter {
@@ -25,7 +26,7 @@
     padding: 3px 5px;
     border-radius: 0;
     cursor: pointer;
-    color:var(--icon);
+    color: var(--icon);
 }
 
 
@@ -88,9 +89,9 @@
 
 
 @media (max-width:410px) {
-    .products {   
-        gap:10px;
-        
+    .products {
+        gap: 10px;
+
     }
 
     .wrapper {

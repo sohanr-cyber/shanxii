@@ -7,13 +7,13 @@
   --percent: 10%;
   --box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 
-  /* 
-  --background: #fbfbfb;
+
+  --background: rgb(250, 250, 250);
   --nav: rgb(255, 255, 255);
-  --cardBg: rgba(229, 229, 229, 0.7);
+  --cardBg: rgb(234, 234, 234);
   --buttonBg: linear-gradient(45deg, #000000, #000000);
   --buttonC: white;
-  --borderColor: #99a09e;
+  --borderColor: #d7d7d7;
   --inputField: linear-gradient(245deg, rgba(255, 255, 255), rgba(255, 255, 255));
   --hoverBgColor: rgb(253, 253, 253);
   --hoverColor: rgb(0, 0, 0);
@@ -22,10 +22,12 @@
   --icon: rgb(0, 0, 0);
   --buttonPadding: 7px 10px;
   --logo: linear-gradient(45deg, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 50%);
-  --shadow: rgb(255, 255, 255, 0.1); */
+  --shadow: rgb(255, 255, 255, 0.1);
+  --themeTransparent: linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(47, 47, 47, 0.2), rgba(255, 255, 255, 0.3));
+  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1);
 
 
-  --background: aliceblue;
+  /* --background: aliceblue;
   --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
@@ -42,7 +44,7 @@
   --buttonPadding: 7px 10px;
   --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1));
   --hoverColor: var(--theme);
-  --themeTransparent: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgb(9, 82, 71, 0.1));
+  --themeTransparent: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgb(9, 82, 71, 0.1)); */
 
 
   /* --background: #fbfbfb;
@@ -62,7 +64,7 @@
   --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%); */
 
 
-  --background: rgb(0, 136, 0, 0.1);
+  /* --background: rgb(0, 136, 0, 0.1);
   --nav: rgb(255, 255, 255);
   --cardBg: rgb(255, 255, 255);
   --buttonBg: linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5));
@@ -78,7 +80,7 @@
   --buttonPadding: 7px 10px;
   --themeTransparent: linear-gradient(125deg, rgba(1, 0, 30, 0.2), rgba(52, 126, 3, 0.2));
   --shadow: rgb(255, 255, 255, 0.1);
-  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1); 
+  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1);  */
 
 
   /* --background: rgb(232, 241, 247);

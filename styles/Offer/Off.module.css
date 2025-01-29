@@ -12,7 +12,7 @@
     border: 2px dotted rgb(255, 255, 255);
     padding: var(--buttonPadding);
     margin: 10px 0;
-    text-shadow:var(--textShadow);
+    /* text-shadow:var(--textShadow); */
     /* background: var(--buttonBg); */
     /* max-width: 100px; */
 }
@@ -38,7 +38,7 @@
 
 .wrapper b,
 .wrapper p {
-    text-shadow: 1px 1px black;
+    /* text-shadow: 1px 1px black; */
     width: 90%;
     
 }

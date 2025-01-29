@@ -61,7 +61,7 @@ export default function Home({ data, contents }) {
           <Row />
           {/* <Grid /> */}
         </div>
-        {data.slice(0, -3).map((i, index) => (
+        {data.slice(0, -3)?.length > 0 && data.slice(0, -3).map((i, index) => (
           <ProductsByCategory2
             category={i.category}
             products={i.products}
