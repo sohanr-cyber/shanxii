@@ -54,6 +54,7 @@
 
 .wrapper .price {
     font-weight: bold;
+    color: var(--theme)
 }
 
 .wrapper .flex {
@@ -87,6 +88,6 @@
 
 @media (max-width:410px) {
     .wrapper {
-        margin:10px 0;
+        margin: 10px 0;
     }
 }

@@ -415,7 +415,7 @@ const Create = ({ product: data }) => {
                 ? product.images.map((image, index) => (
                   <div className={styles.image__container} name={index}>
                     <Image src={image.image} alt='' width='180' height={180} />
-                    <div className={styles.color__selector}></div>
+                    {/* <div className={styles.color__selector}></div>
                     <div className={styles.colors}>
                       {image.uid}
                       <Colors
@@ -430,7 +430,7 @@ const Create = ({ product: data }) => {
                             ))
                           })
                         }} />
-                    </div>
+                    </div> */}
                   </div>
                 ))
                 : [1, 2, 3].map((_, index) => (

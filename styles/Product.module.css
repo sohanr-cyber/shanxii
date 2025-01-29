@@ -47,6 +47,7 @@
 
 .wrapper .price {
     font-weight: bold;
+    color: var(--theme)
 }
 
 .wrapper .flex {

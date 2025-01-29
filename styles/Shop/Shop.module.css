@@ -40,7 +40,7 @@
 
 .right select {
     padding: 7px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 
 }
 
@@ -93,7 +93,6 @@
         
     }
 
-  
     .wrapper {
         padding: 10px;
     }

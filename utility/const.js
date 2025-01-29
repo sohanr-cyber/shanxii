@@ -1,5 +1,5 @@
 import BASE_URL from '@/config'
-const companyName = 'ElectroHub'
+const companyName = 'DecoNest'
 
 const footerP =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
@@ -65,20 +65,21 @@ const colors = [
 ]
 
 
+
 const seoData = {
-  title: 'ElectroHub - Your One-Stop Electronics Store',
+  title: `${companyName} - Elevate Your Living Space with Elegant Home Decor`,
   description:
-    'Discover the latest electronics, gadgets, and accessories at unbeatable prices. Shop smartphones, cameras, laptops, and more at ElectroHub.',
+    'Explore a stunning collection of home decor items to transform your space. Shop stylish furniture, wall art, lighting, and more at DecoNest.',
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: 'ElectroHub - Your One-Stop Electronics Store',
+    title: `${companyName} - Elevate Your Living Space with Elegant Home Decor`,
     description:
-      'Discover the latest electronics, gadgets, and accessories at unbeatable prices.',
+      'Discover premium home decor pieces to enhance your interiors. Shop furniture, lighting, and accessories at DecoNest.',
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: 'ElectroHub Electronics',
+        alt: `${companyName} Home Decor`,
         width: 1200,
         height: 630
       }
@@ -86,26 +87,26 @@ const seoData = {
     site_name: companyName
   },
   twitter: {
-    handle: '@ElectroHub',
-    site: '@ElectroHub',
+    handle: `@${companyName}`,
+    site: `@${companyName}`,
     cardType: 'summary_large_image'
   }
 };
 
 const orderCartSeoData = {
-  title: 'Your Cart - ElectroHub',
-  description: 'Review and manage the items in your cart at ElectroHub.',
+  title: `Your Cart - ${companyName}`,
+  description: `Review and manage the items in your cart at ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
-    title: 'Your Cart - ElectroHub',
-    description: 'Review and manage the items in your cart at ElectroHub.',
+    title: `Your Cart - ${companyName}`,
+    description: `Review and manage the items in your cart at ${companyName}.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
         url: `${BASE_URL}/images/cart.png`,
         width: 1200,
         height: 630,
-        alt: 'Your Cart - ElectroHub'
+        alt: `Your Cart - ${companyName}`
       }
     ],
     type: 'website'
@@ -154,6 +155,7 @@ const privacyPolicySeoData = {
   },
   twitter: seoData.twitter
 };
+
 
 const orderDetailSeoData = {
   title: `Order Details - ${companyName}`,
@@ -261,25 +263,25 @@ const registerSeoData = {
 };
 
 
-const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-const themeTransparent = 'rgb(8, 78, 67,0.1)'
-const themeC = 'rgb(8, 78, 67)'
-const buttonC = 'white'
-const bg = 'aliceblue'
-const outerBg = 'lightgrey'
-const buttonBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-const borderColor = 'rgb(8, 78, 67,0.1)'
-
-// const themeBg =
-//   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
-// const themeTransparent = 'rgba(7, 121, 214,0.1)'
-// const themeC = 'rgba(7, 121, 214, 255)'
+// const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+// const themeTransparent = 'rgb(8, 78, 67,0.1)'
+// const themeC = 'rgb(8, 78, 67)'
 // const buttonC = 'white'
-// const buttonBg =
-//   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
-// const bg = 'white'
-// const outerBg = 'rgb(232, 241, 247)'
-// const borderColor = 'rgba(197, 223, 244, 255)'
+// const bg = 'aliceblue'
+// const outerBg = 'lightgrey'
+// const buttonBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+// const borderColor = 'rgb(8, 78, 67,0.1)'
+
+const themeBg =
+  'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
+const themeTransparent = 'rgba(7, 121, 214,0.1)'
+const themeC = 'rgba(7, 121, 214, 255)'
+const buttonC = 'white'
+const buttonBg =
+  'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
+const bg = 'white'
+const outerBg = 'rgb(232, 241, 247)'
+const borderColor = 'rgba(197, 223, 244, 255)'
 
 // const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
 // const themeTransparent = 'rgba(7, 121, 214,0.1)'

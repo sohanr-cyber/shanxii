@@ -16,7 +16,7 @@ const Footer = () => {
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <Logo />
-          <div className={styles.about}>{footerP}</div>
+          <p className={styles.about}>{footerP}</p>
         </div>
         <div className={styles.mid}>
           <h2 className={styles.heading}>Links</h2>

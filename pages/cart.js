@@ -67,8 +67,8 @@ const Cart = () => {
                       <div className={styles.left}>
                         <Image
                           src={item.image.image}
-                          width='40'
-                          height='40'
+                          width='50'
+                          height='50'
                           alt=''
                         />
                       </div>

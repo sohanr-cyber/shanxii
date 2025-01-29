@@ -38,9 +38,13 @@
     display: flex;
     gap: 15px;
     min-width: 180px;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-
+.table__wrapper table td {
+    text-align: center;
+}
 
 .table__wrapper table .product img {
     width: auto;
@@ -53,6 +57,7 @@
     display: flex;
     gap: 0;
     align-items: center;
+    justify-content: center;
 
 }
 
@@ -84,6 +89,8 @@
     cursor: pointer;
 
 }
+
+
 
 @media (min-width:1024px) {
     .wrapper {

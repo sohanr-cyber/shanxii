@@ -28,16 +28,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    max-height: 400px;
+    overflow: hidden;
 
 }
+
+/* .left .flex .inner__imageContainer img {
+    border: 1px solid black
+} */
 
 .left .image__container img {
     width: 100%;
     height: auto;
     object-fit: cover;
+    overflow: hidden;
 
 
 }
+
+
 
 .left .flex {
     display: flex;
@@ -46,6 +55,8 @@
     margin: 10px 0;
     overflow-x: scroll;
 }
+
+
 
 .right .flex {
     display: flex;

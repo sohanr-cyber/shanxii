@@ -185,7 +185,7 @@ const Product = ({ product, error, relatedProducts }) => {
       <NextSeo {...generateProductSeoData(product)} />{' '}
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <div className={styles.left} 
+          <div className={styles.left}
           // style={{ background: `${currentImage?.colors && hexToRgba(currentImage?.colors[0], 0.5)}` }}
           >
             <div className={styles.image__container}
@@ -201,14 +201,16 @@ const Product = ({ product, error, relatedProducts }) => {
             </div>
             <div className={styles.flex}>
               {product.images.map((item, index) => (
-                <Image
-                  src={item.image}
-                  width='50'
-                  height='50'
-                  alt=''
-                  key={index}
-                  onClick={() => setCurrentImage(item)}
-                />
+                <div className={styles.inner__imageContainer}>
+                  <Image
+                    src={item.image}
+                    width='50'
+                    height='50'
+                    alt=''
+                    key={index}
+                    onClick={() => setCurrentImage(item)}
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -321,7 +323,7 @@ const Product = ({ product, error, relatedProducts }) => {
                 ))}
               </div>
             )}
-            {product.attributes.length > 0 && (
+            {product.attributes.length > 0 && product.attributes[0]?.name?.length > 0 && (
               <div className={styles.attributes}>
                 <b>Charecteristics</b>
                 {product.attributes.map((i, index) => (

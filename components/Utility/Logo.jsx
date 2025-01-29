@@ -2,11 +2,11 @@ import React from 'react'
 import styles from '../../styles/Utility/Logo.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { colors } from '@/utility/const'
+import { colors, companyName } from '@/utility/const'
 
 const Logo = ({ color }) => {
   const router = useRouter()
-  const name = 'ElectroHub'
+  const name = companyName || 'DecoNest'
 
   return (
     <div className={styles.wrapper} onClick={() => router.push('/')}>

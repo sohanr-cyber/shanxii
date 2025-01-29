@@ -19,7 +19,6 @@ handler.get(async (req, res) => {
                 try {
                     // Extract colors and update the product
                     product.thumbnailColors = await ExtractColors(product.thumbnail);
-
                     await product.save(); // Save the updated product
                     return product; // Return the updated product
                 } catch (error) {
