@@ -157,6 +157,10 @@
     height: auto
 }
 
+
+.description p {
+    margin:0;
+}
 @media (min-width:1024px) {
     .wrapper {
         padding: 25px var(--percent);
