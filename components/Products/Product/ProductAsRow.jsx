@@ -27,7 +27,7 @@ const ProductAsRow = ({ item, redirect, rowDirection }) => {
             className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
             onClick={() => handleClick()}
             onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/product/create?id=${item._id}`) }}
-            // style={{ background: `${hexToRgba(item.imageColors[0], 0.5)}` }}
+        // style={{ background: `${hexToRgba(item.imageColors[0], 0.5)}` }}
         >
             <div className={styles.pic}>
                 {item.blurData ? (
@@ -48,15 +48,15 @@ const ProductAsRow = ({ item, redirect, rowDirection }) => {
                     {item.categories?.map(i => i.name)[0]}
                 </div>
                 <div className={styles.title}>{item.name}</div>
-                {/* <Stack spacing={1}>
-          <Rating
-            name='half-rating-read'
-            defaultValue={item.ratings}
-            precision={0.5}
-            readOnly
-            size='small'
-          />
-        </Stack> */}
+                <Stack spacing={1}>
+                    <Rating
+                        name='half-rating-read'
+                        defaultValue={item.ratings}
+                        precision={0.5}
+                        readOnly
+                        size='small'
+                    />
+                </Stack>
                 {item.discount ? (
                     <div className={styles.price__wrapper}>
                         <div className={styles.price}>

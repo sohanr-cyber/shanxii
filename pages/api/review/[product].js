@@ -19,10 +19,13 @@ handler.post(async (req, res) => {
     const { product } = req.query
     // Check if the product exists (you should have a Product model and import it)
     const existingProduct = await Product.findOne({ _id: product })
+
     if (!existingProduct) {
       return res.status(404).json({ message: 'Product not found' })
     }
 
+    existingProduct.ratings = (existingProduct.ratings | 0 + rating) / 2
+    await existingProduct.save()
 
 
     // Create the review
