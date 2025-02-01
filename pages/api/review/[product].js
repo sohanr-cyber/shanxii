@@ -44,13 +44,13 @@ handler.post(async (req, res) => {
 handler.get(async (req, res) => {
   try {
     const { product: productId } = req.query
-
+    await db.connect()
     // Find all reviews associated with the specified product
     const reviews = await Review.find({ product: productId }).populate({
       path: "user",
       select: "_id firstName"
     }).sort({ createdAt: -1 }).lean()
-
+    await db.disconnect()
     res.status(200).json(reviews)
   } catch (error) {
     console.error(error)
@@ -62,9 +62,11 @@ handler.get(async (req, res) => {
 handler.get(async (req, res) => {
   try {
     const { id } = req.query
+    await db.connect()
 
     // Find the review by its ID
     const review = await Review.findById(id)
+    await db.disconnect()
 
     if (!review) {
       return res.status(404).json({ message: 'Review not found' })
@@ -82,6 +84,7 @@ handler.put(async (req, res) => {
   try {
     const { id } = req.query
     const { rating, content, attachments } = req.body
+    await db.connect()
 
     // Update the review by its ID
     const updatedReview = await Review.findByIdAndUpdate(
@@ -89,6 +92,7 @@ handler.put(async (req, res) => {
       { rating, content, attachments },
       { new: true }
     )
+    await db.disconnect()
 
     if (!updatedReview) {
       return res.status(404).json({ message: 'Review not found' })
@@ -105,9 +109,11 @@ handler.put(async (req, res) => {
 handler.delete(async (req, res) => {
   try {
     const { id } = req.query
+    await db.connect()
 
     // Delete the review by its ID
     const deletedReview = await Review.findByIdAndDelete(id)
+    await db.disconnect()
 
     if (!deletedReview) {
       return res.status(404).json({ message: 'Review not found' })

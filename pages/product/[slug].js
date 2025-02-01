@@ -76,16 +76,16 @@ export async function getStaticProps(context) {
       relatedProducts = resp.data.products.filter(i => i._id != data._id)
     }
 
-
-    const { data: reviews } = await axios.get(`${BASE_URL}/api/review/${data._id}`)
+    let reviews = []
+    // const { data: reviews } = await axios.get(`${BASE_URL}/api/review/${data._id}`)
 
     console.log(`Data fetching time: ${end - start}ms`)
 
     return {
       props: {
         product: data,
-        relatedProducts,
-        reviews
+        relatedProducts: relatedProducts || [],
+        reviews: reviews || []
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }
@@ -370,9 +370,9 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
             <button className={styles.button} onClick={() => setOpen("description")}>Description</button>
             <button className={styles.button} onClick={() => setOpen("reviews")}>Reviews</button>
           </div>
-          {open == "description" ? <div className={styles.description}>
+          {/* {open == "description" ? <div className={styles.description}>
             <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          </div> : isClient && <ReviewList product={product._id} reviews={reviewList} />}
+          </div> : isClient && <ReviewList product={product._id} reviews={reviewList} />} */}
         </div>
       </div>
       {relatedProducts?.length > 0 && (

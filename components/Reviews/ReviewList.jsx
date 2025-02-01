@@ -27,8 +27,8 @@ const ReviewList = ({ product, reviews }) => {
             </div>
 
             {writeReview && <AddReview setWriteReview={setWriteReview} product={product} />}
-            <>  {reviews?.map((r, indx) => (
-                <Review review={r} />
+            <>  {reviews.length > 0 ?.map((r, indx) => (
+                <Review review={r} key={indx} />
             ))}</>
         </div>
     )
