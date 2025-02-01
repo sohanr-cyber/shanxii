@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      // required: true,
       minlength: 6 // Minimum password length for security
     },
     // User details
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
     },
     lastName: {
       type: String,
-      required: true
+      // required: true
     },
     salt: {
       type: String

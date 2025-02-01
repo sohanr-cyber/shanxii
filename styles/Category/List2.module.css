@@ -1,17 +1,20 @@
 .wrapper {
     padding: 10px 25px;
     display: flex;
-    gap: 10px;
+    gap: 15px;
     background: var(--theme);
     color: var(--buttonC);
     position: relative;
-
+justify-content: space-between;
 
 }
 
 
 .wrapper .item {
     position: relative;
+    text-align: center;
+    cursor: pointer;
+  
 }
 
 .wrapper .item .items {

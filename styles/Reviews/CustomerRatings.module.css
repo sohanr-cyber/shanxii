@@ -1,0 +1,29 @@
+.wrapper {
+
+    width: 100%;
+}
+
+.wrapper .star {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: -5px;
+}
+
+
+.wrapper .label,
+.wrapper .percentage {
+    min-width: 35px;
+    font-size: 80%;
+}
+
+.wrapper .pbar {
+    width: 100%;
+}
+
+.wrapper .flex {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    margin-top: -12px;
+}

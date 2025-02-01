@@ -1,0 +1,36 @@
+.wrapper {
+    padding: 10px;
+    background: var(--cardBg);
+}
+
+.share {
+    margin: 10px 0;
+    margin-top: -12px;
+}
+
+.btn {
+    background: var(--buttonBg);
+    border-radius: 0px;
+    color: var(--buttonC);
+    padding: var(--buttonPadding);
+    text-align: center;
+    margin: 12px 0;
+    cursor: pointer;
+    ;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.write__review {
+    width: 100%;
+}
+
+@media (max-width:570px) {
+    .flex {
+     flex-direction: column-reverse;
+    }
+}

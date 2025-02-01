@@ -52,7 +52,7 @@ const Product = ({ item, redirect, rowDirection }) => {
           {item.categories?.map(i => i.name)[0]}
         </div>
         <div className={styles.title}>{item.name}</div>
-        {/* <Stack spacing={1}>
+        <Stack spacing={1}>
           <Rating
             name='half-rating-read'
             defaultValue={item.ratings}
@@ -60,7 +60,7 @@ const Product = ({ item, redirect, rowDirection }) => {
             readOnly
             size='small'
           />
-        </Stack> */}
+        </Stack>
         {item.discount ? (
           <div className={styles.price__wrapper}>
             <div className={styles.price}>

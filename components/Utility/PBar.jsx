@@ -14,7 +14,9 @@ const PBar = ({ height, percentage, pixel, color }) => {
           width: `${percentage ? `${percentage}%` : `${pixel + 0}px`}`,
           background: `${color ? `${color}` : `${buttonBg}`}`
         }}
-      ></div>
+      >
+
+      </div>
     </div>
   )
 }

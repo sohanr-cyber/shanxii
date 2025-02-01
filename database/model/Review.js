@@ -4,7 +4,7 @@ const reviewSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    // required: true
   },
   product: {
     type: mongoose.Schema.Types.ObjectId,
@@ -20,17 +20,25 @@ const reviewSchema = new mongoose.Schema({
   // Textual content of the review
   content: {
     type: String,
-    required: true
+    // required: true
   },
 
   // Can include an array of image/video URLs for attachments
   attachments: [
     {
-      type: String
+      type: String,
     }
-  ]
+  ],
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+
+
 },
-{ timestamps: true })
+  { timestamps: true })
 
 const Review = mongoose.models.Review || mongoose.model('Review', reviewSchema)
 export default Review

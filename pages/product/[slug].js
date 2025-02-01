@@ -22,6 +22,10 @@ import Loading from '@/components/Utility/Loading'
 import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
 import { themeBg, themeC } from '@/utility/const'
 import CartItems from '@/components/Cart/CartItems'
+import { current } from '@reduxjs/toolkit'
+import FullImage from '@/components/Utility/FullImage'
+import ReviewList from '@/components/Reviews/ReviewList'
+import { setReviews } from '@/redux/reviewSlice'
 
 export async function getStaticPaths() {
   try {
@@ -71,12 +75,17 @@ export async function getStaticProps(context) {
 
       relatedProducts = resp.data.products.filter(i => i._id != data._id)
     }
+
+
+    const { data: reviews } = await axios.get(`${BASE_URL}/api/review/${data._id}`)
+
     console.log(`Data fetching time: ${end - start}ms`)
 
     return {
       props: {
         product: data,
-        relatedProducts
+        relatedProducts,
+        reviews
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }
@@ -86,13 +95,14 @@ export async function getStaticProps(context) {
       props: {
         product: {},
         relatedProducts: [],
+        reviews: [],
         error: error
       }
     }
   }
 }
 
-const Product = ({ product, error, relatedProducts }) => {
+const Product = ({ product, error, relatedProducts, reviews }) => {
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product?.thumbnail)
@@ -104,18 +114,25 @@ const Product = ({ product, error, relatedProducts }) => {
   const ReactPixel = useSelector(state => state.pixel.pixel)
   const buyNowItems = useSelector(state => state.cart.buyNow)
   const cartItems = useSelector(state => state.cart.items)
-
+  const [open, setOpen] = useState("description")
   const [loading, setLoading] = useState(false)
+  const [fullImage, setFullImage] = useState("")
   const [currentImage, setCurrentImage] = useState({
     ...product.images[0]
   })
-
+  const fetchReviewAgain = useSelector(state => state.review.fetchReviewAgain)
+  const reviewList = useSelector(state => state.review.reviews)
   useEffect(() => {
     setIsClient(true)
+
     // setThumbnail(product.thumbnail)
     setCurrentImage(product.images[0] || { image: product.thumbnail, colors: product.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
   }, [product.slug])
 
+
+  useEffect(() => {
+    dispatch(setReviews(reviews))
+  }, [fetchReviewAgain, product.slug])
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
       setQuantity(prevQuantity => prevQuantity + 1)
@@ -182,8 +199,11 @@ const Product = ({ product, error, relatedProducts }) => {
   return (
     <>
       {loading && <Loading />}
+
       <NextSeo {...generateProductSeoData(product)} />{' '}
+      {fullImage && <FullImage image={fullImage} setFullImage={setFullImage} />}
       <div className={styles.wrapper}>
+
         <div className={styles.container}>
           <div className={styles.left}
           // style={{ background: `${currentImage?.colors && hexToRgba(currentImage?.colors[0], 0.5)}` }}
@@ -197,6 +217,7 @@ const Product = ({ product, error, relatedProducts }) => {
                 alt=''
                 placeholder='blur'
                 blurDataURL={product.placeholder}
+                onClick={() => setFullImage(currentImage.image)}
               />
             </div>
             <div className={styles.flex}>
@@ -217,7 +238,7 @@ const Product = ({ product, error, relatedProducts }) => {
           <div className={styles.right}>
             <h2 className={styles.title}>{product.name}</h2>
             <div className={styles.flex}>
-              {/* <div className={styles.ratings}>
+              <div className={styles.ratings}>
                 {' '}
                 <Stack spacing={1}>
                   <Rating
@@ -228,7 +249,7 @@ const Product = ({ product, error, relatedProducts }) => {
                     size='small'
                   />
                 </Stack>
-              </div> */}
+              </div>
               <div
                 className={styles.stock}
                 style={
@@ -346,12 +367,12 @@ const Product = ({ product, error, relatedProducts }) => {
         </div>
         <div className={styles.bottom__container}>
           <div className={styles.top}>
-            <button className={styles.button}>Description</button>
-            {/* <button className={styles.button}>Reviews</button> */}
+            <button className={styles.button} onClick={() => setOpen("description")}>Description</button>
+            <button className={styles.button} onClick={() => setOpen("reviews")}>Reviews</button>
           </div>
-          <div className={styles.description}>
+          {open == "description" ? <div className={styles.description}>
             <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          </div>
+          </div> : isClient && <ReviewList product={product._id} reviews={reviewList} />}
         </div>
       </div>
       {relatedProducts?.length > 0 && (

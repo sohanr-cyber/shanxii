@@ -4,6 +4,7 @@ import nc from 'next-connect'
 import Product from '@/database/model/Product'
 import Review from '@/database/model/Review'
 import db from '@/database/connection'
+import User from '@/database/model/User'
 
 // Initialize next-connect handler
 const handler = nc()
@@ -14,7 +15,7 @@ db.connect()
 // Create Review API endpoint
 handler.post(async (req, res) => {
   try {
-    const { user, rating, content, attachments } = req.body
+    const { rating, content, attachments, name, email } = req.body
     const { product } = req.query
     // Check if the product exists (you should have a Product model and import it)
     const existingProduct = await Product.findOne({ _id: product })
@@ -22,10 +23,11 @@ handler.post(async (req, res) => {
       return res.status(404).json({ message: 'Product not found' })
     }
 
+
+
     // Create the review
     const review = await Review.create({
-      user,
-      product,
+      name, email, product,
       rating,
       content,
       attachments
@@ -45,9 +47,9 @@ handler.get(async (req, res) => {
 
     // Find all reviews associated with the specified product
     const reviews = await Review.find({ product: productId }).populate({
-      path:"user",
-      select:"_id firstName"
-    })
+      path: "user",
+      select: "_id firstName"
+    }).sort({ createdAt: -1 }).lean()
 
     res.status(200).json(reviews)
   } catch (error) {

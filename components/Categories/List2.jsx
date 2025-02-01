@@ -9,7 +9,7 @@ import SubCategories2 from './SubCategories2'
 const List2 = () => {
   const categories = useSelector(state => state.product.categories)?.slice(
     0,
-    12
+    7
   )
   const [selected, setSelected] = useState({})
   const router = useRouter()
@@ -19,9 +19,31 @@ const List2 = () => {
     <div className={styles.container}>
       <div className={styles.wrapper} onMouseLeave={() => setSelected(null)}>
         {categories?.length > 0
-          ? categories?.map((i, index) => (
+          ? <>
+            <div
+              className={styles.item}
+              style={{ minWidth: `${"home".length * 9.8}px` }}
+            >
+              <span
+
+                onClick={() => router.push(`/`)}
+              >
+                Home
+              </span>
+            </div>
+            <div
+              className={styles.item}
+              style={{ minWidth: `${"shop".length * 8.5}px` }}
+            >
+              <span
+
+                onClick={() => router.push(`/shop`)}
+              >
+                Shop
+              </span>
+            </div>
+            {categories?.map((i, index) => (
               <>
-                {' '}
                 <div
                   className={styles.item}
                   style={{ minWidth: `${i.name.length * 8.1}px` }}
@@ -64,7 +86,7 @@ const List2 = () => {
                                     categories.findIndex(
                                       i => i._id === selected._id
                                     ) >=
-                                    categories.length / 2
+                                      categories.length / 2
                                       ? { right: '160px' }
                                       : { left: '160px' }
                                   }
@@ -89,12 +111,13 @@ const List2 = () => {
                   )}
                 </div>
               </>
-            ))
-          : [1, 2, 3, 4, 5].map((item, index) => (
-              <div className={styles.item} key={index}>
-                {<SkeletonDiv />}
-              </div>
             ))}
+          </>
+          : [1, 2, 3, 4, 5].map((item, index) => (
+            <div className={styles.item} key={index}>
+              {<SkeletonDiv />}
+            </div>
+          ))}
       </div>
     </div>
   )
