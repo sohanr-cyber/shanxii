@@ -26,7 +26,8 @@ import { current } from '@reduxjs/toolkit'
 import FullImage from '@/components/Utility/FullImage'
 import ReviewList from '@/components/Reviews/ReviewList'
 import { setReviews } from '@/redux/reviewSlice'
-
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 export async function getStaticPaths() {
   try {
     // Fetch the list of possible values for slug
@@ -201,7 +202,7 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
       {loading && <Loading />}
 
       <NextSeo {...generateProductSeoData(product)} />{' '}
-      {fullImage && <FullImage image={fullImage} setFullImage={setFullImage} />}
+      {fullImage && <FullImage image={fullImage} setFullImage={setFullImage} images={product.images.map(i => i.image)} />}
       <div className={styles.wrapper}>
 
         <div className={styles.container}>
@@ -212,6 +213,7 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
             >
               <Image
                 src={currentImage.image}
+                key={currentImage.image}
                 width='400'
                 height='400'
                 alt=''
@@ -219,6 +221,7 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
                 blurDataURL={product.placeholder}
                 onClick={() => setFullImage(currentImage.image)}
               />
+
             </div>
             <div className={styles.flex}>
               {product.images.map((item, index) => (
