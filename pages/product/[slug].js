@@ -83,8 +83,8 @@ export async function getStaticProps(context) {
     return {
       props: {
         product: data,
-        relatedProducts: relatedProducts || [],
-        reviews: reviews || []
+        relatedProducts: relatedProducts,
+        reviews: reviews
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }
@@ -125,6 +125,7 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
     setIsClient(true)
 
     // setThumbnail(product.thumbnail)
+    setOpen("description")
     setCurrentImage(product.images[0] || { image: product.thumbnail, colors: product.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
   }, [product.slug])
 
