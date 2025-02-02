@@ -9,7 +9,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, addToBuyNow } from '@/redux/cartSlice'
 import { useRouter } from 'next/router'
-import { generateProductSeoData, generateUniqueID, getPrice, hexToRgba } from '@/utility/helper'
+import { calculateAverageRating, generateProductSeoData, generateUniqueID, getPrice, hexToRgba } from '@/utility/helper'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import ProductsByCategory from '@/components/Products/ProductsByCategory'
@@ -28,6 +28,8 @@ import ReviewList from '@/components/Reviews/ReviewList'
 import { setReviews } from '@/redux/reviewSlice'
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import { setProduct } from '@/redux/productSlice'
+import Ratings from '@/components/Utility/Rating'
 export async function getStaticPaths() {
   try {
     // Fetch the list of possible values for slug
@@ -77,15 +79,12 @@ export async function getStaticProps(context) {
       relatedProducts = resp.data.products.filter(i => i._id != data._id)
     }
 
-    const { data: reviews } = await axios.get(`${BASE_URL}/api/review/${data._id}`)
 
-    console.log(`Data fetching time: ${end - start}ms`)
 
     return {
       props: {
         product: data,
         relatedProducts: relatedProducts,
-        reviews: reviews
       },
       revalidate: 10 // Revalidate at most every 10 seconds
     }
@@ -95,14 +94,14 @@ export async function getStaticProps(context) {
       props: {
         product: {},
         relatedProducts: [],
-        reviews: [],
         error: error
       }
     }
   }
 }
 
-const Product = ({ product, error, relatedProducts, reviews }) => {
+const Product = ({ product: productData, error, relatedProducts }) => {
+  const product = useSelector(state => state.product.product) || productData
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(product?.sizes?.split(',')[0])
   const [thumbnail, setThumbnail] = useState(product?.thumbnail)
@@ -118,22 +117,39 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
   const [loading, setLoading] = useState(false)
   const [fullImage, setFullImage] = useState("")
   const [currentImage, setCurrentImage] = useState({
-    ...product.images[0]
+    ...product?.images[0]
   })
+
   const fetchReviewAgain = useSelector(state => state.review.fetchReviewAgain)
   const reviewList = useSelector(state => state.review.reviews)
+
   useEffect(() => {
     setIsClient(true)
 
     // setThumbnail(product.thumbnail)
     setOpen("description")
     setCurrentImage(product.images[0] || { image: product.thumbnail, colors: product.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
-  }, [product.slug])
+  }, [productData.slug])
 
+  const fetchReview = async () => {
+    try {
+      const { data } = await axios.get(`${BASE_URL}/api/review/${productData._id}`)
+      dispatch(setReviews(data))
+      dispatch(setProduct({ ...productData, ratings: calculateAverageRating(data), ratingsCount: data.length }))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    fetchReview()
+  }, [fetchReviewAgain, productData.slug])
 
   useEffect(() => {
-    dispatch(setReviews(reviews))
-  }, [fetchReviewAgain, product.slug])
+    dispatch(setProduct({ ...productData }))
+  }, [productData.slug])
+
+
+
 
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
@@ -243,18 +259,7 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
             <h2 className={styles.title}>{product.name}</h2>
             <div className={styles.flex}>
               <div className={styles.ratings}>
-
-                <Stack spacing={1}>
-                  <Rating
-                    name={product._id}
-                    value={product.ratings}
-                    defaultValue={0}
-
-                    precision={0.1}
-                    readOnly
-                    size='medium'
-                  />
-                </Stack>
+                <Ratings ratings={product.ratings} size={"large"} id={product._id} />
               </div>
               <div
                 className={styles.stock}

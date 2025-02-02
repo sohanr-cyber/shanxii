@@ -7,7 +7,7 @@ import { Router, useRouter } from 'next/router'
 import AdminNavbar from './Admin/Navbar'
 import Loading from './Utility/Loading'
 import { useSnackbar } from 'notistack'
-import { setCategories } from '@/redux/productSlice'
+import { setCategories } from '@/redux/categorySlice'
 import axios from 'axios'
 import { setPixel } from '@/redux/pixelSlice'
 import { PIXEL_ID } from '@/config'
@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
   const router = useRouter()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const notistack = useSelector(state => state.notistack.notistack)
-  const fetchAgain = useSelector(state => state.product.fetchAgain)
+  const fetchAgain = useSelector(state => state.category.fetchAgain)
 
   const dispatch = useDispatch()
   const fetchCategory = async () => {

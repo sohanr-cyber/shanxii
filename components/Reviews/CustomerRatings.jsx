@@ -1,12 +1,12 @@
 import React from 'react'
 import PBar from '../Utility/PBar'
 import styles from '../../styles/Reviews/CustomerRatings.module.css'
-import Rating from '@mui/material/Rating'
-import Stack from '@mui/material/Stack'
-import { calculateAverageRating } from '@/utility/helper'
+
+import { calculateAverageRating, generateUniqueID } from '@/utility/helper'
+import Ratings from '../Utility/Rating'
 
 const CustomerRatings = ({ reviews }) => {
-   
+
 
     const getRatingPercentage = (reviews, targetRating) => {
         if (reviews.length === 0) return 0;
@@ -18,15 +18,8 @@ const CustomerRatings = ({ reviews }) => {
         <div className={styles.wrapper}>
             <h2 className={styles.title}> Customer Reviews</h2>
             <div className={styles.flex}>
-                <Stack spacing={1}>
-                    <Rating
-                        name='half-rating-read'
-                        defaultValue={parseFloat(calculateAverageRating(reviews).toFixed(1))}
-                        precision={0.1}
-                        readOnly
-                        size='small'
-                    />
-                </Stack>
+
+                <Ratings ratings={parseFloat(calculateAverageRating(reviews).toFixed(1))} id={generateUniqueID([])} />
                 <div className={styles.count}>
                     {(calculateAverageRating(reviews)).toFixed(1)} out of 5
                 </div>

@@ -53,7 +53,7 @@ handler.post(async (req, res) => {
 
     await existingProduct.save();
 
-    res.status(201).json(review);
+    res.status(201).json({ review, ratingCount: existingProduct.ratingsCount, ratings: existingProduct.ratings });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });

@@ -3,10 +3,12 @@ import user from './userSlice'
 import state from './stateSlice'
 import cart from './cartSlice'
 import address from './addressSlice'
-import product from './productSlice'
+import category from './categorySlice'
 import notistack from './notistackSlice'
 import pixel from './pixelSlice'
 import review from './reviewSlice'
+import product from './productSlice'
+
 export const store = configureStore({
   reducer: {
     user,
@@ -16,6 +18,7 @@ export const store = configureStore({
     product,
     notistack,
     pixel,
-    review
+    review,
+    category,
   }
 })

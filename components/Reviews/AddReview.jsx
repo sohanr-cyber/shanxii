@@ -12,10 +12,13 @@ import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { setReviews } from '@/redux/reviewSlice'
 import { validate } from 'email-validator'
+import { setProduct } from '@/redux/productSlice'
+import { calculateAverageRating } from '@/utility/helper'
 
 const AddReview = ({ setWriteReview, product }) => {
     const [review, setReview] = useState({})
     const reviews = useSelector(state => state.review.reviews)
+    const productData = useSelector(state => state.product.product)
 
     const dispatch = useDispatch()
     const create = async () => {
@@ -33,7 +36,8 @@ const AddReview = ({ setWriteReview, product }) => {
             const { data } = await axios.post(`/api/review/${product}`, {
                 ...review
             })
-            dispatch(setReviews([data, ...reviews]))
+            dispatch(setReviews([data.review, ...reviews]))
+            dispatch(setProduct({ ...productData, ratings: data.ratings, countRating: data.countRating }))
             dispatch(finishLoading())
             setWriteReview(false)
         } catch (error) {

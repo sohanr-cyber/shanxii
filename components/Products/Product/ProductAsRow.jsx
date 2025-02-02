@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/Products/Product/ProductAsRow.module.css'
-import Rating from '@mui/material/Rating'
-import Stack from '@mui/material/Stack'
+
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { getPrice, hexToRgba } from '@/utility/helper'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleViewProduct } from '@/redux/pixelSlice'
 import { motion } from 'framer-motion'
+import Ratings from '@/components/Utility/Rating'
 
 
 const ProductAsRow = ({ item, redirect, rowDirection }) => {
@@ -48,15 +48,7 @@ const ProductAsRow = ({ item, redirect, rowDirection }) => {
                     {item.categories?.map(i => i.name)[0]}
                 </div>
                 <div className={styles.title}>{item.name}</div>
-                <Stack spacing={1}>
-                    <Rating
-                        name='half-rating-read'
-                        defaultValue={item.ratings}
-                        precision={0.1}
-                        readOnly
-                        size='small'
-                    />
-                </Stack>
+                <Ratings ratings={item.ratings} />
                 {item.discount ? (
                     <div className={styles.price__wrapper}>
                         <div className={styles.price}>

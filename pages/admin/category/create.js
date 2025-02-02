@@ -12,7 +12,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { buttonC, themeBg } from '@/utility/const'
 import AddCategory from '@/components/Admin/AddCategory'
-import { setFetchAgain } from '@/redux/productSlice'
+import { setFetchAgain } from '@/redux/categorySlice'
 import SelectParentCategory from '@/components/Categories/SelectParentCategory'
 // Order Craetion Form
 const Create = ({ category: data }) => {
