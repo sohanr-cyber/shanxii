@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import SkeletonDiv from '@/components/Utility/SkeletonDiv'
 import { AspectRatio } from '@mui/icons-material'
 const Grid = () => {
-    const categories = useSelector(state => state.product.categories)?.slice(
+    const categories = useSelector(state => state.category.categories)?.slice(
         0,
         12
     )
