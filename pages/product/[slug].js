@@ -202,7 +202,7 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
       {loading && <Loading />}
 
       <NextSeo {...generateProductSeoData(product)} />{' '}
-      {fullImage && <FullImage image={fullImage} setFullImage={setFullImage} images={product.images.map(i => i.image)} />}
+      {fullImage && <FullImage image={fullImage} setFullImage={setFullImage} images={product.images.map(i => i.image)} placeholder={product.placeholder} />}
       <div className={styles.wrapper}>
 
         <div className={styles.container}>
