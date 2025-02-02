@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
 import { showSnackBar } from '@/redux/notistackSlice'
 import { setReviews } from '@/redux/reviewSlice'
+import { validate } from 'email-validator'
 
 const AddReview = ({ setWriteReview, product }) => {
     const [review, setReview] = useState({})
@@ -19,7 +20,7 @@ const AddReview = ({ setWriteReview, product }) => {
     const dispatch = useDispatch()
     const create = async () => {
         try {
-            if (!review.rating || !review.name || !review.email) {
+            if (!review.rating || !review.name || !review.email || !validate(review.email)) {
                 dispatch(showSnackBar({
                     message: "Fill All The Required Field !",
                     option: {
@@ -79,10 +80,10 @@ const AddReview = ({ setWriteReview, product }) => {
                         <label>Desribe Your Experiance(Optional)</label>
                         <textarea onChange={(e) => setReview({ ...review, content: e.target.value })} value={review.content}></textarea>
                     </div>
-                    <div className={styles.field}>
+                    {/* <div className={styles.field}>
                         <label>Upload Photo(up to 5)(Optional)</label>
                         <UploadMany handle={files => handleImages(files)} />
-                    </div>
+                    </div> */}
 
                     <div className={styles.field}>
                         <label>Your Name</label>

@@ -10,6 +10,7 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import { NextSeo } from 'next-seo'
 import { registerSeoData } from '@/utility/const'
 import { finishLoading, startLoading } from '@/redux/stateSlice'
+import { validate } from 'email-validator'
 
 const Register = () => {
   const router = useRouter()
@@ -18,6 +19,7 @@ const Register = () => {
   const createAccount = async () => {
     if (
       !user.email ||
+      !validate(user.email) ||
       !user.password ||
       !user.firstName ||
       !user.lastName ||

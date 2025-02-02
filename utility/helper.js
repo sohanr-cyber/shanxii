@@ -112,7 +112,7 @@ function chunkArray(array, chunkSize) {
 }
 
 
-function getBaseUrl (firebaseUrl) {
+function getBaseUrl(firebaseUrl) {
   // Use URL constructor to easily manipulate the URL
   const url = new URL(firebaseUrl)
   // Extract and construct the base URL (scheme + host + bucket)
@@ -121,7 +121,7 @@ function getBaseUrl (firebaseUrl) {
 }
 
 
-function getFilePathFromUrl (mediaUrl) {
+function getFilePathFromUrl(mediaUrl) {
   // const baseUrl = `https://firebasestorage.googleapis.com/v0/b/lms-926e5.appspot.com/o/`
   const baseUrl = getBaseUrl(mediaUrl)
 
@@ -210,7 +210,7 @@ function generateUniqueID(existingIDs) {
   do {
     // Generate a random 6-digit number
     number = Math.floor(100000 + Math.random() * 900000)
-  } while (existingIDs.includes(number) ) // Check if the number is already in use
+  } while (existingIDs.includes(number)) // Check if the number is already in use
 
   // Add the new ID to the existing list
   existingIDs.push(number)
@@ -332,6 +332,15 @@ const dateDevider = days => {
     return 1
   }
 }
+
+const calculateAverageRating = (reviews) => {
+  if (reviews.length === 0) return 0;
+
+  const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+  return totalRating / reviews.length;
+
+};
+
 export {
   generateTrackingNumber,
   containsAdmin,
@@ -354,4 +363,5 @@ export {
   dateDevider,
   generateSeoData,
   hexToRgba,
+  calculateAverageRating
 }

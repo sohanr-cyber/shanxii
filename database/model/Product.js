@@ -24,6 +24,8 @@ const productSchema = new mongoose.Schema(
       default: false
     },
     ratings: { type: Number },
+    totalRatings:{type:Number},
+    ratingCount:{type:Number},
     sizes: { type: String },
     price: {
       type: Number,

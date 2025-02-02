@@ -30,7 +30,7 @@ const Product = ({ item, redirect, rowDirection }) => {
       className={`${styles.wrapper} ${rowDirection && styles.wrapperC}`}
       onClick={() => handleClick()}
       onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/product/create?id=${item._id}`) }}
-      // style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
+    // style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
     >
       <div className={styles.pic} >
 
@@ -54,9 +54,10 @@ const Product = ({ item, redirect, rowDirection }) => {
         <div className={styles.title}>{item.name}</div>
         <Stack spacing={1}>
           <Rating
-            name='half-rating-read'
+            name={item._id}
+            value={item.ratings}
             defaultValue={item.ratings}
-            precision={0.5}
+            precision={0.1}
             readOnly
             size='small'
           />

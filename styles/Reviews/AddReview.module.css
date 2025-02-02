@@ -10,6 +10,7 @@
     justify-content: center;
     flex-direction: column;
     z-index: 1;
+
 }
 
 .wrapper .form__container {
@@ -20,6 +21,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    max-width: 80%;
+
 
 
 }
@@ -93,4 +96,10 @@
 .wrapper .form__container .flex .cancel {
     background: red;
     cursor: pointer;
+}
+
+@media (max-width:570px) {
+    .wrapper .form__container {
+        padding: 15px;
+    }
 }

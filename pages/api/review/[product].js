@@ -5,6 +5,7 @@ import Product from '@/database/model/Product'
 import Review from '@/database/model/Review'
 import db from '@/database/connection'
 import User from '@/database/model/User'
+import { calculateAverageRating } from '@/utility/helper'
 
 // Initialize next-connect handler
 const handler = nc()
@@ -15,33 +16,50 @@ db.connect()
 // Create Review API endpoint
 handler.post(async (req, res) => {
   try {
-    const { rating, content, attachments, name, email } = req.body
-    const { product } = req.query
-    // Check if the product exists (you should have a Product model and import it)
-    const existingProduct = await Product.findOne({ _id: product })
+    const { rating, content, attachments, name, email } = req.body;
+    const { product } = req.query;
 
-    if (!existingProduct) {
-      return res.status(404).json({ message: 'Product not found' })
+    // Check if required fields are present
+    if (!rating || !name || !email) {
+      return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    existingProduct.ratings = (existingProduct.ratings | 0 + rating) / 2
-    await existingProduct.save()
+    // Convert rating to a number and validate
+    const parsedRating = Number(rating);
+    if (isNaN(parsedRating) || parsedRating < 1 || parsedRating > 5) {
+      return res.status(400).json({ message: 'Invalid rating value' });
+    }
 
+    // Check if the product exists
+    const existingProduct = await Product.findById(product);
+    if (!existingProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
 
     // Create the review
     const review = await Review.create({
-      name, email, product,
-      rating,
+      name,
+      email,
+      product,
+      rating: parsedRating,
       content,
-      attachments
-    })
+      attachments,
+    });
 
-    res.status(201).json(review)
+    // Update rating using a more optimized approach
+    existingProduct.totalRatings = (existingProduct.totalRatings || 0) + parsedRating;
+    existingProduct.ratingCount = (existingProduct.ratingCount || 0) + 1;
+    existingProduct.ratings = existingProduct.totalRatings / existingProduct.ratingCount;
+
+    await existingProduct.save();
+
+    res.status(201).json(review);
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: 'Server Error' })
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
   }
-})
+});
+
 
 // Get All Reviews API endpoint
 handler.get(async (req, res) => {

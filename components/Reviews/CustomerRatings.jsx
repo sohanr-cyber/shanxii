@@ -3,15 +3,10 @@ import PBar from '../Utility/PBar'
 import styles from '../../styles/Reviews/CustomerRatings.module.css'
 import Rating from '@mui/material/Rating'
 import Stack from '@mui/material/Stack'
+import { calculateAverageRating } from '@/utility/helper'
 
 const CustomerRatings = ({ reviews }) => {
-    const calculateAverageRating = (reviews) => {
-        if (reviews.length === 0) return 0;
-
-        const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-        return totalRating / reviews.length;
-
-    };
+   
 
     const getRatingPercentage = (reviews, targetRating) => {
         if (reviews.length === 0) return 0;

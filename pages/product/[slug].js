@@ -20,7 +20,7 @@ import {
 } from '@/redux/pixelSlice'
 import Loading from '@/components/Utility/Loading'
 import ProductsByCategory2 from '@/components/Products/ProductsByCategory2'
-import { themeBg, themeC } from '@/utility/const'
+import { buttonBg, buttonC, themeBg, themeC } from '@/utility/const'
 import CartItems from '@/components/Cart/CartItems'
 import { current } from '@reduxjs/toolkit'
 import FullImage from '@/components/Utility/FullImage'
@@ -134,6 +134,7 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
   useEffect(() => {
     dispatch(setReviews(reviews))
   }, [fetchReviewAgain, product.slug])
+
   const incrementQuantity = () => {
     if (quantity < product.stockQuantity) {
       setQuantity(prevQuantity => prevQuantity + 1)
@@ -242,14 +243,16 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
             <h2 className={styles.title}>{product.name}</h2>
             <div className={styles.flex}>
               <div className={styles.ratings}>
-                {' '}
+
                 <Stack spacing={1}>
                   <Rating
-                    name='half-rating-read'
-                    defaultValue={product.ratings}
-                    precision={0.5}
+                    name={product._id}
+                    value={product.ratings}
+                    defaultValue={0}
+
+                    precision={0.1}
                     readOnly
-                    size='small'
+                    size='medium'
                   />
                 </Stack>
               </div>
@@ -370,8 +373,8 @@ const Product = ({ product, error, relatedProducts, reviews }) => {
         </div>
         <div className={styles.bottom__container}>
           <div className={styles.top}>
-            <button className={styles.button} onClick={() => setOpen("description")}>Description</button>
-            <button className={styles.button} onClick={() => setOpen("reviews")}>Reviews</button>
+            <button className={styles.button} onClick={() => setOpen("description")} style={open === "description" ? { background: `${buttonBg}`, color: `${buttonC}` } : { background: "initial", color: "initial" }}>Description</button>
+            <button className={styles.button} onClick={() => setOpen("reviews")} style={open === "reviews" ? { background: `${buttonBg}`, color: `${buttonC}` } : { background: "initial", color: "initial" }} >Reviews</button>
           </div>
           {open == "description" ? <div className={styles.description}>
             <div dangerouslySetInnerHTML={{ __html: product.description }} />
