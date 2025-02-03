@@ -7,7 +7,7 @@ import SkeletonDiv from '../Utility/SkeletonDiv'
 import SubCategories2 from './SubCategories2'
 
 const List = () => {
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
   const [selected, setSelected] = useState(categories && categories[1])
   const router = useRouter()
 

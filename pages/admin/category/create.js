@@ -21,7 +21,7 @@ const Create = ({ category: data }) => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [newCategory, setNewCategory] = useState(false)
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
   useEffect(() => {
     setCategory(data)
   }, [router.query])

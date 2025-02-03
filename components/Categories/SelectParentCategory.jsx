@@ -8,7 +8,7 @@ import { Category } from '@mui/icons-material'
 import SelectCategory from './SelectCategory'
 
 const SelectParentCategory = ({ category, setCategory }) => {
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
 
   const router = useRouter()
 

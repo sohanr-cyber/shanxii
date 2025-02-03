@@ -8,7 +8,7 @@ import { handleSearch } from '@/redux/pixelSlice'
 const SearchBox = () => {
   const router = useRouter()
   const [name, setName] = useState(router.query.name || '')
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
   const dispatch = useDispatch()
 
   const search = () => {

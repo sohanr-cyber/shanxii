@@ -49,7 +49,7 @@ const Create = ({ product: data }) => {
       query: query // Same as current query parameters
     })
   }
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
 
   const saveProduct = async () => {
     setError('')

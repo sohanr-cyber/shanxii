@@ -6,7 +6,7 @@ import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank'
 import { useRouter } from 'next/router'
 
 const SelectCategory = ({ selected, setSelected }) => {
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
 
   const router = useRouter()
 

@@ -20,7 +20,7 @@ const Create = ({ content: data }) => {
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   const router = useRouter()
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
   const userInfo = useSelector(state => state.user.userInfo)
   const headers = { Authorization: 'Bearer ' + userInfo?.token }
 

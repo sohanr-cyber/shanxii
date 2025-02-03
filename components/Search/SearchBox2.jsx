@@ -12,7 +12,7 @@ import SearchIcon from '@mui/icons-material/Search'
 
 const SearchBox2 = ({ setOpen }) => {
   const router = useRouter()
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
 
   const updateRoute = data => {
     const queryParams = { ...router.query, ...data }

@@ -12,7 +12,7 @@ import Categories from './Categories'
 
 const Filter = ({ setOpen }) => {
   const router = useRouter()
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
   const [price, setPrice] = useState({
     minPrice: router.query.minPrice,
     maxPrice: router.query.maxPrice

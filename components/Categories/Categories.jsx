@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 
 const Categories = () => {
   const [open, setOpen] = useState(false)
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
   const router = useRouter()
   const [opened, setOpened] = useState('')
 

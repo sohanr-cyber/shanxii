@@ -9,7 +9,7 @@ import { feacebook_page, instagram, whatsapp, footerP } from '@/utility/const'
 
 const Footer = () => {
   const router = useRouter()
-  const categories = useSelector(state => state.product.categories)
+  const categories = useSelector(state => state.category.categories)
 
   return (
     <>
