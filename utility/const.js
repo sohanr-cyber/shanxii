@@ -1,5 +1,6 @@
 import BASE_URL from '@/config'
-const companyName = 'StyleHive '
+// const companyName = 'StyleHive '
+const companyName = "AgroFresh";
 
 const footerP =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
@@ -65,20 +66,112 @@ const colors = [
 ]
 
 
+// const seoData = {
+//   title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
+//   description:
+//     'Discover the latest fashion trends with high-quality clothing and accessories. Shop stylish outfits at great prices only at FashionNest.',
+//   canonical: BASE_URL,
+//   openGraph: {
+//     url: BASE_URL,
+//     title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
+//     description:
+//       'Explore the newest fashion trends and timeless styles. Shop clothing, footwear, and accessories for men, women, and kids at FashionNest.',
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/og-image.jpg`,
+//         alt: `${companyName} Fashion Store`,
+//         width: 1200,
+//         height: 630
+//       }
+//     ],
+//     site_name: companyName
+//   },
+//   twitter: {
+//     handle: `@${companyName}`,
+//     site: `@${companyName}`,
+//     cardType: 'summary_large_image'
+//   }
+// };
+
+// const orderCartSeoData = {
+//   title: `Your Shopping Cart - ${companyName}`,
+//   description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
+//   canonical: `${BASE_URL}/cart`,
+//   openGraph: {
+//     title: `Your Shopping Cart - ${companyName}`,
+//     description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
+//     url: `${BASE_URL}/cart`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/cart.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Your Shopping Cart - ${companyName}`
+//       }
+//     ],
+//     type: 'website'
+//   },
+//   twitter: seoData.twitter
+// };
+
+// const TermsAndConditionSeoData = {
+//   title: `Terms and Conditions - ${companyName}`,
+//   description: `Review the terms and conditions for shopping at ${companyName}.`,
+//   canonical: `${BASE_URL}/terms-and-conditions`,
+//   openGraph: {
+//     title: `Terms and Conditions - ${companyName}`,
+//     description: `Review the terms and conditions for shopping at ${companyName}.`,
+//     url: `${BASE_URL}/terms-and-conditions`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/terms-and-conditions.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Terms and Conditions - ${companyName}`
+//       }
+//     ],
+//     type: 'website'
+//   },
+//   twitter: seoData.twitter
+// };
+
+// const privacyPolicySeoData = {
+//   title: `Privacy Policy - ${companyName}`,
+//   description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
+//   canonical: `${BASE_URL}/privacy-policy`,
+//   openGraph: {
+//     title: `Privacy Policy - ${companyName}`,
+//     description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
+//     url: `${BASE_URL}/privacy-policy`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/privacy-policy.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Privacy Policy - ${companyName}`
+//       }
+//     ],
+//     type: 'website'
+//   },
+//   twitter: seoData.twitter
+// };
+
+
+
 const seoData = {
-  title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
+  title: `${companyName} - Fresh, Organic, and Healthy Produce`,
   description:
-    'Discover the latest fashion trends with high-quality clothing and accessories. Shop stylish outfits at great prices only at FashionNest.',
+    "Buy the freshest organic fruits, vegetables, and farm produce directly from AgroFresh. We ensure quality and natural goodness in every product.",
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
+    title: `${companyName} - Fresh, Organic, and Healthy Produce`,
     description:
-      'Explore the newest fashion trends and timeless styles. Shop clothing, footwear, and accessories for men, women, and kids at FashionNest.',
+      "Discover organic and farm-fresh products at AgroFresh. We bring you healthy and chemical-free food straight from trusted farmers.",
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} Fashion Store`,
+        alt: `${companyName} - Fresh Organic Produce`,
         width: 1200,
         height: 630
       }
@@ -88,17 +181,17 @@ const seoData = {
   twitter: {
     handle: `@${companyName}`,
     site: `@${companyName}`,
-    cardType: 'summary_large_image'
+    cardType: "summary_large_image"
   }
 };
 
 const orderCartSeoData = {
   title: `Your Shopping Cart - ${companyName}`,
-  description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
+  description: `Review and manage your fresh organic produce orders at ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
     title: `Your Shopping Cart - ${companyName}`,
-    description: `Review and manage the stylish outfits in your cart at ${companyName}.`,
+    description: `Review and manage your fresh organic produce orders at ${companyName}.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
@@ -108,18 +201,18 @@ const orderCartSeoData = {
         alt: `Your Shopping Cart - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
 
 const TermsAndConditionSeoData = {
   title: `Terms and Conditions - ${companyName}`,
-  description: `Review the terms and conditions for shopping at ${companyName}.`,
+  description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
   canonical: `${BASE_URL}/terms-and-conditions`,
   openGraph: {
     title: `Terms and Conditions - ${companyName}`,
-    description: `Review the terms and conditions for shopping at ${companyName}.`,
+    description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
     url: `${BASE_URL}/terms-and-conditions`,
     images: [
       {
@@ -129,18 +222,18 @@ const TermsAndConditionSeoData = {
         alt: `Terms and Conditions - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
+  description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
   canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Understand how ${companyName} protects your personal data and privacy while shopping.`,
+    description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -150,7 +243,7 @@ const privacyPolicySeoData = {
         alt: `Privacy Policy - ${companyName}`
       }
     ],
-    type: 'website'
+    type: "website"
   },
   twitter: seoData.twitter
 };
