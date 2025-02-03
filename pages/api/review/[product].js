@@ -30,6 +30,8 @@ handler.post(async (req, res) => {
       return res.status(400).json({ message: 'Invalid rating value' });
     }
 
+    await db.connect()
+
     // Check if the product exists
     const existingProduct = await Product.findById(product);
     if (!existingProduct) {
@@ -52,6 +54,7 @@ handler.post(async (req, res) => {
     existingProduct.ratings = existingProduct.totalRatings / existingProduct.ratingCount;
 
     await existingProduct.save();
+    await db.disconnect()
 
     res.status(201).json({ review, ratingCount: existingProduct.ratingsCount, ratings: existingProduct.ratings });
   } catch (error) {
