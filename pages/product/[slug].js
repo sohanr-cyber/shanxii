@@ -75,7 +75,6 @@ export async function getStaticProps(context) {
       const resp = await axios.get(
         `${BASE_URL}/api/product/filter?categories=${categories}`
       )
-
       relatedProducts = resp.data.products.filter(i => i._id != data._id)
     }
 
@@ -86,7 +85,7 @@ export async function getStaticProps(context) {
         product: data,
         relatedProducts: relatedProducts,
       },
-      revalidate: 10 // Revalidate at most every 10 seconds
+      revalidate: 60 // Revalidate at most every 60 seconds
     }
   } catch (error) {
     console.error('Error fetching products:', error)
@@ -141,7 +140,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
     }
   }
 
-  
+
   useEffect(() => {
     fetchReview()
   }, [fetchReviewAgain, productData.slug])
