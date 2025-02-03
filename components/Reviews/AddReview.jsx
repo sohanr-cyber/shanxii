@@ -39,11 +39,18 @@ const AddReview = ({ setWriteReview, product }) => {
             dispatch(setReviews([data.review, ...reviews]))
             dispatch(setProduct({ ...productData, ratings: data.ratings, countRating: data.countRating }))
             dispatch(finishLoading())
+            dispatch(showSnackBar({
+                message: "Your review has been submitted successfully!",
+                option: {
+                    variant: "error"
+                }
+            }))
+            cons
             setWriteReview(false)
         } catch (error) {
             dispatch(finishLoading())
             dispatch(showSnackBar({
-                message: "Something Went Wrong !",
+                message: "Failed to submit your review !",
                 option: {
                     variant: "error"
                 }
