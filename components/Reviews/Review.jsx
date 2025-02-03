@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from '../../styles/Reviews/Review.module.css'
-import Rating from '@mui/material/Rating'
-import Stack from '@mui/material/Stack'
+
 import { getTime } from '@/utility/helper'
+import Ratings from '../Utility/Rating'
 
 const Review = ({ review }) => {
     return (
@@ -19,15 +19,8 @@ const Review = ({ review }) => {
                 </b>
             </div>
             <div className={styles.right}>
-                <Stack spacing={1}>
-                    <Rating
-                        name='half-rating-read'
-                        defaultValue={review.rating}
-                        precision={0.5}
-                        readOnly
-                        size='small'
-                    />
-                </Stack>
+
+                <Ratings ratings={review.rating} id={review._id} />
                 <div className={styles.text}>{review.content}</div>
                 <div className={styles.time}>{(review.createdAt.split("T")[0])}</div>
             </div>
