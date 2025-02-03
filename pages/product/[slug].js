@@ -128,7 +128,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
 
     // setThumbnail(product.thumbnail)
     setOpen("description")
-    setCurrentImage(product.images[0] || { image: product.thumbnail, colors: product.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
+    setCurrentImage(productData.images[0] || { image: productData.thumbnail, colors: productData.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
   }, [productData.slug])
 
   const fetchReview = async () => {
@@ -140,6 +140,8 @@ const Product = ({ product: productData, error, relatedProducts }) => {
       console.log(error)
     }
   }
+
+  
   useEffect(() => {
     fetchReview()
   }, [fetchReviewAgain, productData.slug])

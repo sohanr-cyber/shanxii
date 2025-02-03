@@ -13,6 +13,7 @@ const Ratings = ({ ratings, size, id }) => {
 
     return (
         <>
+            {rating}
             <Stack spacing={1}>
                 <Rating
                     name={`rating-${id}-${Math.random()}`} // Ensure uniqueness
