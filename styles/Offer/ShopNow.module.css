@@ -14,7 +14,8 @@
     background: var(--buttonBg);
     color: var(--buttonC);
     cursor: pointer;
-    display: inline-block;
+    display: inline-block;    font-weight: normal;
+
 }
 
 .wrapper b {

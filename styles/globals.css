@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Agu+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
 
 :root {
 
@@ -25,6 +26,7 @@
   --shadow: rgb(255, 255, 255, 0.1);
   --themeTransparent: linear-gradient(125deg, rgba(255, 255, 255, 0.3), rgba(47, 47, 47, 0.2), rgba(255, 255, 255, 0.3));
   --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1);
+  --hoverButtonBg: rgb(255, 0, 0);
 
 
   /* --background: aliceblue;
@@ -44,7 +46,8 @@
   --buttonPadding: 7px 10px;
   --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1));
   --hoverColor: var(--theme);
-  --themeTransparent: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgb(9, 82, 71, 0.1)); */
+  --themeTransparent: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgb(9, 82, 71, 0.1));
+  --hoverButtonBg: rgb(0, 213, 255); */
 
 
   /* --background: #fbfbfb;
@@ -60,8 +63,8 @@
   --theme: #647c7a;
   --icon: rgb(62, 86, 84);
   --buttonPadding: 7px 10px;
-
-  --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%); */
+  --logo: linear-gradient(45deg, rgb(62, 86, 84) 50%, rgb(62, 86, 84) 50%);
+  --hoverButtonBg: rgb(0, 255, 247); */
 
 
   /* --background: rgb(0, 136, 0, 0.1);
@@ -72,7 +75,7 @@
   --borderColor: rgba(52, 134, 11, 0.5);
   --inputField: linear-gradient(45deg, rgb(29, 102, 12, 0.1), rgb(137, 208, 5, 0.1));
   --hoverBgColor: rgb(29, 102, 12, 0.1);
-  --hoverColor: rgb(29, 102, 12);
+  --hoverColor: rgb(102, 93, 12);
   --scrollbar: rgb(29, 102, 12);
   --theme: rgb(29, 102, 12);
   --icon: rgb(29, 102, 12);
@@ -80,26 +83,11 @@
   --buttonPadding: 7px 10px;
   --themeTransparent: linear-gradient(125deg, rgba(1, 0, 30, 0.2), rgba(52, 126, 3, 0.2));
   --shadow: rgb(255, 255, 255, 0.1);
-  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1);  */
+  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1); 
+  --hoverButtonBg: rgb(255, 111, 0); */
 
 
-  /* --background: rgb(232, 241, 247);
-  --nav: white;
-  --cardBg: rgba(255, 255, 255, 255);
-  --buttonBg: linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255));
-  --buttonC: white;
-  --borderColor: rgba(197, 223, 244, 255);
-  --inputField: linear-gradient(245deg, rgba(96, 221, 255, 0.2), rgba(154, 209, 251, 0.2));
-  --hoverBgColor: rgba(7, 121, 214, 0.1);
-  --hoverColor: rgba(7, 121, 214, 255);
-  --scrollbar: rgba(7, 121, 214, 255);
-  --theme: rgba(7, 121, 214, 255);
-  --icon: rgba(7, 121, 214, 255);
-  --buttonPadding: 7px 10px;
-  --logo: linear-gradient(45deg, rgba(7, 121, 214, 255) 50%, rgba(7, 121, 214, 255) 50%);
-  --themeTransparent: linear-gradient(125deg, rgba(1, 0, 30, 0.2), rgba(0, 140, 255, 0.3));
-  --shadow: rgb(255, 255, 255, 0.1);
-  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1); */
+ 
 
 
 
@@ -117,10 +105,13 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-size: 97%;
-  font-family: "Lato", serif;
-  font-weight: normal;
+  font-size: 98%;
+  font-family: "Noto Sans Bengali", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
   /* text-transform: uppercase; */
 }
 
@@ -187,25 +178,27 @@ button {
 }
 
 
+
+
 label {
   font-weight: bold;
 }
 
 @media (max-width:570px) {
   body {
-    font-size: 94%;
+    font-size: 97%;
   }
 }
 
 @media (max-width:480px) {
   body {
-    font-size: 92%;
+    font-size: 96%;
   }
 }
 
 
 @media (max-width:380px) {
   body {
-    font-size: 90%;
+    font-size: 95%;
   }
 }

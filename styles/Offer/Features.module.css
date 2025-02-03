@@ -30,13 +30,13 @@
 
 
 .wrapper .feature:hover {
-    background: var(--hoverColor);
+    background: var(--theme);
     color: var(--buttonC)
 }
 
 
 .wrapper .feature:hover b {
-    background: var(--hoverColor);
+    background: var(--theme);
     color: var(--buttonC)
 }
 

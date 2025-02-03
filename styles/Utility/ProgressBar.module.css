@@ -2,7 +2,7 @@
     width: 100%;
     background-color: #b8aaaa;
     /* Background color of the progress bar */
-    border-radius: 4px;
+    border-radius: 0px;
     overflow: hidden;
     margin: 10px 0;
 }
