@@ -10,8 +10,7 @@
 
 .btn {
     background: var(--buttonBg);
-    border-radius: 0px;
-    color: var(--buttonC);
+    border-radius: 5px;    color: var(--buttonC);
     padding: var(--buttonPadding);
     text-align: center;
     margin: 12px 0;

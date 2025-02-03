@@ -1,7 +1,6 @@
 .wrapper {
     background-color: var(--cardBg);
-    border-radius: 0;
-    overflow: hidden;
+    border-radius: 5px;    overflow: hidden;
     max-width: 250px;
     cursor: pointer;
     /* min-width: 170px; */

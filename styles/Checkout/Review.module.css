@@ -6,8 +6,7 @@
 
 .left {
     padding: 10px;
-    border-radius: 0;
-    background: var(--cardBg);
+    border-radius: 5px;    background: var(--cardBg);
     flex: 2.5;
     box-shadow: var(--box-shadow);
 
@@ -60,8 +59,7 @@
 .left .flex .bkash {
     border: 1px solid var(--borderColor);
     padding: 10px;
-    border-radius: 0;
-    min-width: 150px;
+    border-radius: 5px;    min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;

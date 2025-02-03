@@ -9,7 +9,7 @@ import SubCategories2 from './SubCategories2'
 const List2 = () => {
   const categories = useSelector(state => state.category.categories)?.slice(
     0,
-    7
+    9
   )
   const [selected, setSelected] = useState({})
   const router = useRouter()

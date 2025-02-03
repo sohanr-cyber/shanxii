@@ -3,8 +3,7 @@
 .wrapper .shipping {
     background: var(--cardBg);
     padding: 15px;
-    border-radius: 0;
-    margin-bottom: 15px;
+    border-radius: 5px;    margin-bottom: 15px;
     ;
     box-shadow: var(--box-shadow);
 
@@ -68,6 +67,5 @@
 .shipping .paymentStatus {
     border: 1px solid var(--borderColor);
     padding: 2px 5px;
-    border-radius: 0;
-
+    border-radius: 5px;
 }

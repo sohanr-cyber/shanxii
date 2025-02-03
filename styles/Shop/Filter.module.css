@@ -116,8 +116,7 @@
 .selected {
     font-size: 80%;
     border: 1px solid var(--borderColor);
-    border-radius: 0;
-    display: inline-block;
+    border-radius: 5px;    display: inline-block;
     padding: 2px 5px;
     position: relative;
     background: var(--inputBg);

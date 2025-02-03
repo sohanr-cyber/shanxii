@@ -11,8 +11,7 @@
 }
 
 .wrapper .top .btn {
-    border-radius: 0;
-    background: var(--buttonBg);
+    border-radius: 5px;    background: var(--buttonBg);
     color: var(--buttonC);
     padding: 2px 5px;
     display: flex;

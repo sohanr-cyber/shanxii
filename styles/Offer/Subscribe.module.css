@@ -1,8 +1,7 @@
 .wrapper {
     /* background: var(--buttonBg); */
     /* color: var(--buttonC); */
-    border-radius: 0;
-    position: relative;
+    border-radius: 5px;    position: relative;
     overflow: hidden;
 
 }
@@ -51,8 +50,7 @@
 .wrapper .btn {
     margin: 10px 0;
     padding: var(--buttonPadding);
-    border-radius: 0;
-    background: var(--buttonBg);
+    border-radius: 5px;    background: var(--buttonBg);
     color: var(--buttonC);
     cursor: pointer;
     display: inline-block;

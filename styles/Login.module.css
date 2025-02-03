@@ -10,8 +10,7 @@
 .wrapper .form__container {
     background: var(--cardBg);
     padding: 15px;
-    border-radius: 0;
-    text-align: center;
+    border-radius: 5px;    text-align: center;
     /* min-width: 280px; */
 }
 
@@ -43,8 +42,7 @@
 .wrapper form .btn {
     padding: 10px;
     ;
-    border-radius: 0;
-    border: none;
+    border-radius: 5px;    border: none;
     /* border: 1px solid var(--borderColor); */
     background-color: aliceblue;
 }

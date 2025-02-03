@@ -33,8 +33,7 @@
 }
 
 .wrapper .items .item img {
-    border-radius: 0;
-    overflow: hidden;
+    border-radius: 5px;    overflow: hidden;
     display: none;
 }
 

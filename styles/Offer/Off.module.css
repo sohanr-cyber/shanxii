@@ -1,7 +1,6 @@
 .wrapper {
     text-align: center;
-    border-radius: 0;
-    overflow: hidden;
+    border-radius: 5px;    overflow: hidden;
     position: relative;
 
 }

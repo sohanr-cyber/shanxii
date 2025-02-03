@@ -20,8 +20,7 @@
 
 .statuses span {
     padding: 3px 7px;
-    border-radius: 0;
-    border: 1px solid var(--borderColor);
+    border-radius: 5px;    border: 1px solid var(--borderColor);
     cursor: pointer;
 }
 

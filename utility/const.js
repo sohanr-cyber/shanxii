@@ -1,6 +1,4 @@
 import BASE_URL from '@/config'
-// const companyName = 'StyleHive '
-const companyName = "AgroFresh";
 
 const footerP =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
@@ -65,6 +63,7 @@ const colors = [
   { name: 'Gold', code: '#FFD700' }
 ]
 
+// const companyName = 'StyleHive '
 
 // const seoData = {
 //   title: `${companyName} - Trendy, Stylish, and Affordable Fashion`,
@@ -157,21 +156,115 @@ const colors = [
 // };
 
 
+// const companyName = "AgroFresh";
 
+// const seoData = {
+//   title: `${companyName} - Fresh, Organic, and Healthy Produce`,
+//   description:
+//     "Buy the freshest organic fruits, vegetables, and farm produce directly from AgroFresh. We ensure quality and natural goodness in every product.",
+//   canonical: BASE_URL,
+//   openGraph: {
+//     url: BASE_URL,
+//     title: `${companyName} - Fresh, Organic, and Healthy Produce`,
+//     description:
+//       "Discover organic and farm-fresh products at AgroFresh. We bring you healthy and chemical-free food straight from trusted farmers.",
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/og-image.jpg`,
+//         alt: `${companyName} - Fresh Organic Produce`,
+//         width: 1200,
+//         height: 630
+//       }
+//     ],
+//     site_name: companyName
+//   },
+//   twitter: {
+//     handle: `@${companyName}`,
+//     site: `@${companyName}`,
+//     cardType: "summary_large_image"
+//   }
+// };
+
+// const orderCartSeoData = {
+//   title: `Your Shopping Cart - ${companyName}`,
+//   description: `Review and manage your fresh organic produce orders at ${companyName}.`,
+//   canonical: `${BASE_URL}/cart`,
+//   openGraph: {
+//     title: `Your Shopping Cart - ${companyName}`,
+//     description: `Review and manage your fresh organic produce orders at ${companyName}.`,
+//     url: `${BASE_URL}/cart`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/cart.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Your Shopping Cart - ${companyName}`
+//       }
+//     ],
+//     type: "website"
+//   },
+//   twitter: seoData.twitter
+// };
+
+// const TermsAndConditionSeoData = {
+//   title: `Terms and Conditions - ${companyName}`,
+//   description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
+//   canonical: `${BASE_URL}/terms-and-conditions`,
+//   openGraph: {
+//     title: `Terms and Conditions - ${companyName}`,
+//     description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
+//     url: `${BASE_URL}/terms-and-conditions`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/terms-and-conditions.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Terms and Conditions - ${companyName}`
+//       }
+//     ],
+//     type: "website"
+//   },
+//   twitter: seoData.twitter
+// };
+
+// const privacyPolicySeoData = {
+//   title: `Privacy Policy - ${companyName}`,
+//   description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
+//   canonical: `${BASE_URL}/privacy-policy`,
+//   openGraph: {
+//     title: `Privacy Policy - ${companyName}`,
+//     description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
+//     url: `${BASE_URL}/privacy-policy`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/privacy-policy.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Privacy Policy - ${companyName}`
+//       }
+//     ],
+//     type: "website"
+//   },
+//   twitter: seoData.twitter
+// };
+
+
+
+const companyName = "ElectroHub";
 const seoData = {
-  title: `${companyName} - Fresh, Organic, and Healthy Produce`,
+  title: `${companyName} - Latest Electronics, Gadgets & Accessories`,
   description:
-    "Buy the freshest organic fruits, vegetables, and farm produce directly from AgroFresh. We ensure quality and natural goodness in every product.",
+    "Shop the newest electronics, smart gadgets, and accessories at ElectroHub. Get high-quality tech products at unbeatable prices.",
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Fresh, Organic, and Healthy Produce`,
+    title: `${companyName} - Latest Electronics, Gadgets & Accessories`,
     description:
-      "Discover organic and farm-fresh products at AgroFresh. We bring you healthy and chemical-free food straight from trusted farmers.",
+      "Find cutting-edge electronics, mobile accessories, smart devices, and more at ElectroHub. Your one-stop tech store for the best deals.",
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} - Fresh Organic Produce`,
+        alt: `${companyName} - Electronics & Gadgets Store`,
         width: 1200,
         height: 630
       }
@@ -187,11 +280,11 @@ const seoData = {
 
 const orderCartSeoData = {
   title: `Your Shopping Cart - ${companyName}`,
-  description: `Review and manage your fresh organic produce orders at ${companyName}.`,
+  description: `Review and manage the electronics and gadgets in your cart at ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
     title: `Your Shopping Cart - ${companyName}`,
-    description: `Review and manage your fresh organic produce orders at ${companyName}.`,
+    description: `Review and manage the electronics and gadgets in your cart at ${companyName}.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
@@ -208,11 +301,11 @@ const orderCartSeoData = {
 
 const TermsAndConditionSeoData = {
   title: `Terms and Conditions - ${companyName}`,
-  description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
+  description: `Review the terms and conditions for shopping at ${companyName}.`,
   canonical: `${BASE_URL}/terms-and-conditions`,
   openGraph: {
     title: `Terms and Conditions - ${companyName}`,
-    description: `Review the terms and conditions for ordering fresh and organic produce from ${companyName}.`,
+    description: `Review the terms and conditions for shopping at ${companyName}.`,
     url: `${BASE_URL}/terms-and-conditions`,
     images: [
       {
@@ -229,11 +322,11 @@ const TermsAndConditionSeoData = {
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
+  description: `Learn how ${companyName} protects your personal data while shopping for electronics and gadgets.`,
   canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Learn how ${companyName} protects your personal information while you shop for organic produce.`,
+    description: `Learn how ${companyName} protects your personal data while shopping for electronics and gadgets.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -247,7 +340,6 @@ const privacyPolicySeoData = {
   },
   twitter: seoData.twitter
 };
-
 
 
 const orderDetailSeoData = {
