@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }) {
         <SnackbarProvider>
           <Layout>
             <>
-              <NextNProgress color='black' />
+              <NextNProgress />
               <Component {...pageProps} />
             </>
           </Layout>{' '}

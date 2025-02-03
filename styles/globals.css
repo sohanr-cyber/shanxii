@@ -29,7 +29,7 @@
   --hoverButtonBg: rgb(255, 0, 0);
 
 
-  --background: aliceblue;
+  /* --background: aliceblue;
   --nav: white;
   --black: rgb(0, 0, 0);
   --borderColor: rgb(185, 185, 185);
@@ -47,7 +47,27 @@
   --tGradient: linear-gradient(45deg, rgb(8, 78, 67, 0.3), rgba(0, 183, 255, 0.1));
   --hoverColor: var(--theme);
   --themeTransparent: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgb(9, 82, 71, 0.1));
-  --hoverButtonBg: rgb(0, 213, 255);
+  --hoverButtonBg: rgb(0, 213, 255); */
+
+
+  --background: rgb(232, 241, 247);
+  --nav: white;
+  --cardBg: rgba(255, 255, 255, 255);
+  --buttonBg: linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255));
+  --buttonC: white;
+  --borderColor: rgba(197, 223, 244, 255);
+  --inputField: linear-gradient(245deg, rgba(96, 221, 255, 0.2), rgba(154, 209, 251, 0.2));
+  --hoverBgColor: rgba(7, 121, 214, 0.1);
+  --hoverColor: rgba(7, 121, 214, 255);
+  --scrollbar: rgba(7, 121, 214, 255);
+  --theme: rgba(7, 121, 214, 255);
+  --icon: rgba(7, 121, 214, 255);
+  --buttonPadding: 7px 10px;
+  --logo: linear-gradient(45deg, rgba(7, 121, 214, 255) 50%, rgba(7, 121, 214, 255) 50%);
+  --themeTransparent: linear-gradient(125deg, rgba(1, 0, 30, 0.2), rgba(0, 140, 255, 0.3));
+  --shadow: rgb(255, 255, 255, 0.1);
+  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1);
+  --hoverButtonBg: rgb(0, 255, 247);
 
 
   /* --background: #fbfbfb;
@@ -87,7 +107,7 @@
   --hoverButtonBg: rgb(255, 111, 0); */
 
 
- 
+
 
 
 
@@ -167,7 +187,7 @@ textarea {
 button {
   border: none;
   font-family: 'Ubuntu', sans-serif;
-  border-radius: 0px;
+  border-radius: 5px;
   background: var(--buttonBg);
   color: var(--buttonC);
   cursor: pointer;

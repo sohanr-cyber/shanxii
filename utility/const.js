@@ -250,21 +250,115 @@ const colors = [
 
 
 
-const companyName = "ElectroHub";
+// const companyName = "ElectroHub";
+// const seoData = {
+//   title: `${companyName} - Latest Electronics, Gadgets & Accessories`,
+//   description:
+//     "Shop the newest electronics, smart gadgets, and accessories at ElectroHub. Get high-quality tech products at unbeatable prices.",
+//   canonical: BASE_URL,
+//   openGraph: {
+//     url: BASE_URL,
+//     title: `${companyName} - Latest Electronics, Gadgets & Accessories`,
+//     description:
+//       "Find cutting-edge electronics, mobile accessories, smart devices, and more at ElectroHub. Your one-stop tech store for the best deals.",
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/og-image.jpg`,
+//         alt: `${companyName} - Electronics & Gadgets Store`,
+//         width: 1200,
+//         height: 630
+//       }
+//     ],
+//     site_name: companyName
+//   },
+//   twitter: {
+//     handle: `@${companyName}`,
+//     site: `@${companyName}`,
+//     cardType: "summary_large_image"
+//   }
+// };
+
+// const orderCartSeoData = {
+//   title: `Your Shopping Cart - ${companyName}`,
+//   description: `Review and manage the electronics and gadgets in your cart at ${companyName}.`,
+//   canonical: `${BASE_URL}/cart`,
+//   openGraph: {
+//     title: `Your Shopping Cart - ${companyName}`,
+//     description: `Review and manage the electronics and gadgets in your cart at ${companyName}.`,
+//     url: `${BASE_URL}/cart`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/cart.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Your Shopping Cart - ${companyName}`
+//       }
+//     ],
+//     type: "website"
+//   },
+//   twitter: seoData.twitter
+// };
+
+// const TermsAndConditionSeoData = {
+//   title: `Terms and Conditions - ${companyName}`,
+//   description: `Review the terms and conditions for shopping at ${companyName}.`,
+//   canonical: `${BASE_URL}/terms-and-conditions`,
+//   openGraph: {
+//     title: `Terms and Conditions - ${companyName}`,
+//     description: `Review the terms and conditions for shopping at ${companyName}.`,
+//     url: `${BASE_URL}/terms-and-conditions`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/terms-and-conditions.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Terms and Conditions - ${companyName}`
+//       }
+//     ],
+//     type: "website"
+//   },
+//   twitter: seoData.twitter
+// };
+
+// const privacyPolicySeoData = {
+//   title: `Privacy Policy - ${companyName}`,
+//   description: `Learn how ${companyName} protects your personal data while shopping for electronics and gadgets.`,
+//   canonical: `${BASE_URL}/privacy-policy`,
+//   openGraph: {
+//     title: `Privacy Policy - ${companyName}`,
+//     description: `Learn how ${companyName} protects your personal data while shopping for electronics and gadgets.`,
+//     url: `${BASE_URL}/privacy-policy`,
+//     images: [
+//       {
+//         url: `${BASE_URL}/images/privacy-policy.png`,
+//         width: 1200,
+//         height: 630,
+//         alt: `Privacy Policy - ${companyName}`
+//       }
+//     ],
+//     type: "website"
+//   },
+//   twitter: seoData.twitter
+// };
+
+
+
+const companyName = "DecoNest";
+
 const seoData = {
-  title: `${companyName} - Latest Electronics, Gadgets & Accessories`,
+  title: `${companyName} - Elegant Home Decor & Stylish Interiors`,
   description:
-    "Shop the newest electronics, smart gadgets, and accessories at ElectroHub. Get high-quality tech products at unbeatable prices.",
+    "Transform your living space with DecoNest. Shop premium home decor, furniture, and interior design essentials to create a cozy and stylish home.",
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Latest Electronics, Gadgets & Accessories`,
+    title: `${companyName} - Elegant Home Decor & Stylish Interiors`,
     description:
-      "Find cutting-edge electronics, mobile accessories, smart devices, and more at ElectroHub. Your one-stop tech store for the best deals.",
+      "Discover beautiful home decor, furniture, lighting, and accessories at DecoNest. Elevate your interiors with our handpicked collection.",
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} - Electronics & Gadgets Store`,
+        alt: `${companyName} - Home Decor & Interiors`,
         width: 1200,
         height: 630
       }
@@ -280,11 +374,11 @@ const seoData = {
 
 const orderCartSeoData = {
   title: `Your Shopping Cart - ${companyName}`,
-  description: `Review and manage the electronics and gadgets in your cart at ${companyName}.`,
+  description: `Review and manage the home decor and furniture in your cart at ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
     title: `Your Shopping Cart - ${companyName}`,
-    description: `Review and manage the electronics and gadgets in your cart at ${companyName}.`,
+    description: `Review and manage the home decor and furniture in your cart at ${companyName}.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
@@ -322,11 +416,11 @@ const TermsAndConditionSeoData = {
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Learn how ${companyName} protects your personal data while shopping for electronics and gadgets.`,
+  description: `Learn how ${companyName} protects your personal data while shopping for home decor and furniture.`,
   canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Learn how ${companyName} protects your personal data while shopping for electronics and gadgets.`,
+    description: `Learn how ${companyName} protects your personal data while shopping for home decor and furniture.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -340,7 +434,6 @@ const privacyPolicySeoData = {
   },
   twitter: seoData.twitter
 };
-
 
 const orderDetailSeoData = {
   title: `Order Details - ${companyName}`,
@@ -448,25 +541,26 @@ const registerSeoData = {
 };
 
 const base64Img = "/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCAApACkDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAEDBAX/xAAnEAACAgECBQQDAQAAAAAAAAABAgADEQQhEiIxQXETQlFhMjPB0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABgRAQEBAQEAAAAAAAAAAAAAAAABERJB/9oADAMBAAIRAxEAPwDYiJA6mB6SjqrmWwIpzY34jpj6lk1m3F7jX5EMg95ii2zhsdnwUwyHHKRnEtUX5uFTMSwbGRuAf8MvKdX1oxQHSEjYmRrX9DVKxBbBzg+4HYibB6SjrG01pNdythT+we1viJcZsZgrDW8KOWrIAXA5j9Y/vST0o1rqhPpVBtlQ9vPmStTWlhr9dK1bYhU4c+TLGlbToVCWBrXHcYz9AdhLpYuDpCOKRTkFmkqscOy83ffY+ZPCBANLQFI4MgjfJO/mNNNUjq6rzKMAk5k0IAIo4QP/2Q=="
-const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-const themeTransparent = 'rgb(8, 78, 67,0.1)'
-const themeC = 'rgb(8, 78, 67)'
-const buttonC = 'white'
-const bg = 'aliceblue'
-const outerBg = 'lightgrey'
-const buttonBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
-const borderColor = 'rgb(8, 78, 67,0.1)'
 
-// const themeBg =
-//   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
-// const themeTransparent = 'rgba(7, 121, 214,0.1)'
-// const themeC = 'rgba(7, 121, 214, 255)'
+// const themeBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+// const themeTransparent = 'rgb(8, 78, 67,0.1)'
+// const themeC = 'rgb(8, 78, 67)'
 // const buttonC = 'white'
-// const buttonBg =
-//   'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
-// const bg = 'white'
-// const outerBg = 'rgb(232, 241, 247)'
-// const borderColor = 'rgba(197, 223, 244, 255)'
+// const bg = 'aliceblue'
+// const outerBg = 'lightgrey'
+// const buttonBg = 'linear-gradient(45deg, rgb(8, 78, 67), rgb(9, 82, 71))'
+// const borderColor = 'rgb(8, 78, 67,0.1)'
+
+const themeBg =
+  'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
+const themeTransparent = 'rgba(7, 121, 214,0.1)'
+const themeC = 'rgba(7, 121, 214, 255)'
+const buttonC = 'white'
+const buttonBg =
+  'linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255))'
+const bg = 'white'
+const outerBg = 'rgb(232, 241, 247)'
+const borderColor = 'rgba(197, 223, 244, 255)'
 
 // const themeBg = 'linear-gradient(45deg, rgb(29, 102, 12), rgb(137, 208, 5))'
 // const themeTransparent = 'rgba(7, 121, 214,0.1)'
