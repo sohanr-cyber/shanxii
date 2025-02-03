@@ -15,8 +15,8 @@
   --buttonC: white;
   --borderColor: #d7d7d7;
   --inputField: linear-gradient(245deg, rgba(255, 255, 255), rgba(255, 255, 255));
-  --hoverBgColor: rgb(253, 253, 253);
-  --hoverColor: rgb(0, 0, 0);
+  --hoverBgColor: rgb(255, 0, 0, 0.1);
+  --hoverColor: rgb(255, 0, 0);
   --scrollbar: rgb(7, 7, 7);
   --theme: #000000;
   --icon: rgb(0, 0, 0);
@@ -176,7 +176,7 @@ textarea {
 button {
   border: none;
   font-family: 'Ubuntu', sans-serif;
-  border-radius: 0;
+  border-radius: 0px;
   background: var(--buttonBg);
   color: var(--buttonC);
   cursor: pointer;

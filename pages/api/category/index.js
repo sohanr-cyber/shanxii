@@ -4,7 +4,7 @@ import Category from '@/database/model/Category'
 import { isAdmin, isAuth } from '@/utility'
 import nc from 'next-connect'
 import slugify from 'slugify'
-const PAGE_SIZE = 100
+const PAGE_SIZE = 10
 const handler = nc()
 
 
