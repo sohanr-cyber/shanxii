@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Shop/Shop.module.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt'
 import GridViewIcon from '@mui/icons-material/GridView'
@@ -9,6 +9,7 @@ import { TurnRightSharp } from '@mui/icons-material'
 import Filter from '@/components/Shop/Filter'
 import Pagination from '@/components/Utility/Pagination'
 import { useRouter } from 'next/router'
+import filterProducts from '@/utility/fillter'
 
 const sortOptions = [
   {
@@ -47,19 +48,34 @@ const sortOptions = [
     }
   }
 ]
-const Home = ({ products, totalPages, currentPage, count }) => {
+const Home = ({ products }) => {
+  const [productData, setProductData] = useState(filterProducts(products, {}))
+
+
   const [open, setOpen] = useState(false)
   const router = useRouter()
+
   const updateRoute = data => {
     console.log({ data })
-    const queryParams = { ...router.query, ...data }
+    const queryParams = { ...router.query, page: 1, ...data }
 
     router.push({
       pathname: router.pathname,
       query: queryParams,
       shallow: false
     })
+
+
   }
+
+  useEffect(() => {
+    const queryParams = { ...router.query }
+    console.log({ queryParams })
+    setProductData(filterProducts(products, queryParams))
+
+  }, [router.query])
+
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
@@ -68,7 +84,7 @@ const Home = ({ products, totalPages, currentPage, count }) => {
             <FilterAltIcon />
             Filter
           </div>
-          <div>{count} items found </div>
+          <div>{productData.count} items found </div>
         </div>
         <div className={styles.right}>
           <select
@@ -87,12 +103,12 @@ const Home = ({ products, totalPages, currentPage, count }) => {
         </div>
       </div>
       <div className={styles.products}>
-        {[...products].map((item, index) => (
+        {productData.products.map((item, index) => (
           <Product key={index} item={item} redirect={true} />
         ))}
       </div>
       <div className={styles.flex}>
-        <Pagination totalPages={totalPages} currentPage={currentPage} />
+        <Pagination totalPages={productData.totalPages} currentPage={productData.page} />
       </div>
       {open && (
         <div className={styles.filterOptions}>
@@ -105,42 +121,26 @@ const Home = ({ products, totalPages, currentPage, count }) => {
 
 export default Home
 
-export async function getServerSideProps (context) {
-  const {
-    name,
-    categories,
-    colors,
-    minPrice,
-    maxPrice,
-    page,
-    sortBy,
-    sortOrder
-  } = context.query
+export async function getStaticProps() {
   try {
-    const response = await axios.get(
-      `${BASE_URL}/api/product/filter?blur=true&name=${name || ''}&categories=${
-        categories || 'all'
-      }&colors=${colors || 'all'}&minPrice=${minPrice || 'all'}&maxPrice=${
-        maxPrice || 'all'
-      }&page=${page || 1}&sortBy=${sortBy || ''}&sortOrder=${sortOrder || ''}`
-    )
-    const { products, totalPages, page: currentPage, count } = response.data
+    const response = await axios.get(`${BASE_URL}/api/product/search`);
+    const products = response.data;
+
     return {
       props: {
-        title: 'Product List',
         products,
-        totalPages,
-        currentPage,
-        count
-      }
-    }
+      },
+      revalidate: 60, // Revalidate every 60 seconds (1 minute)
+    };
   } catch (error) {
-    console.error('Error fetching products:', error)
+    console.error('Error fetching products:', error);
+    
     return {
       props: {
         title: 'Product List',
-        products: []
-      }
-    }
+        products: [],
+      },
+      revalidate: 60, // Ensure revalidation even if there's an error
+    };
   }
 }

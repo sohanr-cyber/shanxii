@@ -5,6 +5,7 @@ import Product from '@/database/model/Product'
 import Category from '@/database/model/Category'
 import { ExtractColors, getPlaceholderImage } from '@/utility/image'
 import nc from 'next-connect'
+import filterProducts from '@/utility/fillter'
 
 const handler = nc()
 
@@ -75,7 +76,7 @@ handler.get(async (req, res) => {
       filter.colors = { $in: colors.split(',') } // Filter products by colors
     }
 
-  
+
 
     page = page || 1
     const skip = (page - 1) * limit
@@ -131,5 +132,8 @@ handler.get(async (req, res) => {
     res.status(500).json({ message: 'Server Error' })
   }
 })
+
+
+
 
 export default handler

@@ -19,7 +19,7 @@ const Filter = ({ setOpen }) => {
   })
 
   const updateRoute = data => {
-    const queryParams = { ...router.query, ...data }
+    const queryParams = { ...router.query, page: 1, ...data }
     router.push({
       pathname: router.pathname,
       query: queryParams,
