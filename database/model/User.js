@@ -13,6 +13,8 @@ const userSchema = new mongoose.Schema(
       // required: true,
       minlength: 6 // Minimum password length for security
     },
+    fcmToken: { type: String, },
+
     // User details
     firstName: {
       type: String,

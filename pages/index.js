@@ -58,8 +58,8 @@ export default function Home({ data, contents }) {
         {/* <Header2 contents={contents} /> */}
         <Header3 contents={contents.filter(i => i.position == "header")} />
         <div className={styles.categoriesInRow}>
-          <Row />
-          {/* <Grid /> */}
+          {/* <Row /> */}
+          <Grid />
         </div>
         {data.slice(0, -3)?.length > 0 && data.slice(0, -3).map((i, index) => (
           <ProductsByCategory2

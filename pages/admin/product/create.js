@@ -17,7 +17,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { SubtitlesOutlined } from '@mui/icons-material'
 import { generateUniqueID } from '@/utility/helper'
 
-const Create = ({ product: data }) => {
+const Create = ({ product: data, brands }) => {
   const [images, setImages] = useState([])
   const [product, setProduct] = useState(data)
   const [error, setError] = useState('')
@@ -224,6 +224,7 @@ const Create = ({ product: data }) => {
                 max='100'
               />
             </div>
+
           </div>
           <div className={styles.flex}>
             <div className={styles.field}>
@@ -253,6 +254,7 @@ const Create = ({ product: data }) => {
 
             </div>
           </div>
+
           <div className={styles.field}>
             <label>Charecteristics</label>
             {product.attributes?.map((i, indx) => (
@@ -333,6 +335,15 @@ const Create = ({ product: data }) => {
             ></textarea>
           </div>
 
+          <div className={styles.field}>
+            <label>Brand(optional)</label>
+            <div className={`${styles.options} ${styles.flexWrap}`} >
+              {brands.map((i, index) => (<span style={product.brand == i._id ? {
+                background: "black", color: "white"
+              } : {}} onClick={() => product.brand == i._id ? setProduct({ ...product, brand: null }) : setProduct({ ...product, brand: i._id })}>{i.name}</span>))}
+            </div>
+          </div>
+
           <div
             className={styles.field}
             style={{
@@ -376,7 +387,7 @@ const Create = ({ product: data }) => {
           </div>
           <div className={styles.field}>
             <label>Product Thumbnail</label>
-            <Upload
+            <Upload type={".png, .jpg, .jpeg , .webp"}
               handle={files => {
                 setProduct(prev => ({ ...prev, thumbnail: files.url }))
               }}
@@ -476,15 +487,23 @@ export async function getServerSideProps({ query }) {
     return data
   }
 
+
+  const fetchBrand = async () => {
+    const { data } = await axios.get(`${BASE_URL}/api/brand`)
+    return data
+  }
+
+
   const { categories } = await fetchCategory()
+  const { brands } = await fetchBrand()
 
   if (id) {
     const product = await fetchProduct()
-
     return {
       props: {
         product,
-        categories
+        categories,
+        brands
       }
     }
   }
@@ -505,8 +524,10 @@ export async function getServerSideProps({ query }) {
         metaDescription: '',
         stockQuantity: 0,
         sold: 0,
+        brand: "",
       },
-      categories
+      categories,
+      brands
     }
   }
 }

@@ -1,0 +1,19 @@
+.wrapper {
+    padding: 10px;
+    background: var(--buttonBg);
+    color: var(--buttonC);
+
+
+}
+
+.wrapper .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 100%;
+
+}
+
+.wrapper .bottom {
+    font-size: 80%;
+}

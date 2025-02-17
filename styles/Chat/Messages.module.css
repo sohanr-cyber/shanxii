@@ -1,0 +1,23 @@
+.wrapper {
+    padding: 10px;
+    background-color: #f0f2f5;
+    padding-right: 0;
+    padding-bottom: 40px;
+
+}
+
+.wrapper .messages {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    overflow-y: auto;
+}
+
+.wrapper .message {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 5px 10px;
+    font-size: 14px;
+    background: var(--cardBg);
+}

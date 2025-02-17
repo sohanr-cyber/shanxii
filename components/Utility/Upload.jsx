@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { storage } from '@/database/firebase'
 // import ProgressBar from './ProgressBar'
 import styles from '../../styles/Utility/Upload.module.css'
@@ -13,6 +13,7 @@ const Upload = ({ handle, type }) => {
   console.log({ file })
 
   const handleFile = file => {
+    
     console.log('file upload starred')
     console.log(file)
     if (!file) return

@@ -19,13 +19,16 @@ const productSchema = new mongoose.Schema(
     description: {
       type: String
     },
+    specification: {
+      type: String
+    },
     featured: {
       type: Boolean,
       default: false
     },
     ratings: { type: Number },
-    totalRatings:{type:Number},
-    ratingCount:{type:Number},
+    totalRatings: { type: Number },
+    ratingCount: { type: Number },
     sizes: { type: String },
     price: {
       type: Number,
@@ -48,6 +51,10 @@ const productSchema = new mongoose.Schema(
         ref: 'Category'
       }
     ],
+    brand: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Brand'
+    },
     colors: { type: Array },
     // Media and content
     images: [
@@ -84,6 +91,7 @@ const productSchema = new mongoose.Schema(
     metaDescription: {
       type: String
     },
+
 
     // Additional attributes
     attributes: [

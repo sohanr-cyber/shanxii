@@ -9,8 +9,11 @@ import SelectCategory from './SelectCategory'
 
 const SelectParentCategory = ({ category, setCategory }) => {
   const categories = useSelector(state => state.category.categories)
-
+  const userInfo = useSelector(state => state.user.userInfo)
   const router = useRouter()
+  const handleDoubleClick = (item) => {
+    userInfo?.role == "admin" && router.push(`/admin/category/create?id=${item._id}`)
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -28,7 +31,7 @@ const SelectParentCategory = ({ category, setCategory }) => {
               />
             )}
 
-            <div className={styles.name}>{i.name}</div>
+            <div className={styles.name} onDoubleClick={() => handleDoubleClick(i)}>{i.name}</div>
           </div>
           {i.children.length > 0 &&
             i.children?.map((i, index) => (
@@ -46,7 +49,7 @@ const SelectParentCategory = ({ category, setCategory }) => {
                     />
                   )}
 
-                  <div className={styles.name}>{i.name}</div>
+                  <div className={styles.name} onDoubleClick={() => handleDoubleClick(i)}>{i.name}</div>
                 </div>
                 {i.children.length > 0 &&
                   i.children?.map((i, index) => (
@@ -65,7 +68,7 @@ const SelectParentCategory = ({ category, setCategory }) => {
                         />
                       )}
 
-                      <div className={styles.name}>{i.name}</div>
+                      <div className={styles.name} onDoubleClick={() => handleDoubleClick(i)}>{i.name}</div>
                     </div>
                   ))}
               </>

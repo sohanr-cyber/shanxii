@@ -8,7 +8,7 @@ import { AspectRatio } from '@mui/icons-material'
 const Grid = () => {
     const categories = useSelector(state => state.category.categories)?.slice(
         0,
-        12
+        14
     )
     const router = useRouter()
     const userInfo = useSelector(state => state.user.userInfo)

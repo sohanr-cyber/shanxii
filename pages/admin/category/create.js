@@ -154,6 +154,7 @@ const Create = ({ category: data }) => {
           <div className={styles.field}>
             <label>Category Icon</label>
             <Upload
+            type={ ".png, .jpg, .jpeg , .webp"}
               handle={files => {
                 setCategory(prev => ({ ...prev, image: files.url }))
               }}

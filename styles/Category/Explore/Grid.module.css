@@ -1,6 +1,6 @@
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 15px;
     /* margin: 25px 0; */
 
@@ -19,10 +19,16 @@
     /* min-width: 100px; */
     box-shadow: var(--box-shadow);
     cursor: pointer;
+    text-align: center;
 
 }
 
-
+@media (max-width:920px) {
+    .wrapper {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px
+    }
+}
 
 @media (max-width:720px) {
     .wrapper {
@@ -57,7 +63,7 @@
     }
 
     .wrapper .category .icon img {
-        transform: scale(0.6);
+        transform: scale(0.9);
     }
 
 }

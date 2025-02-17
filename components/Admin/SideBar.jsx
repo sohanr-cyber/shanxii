@@ -23,6 +23,8 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import CameraIcon from '@mui/icons-material/Camera'
 import Logout from '../Utility/Logout'
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
+
 
 const SideBar = ({ setOpen }) => {
   const router = useRouter()
@@ -204,6 +206,55 @@ const SideBar = ({ setOpen }) => {
           )}
           <div
             className={styles.item}
+            onClick={() =>
+              setVisible(prev => (prev == 'brand' ? '' : 'brand'))
+            }
+          >
+            <div className={styles.flex}>
+              {' '}
+              <div className={styles.icon}>
+                <BrandingWatermarkIcon />
+              </div>
+              <div className={styles.title}>Brand</div>{' '}
+            </div>
+            <div className={styles.icon}>
+              {visible == 'brand' ? (
+                <KeyboardArrowUpIcon />
+              ) : (
+                <KeyboardArrowDownIcon />
+              )}{' '}
+            </div>
+          </div>{' '}
+          {visible == 'brand' && (
+            <div className={styles.inner__items}>
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/brand')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <FormatListBulletedIcon />
+                  </div>
+                  <div className={styles.title}>Brand List</div>
+                </div>
+              </div>{' '}
+              <div
+                className={styles.item}
+                onClick={() => router.push('/admin/brand/create')}
+              >
+                <div className={styles.flex}>
+                  {' '}
+                  <div className={styles.icon}>
+                    <AddCircleIcon />
+                  </div>
+                  <div className={styles.title}>Add Brand</div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div
+            className={styles.item}
             onClick={() => setVisible(prev => (prev == 'order' ? '' : 'order'))}
           >
             <div className={styles.flex}>
@@ -251,7 +302,7 @@ const SideBar = ({ setOpen }) => {
             onClick={() =>
               setVisible(prev => (prev == 'coupon' ? '' : 'coupon'))
             }
-            // style={{ display: 'none' }}
+          // style={{ display: 'none' }}
           >
             <div className={styles.flex}>
               {' '}

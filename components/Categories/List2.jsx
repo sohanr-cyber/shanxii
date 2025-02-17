@@ -9,7 +9,7 @@ import SubCategories2 from './SubCategories2'
 const List2 = () => {
   const categories = useSelector(state => state.category.categories)?.slice(
     0,
-    9
+    5
   )
   const [selected, setSelected] = useState({})
   const router = useRouter()
@@ -33,7 +33,7 @@ const List2 = () => {
             </div>
             <div
               className={styles.item}
-              style={{ minWidth: `${"shop".length * 8.5}px` }}
+              style={{ minWidth: `${"shop".length * 2}px` }}
             >
               <span
 

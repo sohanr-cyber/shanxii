@@ -1,3 +1,5 @@
+import db from '@/database/connection'
+import User from '@/database/model/User'
 import UserService from '@/services/user-service'
 import { isAuth } from '@/utility'
 import nextConnect from 'next-connect'
@@ -16,4 +18,17 @@ handler.post(async (req, res) => {
   }
 })
 
+
+handler.get(async (req, res) => {
+  try {
+    await db.connect()
+    const users = await User.find({})
+    res.status(200).json(users)
+    await db.disconnect()
+    
+  } catch (error) {
+    console.log(error)
+    res.status(400)
+  }
+})
 export default handler

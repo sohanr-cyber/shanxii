@@ -8,6 +8,8 @@ import notistack from './notistackSlice'
 import pixel from './pixelSlice'
 import review from './reviewSlice'
 import product from './productSlice'
+import chat from './chatSlice'
+
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +22,6 @@ export const store = configureStore({
     pixel,
     review,
     category,
+    chat,
   }
 })

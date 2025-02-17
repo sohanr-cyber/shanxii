@@ -15,6 +15,8 @@ import ChatButton from './Chat/ChatButton'
 import Navbar from './Navbar'
 import Navbar2 from './Navs/Navbar2'
 import styles from '@/styles/Layout.module.css'
+import { setCurrentChat } from '@/redux/chatSlice'
+import ChatArea from './Chat/ChatArea'
 
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
@@ -22,6 +24,8 @@ const Layout = ({ children }) => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const notistack = useSelector(state => state.notistack.notistack)
   const fetchAgain = useSelector(state => state.category.fetchAgain)
+  const currentChat = useSelector(state => state.chat.currentChat)
+  const userInfo = useSelector(state => state.user.userInfo)
 
   const dispatch = useDispatch()
   const fetchCategory = async () => {
@@ -31,7 +35,10 @@ const Layout = ({ children }) => {
     } catch (error) {
       console.log(error)
     }
+
+
   }
+
 
   useEffect(() => {
     fetchCategory()
@@ -80,7 +87,7 @@ const Layout = ({ children }) => {
       {children}
       <Footer />
       <BottomFooter />
-      {!containsAdmin(router.asPath) && <ChatButton />}
+      {!containsAdmin(router.asPath) && currentChat?._id ? <ChatArea /> : <ChatButton />}
       {loading && <Loading />}
     </div>
   )

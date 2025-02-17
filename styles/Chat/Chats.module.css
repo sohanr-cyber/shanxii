@@ -1,0 +1,14 @@
+.wrapper {
+    /* padding: 10px; */
+    min-height: 450px;
+    min-width: 100px;
+    background: rgb(232, 232, 232);
+    color: black;
+    overflow-y: scroll;
+}
+
+.chat {
+    border: 1px solid var(--borderColor);
+    padding: 10px;
+    cursor: pointer;
+}
