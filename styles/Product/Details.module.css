@@ -16,7 +16,7 @@
 .wrapper .container .right {
     background-color: var(--cardBg);
     padding: 10px;
-    border-radius: 5px;    flex: 1;
+    border-radius: 0px;    flex: 1;
     box-shadow: var(--box-shadow);
 
 
@@ -102,7 +102,7 @@
 .categories span {
     border: 1px solid grey;
     padding: 2px 7px;
-    border-radius: 5px;    cursor: pointer;
+    border-radius: 0px;    cursor: pointer;
 
 }
 
@@ -136,13 +136,13 @@
 
 
 .bottom__container .top button {
-    border-radius: 5px;    padding: 10px;
+    border-radius: 0px;    padding: 10px;
 }
 
 .description {
     /* border: 1px solid red; */
     background-color: var(--cardBg);
-    border-radius: 5px;    padding: 10px;
+    border-radius: 0px;    padding: 10px;
     box-shadow: var(--box-shadow);
 
 }

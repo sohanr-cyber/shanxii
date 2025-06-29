@@ -16,7 +16,7 @@
 .wrapper .forms .right {
     background-color: var(--cardBg);
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 0px;
     flex: 1;
     padding-bottom: 20px;
     box-shadow: var(--box-shadow);
@@ -130,7 +130,7 @@
 
 .left .options span {
     padding: 2px 3px;
-    border-radius: 5px;
+    border-radius: 0px;
     background-color: aquamarine;
     cursor: pointer;
 }
@@ -143,7 +143,7 @@
 
 .images .image__container {
     border: 1px solid var(--borderColor);
-    border-radius: 5px;
+    border-radius: 0px;
     max-height: 180px;
     min-width: 180px;
     aspect-ratio: 1/1;
@@ -221,7 +221,7 @@
 
 .selection span {
     padding: 2px 7px;
-    border-radius: 5px;
+    border-radius: 0px;
     border: 1px solid var(--borderColor);
     cursor: pointer;
     display: flex;
@@ -236,7 +236,7 @@
 }
 
 .selection .quantity span {
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .selected {
@@ -256,7 +256,7 @@
 .wrapper .position {
     border: 1px solid black;
     padding: 7px;
-    border-radius: 5px;
+    border-radius: 0px;
     text-transform: capitalize;
     cursor: pointer;
 

@@ -1,7 +1,7 @@
 .flex {
     display: flex;
     gap: 0;
-    border-radius: 5px;    overflow: hidden;
+    border-radius: 0px;    overflow: hidden;
     justify-content: flex-start;
     align-items: center;
     width: 90%;
@@ -15,7 +15,7 @@
 .flex .select__category select,
 .flex .field input {
     /* padding: 10px; */
-    border-radius: 5px;    border: none;
+    border-radius: 0px;    border: none;
 }
 
 

@@ -30,14 +30,14 @@ function containsAdmin(url) {
 
 const calculateSubtotal = cartItems => {
   let subtotal = 0
-  cartItems?.forEach(item => {
+  cartItems.forEach(item => {
     subtotal +=
-      (item.product?.price -
-        item.product?.price * (item.product?.discount / 100)) *
+      (item.variant?.price || item.product.priceWithDiscount) *
       item.quantity
   })
   return subtotal
 }
+
 
 const getPrice = (price, discount = 0) => {
   price = price - price * (discount / 100)

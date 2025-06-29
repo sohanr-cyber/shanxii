@@ -14,8 +14,7 @@ const calculateSubtotal = cartItems => {
   let subtotal = 0
   cartItems.forEach(item => {
     subtotal +=
-      (item.product.price -
-        item.product.price * (item.product.discount / 100)) *
+      (item.variant?.price || item.product.priceWithDiscount) *
       item.quantity
   })
   return subtotal
@@ -74,11 +73,10 @@ const Checkout = ({ cartItems }) => {
       dispatch(setCoupon(data))
       dispatch(
         showSnackBar({
-          message: `Enjoy ${
-            data.discountType == 'percentage'
-              ? `${data.discountValue}% Discount`
-              : 'Free Shipping'
-          }`,
+          message: `Enjoy ${data.discountType == 'percentage'
+            ? `${data.discountValue}% Discount`
+            : 'Free Shipping'
+            }`,
           option: { variant: 'success' }
         })
       )
@@ -109,7 +107,7 @@ const Checkout = ({ cartItems }) => {
         <div className={styles.right} style={{ fontSize: '110%' }}>
           Subtotal:{' '}
           <span style={{ fontWeight: 'bold' }}>
-            ${getPrice(calculateSubtotal(cartItems))}
+            ৳ {" "}{getPrice(calculateSubtotal(cartItems))}
           </span>
         </div>
       </div>

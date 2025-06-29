@@ -1,7 +1,7 @@
 .wrapper {
   background: var(--cardBg);
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .wrapper .flex {
@@ -31,7 +31,7 @@
 .btn {
   padding: 8px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 0px;
   background: var(--buttonBg);
   color: var(--buttonC);
   cursor: pointer;

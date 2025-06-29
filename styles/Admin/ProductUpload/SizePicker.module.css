@@ -26,7 +26,7 @@
 .wrapper .sizes .size {
     background: aqua;
     padding: 3px;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
 }
 
@@ -53,6 +53,6 @@
 .selected span {
     border: 1px solid var(--borderColor);
     padding: var(--buttonPadding);
-    border-radius: 5px;
+    border-radius: 0px;
     margin-right: 10px;
 }

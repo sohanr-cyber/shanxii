@@ -89,7 +89,7 @@
     background: var(--buttonBg);
     padding: var(--buttonPadding);
     color: var(--buttonC);
-    border-radius: 5px;    cursor: pointer;
+    border-radius: 0px;    cursor: pointer;
 }
 
 .wrapper .form__container .flex .cancel {

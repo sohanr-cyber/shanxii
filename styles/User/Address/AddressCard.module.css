@@ -1,6 +1,6 @@
 .wrapper {
     background: var(--cardBg);
-    border-radius: 5px;    color: var(--lightF);
+    border-radius: 0px;    color: var(--lightF);
 }
 
 .wrapper .flex {

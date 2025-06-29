@@ -24,7 +24,7 @@
 
 .wrapper .left,
 .wrapper .right {
-    border-radius: 5px;
+    border-radius: 0px;
     overflow: hidden;
 }
 

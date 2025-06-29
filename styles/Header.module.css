@@ -16,7 +16,7 @@
     min-height: 74vh;
     max-height: 74vh;
     overflow: hidden;
-    border-radius: 5px;    padding: 10px
+    border-radius: 0px;    padding: 10px
 }
 
 
@@ -48,7 +48,7 @@
 .wrapper .right .image {
     width: 100%;
     min-height: 37vh;
-    border-radius: 5px;}
+    border-radius: 0px;}
 
 
 .wrapper .right .item:nth-child(2) {
@@ -64,7 +64,7 @@
 }
 
 .flex .btn {
-    border-radius: 5px;    padding: 10px;
+    border-radius: 0px;    padding: 10px;
     background: var(--buttonBg);
     color: var(--buttonC);
     cursor: pointer;

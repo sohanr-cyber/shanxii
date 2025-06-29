@@ -66,7 +66,8 @@ const Cart = () => {
                     <td className={styles.product} onClick={() => router.push(`/product/${item.product.slug}`)}>
                       <div className={styles.left}>
                         <Image
-                          src={item.image.image}
+                          src={item.variant?.image || item.product.thumbnail}
+
                           width='50'
                           height='50'
                           alt=''
@@ -74,22 +75,19 @@ const Cart = () => {
                       </div>
                       <div className={styles.right}>
                         <div>{item.product.name}</div>
-                        <div style={{ fontSize: '80%', marginTop: '5px' }}>
-                          {item.size && (
-                            <>Size : {" "} {item.size}</>
+                        {item.product.productType == "variable" && <div style={{ fontSize: '80%', marginTop: '2px' }}>
+                          {item.variant.size && (
+                            item.variant.size
                           )}
-                          {item.image.color && (
-                            <>Color : {" "} {item.image.color}</>
+                          {item.variant.color && (
+                            item.variant.color
                           )}
-                        </div>
+                        </div>}
                       </div>
                     </td>
                     <td>
                       ৳{' '}
-                      {parseInt(
-                        item.product.price -
-                        item.product.price * (item.product.discount / 100)
-                      ).toFixed(2)}
+                      {item.variant?.price || item.product.priceWithDiscount}
                     </td>
                     <td>
                       {' '}
@@ -104,10 +102,10 @@ const Cart = () => {
                       </div>
                     </td>
                     <td>
-                      ৳
+                      ৳ {" "}
                       {(
                         item.quantity *
-                        getPrice(item.product.price, item.product.discount)
+                        (item.variant?.price || item.product.priceWithDiscount)
                       ).toFixed(2)}
                     </td>
                     <td

@@ -23,9 +23,6 @@ const Ratings = ({ ratings, size, id, gap, color }) => {
                     '& .MuiRating-icon': {
                         marginRight: gap || '2px',
                     },
-                    '& .MuiRating-iconFilled': {
-                        color: color || 'white',
-                    },
                     '& .MuiRating-iconEmpty': {
                         color: color ? `${color}55` : 'rgb(107, 106, 106)', // subtle transparency
                     },

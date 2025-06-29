@@ -7,13 +7,13 @@
 
 .left {
     padding: 15px;
-    border-radius: 5px;    background: var(--cardBg);
+    border-radius: 0px;    background: var(--cardBg);
     flex: 2.3;
 
 }
 
 .left .payment span {
-    border-radius: 5px;    padding: 3px;
+    border-radius: 0px;    padding: 3px;
     background: skyblue;
 }
 
@@ -32,7 +32,7 @@
     background-color: black;
     color: white;
     padding: 10px;
-    border-radius: 5px;    margin-top: 30px;
+    border-radius: 0px;    margin-top: 30px;
     ;
 }
 
@@ -63,7 +63,7 @@
 .update__status span {
     border: 1px solid var(--borderColor);
     padding: 3px 5px;
-    border-radius: 5px;    cursor: pointer;
+    border-radius: 0px;    cursor: pointer;
 }
 
 @media (min-width:1024px) {

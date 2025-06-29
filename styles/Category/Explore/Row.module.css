@@ -10,7 +10,7 @@
 .wrapper .category {
     /* border: 1px solid var(--borderColor); */
     background: var(--cardBg);
-    border-radius: 5px;    display: flex;
+    border-radius: 0px;    display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;

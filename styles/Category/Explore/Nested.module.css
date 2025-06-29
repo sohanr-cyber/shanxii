@@ -47,7 +47,7 @@
 .wrapper .rightC::-webkit-scrollbar-thumb,
 .wrapper .leftC::-webkit-scrollbar-thumb {
   /* background: #ccc;  */
-  border-radius: 5px; /* Adjust if you want a rounded look */
+  border-radius: 0px; /* Adjust if you want a rounded look */
 }
 
 

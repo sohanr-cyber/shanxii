@@ -58,7 +58,7 @@ const products = data => {
               (
                 i,
                 index
-              ) => `  <div style ="display:flex;align-items:flex-start;border:1px solid ${borderColor};background:white;border-radius: 5px;margin-bottom:-10px;">
+              ) => `  <div style ="display:flex;align-items:flex-start;border:1px solid ${borderColor};background:white;border-radius: 0px;margin-bottom:-10px;">
             <img src="${i.product.thumbnail}" width="140px" height="100px" alt="Product" style="object-fit: cover;aspect-ratio: 1/1;"/>
             <div style ="margin-left:10px">
              <p>${i.product.name} </p>
@@ -157,7 +157,7 @@ const orderCancelMessage = data => {
   <p>We are sorry that item from order <b>${data.orderId} </b>has been cancelled .</p>
   <p>If you have prepaid for the order , the amount will be refunded back to you.</p>
   <p>
-    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 5px;">
+    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 0px;">
     <a href="${BASE_URL}/order/${data.orderId}" style="text-decoration:none; color:${buttonC}">View My Order</a>
     </button>
   </p>`
@@ -214,7 +214,7 @@ const orderProcessingMessage = data => {
   <p>Thank you for your recent order with Us</b></p>
   <p>We are pleased to inform you that we have received your order and it is currently being processed. Our team is working diligently to ensure that everything is prepared and delivered to you as quickly as possible.</p>
   <p>
-    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 5px;">
+    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 0px;">
     <a href="${BASE_URL}/order/${data.orderId}" style="text-decoration:none; color:${buttonC}">View My Order</a>
     </button>
   </p>`
@@ -235,7 +235,7 @@ const orderFailedMessage = data => {
   <p>Hi  ${data.name}</p>
   <p>We regret to inform you that your order has been Failed.</p>
   <p>
-    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 5px;">
+    <button style = "padding:7px; background:${buttonBg}; border:none;font-weight: bold;border-radius: 0px;">
     <a href="${BASE_URL}/order/${data.orderId}" style="text-decoration:none; color:${buttonC}">View My Order</a>
     </button>
   </p>`

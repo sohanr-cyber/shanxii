@@ -13,7 +13,7 @@
 .wrapper .form__container {
     background: var(--cardBg);
     padding: 15px;
-    border-radius: 5px;}
+    border-radius: 0px;}
 
 
 .flex,
@@ -31,7 +31,7 @@
     font-weight: bold;
     font-size: 120%;
     padding: 2px 5px;
-    border-radius: 5px;    background-color: red;
+    border-radius: 0px;    background-color: red;
 
 }
 
@@ -51,7 +51,7 @@
 
 .wrapper .field input {
     padding: 7px;
-    border-radius: 5px;    border: none;
+    border-radius: 0px;    border: none;
     border: 1px solid var(--borderColor)
 }
 
@@ -65,7 +65,7 @@
     flex: 1;
     text-align: center;
     padding: 5px;
-    border-radius: 5px;    background-color: lightcyan;
+    border-radius: 0px;    background-color: lightcyan;
 }
 
 .flex__btn .btn {
@@ -74,4 +74,4 @@
     background: var(--buttonBg);
     color: var(--buttonC);
     padding: 5px;
-    border-radius: 5px;}
+    border-radius: 0px;}
