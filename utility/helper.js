@@ -205,7 +205,7 @@ function verifyCode(enteredCode, generatedCode) {
   return enteredCode === generatedCode
 }
 
-function generateUniqueID(existingIDs) {
+function generateUniqueID(existingIDs = []) {
   let number
   do {
     // Generate a random 6-digit number
@@ -341,7 +341,26 @@ const calculateAverageRating = (reviews) => {
 
 };
 
+const calculateDiscount = (oldPrice, newPrice) => {
+  if (!oldPrice || !newPrice) {
+    return 0
+  }
+  else return parseInt(((oldPrice - newPrice) / oldPrice) * 100)
+}
+
+function universalSlugify(text) {
+  const baseSlug = text
+    .normalize('NFKC') // Normalize characters
+    .replace(/[^\p{L}\p{N}\s-]/gu, '') // Keep letters (any language), numbers, spaces, and dashes
+    .trim()
+    .replace(/\s+/g, '-') // Replace spaces with dashes
+    .replace(/-+/g, '-') // Remove repeated dashes
+
+  return `${baseSlug}-${Date.now()}`
+}
+
 export {
+  calculateDiscount,
   generateTrackingNumber,
   containsAdmin,
   calculateSubtotal,
@@ -363,5 +382,5 @@ export {
   dateDevider,
   generateSeoData,
   hexToRgba,
-  calculateAverageRating
+  calculateAverageRating, universalSlugify
 }

@@ -1,6 +1,7 @@
 .wrapper {
     background-color: var(--cardBg);
-    border-radius: 5px;    overflow: hidden;
+    border-radius: 5px;
+    overflow: hidden;
     max-width: 250px;
     cursor: pointer;
     /* min-width: 170px; */
@@ -31,7 +32,7 @@
 }
 
 .wrapper .category {
-    color: grey;
+    /* color: grey; */
     font-size: 80%;
     margin-bottom: 5px;
     overflow-x: hidden;
@@ -46,7 +47,7 @@
 
 .wrapper .price {
     font-weight: bold;
-    color: var(--theme)
+    color: var(--icon)
 }
 
 .wrapper .flex {

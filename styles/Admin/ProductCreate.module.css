@@ -63,6 +63,35 @@
     /* border: 1px solid red */
 }
 
+
+.variants {
+    /* border-bottom: 1px solid var(--borderColor); */
+    /* padding: 10px 0; */
+}
+
+.variants__flex {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.variants__flex::-webkit-scrollbar {
+    height: 3px;
+}
+
+
+.variants__item {
+    min-width: 100%;
+}
+
+.variants label {
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
 .field textarea {
     min-height: 100px;
 }

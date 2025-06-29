@@ -1,5 +1,6 @@
 // cartSlice.js
 
+import { Satellite } from '@mui/icons-material';
 import { createSlice } from '@reduxjs/toolkit'
 import Cookies from 'js-cookie'
 
@@ -13,26 +14,55 @@ export const cartSlice = createSlice({
 
   reducers: {
     addItem: (state, action) => {
-      let { product, quantity, size, image } = action.payload;
+      const { product, quantity, variant } = action.payload;
 
-      const existingItemIndex = state.items.findIndex(
-        item => item.image.uid === image.uid
-      );
+      // Helper to remove unnecessary product fields
+      const stripProductDetails = (product) => {
+        const {
+          metaTitle, description, metaDescription, images, categories,
+          thumbnailColors, attributes, placeholder, featured, sizes, color,
+          colors, updatedAt, createdAt, sold, variants,
+          ...productWithoutDetails
+        } = product;
+        return productWithoutDetails;
+      };
+
+      // Find existing item index
+      let existingItemIndex = -1;
+
+      if (product.productType == "variable") {
+        console.log({ variant })
+        existingItemIndex = state.items.findIndex(
+          item =>
+            item.product.productType == "variable" &&
+            item.variant?.uid == variant?.uid
+        );
+      } else {
+        existingItemIndex = state.items.findIndex(
+          item =>
+            item.product._id == product._id &&
+            item.product.productType != "variable"
+        );
+      }
 
       if (existingItemIndex !== -1) {
-        // Update the existing item
+        // If the item exists, increment quantity
         const existingItem = state.items[existingItemIndex];
         state.items[existingItemIndex] = {
           ...existingItem,
-          quantity: quantity,
-          size: size,
+          quantity: quantity
         };
       } else {
-        // Add the new item
-        const { metaTitle, description, metaDescription, images, thumbnail, categories, thumbnailColors, attributes, placeholder, featured, sizes, color, colors, updatedAt, createdAt, sold, ...productWithoutDetails } = product;
-        state.items.push({ product: productWithoutDetails, size, image, quantity });
+        // If it’s a new item, add it to the cart
+        const cleanedProduct = stripProductDetails(product);
+        const newItem = product.productType === "variable"
+          ? { product: cleanedProduct, variant, quantity }
+          : { product: cleanedProduct, quantity };
+
+        state.items.push(newItem);
       }
 
+      // Save to cookies (don’t reverse unnecessarily)
       try {
         Cookies.set('cartItems', JSON.stringify(state.items), { expires: 7 });
         console.log('Cart saved successfully.');
@@ -41,11 +71,20 @@ export const cartSlice = createSlice({
       }
     },
 
+
     removeItem: (state, action) => {
-      const { product, quantity, size, image } = action.payload
-      state.items = state.items.filter(item => item.image.uid != image.uid)
+      let { product, variant } = action.payload;
+      if (product.productType == "normal" || !product.productType) {
+        state.items = state.items.filter(item => item.product._id != product._id)
+        Cookies.set('cartItems', JSON.stringify(state.items), { expires: 7 })
+      } else {
+        state.items = state.items.filter(item => item.variant?.uid != variant.uid)
+        Cookies.set('cartItems', JSON.stringify(state.items), { expires: 7 })
+
+      }
+
+
       // Update cart data in cookies
-      Cookies.set('cartItems', JSON.stringify(state.items), { expires: 7 })
     },
     clearCart: state => {
       state.items = [] // Clear cart items array

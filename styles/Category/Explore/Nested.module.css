@@ -1,0 +1,77 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    background: var(--cardBg);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px
+}
+
+
+.wrapper .leftC {
+
+    max-width: 100px;
+    ;
+}
+
+.wrapper .leftC__item {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 7px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.wrapper .rightC,
+.wrapper .leftC {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.wrapper .rightC::-webkit-scrollbar,
+.wrapper .leftC::-webkit-scrollbar {
+  width: 4px;
+}
+
+.wrapper .rightC::-webkit-scrollbar-track,
+.wrapper .leftC::-webkit-scrollbar-track {
+  background: transparent;
+}
+.wrapper .rightC::-webkit-scrollbar-thumb,
+.wrapper .leftC::-webkit-scrollbar-thumb {
+  /* background: #ccc;  */
+  border-radius: 5px; /* Adjust if you want a rounded look */
+}
+
+
+.wrapper .rightC {
+
+    padding: 15px;
+}
+
+.wrapper .rightC .top {
+    border-bottom: 1px solid var(--borderColor);
+    /* padding-bottom: 10px; */
+}
+
+.wrapper .rightC .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.wrapper .rightC .flex div {
+    box-shadow: none;
+    max-width: 100px;
+    padding: 3px;
+    min-width: 60px;
+    max-width: 60px;
+}

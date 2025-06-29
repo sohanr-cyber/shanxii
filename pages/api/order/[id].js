@@ -16,7 +16,7 @@ handler.get(async (req, res) => {
     const order = await Order.findById(id)
       .populate({
         path: 'items.product',
-        select: 'name slug  price discount priceWithDiscount color thumbnail '
+        select: 'name slug  price discount priceWithDiscount  productType thumbnail '
       })
       .populate({
         path: 'shippingAddress',
@@ -96,23 +96,40 @@ handler.put(async (req, res) => {
 
     // confirming order deduce product quantity
     if (newStatus == 'Confirmed') {
-       Promise.all(
+      await Promise.all(
         order.items.map(async item => {
-          const { product: productId, quantity } = item
-          const product = await Product.findOne({ _id: productId })
-          product.stockQuantity -= quantity
-          product.sold += quantity
-          await product.save()
-          return {
-            product: productId
+          const { product: productId, quantity, variant } = item;
+          const product = await Product.findOne({ _id: productId });
+
+          if (!product) {
+            console.error(`Product not found for id: ${productId}`);
+            return;
           }
+
+          product.stockQuantity -= quantity;
+          product.sold += quantity;
+
+          if (product.productType == "variable" && variant?.uid) {
+            const v = product.variants.find(v => v.uid == variant.uid);
+            console.log({v})
+            if (v) {
+              v.sold += 1;
+              v.quantity -= quantity;
+            } else {
+              console.error(`Variant not found for uid: ${variant.uid}`);
+            }
+          }
+
+          await product.save();
+          return { product: productId };
         })
-      )
+      );
     }
+
 
     // failed or canceled order + product stock quantity
     if (newStatus == 'Failed' || newStatus == 'Canceled') {
-       Promise.all(
+      Promise.all(
         order.items.map(async item => {
           const { product: productId, quantity } = item
           const product = await Product.findOne({ _id: productId })
@@ -138,7 +155,7 @@ handler.put(async (req, res) => {
       let leanOrder = order.toObject()
 
       if (newStatus == 'Confirmed') {
-         mail.sendMail({
+        mail.sendMail({
           subject: 'Your Order Have Been Confirmed',
           for: 'orderConfirmed',
           ...leanOrder.shippingAddress,
@@ -150,7 +167,7 @@ handler.put(async (req, res) => {
       }
 
       if (newStatus == 'Canceled') {
-         mail.sendMail({
+        mail.sendMail({
           subject: 'Your Order Have Been Cancelled',
           for: `order${newStatus}`,
           ...leanOrder.shippingAddress,
@@ -162,7 +179,7 @@ handler.put(async (req, res) => {
       }
 
       if (newStatus == 'Failed') {
-         mail.sendMail({
+        mail.sendMail({
           subject: 'Your Order Have Been Failed',
           for: `order${newStatus}`,
           ...leanOrder.shippingAddress,
@@ -174,7 +191,7 @@ handler.put(async (req, res) => {
       }
 
       if (newStatus == 'Delivered') {
-         mail.sendMail({
+        mail.sendMail({
           subject: 'Your Order Have Been Delivered',
           for: 'orderDelivered',
           ...leanOrder.shippingAddress,

@@ -9,6 +9,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import SkeletonDiv from '../Utility/SkeletonDiv'
 import Colors from './Colors'
 import Categories from './Categories'
+import Ratings from '../Utility/Rating'
 
 const Filter = ({ setOpen }) => {
   const router = useRouter()
@@ -68,6 +69,13 @@ const Filter = ({ setOpen }) => {
             />
           </div>
           <button onClick={() => updateRoute(price)}>Apply</button>
+        </div>
+        <div className={styles.heading}>Rating</div>
+        <div className={styles.filterOptions} >
+          {[5, 4, 3, 2, 1].map((r, i) => (
+            <div className={styles.rating} style={{ margin: "5px 0" }} onClick={() => updateRoute({ rating: r })}>
+              <Ratings ratings={r} size={"large"} gap={"10px"} />
+            </div>))}
         </div>
         {/* Category Filter */}
         <div className={styles.heading}>Category</div>

@@ -1,0 +1,58 @@
+.wrapper .top {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.wrapper .top .flex {
+    display: flex;
+    gap: 10px;
+}
+
+.wrapper .top .flex .size {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wrapper .sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--inputBgColor);
+}
+
+.wrapper .sizes .size {
+    background: aqua;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.wrapper .searchContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.wrapper .searchContainer input {
+    padding: var(--buttonPadding);
+    max-width: 150px;
+    margin: 10px 0;
+
+
+}
+
+/* .selected {
+    display: flex;
+    gap: 10px;
+} */
+
+.selected span {
+    border: 1px solid var(--borderColor);
+    padding: var(--buttonPadding);
+    border-radius: 5px;
+    margin-right: 10px;
+}

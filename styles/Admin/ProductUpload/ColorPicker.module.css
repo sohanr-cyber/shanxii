@@ -1,0 +1,57 @@
+.top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.top .color {
+    border: 1px solid var(--borderColor);
+    padding: var(--buttonPadding);
+    border-radius: 5px;
+
+}
+
+
+.top input {
+    padding: var(--buttonPadding);
+}
+
+.top .color {
+    position: relative;
+    ;
+}
+
+.top .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+.colors {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    max-height: 100px;
+    overflow-y: scroll;
+}
+
+.colors .color {
+    border: 1px solid var(--borderColor);
+    padding: 3px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 3px
+}
+
+
+
+.colors .color .square {
+    min-width: 15px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+
+}

@@ -11,7 +11,7 @@ const fetchLatestProducts = async () => {
     .sort({ createdAt: -1 }).populate('categories', 'name')
     .limit(4).lean()
 
-  
+
 
   return latestProducts
 }
@@ -22,7 +22,7 @@ const fetchFeaturedProducts = async () => {
   let featuredProducts = await Product.find({ featured: true })
     .sort({ createdAt: -1 }).populate('categories', 'name')
     .limit(4).lean()
- 
+
 
   return featuredProducts
 }
@@ -65,16 +65,57 @@ const fetchFeaturedCategories = async lang => {
   )
 }
 
+const getPaginatedCategoryProducts = async (page = 1, limit = 18) => {
+
+  const pageNumber = parseInt(page, 10);
+  const limitNumber = parseInt(limit, 10);
+
+  // Get all categories
+  // const categories = await Category.find();
+  // if (!categories.length) {
+  //   return { products: [], page: pageNumber, limit: limitNumber, total: 0 };
+  // }
+
+  // Retrieve at least one product per category with pagination
+  // const products = await Promise.all(
+  //   categories.map(async (category) => {
+  //     const product = await Product.findOne({ categories: category._id })
+  //       .sort({ createdAt: -1 }) // Fetch the latest product from each category
+  //       .skip((pageNumber - 1) * limitNumber)
+  //       .limit(limitNumber)
+  //       .lean();
+  //     return product;
+  //   })
+  // );
+
+  const products = await Product.find({})
+    .sort({ createdAt: -1 }) // Fetch the latest product from each category
+    .skip((pageNumber - 1) * limitNumber)
+    .limit(limitNumber)
+    .lean();
+  // Filter out null values (if any category has no product)
+  const filteredProducts = products.filter(Boolean);
+
+  return {
+    products: filteredProducts,
+    page: pageNumber,
+    limit: limitNumber,
+    total: filteredProducts.length,
+  };
+}
+
+
 handler.get(async (req, res) => {
   try {
     await db.connect()
 
-    const [featuredCategories, latest, topSelling, featured] =
+    const [featuredCategories, latest, topSelling, featured, paginatedCategoryProducts] =
       await Promise.all([
         fetchFeaturedCategories(),
         fetchLatestProducts(),
         fetchTopSellingProducts(),
         fetchFeaturedProducts(),
+        getPaginatedCategoryProducts()
       ])
 
 
@@ -82,10 +123,14 @@ handler.get(async (req, res) => {
     return res
       .status(200)
       .json([
+        {
+          category: "Just For You", products: paginatedCategoryProducts.products
+        },
         ...featuredCategories,
         { category: "Recommended", products: featured },
         { category: "Top Selling", products: topSelling },
         { category: "New Arival", products: latest },
+
       ])
   } catch (error) {
     console.error('Error fetching featured categories:', error)

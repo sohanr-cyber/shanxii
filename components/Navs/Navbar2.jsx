@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import CategoriesSlider from '@/components/Categories/CategoriesSlider'
 import { showSnackBar } from '@/redux/notistackSlice'
 import SearchBox2 from '../Search/SearchBox2'
-
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 const Navbar2 = () => {
   const router = useRouter()
   const [openSearch, setOpenSearch] = useState(false)
@@ -75,6 +75,12 @@ const Navbar2 = () => {
             </div>
           )}{' '}
         </div>
+        {isClient && userInfo?.role == 'admin' && (
+          <AddCircleIcon
+            className={styles.icon}
+            onClick={() => router.push('/admin/product/create')}
+          />
+        )}
         {isClient && userInfo?.role == 'admin' && (
           <AccountCircleIcon
             className={styles.icon}

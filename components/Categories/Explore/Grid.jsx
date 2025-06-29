@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import styles from '@/styles/Category/Explore/Grid.module.css'
+import styles from '../../../styles/Category/Explore/Grid.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import SkeletonDiv from '@/components/Utility/SkeletonDiv'

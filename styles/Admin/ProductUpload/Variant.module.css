@@ -1,0 +1,40 @@
+.wrapper {
+    margin-bottom: 10px;
+}
+
+.wrapper .lbl {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+.wrapper .selectBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgb(215, 215, 215);
+    padding: 5px;
+    /* margin-top: 10px; */
+    border-radius: 5px;
+    max-height: 25px;
+    min-height: 25px;
+}
+
+.wrapper .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.wrapper .field input {
+    max-width: 100px;
+}
+
+.wrapper .field .box {
+    min-width: 50px;
+    border: 1px solid black;
+    min-height: 50px;
+    margin-top: 20px;
+}

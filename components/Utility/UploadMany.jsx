@@ -1,32 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Utility/Upload.module.css'
-import { ref, uploadBytesResumable, getDownloadURL } from '@firebase/storage'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { storage } from '@/database/firebase'
 import Loading from './Loading'
-// import ProgressBar from './ProgressBar'
 
 const UploadMany = ({ handle }) => {
-  const [files, setFiles] = useState([''])
+  const [files, setFiles] = useState([]) // ✅ Start with an empty array
   const [uploading, setUploading] = useState(false)
   const [progressPercent, setProgressPercent] = useState(0)
   const [downloadURLs, setDownloadURLs] = useState([])
+
   useEffect(() => {
-    if (downloadURLs.length > 0 && downloadURLs.length == files.length) {
+    if (
+      files.length > 0 &&
+      downloadURLs.length === files.length
+    ) {
       handle(downloadURLs)
       setFiles([])
       setDownloadURLs([])
       setUploading(false)
     }
-  }, [downloadURLs.length])
+  }, [downloadURLs])
 
-  const handleFiles = async files => {
-    if (!files || files.length === 0) return
+  const handleFiles = async selectedFiles => {
+    if (!selectedFiles || selectedFiles.length === 0) return
 
     setUploading(true)
+    setDownloadURLs([])
 
     try {
-      const uploadTasks = files.map(async file => {
-        const storageRef = ref(storage, `division/${file.name}`)
+      const uploadTasks = selectedFiles.map(file => {
+        if (!file?.name) return Promise.resolve() // skip invalid
+
+        const storageRef = ref(storage, `division/${file.name}-${Date.now()}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
         return new Promise((resolve, reject) => {
@@ -38,35 +44,44 @@ const UploadMany = ({ handle }) => {
               )
               setProgressPercent(progress)
             },
-            reject, // Reject on error
+            error => {
+              console.error('Upload error:', error)
+              reject(error)
+            },
             () => {
               getDownloadURL(uploadTask.snapshot.ref)
                 .then(downloadURL => {
                   setDownloadURLs(prev => [...prev, downloadURL])
-                  resolve() // Resolve after successful upload
+                  resolve()
                 })
-                .catch(reject) // Reject on error
+                .catch(error => {
+                  console.error('GetDownloadURL error:', error)
+                  reject(error)
+                })
             }
           )
         })
       })
+
       await Promise.all(uploadTasks)
     } catch (error) {
-      alert(error)
+      alert('Upload failed: ' + error.message)
       setUploading(false)
     }
   }
+
   return (
     <div className={styles.container}>
       {uploading && <Loading />}
       <input
-        type='file'
-        accept='image/*'
+        type="file"
+        accept="image/*"
         className={styles.inputfile}
         multiple
         onChange={e => {
-          setFiles(Array.from(e.target.files))
-          handleFiles(Array.from(e.target.files))
+          const selected = Array.from(e.target.files)
+          setFiles(selected)
+          handleFiles(selected)
         }}
         style={uploading ? { display: 'none' } : { display: 'block' }}
       />

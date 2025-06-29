@@ -13,7 +13,7 @@ const Upload = ({ handle, type }) => {
   console.log({ file })
 
   const handleFile = file => {
-    
+
     console.log('file upload starred')
     console.log(file)
     if (!file) return
@@ -21,7 +21,7 @@ const Upload = ({ handle, type }) => {
     console.log('uploading...')
     setUploading(true)
 
-    const storageRef = ref(storage, `division/${file.name}`)
+    const storageRef = ref(storage, `division/${file.name}-${Date.now()}`)
     const uploadTask = uploadBytesResumable(storageRef, file)
     uploadTask.on(
       'state_changed',

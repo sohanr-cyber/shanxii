@@ -26,11 +26,20 @@ const orderSchema = new mongoose.Schema(
           required: true,
           min: 1
         },
-        size: {
-          type: String
-        },
-        color: {
-          type: String
+        variant: {
+          color: {
+            type: String
+          },
+          size: {
+            type: String,
+          },
+          uid: {
+            type: String,
+          },
+          image: {
+            type: String,
+          },
+
         },
         // Additional item-specific details (optional)
         price: {

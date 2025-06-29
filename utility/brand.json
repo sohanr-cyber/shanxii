@@ -1,0 +1,1288 @@
+{
+    "brands": [
+        {
+            "name": "Aarong"
+        },
+        {
+            "name": "Mirror"
+        },
+        {
+            "name": "EASE"
+        },
+        {
+            "name": "Fly Flora"
+        },
+        {
+            "name": "Style Store"
+        },
+        {
+            "name": "Walkar"
+        },
+        {
+            "name": "Winner Fashion"
+        },
+        {
+            "name": "Leatherex"
+        },
+        {
+            "name": "Tahoor"
+        },
+        {
+            "name": "Bestin Brands"
+        },
+        {
+            "name": "Samsung"
+        },
+        {
+            "name": "Sony"
+        },
+        {
+            "name": "Orient"
+        },
+        {
+            "name": "Daniel Wellington"
+        },
+        {
+            "name": "Yardley London"
+        },
+        {
+            "name": "Jergens"
+        },
+        {
+            "name": "Revlon"
+        },
+        {
+            "name": "Rimmel London"
+        },
+        {
+            "name": "CREED"
+        },
+        {
+            "name": "Rasasi"
+        },
+        {
+            "name": "Givenchy"
+        },
+        {
+            "name": "Nina Ricci"
+        },
+        {
+            "name": "Walkar RFL"
+        },
+        {
+            "name": "Bata"
+        },
+        {
+            "name": "Ray-Ban"
+        },
+        {
+            "name": "Zippo"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Karcher"
+        },
+        {
+            "name": "SPEEDO"
+        },
+        {
+            "name": "JOEREX"
+        },
+        {
+            "name": "Staedtler"
+        },
+        {
+            "name": "UNI Ball"
+        },
+        {
+            "name": "Fiona"
+        },
+        {
+            "name": "Comfort"
+        },
+        {
+            "name": "SHINY"
+        },
+        {
+            "name": "QMobile"
+        },
+        {
+            "name": "WB by Hemani"
+        },
+        {
+            "name": "JEAN PAUL GAULTIER"
+        },
+        {
+            "name": "DOUBLE FISH"
+        },
+        {
+            "name": "Continental"
+        },
+        {
+            "name": "Signature"
+        },
+        {
+            "name": "Rado"
+        },
+        {
+            "name": "Wenger"
+        },
+        {
+            "name": "JENNIFER LOPEZ"
+        },
+        {
+            "name": "COOL&COOL"
+        },
+        {
+            "name": "SIMBALION"
+        },
+        {
+            "name": "Rafhan"
+        },
+        {
+            "name": "Westar"
+        },
+        {
+            "name": "Jimmy Choo"
+        },
+        {
+            "name": "Snowman"
+        },
+        {
+            "name": "John Varvatos"
+        },
+        {
+            "name": "SOGOOD"
+        },
+        {
+            "name": "AELOKIES"
+        },
+        {
+            "name": "I-CARE"
+        },
+        {
+            "name": "CREATION LAMIS"
+        },
+        {
+            "name": "STATIONARY WORLD"
+        },
+        {
+            "name": "Rassaj"
+        },
+        {
+            "name": "Livepro"
+        },
+        {
+            "name": "Ravpower"
+        },
+        {
+            "name": "Liveup"
+        },
+        {
+            "name": "Sole Fitness"
+        },
+        {
+            "name": "Real Techniques"
+        },
+        {
+            "name": "Fuel Fitness"
+        },
+        {
+            "name": "Reckitt Benckiser"
+        },
+        {
+            "name": "Giant"
+        },
+        {
+            "name": "Remington"
+        },
+        {
+            "name": "Zapple"
+        },
+        {
+            "name": "Remy Latour"
+        },
+        {
+            "name": "Zebaish"
+        },
+        {
+            "name": "Remy Marquis"
+        },
+        {
+            "name": "Zewraat"
+        },
+        {
+            "name": "Oxygen"
+        },
+        {
+            "name": "Daraz Accessories"
+        },
+        {
+            "name": "Lifestyle"
+        },
+        {
+            "name": "Daraz Basic"
+        },
+        {
+            "name": "Swiss Pro"
+        },
+        {
+            "name": "Daraz Basics"
+        },
+        {
+            "name": "REXONA WOMEN"
+        },
+        {
+            "name": "ZIC"
+        },
+        {
+            "name": "Honda"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Road Prince"
+        },
+        {
+            "name": "Samsung"
+        },
+        {
+            "name": "Rimmel"
+        },
+        {
+            "name": "Sony"
+        },
+        {
+            "name": "Rimmel London"
+        },
+        {
+            "name": "Orient"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Daraz Electronics"
+        },
+        {
+            "name": "Daraz Fashion"
+        },
+        {
+            "name": "Daraz Home"
+        },
+        {
+            "name": "Daraz Beauty"
+        },
+        {
+            "name": "Nike"
+        },
+        {
+            "name": "Adidas"
+        },
+        {
+            "name": "Puma"
+        },
+        {
+            "name": "Reebok"
+        },
+        {
+            "name": "Under Armour"
+        },
+        {
+            "name": "New Balance"
+        },
+        {
+            "name": "Converse"
+        },
+        {
+            "name": "Vans"
+        },
+        {
+            "name": "Levi's"
+        },
+        {
+            "name": "Wrangler"
+        },
+        {
+            "name": "Lee"
+        },
+        {
+            "name": "H&M"
+        },
+        {
+            "name": "Zara"
+        },
+        {
+            "name": "Gucci"
+        },
+        {
+            "name": "Prada"
+        },
+        {
+            "name": "Louis Vuitton"
+        },
+        {
+            "name": "Dolce & Gabbana"
+        },
+        {
+            "name": "Armani"
+        },
+        {
+            "name": "Burberry"
+        },
+        {
+            "name": "Versace"
+        },
+        {
+            "name": "Ray-Ban"
+        },
+        {
+            "name": "Oakley"
+        },
+        {
+            "name": "Fossil"
+        },
+        {
+            "name": "Casio"
+        },
+        {
+            "name": "Rolex"
+        },
+        {
+            "name": "Tissot"
+        },
+        {
+            "name": "TAG Heuer"
+        },
+        {
+            "name": "Omega"
+        },
+        {
+            "name": "Samsung"
+        },
+        {
+            "name": "Apple"
+        },
+        {
+            "name": "Sony"
+        },
+        {
+            "name": "Huawei"
+        },
+        {
+            "name": "Xiaomi"
+        },
+        {
+            "name": "OnePlus"
+        },
+        {
+            "name": "Realme"
+        },
+        {
+            "name": "Google"
+        },
+        {
+            "name": "Lenovo"
+        },
+        {
+            "name": "Dell"
+        },
+        {
+            "name": "HP"
+        },
+        {
+            "name": "Acer"
+        },
+        {
+            "name": "Asus"
+        },
+        {
+            "name": "MSI"
+        },
+        {
+            "name": "Razer"
+        },
+        {
+            "name": "Alienware"
+        },
+        {
+            "name": "Redragon"
+        },
+        {
+            "name": "Logitech"
+        },
+        {
+            "name": "Roccat"
+        },
+        {
+            "name": "SteelSeries"
+        },
+        {
+            "name": "Corsair"
+        },
+        {
+            "name": "HyperX"
+        },
+        {
+            "name": "TP-Link"
+        },
+        {
+            "name": "Netgear"
+        },
+        {
+            "name": "D-Link"
+        },
+        {
+            "name": "Western Digital"
+        },
+        {
+            "name": "Seagate"
+        },
+        {
+            "name": "SanDisk"
+        },
+        {
+            "name": "Kingston"
+        },
+        {
+            "name": "Crucial"
+        },
+        {
+            "name": "Intel"
+        },
+        {
+            "name": "AMD"
+        },
+        {
+            "name": "NVIDIA"
+        },
+        {
+            "name": "ZOTAC"
+        },
+        {
+            "name": "Gigabyte"
+        },
+        {
+            "name": "ASRock"
+        },
+        {
+            "name": "EVGA"
+        },
+        {
+            "name": "Cooler Master"
+        },
+        {
+            "name": "Thermaltake"
+        },
+        {
+            "name": "NZXT"
+        },
+        {
+            "name": "Behringer"
+        },
+        {
+            "name": "Yamaha"
+        },
+        {
+            "name": "Roland"
+        },
+        {
+            "name": "Casio"
+        },
+        {
+            "name": "Fender"
+        },
+        {
+            "name": "Gibson"
+        },
+        {
+            "name": "Ibanez"
+        },
+        {
+            "name": "Epiphone"
+        },
+        {
+            "name": "Squier"
+        },
+        {
+            "name": "Bose"
+        },
+        {
+            "name": "JBL"
+        },
+        {
+            "name": "Sony"
+        },
+        {
+            "name": "Sennheiser"
+        },
+        {
+            "name": "Bang & Olufsen"
+        },
+        {
+            "name": "Audio-Technica"
+        },
+        {
+            "name": "AKG"
+        },
+        {
+            "name": "Beyerdynamic"
+        },
+        {
+            "name": "Shure"
+        },
+        {
+            "name": "Marshall"
+        },
+        {
+            "name": "Harman Kardon"
+        },
+        {
+            "name": "Philips"
+        },
+        {
+            "name": "Panasonic"
+        },
+        {
+            "name": "LG"
+        },
+        {
+            "name": "TCL"
+        },
+        {
+            "name": "Haier"
+        },
+        {
+            "name": "Hisense"
+        },
+        {
+            "name": "Bosch"
+        },
+        {
+            "name": "Whirlpool"
+        },
+        {
+            "name": "Electrolux"
+        },
+        {
+            "name": "GE Appliances"
+        },
+        {
+            "name": "Miele"
+        },
+        {
+            "name": "Dyson"
+        },
+        {
+            "name": "iRobot"
+        },
+        {
+            "name": "Shark"
+        },
+        {
+            "name": "Philips Hue"
+        },
+        {
+            "name": "LIFX"
+        },
+        {
+            "name": "TP-Link Kasa"
+        },
+        {
+            "name": "Nest"
+        },
+        {
+            "name": "Ring"
+        },
+        {
+            "name": "Arlo"
+        },
+        {
+            "name": "Eufy"
+        },
+        {
+            "name": "Blink"
+        },
+        {
+            "name": "GoPro"
+        },
+        {
+            "name": "DJI"
+        },
+        {
+            "name": "Insta360"
+        },
+        {
+            "name": "Canon"
+        },
+        {
+            "name": "Nikon"
+        },
+        {
+            "name": "Sony Alpha"
+        },
+        {
+            "name": "Fujifilm"
+        },
+        {
+            "name": "Panasonic Lumix"
+        },
+        {
+            "name": "Olympus"
+        },
+        {
+            "name": "Leica"
+        },
+        {
+            "name": "Sigma"
+        },
+        {
+            "name": "Tamron"
+        },
+        {
+            "name": "Goodyear"
+        },
+        {
+            "name": "Michelin"
+        },
+        {
+            "name": "Bridgestone"
+        },
+        {
+            "name": "Continental"
+        },
+        {
+            "name": "Dunlop"
+        },
+        {
+            "name": "Pirelli"
+        },
+        {
+            "name": "Yokohama"
+        },
+        {
+            "name": "BFGoodrich"
+        },
+        {
+            "name": "Cooper Tires"
+        },
+        {
+            "name": "Hankook"
+        },
+        {
+            "name": "Avon"
+        },
+        {
+            "name": "Mitas"
+        },
+        {
+            "name": "Tissot"
+        },
+        {
+            "name": "Victorinox"
+        },
+        {
+            "name": "Guess"
+        },
+        {
+            "name": "Hugo Boss"
+        },
+        {
+            "name": "Tommy Hilfiger"
+        },
+        {
+            "name": "Lacoste"
+        },
+        {
+            "name": "Ralph Lauren"
+        },
+        {
+            "name": "Dior"
+        },
+        {
+            "name": "Chanel"
+        },
+        {
+            "name": "Givenchy"
+        },
+        {
+            "name": "Yves Saint Laurent"
+        },
+        {
+            "name": "Estée Lauder"
+        },
+        {
+            "name": "Clinique"
+        },
+        {
+            "name": "MAC Cosmetics"
+        },
+        {
+            "name": "Maybelline"
+        },
+        {
+            "name": "L'Oréal"
+        },
+        {
+            "name": "NARS"
+        },
+        {
+            "name": "Too Faced"
+        },
+        {
+            "name": "Urban Decay"
+        },
+        {
+            "name": "Benefit Cosmetics"
+        },
+        {
+            "name": "Anastasia Beverly Hills"
+        },
+        {
+            "name": "Huda Beauty"
+        },
+        {
+            "name": "NYX"
+        },
+        {
+            "name": "E.L.F. Cosmetics"
+        },
+        {
+            "name": "Revlon"
+        },
+        {
+            "name": "CoverGirl"
+        },
+        {
+            "name": "Neutrogena"
+        },
+        {
+            "name": "Olay"
+        },
+        {
+            "name": "Dove"
+        },
+        {
+            "name": "Aveeno"
+        },
+        {
+            "name": "Tresemmé"
+        },
+        {
+            "name": "Pantene"
+        },
+        {
+            "name": "Garnier"
+        },
+        {
+            "name": "Vaseline"
+        },
+        {
+            "name": "Old Spice"
+        },
+        {
+            "name": "Gillette"
+        },
+        {
+            "name": "Nivea"
+        },
+        {
+            "name": "Schwarzkopf"
+        },
+        {
+            "name": "Head & Shoulders"
+        },
+        {
+            "name": "Herbal Essences"
+        },
+        {
+            "name": "John Frieda"
+        },
+        {
+            "name": "CeraVe"
+        },
+        {
+            "name": "La Roche-Posay"
+        },
+        {
+            "name": "Bioderma"
+        },
+        {
+            "name": "Cetaphil"
+        },
+        {
+            "name": "The Ordinary"
+        },
+        {
+            "name": "Innisfree"
+        },
+        {
+            "name": "Laneige"
+        },
+        {
+            "name": "Sulwhasoo"
+        },
+        {
+            "name": "Missha"
+        },
+        {
+            "name": "COSRX"
+        },
+        {
+            "name": "Dr. Jart+"
+        },
+        {
+            "name": "Banila Co"
+        },
+        {
+            "name": "Etude House"
+        },
+        {
+            "name": "TonyMoly"
+        },
+        {
+            "name": "The Face Shop"
+        },
+        {
+            "name": "Skinfood"
+        },
+        {
+            "name": "Nature Republic"
+        },
+        {
+            "name": "Some By Mi"
+        },
+        {
+            "name": "Secret Key"
+        },
+        {
+            "name": "Purito"
+        },
+        {
+            "name": "Isntree"
+        },
+        {
+            "name": "Benton"
+        },
+        {
+            "name": "Klairs"
+        },
+        {
+            "name": "Whitening Labs"
+        },
+        {
+            "name": "OXY"
+        },
+        {
+            "name": "Coty"
+        },
+        {
+            "name": "Remington"
+        },
+        {
+            "name": "Braun"
+        },
+        {
+            "name": "Philips"
+        },
+        {
+            "name": "Panasonic"
+        },
+        {
+            "name": "Babyliss"
+        },
+        {
+            "name": "Frito-Lay"
+        },
+        {
+            "name": "Nestlé"
+        },
+        {
+            "name": "PepsiCo"
+        },
+        {
+            "name": "Coca-Cola"
+        },
+        {
+            "name": "Danone"
+        },
+        {
+            "name": "Unilever"
+        },
+        {
+            "name": "Kellogg's"
+        },
+        {
+            "name": "Mars"
+        },
+        {
+            "name": "Mondelez"
+        },
+        {
+            "name": "Heinz"
+        },
+        {
+            "name": "McDonald's"
+        },
+        {
+            "name": "Burger King"
+        },
+        {
+            "name": "Starbucks"
+        },
+        {
+            "name": "KFC"
+        },
+        {
+            "name": "Domino's"
+        },
+        {
+            "name": "Pizza Hut"
+        },
+        {
+            "name": "Dunkin'"
+        },
+        {
+            "name": "Tim Hortons"
+        },
+        {
+            "name": "Subway"
+        },
+        {
+            "name": "Cinnabon"
+        },
+        {
+            "name": "Krispy Kreme"
+        },
+        {
+            "name": "Hershey's"
+        },
+        {
+            "name": "Ferrero"
+        },
+        {
+            "name": "Lindt"
+        },
+        {
+            "name": "Godiva"
+        },
+        {
+            "name": "Toblerone"
+        },
+        {
+            "name": "Cadbury"
+        },
+        {
+            "name": "Oreo"
+        },
+        {
+            "name": "Nutella"
+        },
+        {
+            "name": "KitKat"
+        },
+        {
+            "name": "Twix"
+        },
+        {
+            "name": "Snickers"
+        },
+        {
+            "name": "Milky Way"
+        },
+        {
+            "name": "M&M's"
+        },
+        {
+            "name": "Skittles"
+        },
+        {
+            "name": "Haribo"
+        },
+        {
+            "name": "Jelly Belly"
+        },
+        {
+            "name": "Tropicana"
+        },
+        {
+            "name": "Minute Maid"
+        },
+        {
+            "name": "Lipton"
+        },
+        {
+            "name": "Twinings"
+        },
+        {
+            "name": "Tazo"
+        },
+        {
+            "name": "Nescafé"
+        },
+        {
+            "name": "Folgers"
+        },
+        {
+            "name": "Maxwell House"
+        },
+        {
+            "name": "Lavazza"
+        },
+        {
+            "name": "Illy"
+        },
+        {
+            "name": "Green Mountain"
+        },
+        {
+            "name": "Keurig"
+        },
+        {
+            "name": "Dole"
+        },
+        {
+            "name": "Chiquita"
+        },
+        {
+            "name": "Del Monte"
+        },
+        {
+            "name": "Sunkist"
+        },
+        {
+            "name": "Ocean Spray"
+        }
+    ]
+}

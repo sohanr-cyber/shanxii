@@ -11,7 +11,8 @@
 
     gap: 10px;
     /* border: 1px solid var(--borderColor); */
-    border-radius: 5px;    padding: 10px;
+    border-radius: 5px;
+    padding: 10px;
     background: var(--cardBg);
     box-shadow: var(--box-shadow);
 
@@ -28,7 +29,7 @@
 
 
 
-.wrapper .feature:hover {
+/* .wrapper .feature:hover {
     background: var(--theme);
     color: var(--buttonC)
 }
@@ -37,7 +38,7 @@
 .wrapper .feature:hover b {
     background: var(--theme);
     color: var(--buttonC)
-}
+} */
 
 
 

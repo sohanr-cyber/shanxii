@@ -10,6 +10,7 @@ import { showSnackBar } from '@/redux/notistackSlice'
 import { orderStatusColors } from '@/utility/const'
 import { extractRGBA } from '@/utility/helper'
 import Image from 'next/image'
+import { setDuplicateProduct } from '@/redux/productSlice'
 
 const Products = ({
   title,
@@ -41,6 +42,11 @@ const Products = ({
       query: queryParams,
       shallow: false
     })
+  }
+
+  const handleDuplicate = (product) => {
+    dispatch(setDuplicateProduct(product))
+    // router.push('/admin/product/create')
   }
 
   const remove = async id => {
@@ -134,7 +140,7 @@ const Products = ({
                     )}`
                   }}
                 >
-                  <td onClick={() => router.push(`/product/${product.slug}`)} style = {{minWidth:"240px"}}>
+                  <td onClick={() => router.push(`/product/${product.slug}`)} style={{ minWidth: "240px" }}>
                     <div className={styles.flex} style={{ justifyContent: "flex-start", gap: "15px", alignItems: "center" }}>
                       <Image src={product.thumbnail} width={35} height={35} />
                       {product.name.length > 20 ? <>{product.name.slice(0, 20)}...</> : product.name}
@@ -162,6 +168,9 @@ const Products = ({
                       }
                     >
                       View
+                    </span>
+                    <span onDoubleClick={() => handleDuplicate(product)}>
+                      Duplicate
                     </span>
                   </td>
                   {/* Add more table cells as needed */}

@@ -9,6 +9,7 @@ import pixel from './pixelSlice'
 import review from './reviewSlice'
 import product from './productSlice'
 import chat from './chatSlice'
+import productCreate from './productCreateSlice'
 
 
 export const store = configureStore({
@@ -23,5 +24,6 @@ export const store = configureStore({
     review,
     category,
     chat,
+    productCreate
   }
 })

@@ -4,7 +4,7 @@ import Category from '@/database/model/Category'
 import UserService from '@/services/user-service'
 import { isAdmin, isAuth } from '@/utility'
 import nextConnect from 'next-connect'
-import { getPrice } from '@/utility/helper'
+import { calculateDiscount, getPrice, universalSlugify } from '@/utility/helper'
 const handler = nextConnect()
 const PAGE_SIZE = 20
 import urlSlug from 'url-slug'
@@ -44,11 +44,11 @@ handler.use(isAuth, isAdmin);
 handler.post(async (req, res) => {
   try {
     await db.connect();
-    
+
     const product = new Product({
       ...req.body,
-      slug: urlSlug(req.body.name),
-      priceWithDiscount: getPrice(req.body.price, req.body.discount),
+      slug: universalSlugify(req.body.name),
+      discount: calculateDiscount(req.body.price, req.body.priceWithDiscount),
       // Ensure 'sold' is handled correctly, either in schema or here
     });
 

@@ -29,22 +29,24 @@ const productSchema = new mongoose.Schema(
     ratings: { type: Number },
     totalRatings: { type: Number },
     ratingCount: { type: Number },
-    sizes: { type: String },
+    purchasePrice: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
     price: {
       type: Number,
-      required: true
+    },
+    priceWithDiscount: {
+      type: Number,
+      required: true,
     },
     discount: {
       type: Number,
       min: 0,
       max: 100,
-      defautl: 0
+      default: 0
     },
-    priceWithDiscount: {
-      type: Number,
-      required: true
-    },
-
     categories: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -53,9 +55,11 @@ const productSchema = new mongoose.Schema(
     ],
     brand: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Brand'
+      ref: 'Brand',
+      required: false, // optional
+
+
     },
-    colors: { type: Array },
     // Media and content
     images: [
       {
@@ -78,7 +82,50 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    productType: {
+      type: String,
+      required: true,
+      default: "normal",
+      enum: ["normal", 'variable']
+    },
+    variants: [
+      {
+        color: {
+          type: String
+        },
+        size: {
+          type: String,
+        },
+        uid: {
+          type: String,
+        },
+        quantity: {
+          type: Number,
+          default: 0,
 
+        },
+        sold: {
+          type: Number,
+          default: 0,
+        },
+        purchasePrice: {
+          type: Number,
+          required: true
+        },
+        price: {
+          type: Number,
+          required: true
+        },
+        priceWithDiscount: {
+          type: Number,
+          required: true
+        },
+        image: {
+          type: String,
+        },
+      }
+    ]
+    ,
     thumbnailColors: {
       type: Array,
       default: ["#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00"]

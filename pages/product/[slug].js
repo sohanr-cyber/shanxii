@@ -101,8 +101,11 @@ export async function getStaticProps(context) {
 
 const Product = ({ product: productData, error, relatedProducts }) => {
   const product = useSelector(state => state.product.product) || productData
-  const [quantity, setQuantity] = useState(1)
-  const [size, setSize] = useState(product?.sizes?.split(',')[0])
+  const [quantity, setQuantity] = useState(1);
+  const [selectedVariant, setSelectedVariant] = useState(
+    product?.variants?.length > 0 ? product.variants[0] : {}
+  )
+
   const [thumbnail, setThumbnail] = useState(product?.thumbnail)
   const router = useRouter()
   const userInfo = useSelector(state => state.user.userInfo)
@@ -115,19 +118,56 @@ const Product = ({ product: productData, error, relatedProducts }) => {
   const [open, setOpen] = useState("description")
   const [loading, setLoading] = useState(false)
   const [fullImage, setFullImage] = useState("")
-  const [currentImage, setCurrentImage] = useState({
-    ...product?.images[0]
-  })
+  const [currentImage, setCurrentImage] = useState(product.variants?.length > 0 ? product.variants[0].image : product.thumbnail)
 
   const fetchReviewAgain = useSelector(state => state.review.fetchReviewAgain)
   const reviewList = useSelector(state => state.review.reviews)
 
+  function extractUniqueColorsAndSizes(variants) {
+    const uniqueColors = new Set();
+    const uniqueSizes = new Set();
+
+    variants.forEach(variant => {
+      if (variant.color) uniqueColors.add(variant.color);
+      if (variant.size) uniqueSizes.add(variant.size);
+    });
+
+    return {
+      colors: Array.from(uniqueColors),
+      sizes: Array.from(uniqueSizes)
+    };
+  }
+
+  function findVariantByColorAndSize(variants, color, size) {
+    // Try to match both color and size
+    let match = variants.find(
+      v =>
+        (color ? v.color === color : true) &&
+        (size ? v.size === size : true)
+    );
+
+    // Fallbacks if no exact match
+    if (!match && color && size) {
+      // Match by color only
+      match = variants.find(v => v.color === color);
+      // If still no match, match by size only
+      if (!match) {
+        match = variants.find(v => v.size === size);
+      }
+    }
+
+    return match || null;
+  }
+
+
+
   useEffect(() => {
     setIsClient(true)
-
+    setCurrentImage(productData.variants?.length > 0 ? productData.variants[0].image : productData.thumbnail)
+    setSelectedVariant(productData?.variants?.length > 0 ? productData.variants[0] : {})
     // setThumbnail(product.thumbnail)
     setOpen("description")
-    setCurrentImage(productData.images[0] || { image: productData.thumbnail, colors: productData.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
+    // setCurrentImage(productData.images[0] || { image: productData.thumbnail, colors: productData.thumbnailColors, uid: generateUniqueID(cartItems.map(image => image.uid)) })
   }, [productData.slug])
 
   const fetchReview = async () => {
@@ -181,10 +221,9 @@ const Product = ({ product: productData, error, relatedProducts }) => {
     dispatch(
       addItem({
         product,
-        size,
-        image: currentImage,
         quantity,
-        available: product.stockQuantity
+        available: product.stockQuantity,
+        variant: product.variants ? findVariantByColorAndSize(product.variants, selectedVariant.color, selectedVariant.size) : {},
       })
     )
     dispatch(showSnackBar({ message: 'Product Added To Cart ' }))
@@ -205,10 +244,10 @@ const Product = ({ product: productData, error, relatedProducts }) => {
     dispatch(
       addToBuyNow({
         product,
-        size,
-        image: currentImage,
         quantity,
-        available: product.stockQuantity
+        available: product.stockQuantity,
+        variant: product.variants ? findVariantByColorAndSize(product.variants, selectedVariant.color, selectedVariant.size) : {},
+
       })
     )
     dispatch(handleAddItemToCart(buyNowItems))
@@ -230,14 +269,14 @@ const Product = ({ product: productData, error, relatedProducts }) => {
             <div className={styles.image__container}
             >
               <Image
-                src={currentImage.image}
-                key={currentImage.image}
+                src={currentImage}
+                key={currentImage}
                 width='400'
                 height='400'
                 alt=''
                 placeholder='blur'
                 blurDataURL={product.placeholder}
-                onClick={() => setFullImage(currentImage.image)}
+                onClick={() => setFullImage(currentImage)}
               />
 
             </div>
@@ -250,7 +289,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
                     height='50'
                     alt=''
                     key={index}
-                    onClick={() => setCurrentImage(item)}
+                    onClick={() => setCurrentImage(item.image)}
                   />
                 </div>
               ))}
@@ -274,27 +313,35 @@ const Product = ({ product: productData, error, relatedProducts }) => {
                   ? `In Stock(${product.stockQuantity})`
                   : 'Out Of Stock'}
               </div>
+              <div className={styles.stock}>
+              </div>
             </div>
             <h1 className={styles.price}>
-              ৳ {getPrice(product.price, product.discount)}
+              {product.productType == "variable" ? <>৳     {getPrice(selectedVariant.price)}</> : <> {getPrice(product.price, product.discount)}
+              </>}
             </h1>
             {product.metaDescription && <p>
               {product.metaDescription}
             </p>}
-            {product?.images.map(e => e.color).length > 0 && (
+
+            {/* If product type variable show sizes and colors otherwise don't */}
+            {product.productType == "variable" && <>  {extractUniqueColorsAndSizes(product.variants).colors.length > 0 && (
               <div className={`${styles.colors} ${styles.sizes}`}>
                 <div>Colors</div>
                 <div className={styles.options}>
-                  {product?.images.map((item, index) => (
+                  {extractUniqueColorsAndSizes(product.variants).colors.map((item, index) => (
                     <div
                       className={styles.option}
                       key={index}
                       style={
-                        item.uid == currentImage.uid
-                          ? { background: `${item.color}`, color: "white", border: `2px solid ${themeC}` }
-                          : { background: `${item.color}`, color: 'white' }
+                        item == selectedVariant.color
+                          ? { background: `${item}`, color: "white", border: `2px solid ${themeC}` }
+                          : { background: `${item}`, color: 'white' }
                       }
-                      onClick={() => setCurrentImage(item)}
+                      onClick={() => {
+                        setSelectedVariant({ ...selectedVariant, color: item, price: findVariantByColorAndSize(product.variants, item, selectedVariant.size).price })
+                        setCurrentImage(findVariantByColorAndSize(product.variants, item).image)
+                      }}
                     >
 
                     </div>
@@ -303,27 +350,29 @@ const Product = ({ product: productData, error, relatedProducts }) => {
               </div>
             )}
 
-            {product?.sizes && (
-              <div className={styles.sizes}>
-                <div>Sizes</div>
-                <div className={styles.options}>
-                  {product?.sizes?.split(',').map((item, index) => (
-                    <div
-                      className={styles.option}
-                      key={index}
-                      style={
-                        item == size
-                          ? { background: 'black', color: 'white' }
-                          : {}
-                      }
-                      onClick={() => setSize(item)}
-                    >
-                      {item}
-                    </div>
-                  ))}
+              {extractUniqueColorsAndSizes(product.variants).sizes && (
+                <div className={styles.sizes}>
+                  <div>Sizes</div>
+                  <div className={styles.options}>
+                    {extractUniqueColorsAndSizes(product.variants).sizes?.map((item, index) => (
+                      <div
+                        className={styles.option}
+                        key={index}
+                        style={
+                          item == selectedVariant.size
+                            ? { background: 'black', color: 'white' }
+                            : {}
+                        }
+                        onClick={() => setSelectedVariant({ ...selectedVariant, size: item, price: findVariantByColorAndSize(product.variants, selectedVariant.color, item).price })
+                        }
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </>}
 
             <div className={styles.flex}>
               <div className={styles.quantity}>

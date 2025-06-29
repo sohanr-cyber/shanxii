@@ -27,6 +27,9 @@ import { NextSeo } from 'next-seo'
 import { generateSeoData } from '@/utility/helper'
 import { seoData } from '@/utility/const'
 import Grid from '@/components/Categories/Explore/Grid'
+import Header4 from '@/components/Header/Header4'
+import Header5 from '@/components/Header/Header5'
+import GridLS from '@/components/Categories/Explore/GridLS'
 
 export default function Home({ data, contents }) {
   return (
@@ -55,11 +58,11 @@ export default function Home({ data, contents }) {
           <List2 />
         </div>
         {/* <ImageSlider images={contents.map(item => item.image)} /> */}
-        {/* <Header2 contents={contents} /> */}
         <Header3 contents={contents.filter(i => i.position == "header")} />
+        {/* <Header5 contents={contents.filter(i => i.position == "header")} /> */}
         <div className={styles.categoriesInRow}>
-          {/* <Row /> */}
-          <Grid />
+          <Row />
+          {/* <Grid /> */}
         </div>
         {data.slice(0, -3)?.length > 0 && data.slice(0, -3).map((i, index) => (
           <ProductsByCategory2

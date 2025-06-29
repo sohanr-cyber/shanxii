@@ -41,20 +41,20 @@ const OrderSummary = ({
         </div>
       </div>
       <div className={styles.cart__items}>
-        <div className={styles.title}>Items In Your Cart</div>
+        <div className={styles.title}>Your Items </div>
         {cartItems?.map((item, index) => (
           <div
             className={styles.item}
             key={index}
             onClick={() =>
               router.push(
-                `/product/${item.product.slug}?quantity=${item.quantity}&size=${item.size}`
+                `/product/${item.product.slug}?quantity=${item.quantity}`
               )
             }
           >
             <div className={styles.left}>
               <Image
-                src={item.product?.thumbnail}
+                src={item.variant ? item.variant.image : item.product?.thumbnail}
                 width='40'
                 height='40'
                 alt=''
@@ -62,16 +62,16 @@ const OrderSummary = ({
             </div>
             <div className={styles.right}>
               <div>{item.product?.name}</div>
-              {item.size && (
+              {item.product.productType == "variable" && <>
                 <div style={{ fontSize: '80%', marginTop: '2px' }}>
-                  {item.size}
+                  {item.variant.size} {item.variant.color}
                 </div>
-              )}
+              </>}
               <div style={{ fontSize: '80%', marginTop: '2px' }}>
                 ৳{' '}
                 {parseInt(
                   item.product.price -
-                    item.product.price * (item.product.discount / 100)
+                  item.product.price * (item.product.discount / 100)
                 )}{' '}
                 * {item.quantity}
               </div>
@@ -81,8 +81,8 @@ const OrderSummary = ({
       </div>
       <div className={styles.shipping}>
         <div className={styles.title}>Shipping Address</div>
-        <div className={styles.address}>{address.address}</div>
-       
+        <div className={styles.address}>{address?.address}</div>
+
         {paymentMethod && (
           <>
             {' '}
@@ -114,7 +114,7 @@ const OrderSummary = ({
             </div>
           </>
         )}
-        
+
       </div>
     </div>
   )

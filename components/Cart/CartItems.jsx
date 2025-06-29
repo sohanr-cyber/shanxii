@@ -23,11 +23,11 @@ const CartItems = ({ cartItems }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.items}>
-        {cartItems.map((item, index) => (
+        {cartItems.length > 0 && cartItems?.map((item, index) => (
           <div className={styles.item} key={index}>
             <div className={styles.left}>
               <Image
-                src={item.image.image}
+                src={item.variant?.image || item.product.thumbnail}
                 width='40'
                 height='40'
                 alt=''
@@ -35,20 +35,18 @@ const CartItems = ({ cartItems }) => {
             </div>
             <div className={styles.right}>
               <div>{item.product.name}</div>
-              <div style={{ fontSize: '80%', marginTop: '2px' }}>
-                {item.size && (
-                  item.size
+              {item.product.productType == "variable" && <div style={{ fontSize: '80%', marginTop: '2px' }}>
+                {item.variant.size && (
+                  item.variant.size
                 )}
-                {item.image.color && (
-                  item.image.color
+                {item.variant.color && (
+                  item.variant.color
                 )}
-              </div>
+              </div>}
+
               <div style={{ fontSize: '80%', marginTop: '2px' }}>
                 ৳{' '}
-                {parseInt(
-                  item.product.price -
-                  item.product.price * (item.product.discount / 100)
-                )}{' '}
+                {item.variant?.price || item.product.priceWithDiscount}
                 * {item.quantity}
               </div>
             </div>

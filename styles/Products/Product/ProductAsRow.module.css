@@ -1,6 +1,8 @@
 .wrapper {
     background-color: var(--cardBg);
-    border-radius: 5px;    overflow: hidden;
+
+    border-radius: 5px;
+    overflow: hidden;
     width: 100%;
     cursor: pointer;
     max-height: 120px;
@@ -8,6 +10,8 @@
     margin: 15px 0;
     /* min-width: 170px; */
     box-shadow: var(--box-shadow);
+    min-height: 130px;
+    /* overflow-y: scroll; */
 }
 
 
@@ -30,7 +34,7 @@
 
 .wrapper .pic img:hover {
     transform: scale(1.5) rotate(25deg);
-  
+
 }
 
 .wrapper .details {
@@ -53,7 +57,7 @@
 
 .wrapper .price {
     font-weight: bold;
-    color: var(--theme)
+    color: var(--icon)
 }
 
 .wrapper .flex {

@@ -35,7 +35,10 @@ const Product = ({ item, redirect, rowDirection }) => {
       onDoubleClick={() => { userInfo?.role == "admin" && router.push(`/admin/product/create?id=${item._id}`) }}
     // style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
     >
-      <div className={styles.pic} >
+      <div className={styles.pic}
+        style={{ background: `${hexToRgba(item.thumbnailColors[0], 0.5)}` }}
+
+      >
 
         {item.blurData ? (
           <Image
@@ -59,17 +62,17 @@ const Product = ({ item, redirect, rowDirection }) => {
         {item.discount ? (
           <div className={styles.price__wrapper}>
             <div className={styles.price}>
-              ৳{getPrice(item.price, item.discount)}
+              ৳{item.priceWithDiscount}
             </div>
             <div className={styles.flex}>
               <div className={styles.price}>
-                <s>৳{getPrice(item.price)}</s>
+                <s>৳{item.price}</s>
               </div>
               <div className={styles.discount}>{item.discount}%</div>
             </div>
           </div>
         ) : (
-          <div className={styles.price}>৳{getPrice(item.price)}</div>
+          <div className={styles.price}>৳{item.priceWithDiscount}</div>
         )}
       </div>
     </motion.div>

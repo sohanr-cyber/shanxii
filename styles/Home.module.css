@@ -8,6 +8,10 @@
 
 }
 
+.wrapper .productsInColumn {
+
+}
+
 .wrapper .off,
 .wrapper .features,
 .wrapper .productsInColumn,
@@ -17,6 +21,7 @@
 
 
 @media (min-width:1024px) {
+
     .wrapper .productsInColumn,
     .wrapper .off,
     .wrapper .features,
@@ -54,6 +59,7 @@
 }
 
 @media (max-width:410px) {
+
     .wrapper .off,
     .wrapper .features,
     .wrapper .productsInColumn,

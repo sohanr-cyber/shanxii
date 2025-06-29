@@ -1,7 +1,9 @@
 .wrapper {
     padding: 15px 25px;
     padding-right: 25px;
+    min-height: 55vh;
 }
+
 
 .welcome {
     display: flex;
@@ -12,7 +14,8 @@
 
 .welcome select {
     padding: var(--buttonPadding);
-    border-radius: 5px;}
+    border-radius: 5px;
+}
 
 .cards_and_chart {
     display: flex;
@@ -43,6 +46,7 @@
     color: var(--icon);
     cursor: pointer;
 }
+
 
 @media (min-width:1024px) {
     .wrapper {

@@ -4,10 +4,14 @@ export const productSlice = createSlice({
     name: 'product',
     initialState: {
         product: null,
+        duplicateProduct: null,
         fetchAgain: false
     },
     reducers: {
         setProduct: (state, action) => {
+            state.product = action.payload
+        },
+        setDuplicateProduct: (state, action) => {
             state.product = action.payload
         },
 
@@ -15,6 +19,6 @@ export const productSlice = createSlice({
     }
 })
 
-export const { setProduct } = productSlice.actions
+export const { setProduct, setDuplicateProduct } = productSlice.actions
 
 export default productSlice.reducer

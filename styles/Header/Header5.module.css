@@ -1,0 +1,84 @@
+.heroSection {
+  position: relative;
+  background-color: #784128; /* bg-amber-900 */
+  min-height: 600px; /* min-h-[600px] */
+  padding-top: 96px; /* pt-24 */
+  padding-bottom: 64px; /* pb-16 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroCulturalImage {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.heroCulturalImageLeft {
+  left: 0;
+  width: 300px; /* w-[300px] */
+  height: 400px; /* h-[400px] */
+  background-position: left center;
+}
+
+.heroCulturalImageRight {
+  right: 0;
+  width: 200px; /* w-[200px] */
+  height: 300px; /* h-[300px] */
+  background-position: right center;
+}
+
+.heroContentBlock {
+  position: relative;
+  z-index: 10;
+  padding: 32px; /* p-8 */
+  background-color: rgba(38, 38, 38, 0.7); /* bg-neutral-800 bg-opacity-70 */
+  backdrop-filter: blur(4px); /* backdrop-blur-sm */
+  border-radius: 8px; /* rounded-lg */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  max-width: 512px; /* max-w-xl */
+  text-align: center;
+  border-top: 4px solid #facc15; /* border-t-yellow-500 */
+  border-bottom: 4px solid #facc15; /* border-b-yellow-500 */
+}
+
+.heroTitle {
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 800; /* font-extrabold */
+  line-height: 1.25; /* leading-tight */
+  color: #facc15; /* text-yellow-300 */
+  margin-bottom: 16px; /* mb-4 */
+  animation: fade-in-down 0.8s ease-out forwards;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem; /* text-lg */
+  color: #e5e7eb; /* text-gray-200 */
+  margin-bottom: 32px; /* mb-8 */
+  animation: fade-in-up 0.8s ease-out 0.3s forwards;
+}
+
+.heroButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px; /* px-8 py-4 */
+  background-color: #ea580c; /* bg-orange-600 */
+  color: #ffffff; /* text-white */
+  font-weight: 700; /* font-bold */
+  font-size: 1.125rem; /* text-lg */
+  border-radius: 9999px; /* rounded-full */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+  text-decoration: none;
+  transition: all 300ms ease;
+}
+
+.heroButton:hover {
+  background-color: #f97316; /* hover:bg-orange-500 */
+  transform: scale(1.05); /* hover:scale-105 */
+}

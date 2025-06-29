@@ -50,26 +50,6 @@
   --hoverButtonBg: rgb(0, 213, 255); */
 
 
-  --background: rgb(232, 241, 247);
-  --nav: white;
-  --cardBg: rgba(255, 255, 255, 255);
-  --buttonBg: linear-gradient(45deg, rgba(149, 145, 254, 255), rgba(7, 121, 214, 255));
-  --buttonC: white;
-  --borderColor: rgba(197, 223, 244, 255);
-  --inputField: linear-gradient(245deg, rgba(96, 221, 255, 0.2), rgba(154, 209, 251, 0.2));
-  --hoverBgColor: rgba(7, 121, 214, 0.1);
-  --hoverColor: rgba(7, 121, 214, 255);
-  --scrollbar: rgba(7, 121, 214, 255);
-  --theme: rgba(7, 121, 214, 255);
-  --icon: rgba(7, 121, 214, 255);
-  --buttonPadding: 7px 10px;
-  --logo: linear-gradient(45deg, rgba(7, 121, 214, 255) 50%, rgba(7, 121, 214, 255) 50%);
-  --themeTransparent: linear-gradient(125deg, rgba(1, 0, 30, 0.2), rgba(0, 140, 255, 0.3));
-  --shadow: rgb(255, 255, 255, 0.1);
-  --textShadow: 0.5px 0.5px rgb(255, 255, 255, 0.1);
-  --hoverButtonBg: rgb(0, 255, 247);
-
-
   /* --background: #fbfbfb;
   --nav: rgb(213, 227, 228);
   --cardBg: rgb(231, 238, 238, 0.7);
@@ -107,7 +87,7 @@
   --hoverButtonBg: rgb(255, 111, 0); */
 
 
-
+ 
 
 
 
@@ -125,7 +105,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-size: 92%;
+  font-size: 98%;
   font-family: "Noto Sans Bengali", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -178,7 +158,7 @@ textarea {
   border: none;
   font-family: 'Ubuntu', sans-serif;
   background: var(--inputField);
-  border-radius: 5px;
+  border-radius: 0;
   border: none;
   padding: var(--buttonPadding)
 }
@@ -187,7 +167,7 @@ textarea {
 button {
   border: none;
   font-family: 'Ubuntu', sans-serif;
-  border-radius: 5px;
+  border-radius: 0px;
   background: var(--buttonBg);
   color: var(--buttonC);
   cursor: pointer;

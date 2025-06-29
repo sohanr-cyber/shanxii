@@ -39,7 +39,7 @@ handler.post(async (req, res) => {
     // Fetch product details for each item in the order
     const populatedItems = await Promise.all(
       orderItems.map(async item => {
-        const { product: productId, quantity, size, color } = item
+        const { product: productId, quantity, variant } = item
         const product = await Product.findOne({ _id: productId })
 
         if (!product) {
@@ -47,17 +47,16 @@ handler.post(async (req, res) => {
         }
 
         // Calculate the total price and discount based on the product's price and discount
-        const price = product.price
+        const price = product.productType == "variable" ? product.variants.find(v => v.uid == variant.uid).price : product.price
         const discount = product.discount
         return {
-          order: { product: productId, quantity, price, discount, size, color },
+          order: { product: productId, quantity, price, discount, variant },
           item: {
             product,
             quantity,
             price,
             discount,
-            size,
-            color
+            variant
           }
         }
       })
@@ -88,7 +87,7 @@ handler.post(async (req, res) => {
         discount =
           existingCoupon.discountType == 'percentage'
             ? getPrice(subtotal) -
-              getPrice(subtotal, existingCoupon.discountValue)
+            getPrice(subtotal, existingCoupon.discountValue)
             : getDeliveryCharge(address.position)
       } else {
         return status(200).send({ error: 'Coupon is Invalid or Expired !' })

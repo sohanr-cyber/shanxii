@@ -1,0 +1,23 @@
+.wrapper {
+    width: 100%;
+
+}
+
+.wrapper table {
+    width: 100%;
+}
+
+.wrapper table thead tr th {
+    background: var(--buttonBg);
+    padding: 5px;
+
+}
+
+.wrapper table td {
+    padding: 5px;
+    text-align: center;
+}
+
+.wrapper table tr:nth-child(odd) {
+    background-color: rgb(174, 226, 249);
+}

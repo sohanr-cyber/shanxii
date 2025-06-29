@@ -17,6 +17,7 @@ import Navbar2 from './Navs/Navbar2'
 import styles from '@/styles/Layout.module.css'
 import { setCurrentChat } from '@/redux/chatSlice'
 import ChatArea from './Chat/ChatArea'
+import Nested from './Categories/Explore/Nested'
 
 const Layout = ({ children }) => {
   const loading = useSelector(state => state.state.loading)
@@ -68,6 +69,7 @@ const Layout = ({ children }) => {
       enqueueSnackbar(notistack.message, notistack.option || 'default')
     }
   }, [notistack])
+  
   return (
     <div>
       {loading && <Loading />}
@@ -84,6 +86,7 @@ const Layout = ({ children }) => {
       ) : (
         <AdminNavbar />
       )}
+      {/* <Nested /> */}
       {children}
       <Footer />
       <BottomFooter />

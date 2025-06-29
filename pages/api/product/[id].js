@@ -1,10 +1,10 @@
 import db from '@/database/connection'
 import Product from '@/database/model/Product'
 import { isAuth, isAdmin } from '@/utility'
-import { deleteFileFromUrl, getPrice } from '@/utility/helper'
+import { calculateDiscount, deleteFileFromUrl, getPrice, universalSlugify } from '@/utility/helper'
 import { ExtractColors } from '@/utility/image'
 import nextConnect from 'next-connect'
-import slugify from 'slugify'
+import urlSlug from 'url-slug'
 
 const handler = nextConnect()
 
@@ -28,12 +28,14 @@ handler.put(async (req, res) => {
   try {
     await db.connect()
     const { id } = req.query
+    console.log({ variants: req.body.variants })
+
     const product = await Product.findByIdAndUpdate(
       id,
       {
         ...req.body,
-        slug: slugify(req.body.name),
-        priceWithDiscount: getPrice(req.body.price, req.body.discount),
+        slug: universalSlugify(req.body.name,),
+        discount: calculateDiscount(req.body.price, req.body.priceWithDiscount),
         thumbnailColors: await ExtractColors(req.body.thumbnail),
         images: await Promise.all(req.body.images.map(async i => (
           { ...i, colors: await ExtractColors(i.image) }

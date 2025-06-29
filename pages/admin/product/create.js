@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useInsertionEffect, useState } from 'react'
 import styles from '../../../styles/Admin/ProductCreate.module.css'
 import Image from 'next/image'
 import Upload from '@/components/Utility/Upload'
@@ -15,20 +15,53 @@ import SelectCategory from '@/components/Categories/SelectCategory'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { SubtitlesOutlined } from '@mui/icons-material'
-import { generateUniqueID } from '@/utility/helper'
+import { calculateDiscount, generateUniqueID } from '@/utility/helper'
+import BrandSelector from '@/components/Admin/ProductUpload/BrandSelector'
+import Variant from '@/components/Admin/ProductUpload/Variant'
+import VariantTable from '@/components/Admin/ProductUpload/VariantTable'
+import { addNewVariant, setVariants, setVariantTable } from '@/redux/productCreateSlice'
+import { setDuplicateProduct } from '@/redux/productSlice'
 
 const Create = ({ product: data, brands }) => {
   const [images, setImages] = useState([])
   const [product, setProduct] = useState(data)
+  const router = useRouter()
   const [error, setError] = useState('')
   const [description, setDescription] = useState(product.description)
+  const variants = useSelector(state => state.productCreate.variants)
   const dispatch = useDispatch()
-  const router = useRouter()
+  const duplicateProduct = useSelector(state => state.product.duplicateProduct)
+  const groupVariants = (variants) => {
+    const grouped = {};
+
+    variants.forEach(({ color, size, quantity }) => {
+      if (!grouped[color]) {
+        grouped[color] = { color, size: [], quantity };
+      }
+      grouped[color].size.push(size);
+    });
+
+    return Object.values(grouped);
+  };
+
+
+
+  useEffect(() => {
+    if (duplicateProduct) {
+      setProduct(duplicateProduct)
+    }
+  }, [])
+
+  useEffect(() => {
+    // dispatch(setVariantTable(product.variants))
+    // dispatch(setVariants(groupVariants(product.variants)))
+    dispatch(setVariants(product.variants || []))
+  }, [router.query.id])
+
   const handleImages = files => {
     setProduct(prev => ({
       ...prev, images: files.map(i => ({
         image: i,
-        color: i.color,
         uid: generateUniqueID(product.images.map(e => e.uid)),
         colors: ["#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00", "#FFFFFF00"],
       }))
@@ -56,8 +89,8 @@ const Create = ({ product: data, brands }) => {
     if (
       !product.name ||
       !product.thumbnail ||
-      !product.price ||
-      !product.thumbnail
+      !product.priceWithDiscount ||
+      !product.purchasePrice
     ) {
       setError('Pleas fill all the necessaary field')
       return
@@ -68,6 +101,7 @@ const Create = ({ product: data, brands }) => {
         '/api/product',
         {
           ...product,
+          variants,
           description,
           categories: selected,
 
@@ -76,13 +110,11 @@ const Create = ({ product: data, brands }) => {
       )
       setProduct({
         name: '',
-        sizes: '',
         description: '',
         price: 0,
-        discount: '',
         categories: [],
         attributes: [],
-        colors: [],
+
         images: [],
         thumbnail: '',
         metaTitle: '',
@@ -90,6 +122,7 @@ const Create = ({ product: data, brands }) => {
         stockQuantity: 0,
         sold: 0
       })
+      dispatch(setDuplicateProduct(null))
 
       setSelected([])
       setDescription('')
@@ -103,6 +136,7 @@ const Create = ({ product: data, brands }) => {
         })
       )
     } catch (error) {
+      console.log(error)
       dispatch(finishLoading())
       dispatch(
         showSnackBar({
@@ -112,6 +146,7 @@ const Create = ({ product: data, brands }) => {
           }
         })
       )
+
       setError('Error While Creating Product ! ')
     }
   }
@@ -120,16 +155,11 @@ const Create = ({ product: data, brands }) => {
     if (
       !product.name ||
       !product.thumbnail ||
-      !product.price ||
-      !product.thumbnail
-      // !product.stockQuantity
+      !product.priceWithDiscount ||
+      !product.purchasePrice
+
     ) {
-      console.log(
-        product.name,
-        product.thumbnail,
-        product.price,
-        product.stockQuantity
-      )
+
       dispatch(
         showSnackBar({
           message: 'Please Fill All The Field !',
@@ -147,6 +177,7 @@ const Create = ({ product: data, brands }) => {
         `/api/product/${router.query.id}`,
         {
           ...product,
+          variants: variants,
           categories: selected,
           description,
 
@@ -198,9 +229,22 @@ const Create = ({ product: data, brands }) => {
               }
             />
           </div>
+
           <div className={styles.flex}>
             <div className={styles.field}>
-              <label>Price</label>
+              <label>Purchase Price</label>
+              <input
+                type='number'
+                placeholder='Enter Product Purchase Price'
+                value={product.purchasePrice}
+                onChange={e =>
+                  setProduct(prev => ({ ...prev, purchasePrice: e.target.value }))
+                }
+                min='0'
+              />
+            </div>
+            <div className={styles.field}>
+              <label>Old Price</label>
               <input
                 type='number'
                 placeholder='Enter Product Price'
@@ -212,20 +256,21 @@ const Create = ({ product: data, brands }) => {
               />
             </div>
             <div className={styles.field}>
-              <label>discount in percentage</label>
+              <label>New/Sale Price (-{calculateDiscount(product.price, product.priceWithDiscount)}%)</label>
               <input
                 type='number'
-                placeholder='Enter Product Discount'
-                value={product.discount}
+                placeholder='Enter Salling Price'
+                value={product.priceWithDiscount}
                 onChange={e =>
-                  e.target.value >= 0 && e.target.value < 100 && setProduct(prev => ({ ...prev, discount: e.target.value }))
+                  setProduct(prev => ({ ...prev, priceWithDiscount: e.target.value }))
                 }
-                min='0'
-                max='100'
+
               />
             </div>
 
           </div>
+
+
           <div className={styles.flex}>
             <div className={styles.field}>
               <label>Stock Quantity </label>
@@ -337,11 +382,12 @@ const Create = ({ product: data, brands }) => {
 
           <div className={styles.field}>
             <label>Brand(optional)</label>
-            <div className={`${styles.options} ${styles.flexWrap}`} >
+            {/* <div className={`${styles.options} ${styles.flexWrap}`} >
               {brands.map((i, index) => (<span style={product.brand == i._id ? {
                 background: "black", color: "white"
               } : {}} onClick={() => product.brand == i._id ? setProduct({ ...product, brand: null }) : setProduct({ ...product, brand: i._id })}>{i.name}</span>))}
-            </div>
+            </div> */}
+            <BrandSelector selected={{ _id: product.brand }} handleSelect={(b) => { product.brand == b._id ? setProduct({ ...product, brand: null }) : setProduct({ ...product, brand: b._id }) }} />
           </div>
 
           <div
@@ -366,25 +412,8 @@ const Create = ({ product: data, brands }) => {
           </div>
         </div>
         <div className={`${styles.left} ${styles.right}`}>
-          {' '}
-          <div className={styles.field}>
-            <label>Enter Product Size (Separating By Commas)</label>
-            <input
-              type='text'
-              placeholder='Enter Product Sizes'
-              value={product.sizes}
-              onChange={e =>
-                setProduct(prev => ({
-                  ...prev,
-                  sizes: e.target.value
-                }))
-              }
-            />
-          </div>
-          <div className={styles.field}>
-            <label>Chose Product Color</label>
-            <Colors selectedColors={product.colors?.join(",")} handleClick={setColor} />
-          </div>
+
+
           <div className={styles.field}>
             <label>Product Thumbnail</label>
             <Upload type={".png, .jpg, .jpeg , .webp"}
@@ -426,21 +455,6 @@ const Create = ({ product: data, brands }) => {
                 ? product.images.map((image, index) => (
                   <div className={styles.image__container} name={index}>
                     <Image src={image.image} alt='' width='180' height={180} />
-                    <div className={styles.color__selector}></div>
-                    <div className={styles.colors}>
-                      <Colors
-                        selectedColors={image.color}
-                        handleClick={(c) => {
-                          console.log({ c })
-                          setProduct({
-                            ...product, images: product.images.map(i => (
-                              i.uid == image.uid ? {
-                                ...i, color: c
-                              } : { ...i }
-                            ))
-                          })
-                        }} />
-                    </div>
                   </div>
                 ))
                 : [1, 2, 3].map((_, index) => (
@@ -459,6 +473,34 @@ const Create = ({ product: data, brands }) => {
                 ))}
             </div>
 
+          </div>
+          <div className={`${styles.field} ${styles.variants}`}>
+            <div
+              className={styles.field}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center'
+              }}
+            >
+              <span
+                onClick={() =>
+                  setProduct({ ...product, productType: product.productType == "normal" ? "variable" : "normal" })
+                }
+              >
+                {product.productType == "variable" ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </span>
+              <span> This Product Has Variation </span>{' '}
+            </div>
+
+            {product.productType == "variable" && <>            <div className={styles.variants__flex}>
+              {variants?.map((v, i) => <div className={styles.variants__item}><Variant vuid={v?.uid} /></div>
+              )}
+            </div>
+              <div className={styles.plus} style={{ margin: 0 }} onClick={() => dispatch(addNewVariant({ uid: generateUniqueID(variants?.map(v => v?.uid)) }))}>+</div></>}
           </div>
         </div>
       </form >
@@ -514,7 +556,6 @@ export async function getServerSideProps({ query }) {
         name: '',
         description: '',
         price: 0,
-        discount: '',
         categories: [],
         attributes: [],
         colors: [],
@@ -524,7 +565,7 @@ export async function getServerSideProps({ query }) {
         metaDescription: '',
         stockQuantity: 0,
         sold: 0,
-        brand: "",
+        brand: null,
       },
       categories,
       brands

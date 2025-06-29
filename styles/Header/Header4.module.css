@@ -1,0 +1,121 @@
+.container {
+    padding: 25px;
+
+}
+
+
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+
+}
+
+.wrapper .left {
+    max-width: 220px;
+    min-width: 220px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    /* gap: 10px; */
+    background: var(--cardBg);
+
+
+}
+
+.wrapper .left,
+.wrapper .right {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.wrapper .left .category {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    width: 93%;
+    padding: 6px;
+}
+
+.wrapper .left .category:hover {
+    color: var(--hoverColor)
+}
+
+.wrapper .content {
+    width: 100%;
+}
+
+.wrapper .content img {
+    width: 100%;
+    max-height: 370px;
+    object-fit: cover;
+}
+
+.wrapper .right {
+    width: 100%;
+    /* background-color: red; */
+    position: relative;
+}
+
+.wrapper .right .selectedCategories {
+    position: absolute;
+    top: 33px;
+    left: 0;
+    background-color: var(--cardBg);
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid rgb(100, 98, 98);
+    overflow-y: scroll;
+}
+
+.wrapper .right .selectedCategories .ccategories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+}
+
+.wrapper .right .selectedCategories .ccategories .ccategory div {
+    margin: 7px 0;
+    cursor: pointer;
+
+}
+
+.wrapper .right .selectedCategories .ccategories .ccategory {
+    padding: 6px;
+}
+
+
+.wrapper .right .top {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 10px;
+    background: var(--cardBg);
+    overflow-x: scroll;
+}
+
+
+
+.wrapper .right .categories {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.wrapper .right .categories .item {
+    background: rgb(0, 255, 221);
+    width: 100%;
+    /* padding: 25px 10px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 80px;
+}
+
+@media (min-width:1024px) {
+    .container {
+        padding: 15px var(--percent);
+    }
+}

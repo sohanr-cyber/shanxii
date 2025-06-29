@@ -41,16 +41,16 @@ const Address = () => {
   const discount = coupon
     ? coupon?.discountType == 'percentage'
       ? getPrice(
+        calculateSubtotal(
+          router.query.buyNow == 'true' ? buyNowItems : cartItems
+        ) -
+        getPrice(
           calculateSubtotal(
             router.query.buyNow == 'true' ? buyNowItems : cartItems
-          ) -
-            getPrice(
-              calculateSubtotal(
-                router.query.buyNow == 'true' ? buyNowItems : cartItems
-              ),
-              coupon.discountValue
-            )
+          ),
+          coupon.discountValue
         )
+      )
       : getDeliveryCharge(address.position)
     : 0
 
@@ -66,8 +66,7 @@ const Address = () => {
         items: cartItems.map(i => ({
           product: i.product._id,
           quantity: i.quantity,
-          size: i.size,
-          color: i.color
+          variant: i.variant || {}
         })),
         shippingAddress: {
           ...addressInfo,
@@ -103,7 +102,7 @@ const Address = () => {
       )
       // dispatch(handlePurchase(data))
       router.push(`/order/${data._id}`)
-      dispatch(clearCart())
+      // dispatch(clearCart())
       dispatch(clearCoupon())
     } catch (error) {
       dispatch(finishLoading())
@@ -215,9 +214,9 @@ const Address = () => {
               style={
                 paymentMethod == 'COD'
                   ? {
-                      background: `${themeBg}`,
-                      color: 'white'
-                    }
+                    background: `${themeBg}`,
+                    color: 'white'
+                  }
                   : {}
               }
             >
@@ -240,9 +239,9 @@ const Address = () => {
               style={
                 paymentMethod == 'sslcommerz'
                   ? {
-                      background: `${themeBg}`,
-                      color: 'white'
-                    }
+                    background: `${themeBg}`,
+                    color: 'white'
+                  }
                   : {}
               }
             >
@@ -273,8 +272,8 @@ const Address = () => {
                 paymentMethod == 'COD'
                   ? makeOrder(router.query.buyNow ? buyNowItems : cartItems)
                   : paymentMethod == 'sslcommerz'
-                  ? payNow(router.query.buyNow ? buyNowItems : cartItems)
-                  : dispatch(
+                    ? payNow(router.query.buyNow ? buyNowItems : cartItems)
+                    : dispatch(
                       showSnackBar({
                         message: 'Select Payment Method',
                         option: {
@@ -305,8 +304,8 @@ const Address = () => {
                 calculateSubtotal(
                   router.query.buyNow == 'true' ? buyNowItems : cartItems
                 ) +
-                  getDeliveryCharge(address.position) -
-                  discount
+                getDeliveryCharge(address.position) -
+                discount
               )}
               discount={discount}
               address={addressInfo}
