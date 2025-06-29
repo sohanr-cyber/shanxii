@@ -346,19 +346,19 @@ const colors = [
 const companyName = "Shanxii";
 
 const seoData = {
-  title: `${companyName} - Elegant Home Decor & Stylish Interiors`,
+  title: `${companyName} - Your Trusted Online Store for Everything You Need`,
   description:
-    "Transform your living space with DecoNest. Shop premium home decor, furniture, and interior design essentials to create a cozy and stylish home.",
+    `Shop a wide range of products including electronics, fashion, home essentials, and more at ${companyName}. Enjoy great deals, fast delivery, and quality service.`,
   canonical: BASE_URL,
   openGraph: {
     url: BASE_URL,
-    title: `${companyName} - Elegant Home Decor & Stylish Interiors`,
+    title: `${companyName} - Your Trusted Online Store for Everything You Need`,
     description:
-      "Discover beautiful home decor, furniture, lighting, and accessories at DecoNest. Elevate your interiors with our handpicked collection.",
+      `Discover electronics, fashion, gadgets, home & kitchen products, and more at ${companyName}. Trusted by thousands, shop now with confidence.`,
     images: [
       {
         url: `${BASE_URL}/images/og-image.jpg`,
-        alt: `${companyName} - Home Decor & Interiors`,
+        alt: `${companyName} - Online Shopping Destination`,
         width: 1200,
         height: 630
       }
@@ -374,11 +374,11 @@ const seoData = {
 
 const orderCartSeoData = {
   title: `Your Shopping Cart - ${companyName}`,
-  description: `Review and manage the home decor and furniture in your cart at ${companyName}.`,
+  description: `Review and manage the products in your shopping cart at ${companyName}.`,
   canonical: `${BASE_URL}/cart`,
   openGraph: {
     title: `Your Shopping Cart - ${companyName}`,
-    description: `Review and manage the home decor and furniture in your cart at ${companyName}.`,
+    description: `Easily manage the items in your shopping cart and get ready to checkout.`,
     url: `${BASE_URL}/cart`,
     images: [
       {
@@ -395,11 +395,11 @@ const orderCartSeoData = {
 
 const TermsAndConditionSeoData = {
   title: `Terms and Conditions - ${companyName}`,
-  description: `Review the terms and conditions for shopping at ${companyName}.`,
+  description: `Read the terms and conditions for using ${companyName}'s online store.`,
   canonical: `${BASE_URL}/terms-and-conditions`,
   openGraph: {
     title: `Terms and Conditions - ${companyName}`,
-    description: `Review the terms and conditions for shopping at ${companyName}.`,
+    description: `Understand the terms and policies that apply to your purchases and site usage.`,
     url: `${BASE_URL}/terms-and-conditions`,
     images: [
       {
@@ -416,11 +416,11 @@ const TermsAndConditionSeoData = {
 
 const privacyPolicySeoData = {
   title: `Privacy Policy - ${companyName}`,
-  description: `Learn how ${companyName} protects your personal data while shopping for home decor and furniture.`,
+  description: `Learn how ${companyName} collects, uses, and protects your personal information.`,
   canonical: `${BASE_URL}/privacy-policy`,
   openGraph: {
     title: `Privacy Policy - ${companyName}`,
-    description: `Learn how ${companyName} protects your personal data while shopping for home decor and furniture.`,
+    description: `Your privacy matters to us. Read how we handle your data securely at ${companyName}.`,
     url: `${BASE_URL}/privacy-policy`,
     images: [
       {
@@ -437,11 +437,11 @@ const privacyPolicySeoData = {
 
 const orderDetailSeoData = {
   title: `Order Details - ${companyName}`,
-  description: `Check the details of your order at ${companyName}.`,
+  description: `Track and review your order placed at ${companyName}.`,
   canonical: `${BASE_URL}/order-details`,
   openGraph: {
     title: `Order Details - ${companyName}`,
-    description: `Check the details of your order at ${companyName}.`,
+    description: `Get a detailed view of your recent order including items, pricing, and delivery status.`,
     url: `${BASE_URL}/order-details`,
     images: [
       {
@@ -458,11 +458,11 @@ const orderDetailSeoData = {
 
 const reviewSeoData = {
   title: `Review Your Order - ${companyName}`,
-  description: `Confirm your items and details before placing your order at ${companyName}.`,
+  description: `Double-check your order details before finalizing your purchase at ${companyName}.`,
   canonical: `${BASE_URL}/review`,
   openGraph: {
     title: `Review Your Order - ${companyName}`,
-    description: `Confirm your items and details before placing your order at ${companyName}.`,
+    description: `Ensure everything looks good before placing your final order.`,
     url: `${BASE_URL}/review`,
     images: [
       {
@@ -479,11 +479,11 @@ const reviewSeoData = {
 
 const addressSeoData = {
   title: `Shipping Address - ${companyName}`,
-  description: `Enter your shipping address to complete your purchase on ${companyName}.`,
+  description: `Provide your shipping address to ensure a smooth and timely delivery.`,
   canonical: `${BASE_URL}/address`,
   openGraph: {
     title: `Shipping Address - ${companyName}`,
-    description: `Enter your shipping address to complete your purchase on ${companyName}.`,
+    description: `Add your delivery information to complete the purchase.`,
     url: `${BASE_URL}/address`,
     images: [
       {
@@ -500,11 +500,11 @@ const addressSeoData = {
 
 const loginSeoData = {
   title: `Login - ${companyName}`,
-  description: `Log in to your account at ${companyName} to access your profile and orders.`,
+  description: `Log in to your ${companyName} account to manage orders and track delivery.`,
   canonical: `${BASE_URL}/login`,
   openGraph: {
     title: `Login - ${companyName}`,
-    description: `Log in to your account at ${companyName} to access your profile and orders.`,
+    description: `Access your profile, order history, and more by logging into your account.`,
     url: `${BASE_URL}/login`,
     images: [
       {
@@ -521,11 +521,11 @@ const loginSeoData = {
 
 const registerSeoData = {
   title: `Register - ${companyName}`,
-  description: `Create an account at ${companyName} to start shopping for electronics and gadgets.`,
+  description: `Create your account on ${companyName} and enjoy a seamless online shopping experience.`,
   canonical: `${BASE_URL}/register`,
   openGraph: {
     title: `Register - ${companyName}`,
-    description: `Create an account at ${companyName} to start shopping for electronics and gadgets.`,
+    description: `Sign up to get access to exclusive deals, faster checkout, and order tracking.`,
     url: `${BASE_URL}/register`,
     images: [
       {
@@ -539,6 +539,7 @@ const registerSeoData = {
   },
   twitter: seoData.twitter
 };
+
 
 const base64Img = "/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDACgcHiMeGSgjISMtKygwPGRBPDc3PHtYXUlkkYCZlo+AjIqgtObDoKrarYqMyP/L2u71////m8H////6/+b9//j/2wBDASstLTw1PHZBQXb4pYyl+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj4+Pj/wAARCAApACkDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAEDBAX/xAAnEAACAgECBQQDAQAAAAAAAAABAgADEQQhEiIxQXETQlFhMjPB0f/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABgRAQEBAQEAAAAAAAAAAAAAAAABERJB/9oADAMBAAIRAxEAPwDYiJA6mB6SjqrmWwIpzY34jpj6lk1m3F7jX5EMg95ii2zhsdnwUwyHHKRnEtUX5uFTMSwbGRuAf8MvKdX1oxQHSEjYmRrX9DVKxBbBzg+4HYibB6SjrG01pNdythT+we1viJcZsZgrDW8KOWrIAXA5j9Y/vST0o1rqhPpVBtlQ9vPmStTWlhr9dK1bYhU4c+TLGlbToVCWBrXHcYz9AdhLpYuDpCOKRTkFmkqscOy83ffY+ZPCBANLQFI4MgjfJO/mNNNUjq6rzKMAk5k0IAIo4QP/2Q=="
 
