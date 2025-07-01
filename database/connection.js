@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import { MONGODB_URI } from '@/config'
 const connection = {}
 
-async function connect () {
+async function connect() {
   if (connection.isConnected) {
     console.log('already connected')
     return
@@ -20,18 +20,30 @@ async function connect () {
   connection.isConnected = db.connections[0].readyState
 }
 
-async function disconnect () {
+// async function disconnect () {
+//   if (connection.isConnected) {
+//     if (process.env.NODE_ENV === 'production') {
+//       await mongoose.disconnect()
+//       connection.isConnected = false
+//     } else {
+//       console.log('not disconnected')
+//     }
+//   }
+// }
+
+
+async function disconnect() {
   if (connection.isConnected) {
-    if (process.env.NODE_ENV === 'production') {
-      await mongoose.disconnect()
-      connection.isConnected = false
-    } else {
-      console.log('not disconnected')
-    }
+    // ✅ Never disconnect automatically — just log
+    console.log('Skipping disconnect in production')
+    return
+
+    // ❌ If you really need to disconnect at some point,
+    // implement logic to check for idle state first.
   }
 }
 
-function convertDocToObj (doc) {
+function convertDocToObj(doc) {
   doc._id = doc._id.toString()
   doc.createdAt = doc.createdAt.toString()
   doc.updatedAt = doc.updatedAt.toString()

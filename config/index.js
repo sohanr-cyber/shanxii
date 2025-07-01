@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
   // BASE_URL = "https://stylehive-kohl.vercel.app"
 
   BASE_URL = "https://shanxii.vercel.app"
-  MONGODB_URI = process.env.MONGODB_URI
+  MONGODB_URI = process.env.MONGODB_URI_PRODUCTION
 
   GMAIL = process.env.GMAIL_USER
   PASSWORD = process.env.GMAIL_PASS
