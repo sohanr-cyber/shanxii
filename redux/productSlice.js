@@ -12,7 +12,7 @@ export const productSlice = createSlice({
             state.product = action.payload
         },
         setDuplicateProduct: (state, action) => {
-            state.product = action.payload
+            state.duplicateProduct = action.payload
         },
 
 

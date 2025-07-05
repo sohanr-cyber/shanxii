@@ -48,10 +48,30 @@ const Create = ({ product: data, brands }) => {
 
   useEffect(() => {
     if (duplicateProduct) {
-      setProduct(duplicateProduct)
+      const { _id, ...others } = duplicateProduct
+      setProduct(others)
+      setSelected(duplicateProduct.categories.map(i => i._id))
+      setDescription(duplicateProduct.description)
+
     }
   }, [])
 
+
+  const genVariant = () => {
+    const uid = Date.now()
+    if (variants.length > 0) {
+      return { ...variants[variants.length - 1], uid, }
+    } else {
+      return {
+        image: product.thumbnail, price: product.price,
+        purchasePrice: product.purchasePrice,
+        priceWithDiscount: product.priceWithDiscount,
+        quantity: product.stockQuantity,
+        uid,
+      }
+    }
+
+  }
   useEffect(() => {
     // dispatch(setVariantTable(product.variants))
     // dispatch(setVariants(groupVariants(product.variants)))
@@ -256,7 +276,7 @@ const Create = ({ product: data, brands }) => {
               />
             </div>
             <div className={styles.field}>
-              <label>New/Sale Price (-{calculateDiscount(product.price, product.priceWithDiscount)}%)</label>
+              <label>New Price (-{calculateDiscount(product.price, product.priceWithDiscount)}%)</label>
               <input
                 type='number'
                 placeholder='Enter Salling Price'
@@ -496,11 +516,15 @@ const Create = ({ product: data, brands }) => {
               <span> This Product Has Variation </span>{' '}
             </div>
 
-            {product.productType == "variable" && <>            <div className={styles.variants__flex}>
-              {variants?.map((v, i) => <div className={styles.variants__item}><Variant vuid={v?.uid} /></div>
-              )}
-            </div>
-              <div className={styles.plus} style={{ margin: 0 }} onClick={() => dispatch(addNewVariant({ uid: generateUniqueID(variants?.map(v => v?.uid)) }))}>+</div></>}
+            {product.productType == "variable" && <>
+              <div className={styles.variants__flex}>
+                {variants?.map((v, i) => <div className={styles.variants__item}>
+                  <Variant vuid={v?.uid} />
+                </div>
+                )}
+              </div>
+              <div className={styles.plus} style={{ margin: 0 }} onClick={() =>
+                dispatch(addNewVariant(genVariant()))}>+</div></>}
           </div>
         </div>
       </form >

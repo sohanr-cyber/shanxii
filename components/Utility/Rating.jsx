@@ -15,6 +15,11 @@ const Ratings = ({ ratings, size, id, gap, color }) => {
         <Stack spacing={2}>
             <Rating
                 name={`rating-${id}-${Math.random()}`}
+                // onClick={() => {
+                //     updateRoute({
+                //         ratings: ratings
+                //     })
+                // }}
                 value={rating}
                 precision={0.1}
                 readOnly

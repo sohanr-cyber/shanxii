@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from '@/styles/Products/ProductsByCategory2.module.css'
+import styles from '../../styles/Products/ProductsByCategory2.module.css'
 import Product from '../Product'
 import ProgressBar from '../Utility/PBar'
 

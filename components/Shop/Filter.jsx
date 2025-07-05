@@ -19,15 +19,45 @@ const Filter = ({ setOpen }) => {
     maxPrice: router.query.maxPrice
   })
 
-  const updateRoute = data => {
-    const queryParams = { ...router.query, page: 1, ...data }
+  const updateRoute = (data, toggle = false) => {
+    if (toggle) {
+      addOrToggleRoute(data)
+    } else {
+      const queryParams = { ...router.query, page: 1, ...data }
+      router.push({
+        pathname: router.pathname,
+        query: queryParams,
+        shallow: false
+      })
+      setOpen(false)
+    }
+
+  }
+
+  const addOrToggleRoute = data => {
+    const updatedQuery = { ...router.query }
+
+    for (const key in data) {
+      if (updatedQuery[key] === String(data[key])) {
+        // Key exists with same value → remove it
+        delete updatedQuery[key]
+      } else {
+        // Key doesn't exist or has different value → set/update it
+        updatedQuery[key] = data[key]
+      }
+    }
+
+    updatedQuery.page = 1 // Always reset page on change
+
     router.push({
       pathname: router.pathname,
-      query: queryParams,
+      query: updatedQuery,
       shallow: false
     })
+
     setOpen(false)
   }
+
 
   const setColor = color => [
     router.query.colors?.split(',').find(i => i == color)
@@ -73,7 +103,7 @@ const Filter = ({ setOpen }) => {
         <div className={styles.heading}>Rating</div>
         <div className={styles.filterOptions} >
           {[5, 4, 3, 2, 1].map((r, i) => (
-            <div className={styles.rating} style={{ margin: "5px 0" }} onClick={() => updateRoute({ rating: r })}>
+            <div className={styles.rating} style={{ margin: "5px 0" }} onClick={() => updateRoute({ ratings: r }, true)}>
               <Ratings ratings={r} size={"large"} gap={"10px"} />
             </div>))}
         </div>

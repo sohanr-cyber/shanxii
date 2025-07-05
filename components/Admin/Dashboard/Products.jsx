@@ -44,9 +44,18 @@ const Products = ({
     })
   }
 
-  const handleDuplicate = (product) => {
-    dispatch(setDuplicateProduct(product))
-    // router.push('/admin/product/create')
+
+  const handleDuplicate = async (product) => {
+    try {
+      dispatch(startLoading())
+      const { data } = await axios.get(`/api/product/${product._id}`)
+      dispatch(setDuplicateProduct(data))
+      router.push('/admin/product/create')
+      dispatch(finishLoading())
+    } catch (error) {
+      console.log(error)
+      dispatch(finishLoading())
+    }
   }
 
   const remove = async id => {
@@ -169,7 +178,7 @@ const Products = ({
                     >
                       View
                     </span>
-                    <span onDoubleClick={() => handleDuplicate(product)}>
+                    <span onClick={() => handleDuplicate(product)}>
                       Duplicate
                     </span>
                   </td>

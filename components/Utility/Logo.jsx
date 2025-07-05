@@ -6,15 +6,14 @@ import { colors, companyName } from '@/utility/const'
 
 const Logo = ({ color }) => {
   const router = useRouter()
-  const name = companyName || 'Shanxii'
+  const name = companyName || '🛍️ Shanxii'
 
   return (
     <div className={styles.wrapper} onClick={() => router.push('/')}>
-      {name.split('').map((i, index) => (
-        <div key={index} style={{ color: `${color}` }}>
-          {i}
-        </div>
-      ))}
+      <div className={styles.icon}>🛍️</div><div className={styles.text}> 
+        <div className={styles.left}>Shanx</div>
+        <div className={styles.right}>ii</div>
+      </div>
     </div>
   )
 }

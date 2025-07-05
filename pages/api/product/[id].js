@@ -34,7 +34,7 @@ handler.put(async (req, res) => {
       id,
       {
         ...req.body,
-        slug: universalSlugify(req.body.name,),
+        // slug: universalSlugify(req.body.name,),
         discount: calculateDiscount(req.body.price, req.body.priceWithDiscount),
         thumbnailColors: await ExtractColors(req.body.thumbnail),
         images: await Promise.all(req.body.images.map(async i => (

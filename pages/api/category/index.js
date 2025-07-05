@@ -12,6 +12,7 @@ const handler = nc()
 handler.get(async (req, res) => {
   try {
     await db.connect()
+    console.log(req.query.pageSize)
     // Get the page number from the query parameters, default to 1
     const page = parseInt(req.query.page) || 1
 
@@ -27,7 +28,7 @@ handler.get(async (req, res) => {
     const categories = await Category.find()
       .sort({ createdAt: -1 })
       .skip(skip)
-      .limit(PAGE_SIZE)
+      .limit(req.query.pageSize || (req.query.pageSize || PAGE_SIZE))
 
     await db.disconnect()
     res.json({ page, categories, totalPages })

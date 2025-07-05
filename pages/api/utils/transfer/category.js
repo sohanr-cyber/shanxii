@@ -7,27 +7,38 @@ const handler = nextConnect()
 
 
 // handler.use(isAuth) // Optional: remove this if no auth required
-
 handler.get(async (req, res) => {
-    await db.connect() // ensure database connection
+  await db.connect(); // ensure database connection
 
-    try {
-        const { data } = await axios.get("https://stylehive-kohl.vercel.app/api/category?pageSize=100")
-        const categories = data.categories
+  try {
+    const { data } = await axios.get("https://ecomerce-phi-gold.vercel.app/api/category?pageSize=1000");
+    const categories = data.categories;
 
-        if (!categories || !Array.isArray(categories)) {
-            return res.status(400).json({ error: "No valid categories received" })
-        }
-
-
-        // Save to DB
-        const inserted = await Category.insertMany(categories)
-
-        res.status(201).json({ message: "Categorys copied successfully", count: inserted.length })
-    } catch (error) {
-        console.error("Error copying category:", error)
-        res.status(500).json({ error: "Something went wrong" })
+    if (!categories || !Array.isArray(categories)) {
+      return res.status(400).json({ error: "No valid categories received" });
     }
-})
+
+    // Create promises for all inserts
+    const insertPromises = categories.map((cat) => Category.create(cat));
+
+    const results = await Promise.allSettled(insertPromises);
+
+    const inserted = results.filter((r) => r.status === "fulfilled").length;
+    const failed = results.filter((r) => r.status === "rejected");
+
+    res.status(201).json({
+      message: "Categories processed",
+      insertedCount: inserted,
+      failedCount: failed.length,
+      errors: failed.map((e, i) => ({
+        category: categories[i],
+        error: e.reason?.message || "Unknown error",
+      })),
+    });
+  } catch (error) {
+    console.error("Error copying categories:", error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
 
 export default handler

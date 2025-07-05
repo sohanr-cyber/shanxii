@@ -73,9 +73,9 @@ export default function Home({ data, contents }) {
             structure={'grid'}
           />
         ))}
-        <div className={styles.off}>
+        {/* <div className={styles.off}>
           <Off content={contents.filter(i => i.position == "deal")[0]} />
-        </div>
+        </div> */}
         <div className={styles.off}>
           <ShopNow content={contents.filter(i => i.position == "cta")[0]} />
         </div>

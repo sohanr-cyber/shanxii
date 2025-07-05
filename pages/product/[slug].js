@@ -160,6 +160,21 @@ const Product = ({ product: productData, error, relatedProducts }) => {
   }
 
 
+  const findStockQuantity = (variants, color, size) => {
+    // Try to match both color and size
+    let match = variants.find(
+      v =>
+        (color ? v.color === color : true) &&
+        (size ? v.size === size : true)
+    )
+
+    if (match) {
+      return match.quantity
+    } else {
+      return 0
+    }
+  }
+
 
   useEffect(() => {
     setIsClient(true)
@@ -193,7 +208,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
 
 
   const incrementQuantity = () => {
-    if (quantity < product.stockQuantity) {
+    if (quantity < (selectedVariant ? selectedVariant.stockQuantity : product.stockQuantity)) {
       setQuantity(prevQuantity => prevQuantity + 1)
     }
   }
@@ -254,6 +269,23 @@ const Product = ({ product: productData, error, relatedProducts }) => {
     router.push('/checkout/address?buyNow=true')
   }
 
+  const handleVariantChange = data => {
+    setSelectedVariant({
+      ...selectedVariant,
+      ...data,
+    })
+  }
+
+  useEffect(() => {
+    if (product.productType == "variable") {
+      setSelectedVariant({
+        ...selectedVariant, stockQuantity: findStockQuantity(product.variants, selectedVariant.color, selectedVariant.size),
+        priceWithDiscount: findVariantByColorAndSize(product.variants, selectedVariant.color, selectedVariant.size).priceWithDiscount
+      })
+      setCurrentImage(findVariantByColorAndSize(product.variants, selectedVariant.color).image)
+
+    }
+  }, [selectedVariant.size, selectedVariant.color])
   return (
     <>
       {loading && <Loading />}
@@ -301,6 +333,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
               <div className={styles.ratings}>
                 <Ratings ratings={product.ratings} size={"large"} id={product._id} />
               </div>
+              {selectedVariant.stockQuantity}, {selectedVariant.color}, {selectedVariant.size} , {selectedVariant.priceWithDiscount}
               <div
                 className={styles.stock}
                 style={
@@ -310,14 +343,14 @@ const Product = ({ product: productData, error, relatedProducts }) => {
                 }
               >
                 {product.stockQuantity > 0
-                  ? `In Stock(${product.stockQuantity})`
+                  ? `In Stock(${selectedVariant.stockQuantity ? selectedVariant.stockQuantity : product.stockQuantity})`
                   : 'Out Of Stock'}
               </div>
               <div className={styles.stock}>
               </div>
             </div>
             <h1 className={styles.price}>
-              {product.productType == "variable" ? <>৳     {getPrice(selectedVariant.price)}</> : <> {getPrice(product.price, product.discount)}
+              {product.productType == "variable" ? <>৳     {getPrice(selectedVariant.priceWithDiscount)}</> : <> {getPrice(product.price, product.discount)}
               </>}
             </h1>
             {product.metaDescription && <p>
@@ -339,8 +372,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
                           : { background: `${item}`, color: 'white' }
                       }
                       onClick={() => {
-                        setSelectedVariant({ ...selectedVariant, color: item, price: findVariantByColorAndSize(product.variants, item, selectedVariant.size).price })
-                        setCurrentImage(findVariantByColorAndSize(product.variants, item).image)
+                        handleVariantChange({ color: item })
                       }}
                     >
 
@@ -363,7 +395,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
                             ? { background: 'black', color: 'white' }
                             : {}
                         }
-                        onClick={() => setSelectedVariant({ ...selectedVariant, size: item, price: findVariantByColorAndSize(product.variants, selectedVariant.color, item).price })
+                        onClick={() => handleVariantChange({ size: item })
                         }
                       >
                         {item}

@@ -41,8 +41,10 @@ const filterProducts = (products, filters) => {
             !category || product.categories.some((c) => c._id == category);
         const matchesMinPrice = !filters.minPrice || product.price >= Number(filters.minPrice);
         const matchesMaxPrice = !filters.maxPrice || product.price <= Number(filters.maxPrice);
+        const matchesRatings = !filters.ratings || product.ratings >= Number(filters.ratings);
+
         const matchesColor = !filters.colors || product.colors?.join(",").toLowerCase() === filters.colors.toLowerCase();
-        return matchesName && matchesCategory && matchesMinPrice && matchesMaxPrice && matchesColor;
+        return matchesName && matchesCategory && matchesMinPrice && matchesMaxPrice && matchesRatings && matchesColor;
     });
 
     // Sorting
