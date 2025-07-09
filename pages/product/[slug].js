@@ -333,7 +333,6 @@ const Product = ({ product: productData, error, relatedProducts }) => {
               <div className={styles.ratings}>
                 <Ratings ratings={product.ratings} size={"large"} id={product._id} />
               </div>
-              {selectedVariant.stockQuantity}, {selectedVariant.color}, {selectedVariant.size} , {selectedVariant.priceWithDiscount}
               <div
                 className={styles.stock}
                 style={
@@ -343,7 +342,7 @@ const Product = ({ product: productData, error, relatedProducts }) => {
                 }
               >
                 {product.stockQuantity > 0
-                  ? `In Stock(${selectedVariant.stockQuantity ? selectedVariant.stockQuantity : product.stockQuantity})`
+                  ? `In Stock`
                   : 'Out Of Stock'}
               </div>
               <div className={styles.stock}>
