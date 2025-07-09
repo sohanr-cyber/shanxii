@@ -74,15 +74,15 @@ const Footer = () => {
         </div>
         <div className={styles.right}>
           <h2 className={styles.heading}>Contact</h2>
-          <div className={styles.mail}>
+          {/* <div className={styles.mail}>
             Address: House 41(meena bazar, lift 4), Gareeb-e-Newaz Avenue Road,
             Rangpur
-          </div>
+          </div> */}
           <div className={styles.mail}>
-            Mail: <span>mail@gmail.com</span>
+            Mail: <span>shanxiishop@gmail.com</span>
           </div>
           <div className={styles.call}>
-            Phone: <span>+8802305825832</span>
+            Phone: <span>01977629936</span>
           </div>
           <div className={styles.social__media__links}>
             <Image

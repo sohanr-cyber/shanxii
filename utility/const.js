@@ -29,10 +29,10 @@ const statusMessages = {
 const support_number = '01744329811'
 const support_mail = 'contactus@gmail.com'
 const delivery_positions = ['Inside Dhaka', 'Outside Dhaka', 'Dhaka Subburb']
-const feacebook_page = 'https://www.facebook.com/'
-const messenger = 'https://www.facebook.com/'
-const whatsapp = 'https://web.whatsapp.com/'
-const instagram = 'https://www.instagram.com/'
+const feacebook_page = 'https://www.facebook.com/profile.php?id=61577730223689'
+const messenger = 'https://www.facebook.com/profile.php?id=61577730223689'
+const whatsapp = 'https://www.facebook.com/profile.php?id=61577730223689'
+const instagram = 'https://www.facebook.com/profile.php?id=61577730223689'
 
 
 const colors = [
