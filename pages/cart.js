@@ -87,7 +87,7 @@ const Cart = () => {
                     </td>
                     <td>
                       ৳{' '}
-                      {item.variant?.price || item.product.priceWithDiscount}
+                      {item.variant?.priceWithDiscount || item.product.priceWithDiscount}
                     </td>
                     <td>
                       {' '}
@@ -105,7 +105,7 @@ const Cart = () => {
                       ৳ {" "}
                       {(
                         item.quantity *
-                        (item.variant?.price || item.product.priceWithDiscount)
+                        (item.variant?.priceWithDiscount || item.product.priceWithDiscount)
                       ).toFixed(2)}
                     </td>
                     <td

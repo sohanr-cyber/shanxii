@@ -82,6 +82,24 @@ const Products = ({
       )
     }
   }
+
+  const handleClone = async (product) => {
+    try {
+      dispatch(startLoading())
+      const { data } = await axios.post('/api/product/utility', {
+        _id: product._id
+      })
+      dispatch(showSnackBar({
+        message: `${data.count} Product cloned succcessfully!`
+      }))
+      router.push('/admin/product')
+      dispatch(finishLoading())
+    } catch (error) {
+      dispatch(finishLoading())
+      console.log(error)
+    }
+  }
+
   return (
     <>
       {' '}
@@ -115,11 +133,10 @@ const Products = ({
               <tr>
                 <th>Product </th>
                 <th>Price</th>
-                <th>Discount</th> <th>Categories</th>
+                <th>Categories</th>
                 <th>Stock Quantity</th>
                 <th>Sold</th>
                 <th>Action</th>
-                {/* Add more table headers as needed */}
               </tr>
             </thead>
             <tbody>
@@ -146,17 +163,22 @@ const Products = ({
                         }`.toLowerCase()
                       ],
                       0.1
-                    )}`
+                    )}`,
+                    fontWeight: `${(new Date() - new Date(product.createdAt)) > 30 * 1000 ? "normal" : "bold"}`
                   }}
                 >
                   <td onClick={() => router.push(`/product/${product.slug}`)} style={{ minWidth: "240px" }}>
                     <div className={styles.flex} style={{ justifyContent: "flex-start", gap: "15px", alignItems: "center" }}>
-                      <Image src={product.thumbnail} width={35} height={35} />
+                      <Image src={product.thumbnail} width={55} height={55} />
                       {product.name.length > 20 ? <>{product.name.slice(0, 20)}...</> : product.name}
                     </div>
                   </td>
-                  <td>{product.price}</td>
-                  <td>{product.discount || 0}%</td>
+                  <td>
+                    <div>{product.price}</div>
+                    <div>-{product.discount || 0}%</div>
+                    <div>{product.priceWithDiscount}</div>
+
+                  </td>
                   <td>
                     {product.categories?.map((item, index) => (
                       <span key={index}>
@@ -181,6 +203,9 @@ const Products = ({
                     <span onClick={() => handleDuplicate(product)}>
                       Duplicate
                     </span>
+                    {product.variants.length > 1 && <span onClick={() => handleClone(product)}>
+                      Clone
+                    </span>}
                   </td>
                   {/* Add more table cells as needed */}
                 </tr>

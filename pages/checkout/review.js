@@ -102,7 +102,7 @@ const Address = () => {
       )
       // dispatch(handlePurchase(data))
       router.push(`/order/${data._id}`)
-      // dispatch(clearCart())
+      dispatch(clearCart())
       dispatch(clearCoupon())
     } catch (error) {
       dispatch(finishLoading())
@@ -197,10 +197,10 @@ const Address = () => {
               <div className={styles.key}>Phone:</div>
               <div className={styles.value}>{address?.phone}</div>
             </div>
-            <div className={styles.field}>
+            {address.email && <div className={styles.field}>
               <div className={styles.key}>email:</div>
               <div className={styles.value}>{address?.email}</div>
-            </div>
+            </div>}
             <div className={styles.field}>
               <div className={styles.key}>Address:</div>
               <div className={styles.value}> {address?.address}</div>

@@ -33,19 +33,19 @@ const Address = () => {
   const discount =
     coupon?.discountType == 'percentage'
       ? getPrice(
+        calculateSubtotal(
+          router.query.buyNow == 'true' ? buyNowItems : cartItems
+        ) -
+        getPrice(
           calculateSubtotal(
             router.query.buyNow == 'true' ? buyNowItems : cartItems
-          ) -
-            getPrice(
-              calculateSubtotal(
-                router.query.buyNow == 'true' ? buyNowItems : cartItems
-              ),
-              coupon.discountValue
-            )
+          ),
+          coupon.discountValue
         )
+      )
       : coupon?.discountType == 'free_shipping'
-      ? getDeliveryCharge(address.position)
-      : 0
+        ? getDeliveryCharge(address.position)
+        : 0
 
   const redirectToReview = () => {
     if (
@@ -92,7 +92,7 @@ const Address = () => {
           </div>
           <div className={styles.flex}>
             <div className={styles.field}>
-              <label>Email Address</label>
+              <label>Email Address (Optional) </label>
               <input
                 type='email'
                 placeholder='Enter Your Mail'
@@ -172,8 +172,8 @@ const Address = () => {
                 calculateSubtotal(
                   router.query.buyNow == 'true' ? buyNowItems : cartItems
                 ) +
-                  getDeliveryCharge(address.position) -
-                  discount
+                getDeliveryCharge(address.position) -
+                discount
               )}
               discount={discount}
               address={addressInfo}

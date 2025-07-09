@@ -5,6 +5,12 @@
     /* padding: 10px; */
     min-width: 210px;
     color: initial;
+
+}
+
+.wrapper .items {
+    max-height: 60vh;
+    overflow-y: scroll;
 }
 
 .wrapper .items .item {

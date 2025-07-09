@@ -14,7 +14,7 @@ const calculateSubtotal = cartItems => {
   let subtotal = 0
   cartItems.forEach(item => {
     subtotal +=
-      (item.variant?.price || item.product.priceWithDiscount) *
+      (item.variant?.priceWithDiscount || item.product.priceWithDiscount) *
       item.quantity
   })
   return subtotal

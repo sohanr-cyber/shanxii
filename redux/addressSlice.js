@@ -1,23 +1,45 @@
 import { createSlice } from '@reduxjs/toolkit'
-import Cookies from 'js-cookie'
+
+// Helpers for localStorage
+const getLocalStorage = (key, fallback) => {
+  try {
+    const data = localStorage.getItem(key)
+    return data ? JSON.parse(data) : fallback
+  } catch (error) {
+    console.error(`Error getting ${key} from localStorage:`, error)
+    return fallback
+  }
+}
+
+const setLocalStorage = (key, value) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value))
+  } catch (error) {
+    console.error(`Error setting ${key} in localStorage:`, error)
+  }
+}
+
+const removeLocalStorage = (key) => {
+  try {
+    localStorage.removeItem(key)
+  } catch (error) {
+    console.error(`Error removing ${key} from localStorage:`, error)
+  }
+}
 
 export const addressSlice = createSlice({
   name: 'address',
   initialState: {
-    addressInfo: Cookies.get('address')
-      ? JSON.parse(Cookies.get('address'))
-      : {} // Object to store address information
+    addressInfo: getLocalStorage('address', {})
   },
   reducers: {
     setAddress: (state, action) => {
-      state.addressInfo = action.payload // Set address information
-      // Update address data in cookies
-      Cookies.set('address', JSON.stringify(state.addressInfo), { expires: 7 })
+      state.addressInfo = action.payload
+      setLocalStorage('address', state.addressInfo)
     },
-    clearAddress: state => {
-      state.addressInfo = null // Clear address information
-      // Clear address data in cookies
-      Cookies.remove('address')
+    clearAddress: (state) => {
+      state.addressInfo = null
+      removeLocalStorage('address')
     }
   }
 })

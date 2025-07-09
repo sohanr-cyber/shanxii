@@ -43,8 +43,7 @@ const Create = ({ product: data, brands }) => {
 
     return Object.values(grouped);
   };
-
-
+  
 
   useEffect(() => {
     if (duplicateProduct) {
@@ -228,10 +227,7 @@ const Create = ({ product: data, brands }) => {
     }
   }
 
-  const setColor = c => {
-    console.log({ colors: product.colors, c })
-    setProduct({ ...product, colors: product?.colors?.find(i => i == c) ? product.colors.filter(i => i != c) : [...product.colors, c] })
-  }
+
 
   return (
     <div className={styles.wrapper}>

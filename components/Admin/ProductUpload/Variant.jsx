@@ -6,14 +6,32 @@ import Image from 'next/image';
 import { addNewVariant, removeVariant, setVariants, updateVariants } from '@/redux/productCreateSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateUniqueID } from '@/utility/helper';
+import axios from 'axios';
+import { findRGB } from '@/utility/dict';
 
-const sizes = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
 const Variant = ({ vuid }) => {
     const variants = useSelector(state => state.productCreate.variants)
     const [vDetails, setVDetails] = useState(variants?.find(v => v?.uid == vuid));
     const dispatch = useDispatch()
+    const [colors, setColors] = useState([])
+    const [sizes, setSizes] = useState([])
 
+    const fetchSizeAndColor = async () => {
+        try {
+            const { data: colors } = await axios.get('/api/misc/color?pageSize=1000')
+            const { data: sizes } = await axios.get("/api/misc/size?pageSize=1000")
+            setSizes(sizes.size)
+            setColors(colors.colors)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        fetchSizeAndColor()
+    }, [])
     const handleFile = (file) => {
         dispatch(updateVariants({ uid: vuid, image: file.url }))
     };
@@ -36,7 +54,7 @@ const Variant = ({ vuid }) => {
                     <select name="size" value={vDetails?.size} onChange={handleChange}>
                         <option value="" disabled>Select</option>
                         {sizes.map((s, i) => (
-                            <option key={i} value={s}>{s}</option>
+                            <option key={i} value={s.name}>{s.name}</option>
                         ))}
                     </select>
                 </div>
@@ -46,7 +64,10 @@ const Variant = ({ vuid }) => {
                     <select
                         name="color"
                         value={vDetails?.color}
-                        onChange={handleChange}
+                        onChange={
+                            handleChange
+
+                        }
                     >
                         <option value="" disabled>Select</option>
                         {colors.map((c, i) => (
@@ -108,10 +129,11 @@ const Variant = ({ vuid }) => {
 
                 </div>
                 <div className={styles.field}>
-                    <div className={styles.box} style={{ backgroundColor: vDetails?.color || '#eee', display: "flex", alignItems: 'center', justifyContent: "center" }} onClick={() => dispatch(removeVariant({
+                    <div className={styles.box} style={{ backgroundColor: findRGB(vDetails?.color) || '#eee', display: "flex", alignItems: 'center', justifyContent: "center" }} onClick={() => dispatch(removeVariant({
                         uid: vuid,
                     }))}>
                         -
+
                     </div>
                 </div>
             </div>

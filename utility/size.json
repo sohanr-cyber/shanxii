@@ -1,0 +1,774 @@
+{
+    "sizes": [
+        {
+            "name": "XS",
+            "category": "clothing",
+            "displayName": "XS",
+            "sortOrder": 1,
+            "isActive": true
+        },
+        {
+            "name": "S",
+            "category": "clothing",
+            "displayName": "S",
+            "sortOrder": 2,
+            "isActive": true
+        },
+        {
+            "name": "M",
+            "category": "clothing",
+            "displayName": "M",
+            "sortOrder": 3,
+            "isActive": true
+        },
+        {
+            "name": "L",
+            "category": "clothing",
+            "displayName": "L",
+            "sortOrder": 4,
+            "isActive": true
+        },
+        {
+            "name": "XL",
+            "category": "clothing",
+            "displayName": "XL",
+            "sortOrder": 5,
+            "isActive": true
+        },
+        {
+            "name": "XXL",
+            "category": "clothing",
+            "displayName": "XXL",
+            "sortOrder": 6,
+            "isActive": true
+        },
+        {
+            "name": "XXXL",
+            "category": "clothing",
+            "displayName": "XXXL",
+            "sortOrder": 7,
+            "isActive": true
+        },
+        {
+            "name": "4XL",
+            "category": "clothing",
+            "displayName": "4XL",
+            "sortOrder": 8,
+            "isActive": true
+        },
+        {
+            "name": "5XL",
+            "category": "clothing",
+            "displayName": "5XL",
+            "sortOrder": 9,
+            "isActive": true
+        },
+        {
+            "name": "6XL",
+            "category": "clothing",
+            "displayName": "6XL",
+            "sortOrder": 10,
+            "isActive": true
+        },
+        {
+            "name": "Free Size",
+            "category": "clothing",
+            "displayName": "Free Size",
+            "sortOrder": 11,
+            "isActive": true
+        },
+        {
+            "name": "One Size",
+            "category": "clothing",
+            "displayName": "One Size",
+            "sortOrder": 12,
+            "isActive": true
+        },
+        {
+            "name": "28",
+            "category": "numeric_clothing",
+            "displayName": "28",
+            "sortOrder": 13,
+            "isActive": true
+        },
+        {
+            "name": "30",
+            "category": "numeric_clothing",
+            "displayName": "30",
+            "sortOrder": 14,
+            "isActive": true
+        },
+        {
+            "name": "32",
+            "category": "numeric_clothing",
+            "displayName": "32",
+            "sortOrder": 15,
+            "isActive": true
+        },
+        {
+            "name": "34",
+            "category": "numeric_clothing",
+            "displayName": "34",
+            "sortOrder": 16,
+            "isActive": true
+        },
+        {
+            "name": "36",
+            "category": "numeric_clothing",
+            "displayName": "36",
+            "sortOrder": 17,
+            "isActive": true
+        },
+        {
+            "name": "38",
+            "category": "numeric_clothing",
+            "displayName": "38",
+            "sortOrder": 18,
+            "isActive": true
+        },
+        {
+            "name": "40",
+            "category": "numeric_clothing",
+            "displayName": "40",
+            "sortOrder": 19,
+            "isActive": true
+        },
+        {
+            "name": "42",
+            "category": "numeric_clothing",
+            "displayName": "42",
+            "sortOrder": 20,
+            "isActive": true
+        },
+        {
+            "name": "44",
+            "category": "numeric_clothing",
+            "displayName": "44",
+            "sortOrder": 21,
+            "isActive": true
+        },
+        {
+            "name": "46",
+            "category": "numeric_clothing",
+            "displayName": "46",
+            "sortOrder": 22,
+            "isActive": true
+        },
+        {
+            "name": "48",
+            "category": "numeric_clothing",
+            "displayName": "48",
+            "sortOrder": 23,
+            "isActive": true
+        },
+        {
+            "name": "5",
+            "category": "shoes_men",
+            "displayName": "5",
+            "sortOrder": 24,
+            "isActive": true
+        },
+        {
+            "name": "6",
+            "category": "shoes_men",
+            "displayName": "6",
+            "sortOrder": 25,
+            "isActive": true
+        },
+        {
+            "name": "7",
+            "category": "shoes_men",
+            "displayName": "7",
+            "sortOrder": 26,
+            "isActive": true
+        },
+        {
+            "name": "8",
+            "category": "shoes_men",
+            "displayName": "8",
+            "sortOrder": 27,
+            "isActive": true
+        },
+        {
+            "name": "9",
+            "category": "shoes_men",
+            "displayName": "9",
+            "sortOrder": 28,
+            "isActive": true
+        },
+        {
+            "name": "10",
+            "category": "shoes_men",
+            "displayName": "10",
+            "sortOrder": 29,
+            "isActive": true
+        },
+        {
+            "name": "11",
+            "category": "shoes_men",
+            "displayName": "11",
+            "sortOrder": 30,
+            "isActive": true
+        },
+        {
+            "name": "12",
+            "category": "shoes_men",
+            "displayName": "12",
+            "sortOrder": 31,
+            "isActive": true
+        },
+        {
+            "name": "4",
+            "category": "shoes_women",
+            "displayName": "4",
+            "sortOrder": 32,
+            "isActive": true
+        },
+        {
+            "name": "5",
+            "category": "shoes_women",
+            "displayName": "5",
+            "sortOrder": 33,
+            "isActive": true
+        },
+        {
+            "name": "6",
+            "category": "shoes_women",
+            "displayName": "6",
+            "sortOrder": 34,
+            "isActive": true
+        },
+        {
+            "name": "7",
+            "category": "shoes_women",
+            "displayName": "7",
+            "sortOrder": 35,
+            "isActive": true
+        },
+        {
+            "name": "8",
+            "category": "shoes_women",
+            "displayName": "8",
+            "sortOrder": 36,
+            "isActive": true
+        },
+        {
+            "name": "9",
+            "category": "shoes_women",
+            "displayName": "9",
+            "sortOrder": 37,
+            "isActive": true
+        },
+        {
+            "name": "10",
+            "category": "shoes_women",
+            "displayName": "10",
+            "sortOrder": 38,
+            "isActive": true
+        },
+        {
+            "name": "1",
+            "category": "shoes_kids",
+            "displayName": "1",
+            "sortOrder": 39,
+            "isActive": true
+        },
+        {
+            "name": "2",
+            "category": "shoes_kids",
+            "displayName": "2",
+            "sortOrder": 40,
+            "isActive": true
+        },
+        {
+            "name": "3",
+            "category": "shoes_kids",
+            "displayName": "3",
+            "sortOrder": 41,
+            "isActive": true
+        },
+        {
+            "name": "4",
+            "category": "shoes_kids",
+            "displayName": "4",
+            "sortOrder": 42,
+            "isActive": true
+        },
+        {
+            "name": "5",
+            "category": "shoes_kids",
+            "displayName": "5",
+            "sortOrder": 43,
+            "isActive": true
+        },
+        {
+            "name": "6",
+            "category": "shoes_kids",
+            "displayName": "6",
+            "sortOrder": 44,
+            "isActive": true
+        },
+        {
+            "name": "7",
+            "category": "shoes_kids",
+            "displayName": "7",
+            "sortOrder": 45,
+            "isActive": true
+        },
+        {
+            "name": "0-3 Months",
+            "category": "baby",
+            "displayName": "0-3 Months",
+            "sortOrder": 46,
+            "isActive": true
+        },
+        {
+            "name": "3-6 Months",
+            "category": "baby",
+            "displayName": "3-6 Months",
+            "sortOrder": 47,
+            "isActive": true
+        },
+        {
+            "name": "6-9 Months",
+            "category": "baby",
+            "displayName": "6-9 Months",
+            "sortOrder": 48,
+            "isActive": true
+        },
+        {
+            "name": "9-12 Months",
+            "category": "baby",
+            "displayName": "9-12 Months",
+            "sortOrder": 49,
+            "isActive": true
+        },
+        {
+            "name": "12-18 Months",
+            "category": "baby",
+            "displayName": "12-18 Months",
+            "sortOrder": 50,
+            "isActive": true
+        },
+        {
+            "name": "18-24 Months",
+            "category": "baby",
+            "displayName": "18-24 Months",
+            "sortOrder": 51,
+            "isActive": true
+        },
+        {
+            "name": "2T",
+            "category": "baby",
+            "displayName": "2T",
+            "sortOrder": 52,
+            "isActive": true
+        },
+        {
+            "name": "3T",
+            "category": "baby",
+            "displayName": "3T",
+            "sortOrder": 53,
+            "isActive": true
+        },
+        {
+            "name": "4T",
+            "category": "baby",
+            "displayName": "4T",
+            "sortOrder": 54,
+            "isActive": true
+        },
+        {
+            "name": "5T",
+            "category": "baby",
+            "displayName": "5T",
+            "sortOrder": 55,
+            "isActive": true
+        },
+        {
+            "name": "Small",
+            "category": "accessory",
+            "displayName": "Small",
+            "sortOrder": 56,
+            "isActive": true
+        },
+        {
+            "name": "Medium",
+            "category": "accessory",
+            "displayName": "Medium",
+            "sortOrder": 57,
+            "isActive": true
+        },
+        {
+            "name": "Large",
+            "category": "accessory",
+            "displayName": "Large",
+            "sortOrder": 58,
+            "isActive": true
+        },
+        {
+            "name": "Adjustable",
+            "category": "accessory",
+            "displayName": "Adjustable",
+            "sortOrder": 59,
+            "isActive": true
+        },
+        {
+            "name": "One Size",
+            "category": "accessory",
+            "displayName": "One Size",
+            "sortOrder": 60,
+            "isActive": true
+        },
+        {
+            "name": "Single",
+            "category": "bed",
+            "displayName": "Single",
+            "sortOrder": 61,
+            "isActive": true
+        },
+        {
+            "name": "Twin",
+            "category": "bed",
+            "displayName": "Twin",
+            "sortOrder": 62,
+            "isActive": true
+        },
+        {
+            "name": "Twin XL",
+            "category": "bed",
+            "displayName": "Twin XL",
+            "sortOrder": 63,
+            "isActive": true
+        },
+        {
+            "name": "Double",
+            "category": "bed",
+            "displayName": "Double",
+            "sortOrder": 64,
+            "isActive": true
+        },
+        {
+            "name": "Full",
+            "category": "bed",
+            "displayName": "Full",
+            "sortOrder": 65,
+            "isActive": true
+        },
+        {
+            "name": "Queen",
+            "category": "bed",
+            "displayName": "Queen",
+            "sortOrder": 66,
+            "isActive": true
+        },
+        {
+            "name": "King",
+            "category": "bed",
+            "displayName": "King",
+            "sortOrder": 67,
+            "isActive": true
+        },
+        {
+            "name": "California King",
+            "category": "bed",
+            "displayName": "California King",
+            "sortOrder": 68,
+            "isActive": true
+        },
+        {
+            "name": "4ft",
+            "category": "curtain",
+            "displayName": "4ft",
+            "sortOrder": 69,
+            "isActive": true
+        },
+        {
+            "name": "5ft",
+            "category": "curtain",
+            "displayName": "5ft",
+            "sortOrder": 70,
+            "isActive": true
+        },
+        {
+            "name": "6ft",
+            "category": "curtain",
+            "displayName": "6ft",
+            "sortOrder": 71,
+            "isActive": true
+        },
+        {
+            "name": "7ft",
+            "category": "curtain",
+            "displayName": "7ft",
+            "sortOrder": 72,
+            "isActive": true
+        },
+        {
+            "name": "8ft",
+            "category": "curtain",
+            "displayName": "8ft",
+            "sortOrder": 73,
+            "isActive": true
+        },
+        {
+            "name": "9ft",
+            "category": "curtain",
+            "displayName": "9ft",
+            "sortOrder": 74,
+            "isActive": true
+        },
+        {
+            "name": "10ft",
+            "category": "curtain",
+            "displayName": "10ft",
+            "sortOrder": 75,
+            "isActive": true
+        },
+        {
+            "name": "14 inch",
+            "category": "electronics",
+            "displayName": "14 inch",
+            "sortOrder": 76,
+            "isActive": true
+        },
+        {
+            "name": "15.6 inch",
+            "category": "electronics",
+            "displayName": "15.6 inch",
+            "sortOrder": 77,
+            "isActive": true
+        },
+        {
+            "name": "17 inch",
+            "category": "electronics",
+            "displayName": "17 inch",
+            "sortOrder": 78,
+            "isActive": true
+        },
+        {
+            "name": "24 inch",
+            "category": "electronics",
+            "displayName": "24 inch",
+            "sortOrder": 79,
+            "isActive": true
+        },
+        {
+            "name": "27 inch",
+            "category": "electronics",
+            "displayName": "27 inch",
+            "sortOrder": 80,
+            "isActive": true
+        },
+        {
+            "name": "32 inch",
+            "category": "electronics",
+            "displayName": "32 inch",
+            "sortOrder": 81,
+            "isActive": true
+        },
+        {
+            "name": "40 inch",
+            "category": "electronics",
+            "displayName": "40 inch",
+            "sortOrder": 82,
+            "isActive": true
+        },
+        {
+            "name": "43 inch",
+            "category": "electronics",
+            "displayName": "43 inch",
+            "sortOrder": 83,
+            "isActive": true
+        },
+        {
+            "name": "50 inch",
+            "category": "electronics",
+            "displayName": "50 inch",
+            "sortOrder": 84,
+            "isActive": true
+        },
+        {
+            "name": "55 inch",
+            "category": "electronics",
+            "displayName": "55 inch",
+            "sortOrder": 85,
+            "isActive": true
+        },
+        {
+            "name": "65 inch",
+            "category": "electronics",
+            "displayName": "65 inch",
+            "sortOrder": 86,
+            "isActive": true
+        },
+        {
+            "name": "75 inch",
+            "category": "electronics",
+            "displayName": "75 inch",
+            "sortOrder": 87,
+            "isActive": true
+        },
+        {
+            "name": "5",
+            "category": "ring",
+            "displayName": "5",
+            "sortOrder": 88,
+            "isActive": true
+        },
+        {
+            "name": "6",
+            "category": "ring",
+            "displayName": "6",
+            "sortOrder": 89,
+            "isActive": true
+        },
+        {
+            "name": "7",
+            "category": "ring",
+            "displayName": "7",
+            "sortOrder": 90,
+            "isActive": true
+        },
+        {
+            "name": "8",
+            "category": "ring",
+            "displayName": "8",
+            "sortOrder": 91,
+            "isActive": true
+        },
+        {
+            "name": "9",
+            "category": "ring",
+            "displayName": "9",
+            "sortOrder": 92,
+            "isActive": true
+        },
+        {
+            "name": "10",
+            "category": "ring",
+            "displayName": "10",
+            "sortOrder": 93,
+            "isActive": true
+        },
+        {
+            "name": "11",
+            "category": "ring",
+            "displayName": "11",
+            "sortOrder": 94,
+            "isActive": true
+        },
+        {
+            "name": "12",
+            "category": "ring",
+            "displayName": "12",
+            "sortOrder": 95,
+            "isActive": true
+        },
+        {
+            "name": "Adjustable",
+            "category": "ring",
+            "displayName": "Adjustable",
+            "sortOrder": 96,
+            "isActive": true
+        },
+        {
+            "name": "30A",
+            "category": "bra",
+            "displayName": "30A",
+            "sortOrder": 97,
+            "isActive": true
+        },
+        {
+            "name": "32A",
+            "category": "bra",
+            "displayName": "32A",
+            "sortOrder": 98,
+            "isActive": true
+        },
+        {
+            "name": "34A",
+            "category": "bra",
+            "displayName": "34A",
+            "sortOrder": 99,
+            "isActive": true
+        },
+        {
+            "name": "36A",
+            "category": "bra",
+            "displayName": "36A",
+            "sortOrder": 100,
+            "isActive": true
+        },
+        {
+            "name": "32B",
+            "category": "bra",
+            "displayName": "32B",
+            "sortOrder": 101,
+            "isActive": true
+        },
+        {
+            "name": "34B",
+            "category": "bra",
+            "displayName": "34B",
+            "sortOrder": 102,
+            "isActive": true
+        },
+        {
+            "name": "36B",
+            "category": "bra",
+            "displayName": "36B",
+            "sortOrder": 103,
+            "isActive": true
+        },
+        {
+            "name": "38B",
+            "category": "bra",
+            "displayName": "38B",
+            "sortOrder": 104,
+            "isActive": true
+        },
+        {
+            "name": "34C",
+            "category": "bra",
+            "displayName": "34C",
+            "sortOrder": 105,
+            "isActive": true
+        },
+        {
+            "name": "36C",
+            "category": "bra",
+            "displayName": "36C",
+            "sortOrder": 106,
+            "isActive": true
+        },
+        {
+            "name": "38C",
+            "category": "bra",
+            "displayName": "38C",
+            "sortOrder": 107,
+            "isActive": true
+        },
+        {
+            "name": "40C",
+            "category": "bra",
+            "displayName": "40C",
+            "sortOrder": 108,
+            "isActive": true
+        },
+        {
+            "name": "42D",
+            "category": "bra",
+            "displayName": "42D",
+            "sortOrder": 109,
+            "isActive": true
+        },
+        {
+            "name": "44DD",
+            "category": "bra",
+            "displayName": "44DD",
+            "sortOrder": 110,
+            "isActive": true
+        }
+    ]
+}

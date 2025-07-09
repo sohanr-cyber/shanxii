@@ -20,7 +20,6 @@ const addressSchema = new mongoose.Schema(
     // Address details
     email: {
       type: String,
-      required: true
     },
     phone: {
       type: String

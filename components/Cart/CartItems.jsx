@@ -10,8 +10,7 @@ const calculateSubtotal = cartItems => {
   let subtotal = 0
   cartItems.forEach(item => {
     subtotal +=
-      (item.product.price -
-        item.product.price * (item.product.discount / 100)) *
+      item.product.priceWithDiscount *
       item.quantity
   })
   return subtotal
@@ -46,7 +45,7 @@ const CartItems = ({ cartItems }) => {
 
               <div style={{ fontSize: '80%', marginTop: '2px' }}>
                 ৳{' '}
-                {item.variant?.price || item.product.priceWithDiscount}
+                {item.variant?.priceWithDiscount || item.product.priceWithDiscount}
                 * {item.quantity}
               </div>
             </div>
