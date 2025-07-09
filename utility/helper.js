@@ -75,7 +75,7 @@ const generateProductSeoData = productData => {
     description: description,
     canonical: `${BASE_URL}/products/${slug}`,
     openGraph: {
-      title: `Quince Cloth - ${name}`,
+      title: `${name}`,
       description: description,
       url: `${BASE_URL}/products/${slug}`,
       images: [
