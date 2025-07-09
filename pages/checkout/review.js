@@ -230,7 +230,7 @@ const Address = () => {
               </div>{' '}
               <div>Cash On Delivery</div>
             </div>
-            <div
+            {/* <div
               className={styles.bkash}
               onClick={() =>
                 // payNow(router.query.buyNow ? buyNowItems : cartItems)
@@ -255,7 +255,7 @@ const Address = () => {
                 />
               </div>{' '}
               <div> Pay Now</div>
-            </div>
+            </div> */}
           </div>
           <div className={styles.flex_btn}>
             {' '}

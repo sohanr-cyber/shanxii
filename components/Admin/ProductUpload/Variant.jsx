@@ -129,7 +129,7 @@ const Variant = ({ vuid }) => {
 
                 </div>
                 <div className={styles.field}>
-                    <div className={styles.box} style={{ backgroundColor: findRGB(vDetails?.color) || '#eee', display: "flex", alignItems: 'center', justifyContent: "center" }} onClick={() => dispatch(removeVariant({
+                    <div className={styles.box} style={{ backgroundColor: `${findRGB(vDetails?.color)}` || '#eee', display: "flex", alignItems: 'center', justifyContent: "center" }} onClick={() => dispatch(removeVariant({
                         uid: vuid,
                     }))}>
                         -
