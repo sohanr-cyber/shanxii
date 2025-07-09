@@ -1,7 +1,7 @@
 import BASE_URL from '@/config'
 
 const footerP =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat in eros varius congue vitae ut mauris. Nunc sit amet justo vitae enim rutrum consectetur. Morbi id pretium risus. Donec gravida porta tellus, non iaculis purus ornare ac. Donec sagittis, nulla nec placerat efficitur, velit enim malesuada felis'
+  'Shanxii – Your Trusted Online Store Explore a wide range of electronics, fashion, gadgets, home & kitchen essentials, and more. Trusted by thousands of happy customers, Shanxii offers quality products, secure shopping, and fast delivery – all in one place'
 const Inside_Dhaka = 70
 const Outside_Dhaka = 145
 const Dhaka_Subburb = 150
